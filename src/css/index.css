@@ -1,0 +1,209 @@
+ * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: #f9f9f9;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .navbar {
+            display: flex;
+            gap: 2.5px;
+            font-size: 15px;
+            margin-top: 20px;
+            margin-bottom: 40px;
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: #000;
+            transition: color 0.3s;
+            padding: 5px 8px;
+            position: relative;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .navbar a:hover {
+            background-color: #000;
+            color: #fff;
+        }
+        
+        /* Active State */
+        .navbar a.active {
+            background-color: #000;
+            color: #fff;
+        }
+        
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+        }
+
+        .home-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: stretch;
+            gap: 15px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: #fff;
+            border: 2px solid #000;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .card-left {
+            flex: 1;
+            min-width: 200px;
+            max-width: 100%;
+        }
+
+        .card-left img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 15px;
+            border: 2px solid #000;
+        }
+
+        .card-right {
+            flex: 2;
+            min-width: 300px;
+            max-width: 500px;
+            text-align: left;
+        }
+
+        .card-right h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            color: #000;
+            position: relative;
+        }
+
+        .card-right h1::after {
+            content: '';
+            display: block;
+            width: calc(100%);
+            height: 2px;
+            background-color: #000;
+            margin-top: 10px;
+        }
+
+        .card-right h2 {
+            font-size: 18px;
+            color: #000;
+            margin-bottom: 15px;
+            margin-top: 15px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .card-right p {
+            font-size: 16px;
+            line-height: 1.5;
+            color: #555;
+            text-align: justify;
+            margin-bottom: 20px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: left;
+        }
+
+        .button {
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #000;
+            background-color: #fff;
+            border: 2px solid #000;
+            border-radius: 8px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #000;
+            color: #fff;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .social-icons a {
+            font-size: 23px;
+            color: #000;
+            text-decoration: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            background-color: #fff;
+            border: 2px solid #000;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            background-color: #000;
+            color: #fff;
+        }
+        @media (max-width: 550px) {
+            .home-section {
+                flex-direction: column;
+                gap: 20px;
+            }
+        
+            .card-left,
+            .card-right {
+                width: 100%;
+            }
+        
+            .card-right h1,
+            .card-right h2 {
+                text-align: center; /* Rata tengah */
+                justify-content: center;
+            }
+            .card-right h1::after {
+               margin: auto;
+               margin-top: 10px;
+            }
+        
+            .buttons {
+                justify-content: center;
+            }
+        
+            .social-icons {
+                justify-content: center; /* Rata tengah */
+            }
+        }

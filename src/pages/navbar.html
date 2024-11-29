@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navbar</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="bitcoin.css">
+    <style>
+      * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background: #ffffff; /* Background putih */
+    height: 100vh;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+/* Navbar container */
+.navbar {
+    position: absolute;
+    top: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    background: #fff;
+    padding: 10px 30px;
+    border-radius: 15px;
+    border: 2px solid #000;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 760px;
+    margin: 0 30 0 30;
+
+    /* max-width: calc(100% - 60px); 
+    width: auto;  */
+}
+
+.navbar a {
+    text-decoration: none;
+    font-size: 20px;
+    color: #333;
+    padding: 8px 15px;
+    position: relative;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+}
+
+/* Hover Effect */
+.navbar a:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    color: #333;
+}
+
+/* Active State */
+.navbar a.active {
+    background-color: #000;
+    color: #fff;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 10px 15px;
+        gap: 2px;
+    }
+
+    .navbar a {
+        font-size: 18px;
+        padding: 8px 10px;
+    }
+}
+/* Responsive design */
+@media (max-width: 610px) {
+    .navbar {
+        padding: 10px 30px;
+        gap: 20px;
+    }
+
+    .navbar a {
+        font-size: 20px;
+        padding: 8px 15px;
+    }
+
+    /* Hide text on mobile, only show icons */
+    .navbar a span {
+        display: none;
+    }
+}
+    </style>
+    <script>
+        // JavaScript to handle active menu item
+        document.addEventListener("DOMContentLoaded", () => {
+            const links = document.querySelectorAll(".navbar a");
+            links.forEach(link => {
+                link.addEventListener("click", () => {
+                    // Remove active class from all links
+                    links.forEach(l => l.classList.remove("active"));
+                    // Add active class to the clicked link
+                    link.classList.add("active");
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" id="home-link"><i class="fas fa-home"></i><span>Home</span></a>
+        <a href="#resume" id="resume-link"><i class="fas fa-file-alt"></i><span>Resume</span></a>
+        <a href="#project" id="project-link"><i class="fa-solid fa-code"></i><span>Projects</span></a>
+        <a href="#article" id="article-link"><i class="fas fa-newspaper"></i><span>Articles</span></a>
+        <a href="bitcoin.html" id="bitcoin-link"><i class="fa-solid fa-bitcoin-sign"></i><span>Bitcoin</span></a>
+    </nav>
+</body>
+</html>

@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Section with Social Icons</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background: #f9f9f9;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+.container {
+    max-width: 800px; /* Batas lebar container */
+    width: 100%; /* Agar responsif */
+}
+
+
+.home-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: stretch;
+    gap: 15px; /* Jarak antar card */
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.card {
+    background: #fff;
+    border: 2px solid #000;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.card-left {
+    flex: 1; /* Membuat card gambar mengikuti lebar yang sama */
+    min-width: 200px;
+    max-width: 100%; /* Membatasi lebar maksimum agar sesuai */
+}
+
+.card-left img {
+    width: 100%; /* Mengatur gambar agar memenuhi lebar card */
+    height: 300px; /* Menjaga rasio gambar */
+    object-fit: cover; /* Menjaga agar gambar tetap terpotong dengan benar */
+    border-radius: 15px;
+    border: 2px solid #000;
+}
+
+.card-right {
+    flex: 2; /* Memperluas card deskripsi */
+    min-width: 300px;
+    max-width: 500px;
+    text-align: left;
+}
+
+.card-right h1 {
+    font-size: 28px; /* Ukuran font lebih besar */
+    margin-bottom: 10px;
+    color: #000;
+    position: relative;
+    text-align: left; /* Rata tengah */
+}
+
+.card-right h1::after {
+    content: '';
+    display: block;
+    width: calc(100% - 50%);
+    height: 2px;
+    background-color: #000;
+    margin-top: 5px;
+}
+
+.card-right h2 {
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    justify-content: left; /* Rata tengah */
+}
+
+.card-right h2 span {
+    color: #000;
+    font-weight: bold;
+    border-right: 2px solid #000; /* Indikator kursor */
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    animation: blink 0.7s step-end infinite;
+}
+
+@keyframes blink {
+    50% {
+        border-color: transparent;
+    }
+}
+
+.card-right p {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #555;
+    text-align: justify;
+    margin-bottom: 20px;
+}
+
+.buttons {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center; /* Rata tengah */
+}
+
+.button {
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #000;
+    background-color: #fff;
+    border: 2px solid #000;
+    border-radius: 8px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.button:hover {
+    background-color: #000;
+    color: #fff;
+}
+
+.social-icons {
+    display: flex;
+    gap: 10px;
+    margin-left: 10px;
+    justify-content: center; /* Rata tengah */
+}
+
+.social-icons a {
+    font-size: 20px;
+    color: #000;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    background-color: #fff;
+    border: 2px solid #000;
+    border-radius: 50%; /* Membuat bentuk lingkaran */
+    transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+    background-color: #000;
+    color: #fff;
+}
+
+@media (max-width: 750px) {
+    .home-section {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .card-left,
+    .card-right {
+        width: 100%;
+    }
+
+    .card-left img {
+        height: auto;
+    }
+
+    .card-right h1,
+    .card-right h2 {
+        text-align: center; /* Rata tengah */
+        justify-content: center;
+    }
+    .card-right h1::after {
+       margin: auto;
+    }
+
+    .buttons {
+        justify-content: center;
+    }
+
+    .social-icons {
+        justify-content: center; /* Rata tengah */
+    }
+}
+    </style>
+</head>
+<body>
+    <section class="home-section">
+        <div class="card card-left">
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhra5a9xlXqPUWlCKe_7Bc0rYP4blsN5NVvH9Jrep941ABQjEAR1DMj-EVE_3aHY_9q_HfvkizS7hUaXb3VVFAiZUO9dtoxtpE0itDNNACWerQoBJ1WPQMJWUn6D6aEf4BG9EQx3Uf12dtJOFt2CFSVZDLbihKDzKzLhniNd8kek4w_o5FWjaq035YojADy/s1600/anwar.JPG" alt="M. Kaspul Anwar">
+        </div>
+
+        <div class="card card-right">
+            <h1>M. Kaspul Anwar</h1>
+            <h2>I'm a <span id="typing-profession"></span></h2>
+            <p>
+                I am an undergraduate student at the State Islamic University of Antasari Banjarmasin, majoring in Information Technology. I have a passion for data management and developing AI-based solutions
+            </p>
+            <div class="buttons">
+                <a href="#" class="button">View Resume</a>
+                <a href="#" class="button">Contact Me</a>
+                <div class="social-icons">
+                    <a href="https://github.com" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const professions = [
+            "Machine Learning Engineer",
+            "Data Scientist",
+            "AI Engineer",
+            "Software Developer"
+        ];
+
+        let currentProfession = 0;
+        let typingIndex = 0;
+        const typingSpeed = 60;
+        const erasingSpeed = 30;
+        const delayBetween = 1000;
+
+        const typingElement = document.getElementById("typing-profession");
+
+        function typeProfession() {
+            if (typingIndex < professions[currentProfession].length) {
+                typingElement.textContent += professions[currentProfession].charAt(typingIndex);
+                typingIndex++;
+                setTimeout(typeProfession, typingSpeed);
+            } else {
+                setTimeout(eraseProfession, delayBetween);
+            }
+        }
+
+        function eraseProfession() {
+            if (typingIndex > 0) {
+                typingElement.textContent = professions[currentProfession].substring(0, typingIndex - 1);
+                typingIndex--;
+                setTimeout(eraseProfession, erasingSpeed);
+            } else {
+                currentProfession = (currentProfession + 1) % professions.length;
+                setTimeout(typeProfession, typingSpeed);
+            }
+        }
+
+        typeProfession();
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,248 @@
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f9f9f9;
+            color: #333;
+            display: flex;
+            flex-direction: column; /* Mengatur elemen di body agar vertikal */
+            align-items: center; /* Memastikan semua elemen di tengah secara horizontal */
+            padding: 20px;
+            min-height: 100vh; /* Memastikan tinggi body memenuhi layar */
+            margin: 0;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: center; /* Membuat navbar berada di tengah */
+            gap: 2.5px;
+            font-size: 15px;
+            margin-top: 20px;
+            margin-bottom: 40px;
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: #000;
+            transition: color 0.3s;
+            padding: 5px 8px;
+            position: relative;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .navbar a:hover {
+            background-color: #000;
+            color: #fff;
+        }
+        
+        /* Active State */
+        .navbar a.active {
+            background-color: #000;
+            color: #fff;
+        }
+        
+        .container {
+            max-width: 760px;
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center; /* Memastikan kontainer berada di tengah */
+            position: relative;
+        }
+
+        .card {
+            background-color: white;
+            border: 2px solid #000;
+            border-radius: 15px;
+            padding: 20px;
+            width: calc(50% - 10px);
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-left {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-left .header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .card-left .header .logo {
+            width: 45px;
+            height: 45px;
+            margin-right: 10px;
+        }
+
+        .card-left .header .title {
+            font-size: 25px;
+            font-weight: bold;
+            color: #000;
+        }
+
+        .card-left .qr-code-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .card-left .qr-code-wrapper .qr-code img {
+            width: 120px;
+            height: 120px;
+            object-fit: contain;
+            border: 2px solid #000;
+            border-radius: 10px;
+        }
+
+        .card-left .qr-code-wrapper .details-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .card-left .qr-code-wrapper .details-wrapper .address {
+            font-size: 14px;
+            word-wrap: break-word;
+            word-break: break-word;
+            line-height: 1.5;
+            font-weight: bold;
+        }
+
+        .info-btc{
+            font-weight: bold;
+        }
+
+        .card-left .qr-code-wrapper .details-wrapper .info {
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .card-right {
+            text-align: center;
+        }
+
+        .card-right h1 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .card-right .separator {
+            border-top: 2px solid #000;
+            margin: 10px 0;
+        }
+
+        .card-right .balance {
+            margin-top: 15px;
+        }
+
+        .card-right .balance .balance-title {
+            font-size: 16px;
+            margin-bottom: 16px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        .card-right .balance .balance-amount {
+            font-size: 28px;
+            font-weight: bold;
+            color: #000;
+        }
+
+        .card-right .balance .balance-amount .currency {
+            font-size: 14px;
+            font-weight: normal;
+            margin-left: 5px;
+        }
+
+        .card-right .balance .balance-sats {
+            font-size: 14px;
+            color: #777;
+            margin-top: 10px;
+        }
+
+        .card-right .buttons {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .card-right .buttons .btn {
+            text-decoration: none;
+            font-size: 14px;
+            padding: 10px 20px;
+            border: 2px solid #000;
+            border-radius: 5px;
+            background-color: #fff;
+            color: #333;
+            font-weight: bold;
+            width: 100%;
+            text-align: center;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .card-right .buttons .btn:hover {
+            background-color: #000;
+            color: #fff;
+        }
+
+        .thanks {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 14px;
+            color: #888;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            position: relative;
+            padding: 5px;
+        }
+        
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+            }
+        
+            .card {
+                width: 100%;
+            }
+        
+            .card-left .qr-code-wrapper {
+                flex-direction: row;
+                justify-content: center;
+                gap: 20px;
+            }
+        
+            .card-left .qr-code-wrapper .details-wrapper {
+                text-align: left;
+                align-items: flex-start;
+            }
+        
+            .card-right .buttons {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .card-right .buttons .btn {
+                width: 100%;
+                text-align: center;
+            }
+            .thanks {
+                margin-top: 40px;
+            }
+        }

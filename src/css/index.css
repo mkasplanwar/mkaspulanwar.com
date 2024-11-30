@@ -1,4 +1,5 @@
- * {
+        /* Reset Style */
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -38,13 +39,12 @@
             background-color: #000;
             color: #fff;
         }
-        
+
         /* Active State */
         .navbar a.active {
             background-color: #000;
             color: #fff;
         }
-        
 
         .container {
             max-width: 800px;
@@ -53,16 +53,15 @@
 
         .home-section {
             display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: stretch;
-            gap: 15px;
+            flex-direction: column; /* Tata letak vertikal */
+            justify-content: center; /* Konten rata tengah vertikal */
+            align-items: center; /* Konten rata tengah horizontal */
+            gap: 20px; /* Jarak antar card */
             max-width: 800px;
             margin: auto;
         }
 
         .card {
-            
             background: #fff;
             border: 2px solid #000;
             border-radius: 15px;
@@ -179,31 +178,33 @@
             background-color: #000;
             color: #fff;
         }
+
         @media (max-width: 550px) {
             .home-section {
                 flex-direction: column;
                 gap: 20px;
             }
-        
+
             .card-left,
             .card-right {
                 width: 100%;
             }
-        
+
             .card-right h1,
             .card-right h2 {
                 text-align: center; /* Rata tengah */
                 justify-content: center;
             }
+
             .card-right h1::after {
-               margin: auto;
-               margin-top: 10px;
+                margin: auto;
+                margin-top: 10px;
             }
-        
+
             .buttons {
                 justify-content: center;
             }
-        
+
             .social-icons {
                 justify-content: center; /* Rata tengah */
             }

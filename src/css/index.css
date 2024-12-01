@@ -162,7 +162,7 @@
         }
 
         .social-icons a {
-            font-size: 25px;
+            font-size: 22px;
             text-decoration: none;
             display: flex;
             justify-content: center;
@@ -171,7 +171,7 @@
             height: 40px;
             background-color: #fff; /* Latar belakang ikon */
             border: 2px solid #000; /* Border ikon */
-            border-radius: 25%;
+            border-radius: 50%;
             transition: all 0.3s ease; /* Efek transisi */
         }
         

@@ -107,14 +107,20 @@
             gap: 5px;
             flex-wrap: wrap;
         }
-
+    
         .tag {
-            background-color: #f1f1f1;
+            background-color: #fff; /* Background putih */
             color: #333;
-            border: 1px solid #ccc;
+            border: 2px solid #000; /* Border hitam 2px */
             border-radius: 5px;
             padding: 5px 10px;
             font-size: 0.9rem;
+        }
+
+        .tag:hover {
+            background-color: #000; /* Latar belakang hitam saat hover */
+            color: #fff; /* Teks putih saat hover */
+            transform: scale(1.1); /* Sedikit memperbesar badge saat hover */
         }
 
         /* Responsiveness for smaller screens */

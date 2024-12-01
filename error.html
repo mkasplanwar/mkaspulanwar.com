@@ -64,6 +64,7 @@
             max-width: 600px;
             margin-top: 30px;
             position: relative;
+            border: 2px solid black;
         }
 
         /* Circle with icon inside */
@@ -82,6 +83,7 @@
             align-items: center;
             font-size: 50px;
             color: white;
+            border: 2px solid black;
         }
 
         .error-container h1 {
@@ -104,17 +106,20 @@
             border-radius: 5px;
             font-size: 1rem;
             transition: background 0.3s ease;
+            border: 2px solid black;
         }
 
         .error-container a:hover {
-            background: #e53935;
+            background: #fff;
+            color: #f44336;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
 
     <nav class="navbar">
-        <a href="../index.html" data-target="home" id="home-link">Home</a>
+        <a href="index.html" data-target="home" id="home-link">Home</a>
         <a href="resume.html" data-target="resume" id="resume-link">Resume</a>
         <a href="projects.html" data-target="projects" id="projects-link">Projects</a>
         <a href="articles.html" data-target="articles" id="articles-link">Articles</a>
@@ -123,7 +128,7 @@
 
     <div class="error-container">
         <h1>Oops, Something Went Wrong!</h1>
-        <p>Anwar Masih Terjebak Hujan, Lanjut Lagi Kalo Sdh Sampai😭😭</p>
+        <p>Anwar Kehabisan Paket Kuota, Belum Bisa Deploy Ke Server <br>🥲🥲😭</p>
         <a href="index.html">Kembali ke Home</a>
     </div>
 

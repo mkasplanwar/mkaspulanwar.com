@@ -62,7 +62,7 @@
             gap: 20px;
             width: 100%;
             max-width: 1200px;
-            margin-top: 20px;
+           
         }
 
         .card {
@@ -72,18 +72,18 @@
             overflow: hidden;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease-in-out;
-            position: relative; /* Ensure the badge is positioned relative to the card */
+            position: relative;
+            cursor: pointer;
         }
 
-        .card:hover {
-            transform: translateY(-10px);
-        }
+        
 
         .card img {
             width: 100%;
             height: 200px;
             object-fit: cover;
             border-bottom: 2px solid #000;
+            position: relative; /* Required to position the badges */
         }
 
         .card-body {
@@ -94,6 +94,49 @@
             font-size: 20px;
             font-weight: bold;
             margin-bottom: 10px;
+        }
+
+        .meta-info {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .meta-info .author,
+        .meta-info .date {
+            color: #999;
+        }
+
+        /* Badge for the important post */
+        .important-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #ff4747;
+            color: #fff;
+            padding: 5px 10px;
+            font-size: 14px;
+            font-weight: bold;
+            border-radius: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 10; /* Ensure the important badge is on top */
+        }
+
+        /* Category Badge in the top left corner */
+        .category {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: #f1f1f1;
+            border: 1px solid #000;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 14px;
+            color: #333;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
 
         .card-body p {
@@ -116,21 +159,6 @@
             background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
         }
 
-        /* Badge for the important post */
-        .important-badge {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background-color: #ff4747;
-            color: #fff;
-            padding: 5px 10px;
-            font-size: 14px;
-            font-weight: bold;
-            border-radius: 20px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            z-index: 10; /* Make sure the badge stays on top */
-        }
-
     </style>
 </head>
 <body>
@@ -147,18 +175,28 @@
         <!-- Article 1 with Important Badge -->
         <div class="card">
             <div class="important-badge">Disematkan</div>
-            <img src="https://via.placeholder.com/300x200" alt="Article 1 Banner">
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgs-_-ZqGMWob4wlSK399Ls6SCJg5pUX8hpxObjUIDdzHXXJa2P3yyEaA-DVIcGFNlJi9PgEc4L85kL3f_5lWntCFebbvuIrYfSR3uzluZVStVUd3iTLaX7ivQNHxHryljULiXZH9aNRoNQM6zF36tZsmBME3qUCMw8T8S4gL_O3KpDeacUGlm4kOb8dIwQ/s1600/PPT.png" alt="Article 1 Banner">
+            <div class="category">Jurnal</div>
             <div class="card-body">
-                <h3>Article Title 1</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ac orci ante. Donec vehicula est id erat gravida, at viverra nisi gravida. Sed pretium justo et magna tristique, eu suscipit libero eleifend.</p>
+                <h3>Cloud Costscape untuk Efisiensi Infrastruktur IT di Banjarmasin</h3>
+                <div class="meta-info">
+                    <span class="author">By M. Kaspul Anwar</span>
+                    <span class="date">19 September 2024</span>
+                </div>
+                <p>Perguruan tinggi semakin dihadapkan pada kebutuhan untuk memperluas kapasitas penyimpanan server mereka guna memenuhi permintaan data yang terus meningkat</p>
             </div>
         </div>
 
         <!-- Article 2 -->
         <div class="card">
             <img src="https://via.placeholder.com/300x200" alt="Article 2 Banner">
+            <div class="category">Business</div>
             <div class="card-body">
                 <h3>Article Title 2</h3>
+                <div class="meta-info">
+                    <span class="author">By Jane Smith</span>
+                    <span class="date">Posted on: 25 November 2024</span>
+                </div>
                 <p>Donec in metus vel orci sollicitudin convallis. Mauris quis auctor leo, et dignissim lorem. Integer feugiat, erat ac varius egestas. Quisque laoreet lacus libero, in auctor justo pharetra vitae.</p>
             </div>
         </div>
@@ -166,8 +204,25 @@
         <!-- Article 3 -->
         <div class="card">
             <img src="https://via.placeholder.com/300x200" alt="Article 3 Banner">
+            <div class="category">Health</div>
             <div class="card-body">
                 <h3>Article Title 3</h3>
+                <div class="meta-info">
+                    <span class="author">By Alex Brown</span>
+                    <span class="date">Posted on: 10 November 2024</span>
+                </div>
+                <p>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Nam eget odio vitae ante tempus blandit. Cras vulputate, neque vel vehicula euismod, felis.</p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="https://via.placeholder.com/300x200" alt="Article 3 Banner">
+            <div class="category">Health</div>
+            <div class="card-body">
+                <h3>Article Title 3</h3>
+                <div class="meta-info">
+                    <span class="author">By Alex Brown</span>
+                    <span class="date">Posted on: 10 November 2024</span>
+                </div>
                 <p>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Nam eget odio vitae ante tempus blandit. Cras vulputate, neque vel vehicula euismod, felis.</p>
             </div>
         </div>

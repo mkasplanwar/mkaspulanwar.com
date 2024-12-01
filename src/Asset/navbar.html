@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navbar</title>
+    <link rel="icon" href="https://cdn.pixabay.com/photo/2021/04/30/16/47/bitcoin-logo-6219385_960_720.png" type="image/png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f9f9f9;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: center;
+            gap: 2.5px;
+            font-size: 15px;
+            margin-top: 20px;
+            margin-bottom: 40px;
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: #000;
+            transition: color 0.3s;
+            padding: 5px 8px;
+            position: relative;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .navbar a:hover {
+            background-color: #000;
+            color: #fff;
+        }
+
+        .navbar a.active {
+            background-color: #000;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" data-target="home" id="home-link">Home</a>
+        <a href="resume.html" data-target="resume" id="resume-link">Resume</a>
+        <a href="projects.html" data-target="projects" id="projects-link">Projects</a>
+        <a href="articles.html" data-target="articles" id="articles-link">Articles</a>
+        <a href="bitcoin.html" data-target="bitcoin" id="bitcoin-link">Bitcoin</a>
+    </nav>
+</body>
+</html>

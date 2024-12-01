@@ -52,9 +52,10 @@
 
         .card-container {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Otomatis responsif */
             gap: 20px;
             max-width: 1000px;
+            width: 100%;
             margin: 0 auto;
         }
 
@@ -110,21 +111,37 @@
             font-size: 0.9rem;
         }
 
-        /* Responsiveness */
-        @media (max-width: 1024px) {
-            .card-container {
-                grid-template-columns: repeat(2, 1fr);
+        /* Responsiveness for smaller screens */
+        @media (max-width: 768px) {
+            .card h3 {
+                font-size: 1.25rem;
+            }
+
+            .card p {
+                font-size: 0.9rem;
+            }
+
+            .tags .tag {
+                font-size: 0.8rem;
             }
         }
 
-        @media (max-width: 768px) {
-            .card-container {
-                grid-template-columns: 1fr;
+        @media (max-width: 480px) {
+            .navbar {
+                flex-wrap: wrap;
+                gap: 5px;
+            }
+
+            .navbar a {
+                font-size: 14px;
+                padding: 5px;
             }
 
             .card {
-                margin: 0 auto;
+                padding: 15px;
             }
+
+            
         }
     </style>
 </head>
@@ -164,6 +181,15 @@
             <div class="tags">
                 <span class="tag">React</span>
                 <span class="tag">Node.js</span>
+            </div>
+        </div>
+        <div class="card">
+            <img src="https://via.placeholder.com/300x150" alt="Project 4">
+            <h3>Project 4</h3>
+            <p>A brief description of Project 4 goes here.</p>
+            <div class="tags">
+                <span class="tag">Django</span>
+                <span class="tag">Python</span>
             </div>
         </div>
     </div>

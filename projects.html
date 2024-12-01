@@ -52,11 +52,12 @@
 
         .card-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Otomatis responsif */
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 20px;
             max-width: 1000px;
             width: 100%;
             margin: 0 auto;
+            align-items: stretch; /* Tambahkan ini untuk memastikan kartu punya tinggi sama */
         }
 
         .card {
@@ -67,12 +68,12 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             text-align: center;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            display: flex;
-            justify-content: space-between;
+            display: flex; /* Gunakan flexbox di dalam card */
             flex-direction: column;
-            align-items: center;
-            cursor: pointer; /* Menandakan bahwa card dapat diklik */
-            
+            justify-content: space-between; /* Pastikan konten diatur dengan rapi */
+            align-items: center; /* Konten di tengah */
+            cursor: pointer; /* Indikasi bahwa kartu dapat diklik */
+            height: 100%; /* Tambahkan untuk menyesuaikan tinggi */
         }
         a {
             text-decoration: none;
@@ -169,7 +170,17 @@
     </nav>
 
     <div class="card-container">
-    
+        <a href="">
+            <div class="card">
+                <img src="src/imgs/money.png" alt="Project 3" loading="lazy">
+                <h3>Currency Denomination Detection For Tuna Netra</h3>
+                <p>This project is an Indonesian Currency Counter app using deep learning to identify and count banknotes from images or videos.</p>
+                <div class="tags">
+                    <span class="tag">Python</span>
+                    <span class="tag">YOLO v8</span>
+                </div>
+            </div>
+        </a>
         <a href="https://github.com/mkasplanwar/Flappy-Bird-Basic-Version-Built-with-Cpp?tab=readme-ov-file">
             <div class="card">
                 <img src="src/imgs/flappy.png" alt="Project " loading="lazy">
@@ -181,17 +192,17 @@
                 </div>
             </div>
         </a>
-    <a href="https://github.com/mkasplanwar/Mobile-Banking-Algoritm-With-Cpp">
-        <div class="card">
-            <img src="src/imgs/bank.png" alt="Project" loading="lazy">
-            <h3>Mobile Banking Algoritm With C++</h3>
-            <p>This project simulates a mobile banking system in C++, featuring user authentication, transaction history, and account management.</p>
-            <div class="tags">
-                <span class="tag">C++</span>
-                <span class="tag">Flowchart</span>
+        <a href="https://github.com/mkasplanwar/Mobile-Banking-Algoritm-With-Cpp">
+            <div class="card">
+                <img src="src/imgs/bank.png" alt="Project" loading="lazy">
+                <h3>Mobile Banking Algoritm With C++</h3>
+                <p>This project simulates a mobile banking system in C++, featuring user authentication, transaction history, and account management.</p>
+                <div class="tags">
+                    <span class="tag">C++</span>
+                    <span class="tag">Flowchart</span>
+                </div>
             </div>
-        </div>
-    </a>
+        </a>
         <div class="card">
             <img src="https://via.placeholder.com/300x150" alt="Project 3" loading="lazy">
             <h3>Project 3</h3>
@@ -201,15 +212,7 @@
                 <span class="tag">Node.js</span>
             </div>
         </div>
-        <div class="card">
-            <img src="https://via.placeholder.com/300x150" alt="Project 4" loading="lazy">
-            <h3>Project 4</h3>
-            <p>A brief description of Project 4 goes here.</p>
-            <div class="tags">
-                <span class="tag">Django</span>
-                <span class="tag">Python</span>
-            </div>
-        </div>
+        
     </div>
 </body>
 </html>

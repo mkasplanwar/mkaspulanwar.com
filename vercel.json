@@ -1,12 +1,5 @@
 {
-    "cleanUrls": true,
-    "redirects": [
-    {
-      "source": "/project",
-      "destination": "/pages/projects.html",
-      "permanent": true
-    }
-  ]
+    "cleanUrls": true
 }
 
   

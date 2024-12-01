@@ -12,6 +12,7 @@
             flex-direction: column;
             align-items: center;
             padding: 20px;
+            margin: 0;
         }
 
         .navbar {
@@ -45,6 +46,7 @@
             color: #fff;
         }
         
+        
 
         .container {
             max-width: 800px;
@@ -59,6 +61,7 @@
             gap: 15px;
             max-width: 800px;
             margin: auto;
+            flex: 1;
         }
 
         .card {
@@ -162,23 +165,31 @@
 
         .social-icons a {
             font-size: 23px;
-            color: #000;
             text-decoration: none;
             display: flex;
             justify-content: center;
             align-items: center;
             width: 40px;
             height: 40px;
-            background-color: #fff;
-            border: 2px solid #000;
-            border-radius: 50%;
-            transition: all 0.3s ease;
+            background-color: #fff; /* Latar belakang ikon */
+            border: 2px solid #000; /* Border ikon */
+            border-radius: 10px; /* Sudut membulat */
+            transition: all 0.3s ease; /* Efek transisi */
         }
-
+        
+        /* Target hanya ikon (bukan link wrappernya) untuk memastikan warna asli */
+        .social-icons a{
+            color: inherit; /* Pastikan mengikuti warna asli Font Awesome */
+        }
+        
+        /* Tambahkan efek hover jika diinginkan */
         .social-icons a:hover {
-            background-color: #000;
-            color: #fff;
+            background-color: #fff; /* Perubahan latar belakang pada hover */
+            transform: scale(1.1); /* Sedikit memperbesar ikon */
         }
+        
+        
+        
         @media (max-width: 550px) {
             .home-section {
                 flex-direction: column;
@@ -208,3 +219,15 @@
                 justify-content: center; /* Rata tengah */
             }
         }
+
+        footer {
+            color: #333; /* Warna teks */
+            text-align: center; /* Pusatkan teks */
+            padding: 10px; /* Tambahkan ruang di dalam footer */
+            font-size: 14px; /* Ukuran teks */
+            font-family: 'Arial', sans-serif; /* Font default */
+            margin-top: 40px; /* Jarak dari konten di atas footer */
+            
+        }
+        
+        

@@ -171,8 +171,8 @@
             height: 40px;
             background-color: #fff; /* Latar belakang ikon */
             border: 2px solid #000; /* Border ikon */
-            border-radius: 50%;
             transition: all 0.3s ease; /* Efek transisi */
+            border-radius: 10px;
         }
         
         /* Target hanya ikon (bukan link wrappernya) untuk memastikan warna asli */
@@ -182,8 +182,8 @@
         
         /* Tambahkan efek hover jika diinginkan */
         .social-icons a:hover {
-            background-color: #fff; /* Perubahan latar belakang pada hover */
-            transform: scale(1.1); /* Sedikit memperbesar ikon */
+            background-color: #000; /* Perubahan latar belakang pada hover */
+            color: #fff;
         }
         
         
@@ -215,6 +215,9 @@
         
             .social-icons {
                 justify-content: center; /* Rata tengah */
+            }
+            .social-icons a {
+                border-radius: 10px;
             }
         }
         

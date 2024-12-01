@@ -1,12 +1,12 @@
 {
     "cleanUrls": true,
-    "rewrites": [
+    "redirects": [
     {
-      "source": "/resume",
-      "destination": "/pages/resume.html"
+      "source": "/project",
+      "destination": "/pages/projects.html",
+      "permanent": true
     }
   ]
-    
 }
 
   

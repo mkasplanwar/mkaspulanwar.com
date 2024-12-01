@@ -70,6 +70,12 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            cursor: pointer; /* Menandakan bahwa card dapat diklik */
+            
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
         }
 
         .card:hover {
@@ -78,8 +84,8 @@
         }
 
         .card img {
-            max-width: 100%;
-            height: auto;
+            width: 300px; /* Tentukan lebar gambar */
+            height: auto; /* Menyesuaikan tinggi gambar secara proporsional */
             border-radius: 10px;
             border: 2px solid #000; /* Border hitam pada gambar */
             margin-bottom: 15px;
@@ -140,6 +146,8 @@
             .card {
                 padding: 15px;
             }
+
+            
         }
     </style>
 </head>
@@ -151,18 +159,17 @@
         <a href="articles.html" id="articles-link">Articles</a>
         <a href="bitcoin.html" id="bitcoin-link">Bitcoin</a>
     </nav>
-
+    <a href="https://github.com/mkasplanwar/Mobile-Banking-Algoritm-With-Cpp">
     <div class="card-container">
         <div class="card">
-            <img src="https://via.placeholder.com/300x150" alt="Project 1" loading="lazy">
-            <h3>Project 1</h3>
-            <p>A brief description of Project 1 goes here.</p>
+            <img src="https://freecodingtools.org/static/images/articles/how-to-compile-cplusplus-code-in-your-browser/CPP%20Banner%201.webp" alt="Project 1" loading="lazy">
+            <h3>Mobile Banking Algoritm With C++</h3>
+            <p>This project simulates a mobile banking system in C++, featuring user authentication, transaction history, and account management.</p>
             <div class="tags">
-                <span class="tag">HTML</span>
-                <span class="tag">CSS</span>
-                <span class="tag">JavaScript</span>
+                <span class="tag">C++</span>
             </div>
         </div>
+    </a>
         <div class="card">
             <img src="https://via.placeholder.com/300x150" alt="Project 2" loading="lazy">
             <h3>Project 2</h3>

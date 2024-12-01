@@ -19,17 +19,17 @@ body {
 .navbar {
     display: flex;
     justify-content: center;
-    gap: 2.5px;
+    gap: 5px;
     font-size: 15px;
     margin-top: 20px;
-    margin-bottom: 40px;
+    margin-bottom: 35px;
 }
 
 .navbar a {
     text-decoration: none;
     color: #000;
     transition: color 0.3s;
-    padding: 5px 8px;
+    padding: 10px 8px;
     position: relative;
     border-radius: 10px;
     display: flex;
@@ -40,6 +40,7 @@ body {
 .navbar a:hover {
     background-color: #000;
     color: #fff;
+    
 }
 
 .navbar a.active {

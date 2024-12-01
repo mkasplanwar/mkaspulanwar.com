@@ -12,7 +12,6 @@
             flex-direction: column;
             align-items: center;
             padding: 20px;
-            margin: 0;
         }
 
         .navbar {
@@ -61,7 +60,6 @@
             gap: 15px;
             max-width: 800px;
             margin: auto;
-            flex: 1;
         }
 
         .card {
@@ -218,16 +216,6 @@
             .social-icons {
                 justify-content: center; /* Rata tengah */
             }
-        }
-
-        footer {
-            color: #333; /* Warna teks */
-            text-align: center; /* Pusatkan teks */
-            padding: 10px; /* Tambahkan ruang di dalam footer */
-            font-size: 14px; /* Ukuran teks */
-            font-family: 'Arial', sans-serif; /* Font default */
-            margin-top: 40px; /* Jarak dari konten di atas footer */
-            
         }
         
         

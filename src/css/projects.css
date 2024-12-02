@@ -124,30 +124,34 @@ body {
 }
 /* Styling untuk badge */
 .badge {
-position: absolute;
-padding: 5px 10px;
-color: #fff;
-font-size: 12px;
-font-weight: bold;
-border-radius: 5px;
-background-color: #333;
+    position: absolute;
+    padding: 5px 10px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 20px;
+    background-color: #333;
 }
 
 /* Badge Disematkan dengan ikon - letakkan di kanan atas */
 .pinned {
-top: 10px;
-right: 10px;
-background-color: #ff4081; /* Warna untuk badge "Disematkan" */
-display: flex;
-align-items: center; /* Agar ikon dan teks sejajar */
-gap: 5px; /* Memberikan jarak antara ikon dan teks */
+    top: 10px;
+    right: 10px;
+    background-color: #ff4747; /* Warna untuk badge "Disematkan" */
+    display: flex;
+    align-items: center; /* Agar ikon dan teks sejajar */
+    gap: 5px; /* Memberikan jarak antara ikon dan teks */
 }
 
 /* Badge Bahasa Pemrograman - letakkan di kiri atas */
 .language {
-top: 10px;
-left: 10px;
-background-color: #4CAF50; /* Warna untuk badge bahasa pemrograman */
+    top: 10px;
+    left: 10px;
+    color: #333;
+    background-color: #fff; /* Warna untuk badge bahasa pemrograman */
+    border: 1px solid #000;
+    padding: 5px 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 /* Styling untuk project card dan banner */

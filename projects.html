@@ -123,12 +123,52 @@
 
         .button i {
             margin-right: 8px; /* Jarak ikon dari teks */
+            font-size: 15px;
         }
 
         .button:hover {
             background-color: #000; /* Warna latar hitam */
             color: #fff; /* Teks putih */
         }
+        /* Styling untuk badge */
+.badge {
+    position: absolute;
+    padding: 5px 10px;
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 5px;
+    background-color: #333;
+}
+
+/* Badge Disematkan - letakkan di kanan atas */
+.pinned {
+    top: 10px;
+    right: 10px;
+    background-color: #ff4081; /* Warna untuk badge "Disematkan" */
+}
+
+/* Badge Bahasa Pemrograman - letakkan di kiri atas */
+.language {
+    top: 10px;
+    left: 10px;
+    background-color: #4CAF50; /* Warna untuk badge bahasa pemrograman */
+}
+
+/* Styling untuk project card dan banner */
+.project-card {
+    width: 30%;
+    flex-grow: 1;
+    border: 2px solid black;
+    background-color: white;
+    overflow: hidden;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    position: relative; /* Memungkinkan badge ditempatkan di atas banner */
+}
 
         @media screen and (max-width: 768px) {
             .project-card {
@@ -148,6 +188,9 @@
     <div class="projects-container">
         <div class="project-card">
             <img src="src/imgs/money.png" alt="Project Banner" class="project-banner">
+            <!-- Badge Disematkan dan Bahasa Pemrograman -->
+            <span class="badge pinned">Disematkan</span>
+            <span class="badge language">Python</span>
             <div class="project-details">
                 <div class="project-title">Currency Denomination Detection For Tuna Netra</div>
                 <div class="project-description">This project is an Indonesian Currency Counter app using deep learning to identify and count banknotes from images or videos.</div>
@@ -161,6 +204,7 @@
                 </div>
             </div>
         </div>
+    
         <div class="project-card">
             <img src="src/imgs/flappy.png" alt="Project Banner" class="project-banner">
             <div class="project-details">

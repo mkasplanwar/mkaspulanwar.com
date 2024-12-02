@@ -3,63 +3,193 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Project</title>
-    <link rel="icon" href="https://i.pinimg.com/736x/da/d7/14/dad71415d8ae744ec3ab390383a7193a.jpg" sizes="32x32" type="image/png" >
-    <link rel="stylesheet" href="src/css/projects.css">
-    </head>
+    <title>My Projects</title>
+    <link rel="icon" href="https://i.pinimg.com/736x/da/d7/14/dad71415d8ae744ec3ab390383a7193a.jpg" type="image/png">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f9f9f9;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+            font-size: 15px;
+            margin-bottom: 35px;
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: #000;
+            padding: 10px 8px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .navbar a:hover, .navbar a.active {
+            background-color: #000;
+            color: #fff;
+        }
+
+        .projects-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            width: 90%;
+            max-width: 1200px;
+        }
+
+        .project-card {
+            width: 30%;
+            flex-grow: 1;
+            border: 2px solid black;
+            background-color: white;
+            overflow: hidden;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .project-banner {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .project-details {
+            padding: 10px;
+            border-top: 2px solid black;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-title {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .project-description {
+            margin-top: 5px;
+            font-size: 14px;
+            color: #555;
+            line-height: 1.5;
+            max-height: 4.5em;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .buttons-container {
+            display: flex;
+            justify-content: space-between; /* Sejajar di semua mode */
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .button {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: white;
+            border: 2px solid black;
+            border-radius: 5px;
+            padding: 8px;
+            text-align: center;
+            cursor: pointer;
+            font-weight: bold;
+            color: #000;
+            transition: all 0.3s ease;
+        }
+
+        .button i {
+            margin-right: 8px; /* Jarak ikon dari teks */
+        }
+
+        .button:hover {
+            background-color: #000; /* Warna latar hitam */
+            color: #fff; /* Teks putih */
+        }
+
+        @media screen and (max-width: 768px) {
+            .project-card {
+                width: 100%; /* Lebar penuh di tablet dan mobile */
+            }
+        }
+    </style>
+</head>
 <body>
     <nav class="navbar">
         <a href="index.html" id="home-link">Home</a>
         <a href="resume.html" id="resume-link">Resume</a>
-        <a href="projects.html" id="projects-link">Projects</a>
+        <a href="projects.html" id="projects-link" class="active">Projects</a>
         <a href="articles.html" id="articles-link">Articles</a>
         <a href="bitcoin.html" id="bitcoin-link">Bitcoin</a>
     </nav>
-
-    <div class="card-container">
-        <a href="">
-            <div class="card">
-                <img src="src/imgs/money.png" alt="Project 3" loading="lazy">
-                <h3>Currency Denomination Detection For Tuna Netra</h3>
-                <p>This project is an Indonesian Currency Counter app using deep learning to identify and count banknotes from images or videos.</p>
-                <div class="tags">
-                    <span class="tag">Python</span>
-                    <span class="tag">YOLO v8</span>
+    <div class="projects-container">
+        <div class="project-card">
+            <img src="src/imgs/money.png" alt="Project Banner" class="project-banner">
+            <div class="project-details">
+                <div class="project-title">Currency Denomination Detection For Tuna Netra</div>
+                <div class="project-description">This project is an Indonesian Currency Counter app using deep learning to identify and count banknotes from images or videos.</div>
+                <div class="buttons-container">
+                    <button class="button">
+                        <i class="fas fa-search"></i> Lihat Projek
+                    </button>
+                    <button class="button">
+                        <i class="fab fa-github"></i> GitHub
+                    </button>
                 </div>
-            </div>
-        </a>
-        <a href="https://github.com/mkasplanwar/Flappy-Bird-Basic-Version-Built-with-Cpp?tab=readme-ov-file">
-            <div class="card">
-                <img src="src/imgs/flappy.png" alt="Project " loading="lazy">
-                <h3>Flappy Bird Basic Version Built With C++</h3>
-                <p>This project showcases basic game development concepts: graphics rendering, collision detection, and user input handling.</p>
-                <div class="tags">
-                    <span class="tag">C++</span>
-                    <span class="tag">Windows API</span>
-                </div>
-            </div>
-        </a>
-        <a href="https://github.com/mkasplanwar/Mobile-Banking-Algoritm-With-Cpp">
-            <div class="card">
-                <img src="src/imgs/bank.png" alt="Project" loading="lazy">
-                <h3>Mobile Banking Algoritm With C++</h3>
-                <p>This project simulates a mobile banking system in C++, featuring user authentication, transaction history, and account management.</p>
-                <div class="tags">
-                    <span class="tag">C++</span>
-                    <span class="tag">Flowchart</span>
-                </div>
-            </div>
-        </a>
-        <div class="card">
-            <img src="https://via.placeholder.com/300x150" alt="Project 3" loading="lazy">
-            <h3>Project 3</h3>
-            <p>A brief description of Project 3 goes here.</p>
-            <div class="tags">
-                <span class="tag">React</span>
-                <span class="tag">Node.js</span>
             </div>
         </div>
-        
+        <div class="project-card">
+            <img src="src/imgs/flappy.png" alt="Project Banner" class="project-banner">
+            <div class="project-details">
+                <div class="project-title">Flappy Bird Basic Version Built With C++</div>
+                <div class="project-description">This project showcases basic game development concepts: graphics rendering, collision detection, and user input handling.</div>
+                <div class="buttons-container">
+                    <button class="button">
+                        <i class="fas fa-search"></i> Lihat Projek
+                    </button>
+                    <button class="button">
+                        <i class="fab fa-github"></i> GitHub
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="project-card">
+            <img src="src/imgs/bank.png" alt="Project Banner" class="project-banner">
+            <div class="project-details">
+                <div class="project-title">Mobile Banking Algoritm With C++</div>
+                <div class="project-description">This project simulates a mobile banking system in C++, featuring user authentication, transaction history, and account management.</div>
+                <div class="buttons-container">
+                    <button class="button">
+                        <i class="fas fa-search"></i> Lihat Projek
+                    </button>
+                    <button class="button">
+                        <i class="fab fa-github"></i> GitHub
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 </html>

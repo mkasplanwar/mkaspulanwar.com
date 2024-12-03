@@ -39,26 +39,30 @@ body {
 
 .projects-container {
     display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
+    flex-wrap: wrap; /* Elemen turun ke baris baru jika ruang tidak cukup */
+    gap: 20px; /* Jarak antar card */
+    /* justify-content: flex-start; Mulai dari sisi kiri */
     justify-content: center;
     width: 100%;
     max-width: 1200px;
 }
 
+
 .project-card {
-    width: 30%;
-    flex-grow: 1;
-    border: 2px solid black;
-    background-color: white;
-    overflow: hidden;
-    border-radius: 15px;
-    display: flex;
-    flex-direction: column;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-    position: relative; /* Memungkinkan badge ditempatkan di atas banner */
+    /* width: calc(33.333% - 20px); Lebar 1/3 dari baris, dikurangi jarak antar card */
+    width: 31%; /* Lebar setiap kartu sekitar 1/3 dari baris (dengan margin antar kartu) */
+    margin-right: 1%; /* Jarak antar kartu di baris yang sama */
+    border: 2px solid black; /* Border hitam di sekitar kartu */
+    background-color: white; /* Warna latar belakang kartu */
+    overflow: hidden; /* Sembunyikan elemen yang melampaui batas kartu */
+    border-radius: 15px; /* Sudut kartu melengkung */
+    display: flex; /* Menggunakan flexbox untuk mengatur konten di dalam kartu */
+    flex-direction: column; /* Konten di dalam kartu tersusun secara vertikal */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Tambahkan bayangan lembut untuk efek melayang */
+    transition: transform 0.3s ease; /* Efek transisi halus saat ada interaksi hover */
+    position: relative; /* Memungkinkan penempatan elemen tambahan seperti badge */
 }
+
 
 .project-banner {
     width: 100%;

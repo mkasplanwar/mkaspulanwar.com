@@ -17,7 +17,7 @@
 /* BAGIAN NAVBAR */
         .navbar {
             display: flex;
-            gap: 2.5px;
+            gap: 5px;
             font-size: 15px;
             margin-top: 20px;
             margin-bottom: 30px;
@@ -259,3 +259,14 @@
             object-fit: cover; /* Pastikan gambar tetap proporsional */
         }
 
+/* RESPONSIFITAS NAVBAR */
+@media (max-width: 400px) {
+    .navbar {
+        gap: 5px;
+        font-size: 14px;
+    }
+
+    .navbar a {
+        padding: 10px 6px;  
+    }
+}

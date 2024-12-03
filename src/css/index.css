@@ -19,7 +19,7 @@
             gap: 5px;
             font-size: 15px;
             margin-top: 20px;
-            margin-bottom: 30px;
+            margin-bottom: 35px;
         }
 
         .navbar a {
@@ -220,11 +220,23 @@
                 border-radius: 10px;
             }
         }
-        @media (max-width: 388px) {
+        @media(max-width: 400px){
+            .navbar {
+                gap: 5px;
+                font-size: 14px;
+            }
+    
+            .navbar a {
+                padding: 10px 6px;
+            }
             .buttons {
                 justify-content: center;
                 width: 100%; /* Pastikan tombol-tombol memiliki lebar 100% */
             }
+        }
+
+        @media (max-width: 390px) {
+            
         
             .button {
                 width: 100%; /* Tombol mengambil lebar penuh */

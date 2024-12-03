@@ -1,7 +1,7 @@
 const professions = [
-    "Machine Learning Engineer",
+    "AI Engineer",
     "Data Scientist",
-    "Student",
+    "Programmer",
     "Bitcoin Enthusiast"
 ];
 

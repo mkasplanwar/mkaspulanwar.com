@@ -2,7 +2,8 @@ const professions = [
     "AI Engineer",
     "Data Scientist",
     "Programmer",
-    "Bitcoin Enthusiast"
+    "Bitcoin Enthusiast",
+    "Stocks Investor"
 ];
 
 let currentProfession = 0;

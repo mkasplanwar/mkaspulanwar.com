@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bitcoin Wallet</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        .card {
+            border: 1px solid #333;
+            border-radius: 10px;
+            padding: 20px;
+            max-width: 400px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .balance {
+            margin-top: 20px;
+        }
+        .balance div {
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>Bitcoin Wallet</h2>
+        <div class="balance">
+            <div>Saldo BTC: <span id="balance-btc">Loading...</span></div>
+            <div>Saldo Satoshi: <span id="balance-satoshi">Loading...</span></div>
+            <div>Saldo Rupiah: <span id="balance-idr">Loading...</span></div>
+        </div>
+    </div>
+
+    <script>
+        async function fetchBitcoinBalance() {
+            try {
+                // Ganti dengan alamat wallet Bitcoin Anda
+                const walletAddress = "bc1q8y5pnaxvk3pq2564cpl7u63n075pye25h7nx3j"; 
+                const btcExplorerAPI = `https://blockchain.info/q/addressbalance/${walletAddress}`;
+                const coinGeckoAPI = `https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=idr`;
+
+                // Ambil saldo dari Blockchain.info (dalam Satoshi)
+                const balanceResponse = await fetch(btcExplorerAPI);
+                if (!balanceResponse.ok) {
+                    throw new Error("Gagal mengambil saldo dari API Blockchain.");
+                }
+                const balanceSatoshi = await balanceResponse.json();
+
+                // Ambil kurs BTC ke IDR dari CoinGecko
+                const rateResponse = await fetch(coinGeckoAPI);
+                if (!rateResponse.ok) {
+                    throw new Error("Gagal mengambil kurs dari API CoinGecko.");
+                }
+                const rateData = await rateResponse.json();
+                const btcToIdrRate = rateData.bitcoin.idr;
+
+                // Konversi saldo
+                const balanceBtc = balanceSatoshi / 1e8; // 1 BTC = 100,000,000 Satoshi
+                const balanceIdr = balanceBtc * btcToIdrRate;
+
+                // Tampilkan saldo
+                document.getElementById("balance-btc").textContent = `${balanceBtc.toFixed(8)} BTC`;
+                document.getElementById("balance-satoshi").textContent = `${balanceSatoshi} Satoshi`;
+                document.getElementById("balance-idr").textContent = `Rp ${balanceIdr.toLocaleString("id-ID")}`;
+            } catch (error) {
+                console.error(error);
+                document.getElementById("balance-btc").textContent = "Error!";
+                document.getElementById("balance-satoshi").textContent = "Error!";
+                document.getElementById("balance-idr").textContent = "Error!";
+            }
+        }
+
+        // Panggil fungsi untuk memuat data
+        fetchBitcoinBalance();
+    </script>
+</body>
+</html>

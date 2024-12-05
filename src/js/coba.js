@@ -1,30 +1,51 @@
-// Alamat Bitcoin yang ingin dicek
-const bitcoinAddress = 'bc1q8y5pnaxvk3pq2564cpl7u63n075pye25h7nx3j';
+const bitcoinAddress = 'bc1q8y5pnaxvk3pq2564cpl7u63n075pye25h7nx3j'; // Ganti dengan alamat yang valid
+const blockCypherApiUrl = `https://api.blockcypher.com/v1/btc/main/addrs/${bitcoinAddress}`;
+const coinGeckoApiUrl = `https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=idr`;
 
-// URL BlockCypher API
-const apiUrl = `https://api.blockcypher.com/v1/btc/main/addrs/${bitcoinAddress}`;
-
-// Fungsi untuk mengambil data dari BlockCypher
 async function fetchBitcoinData() {
   try {
-    const response = await fetch(apiUrl);
-    if (!response.ok) throw new Error('Failed to fetch data');
-    
+    // Mengambil data dari BlockCypher API untuk alamat Bitcoin
+    const response = await fetch(blockCypherApiUrl);
+    if (!response.ok) {
+      throw new Error('Gagal mengambil data dari BlockCypher');
+    }
     const data = await response.json();
 
-    // Update elemen HTML dengan data API
-    document.getElementById('address').textContent = bitcoinAddress;
-    document.getElementById('balance').textContent = `${(data.balance / 100000000).toFixed(8)} BTC`;
-    document.getElementById('explorerLink').href = `https://live.blockcypher.com/btc/address/${bitcoinAddress}`;
+    // Memeriksa apakah ada saldo
+    if (data.balance === undefined) {
+      document.getElementById('balance').textContent = 'Tidak ada saldo';
+    } else {
+      document.getElementById('address').textContent = bitcoinAddress;
+      document.getElementById('balance').textContent = (data.balance / 100).toFixed(0); // Saldo dalam satoshi
+    }
+
+    // Mengambil konversi harga dari CoinGecko
+    fetchConversion(data.balance);
+    document.getElementById('explorerLink').href = `https://www.blockcypher.com/btc/address/${bitcoinAddress}`;
   } catch (error) {
-    console.error('Error fetching Bitcoin data:', error);
-    document.getElementById('address').textContent = 'Error loading address';
-    document.getElementById('balance').textContent = 'Error loading balance';
+    console.error('Terjadi kesalahan saat mengambil data Bitcoin:', error);
+    document.getElementById('balance').textContent = 'Error';
   }
 }
 
-// Panggil fungsi saat halaman dimuat
-fetchBitcoinData();
+async function fetchConversion(satoshi) {
+  try {
+    // Mengambil harga BTC ke IDR dari CoinGecko
+    const response = await fetch(coinGeckoApiUrl);
+    if (!response.ok) {
+      throw new Error('Gagal mengambil data harga dari CoinGecko');
+    }
 
-// Refresh data setiap 30 detik
-setInterval(fetchBitcoinData, 30000);
+    const data = await response.json();
+    const btcToIdr = data.bitcoin.idr;
+    const satoshiToIdr = (satoshi / 100000000) * btcToIdr; // Konversi Satoshi ke IDR
+
+    document.getElementById('converted').textContent = satoshiToIdr.toLocaleString(); // Menampilkan IDR
+  } catch (error) {
+    console.error('Terjadi kesalahan saat mengambil data harga BTC:', error);
+    document.getElementById('converted').textContent = 'Error';
+  }
+}
+
+// Memanggil fungsi untuk mengambil data saat halaman dimuat
+fetchBitcoinData();

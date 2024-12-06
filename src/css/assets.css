@@ -37,15 +37,10 @@
             transition: all 0.3s ease;
         }
 
-        .navbar a:hover {
-            background-color: #000;
-            color: #fff;
-        }
-        
-        /* Active State */
         .navbar a.active {
-            background-color: #000;
-            color: #fff;
+            background-color: #fff;
+            color: #000;
+            border: 2px solid black;
         }
         /* RESPONSIFITAS NAVBAR */
         @media (max-width: 400px) {

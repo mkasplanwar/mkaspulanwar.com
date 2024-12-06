@@ -27,7 +27,7 @@
             text-decoration: none;
             color: #000;
             transition: color 0.3s;
-            padding: 10px 8px;
+            padding: 10px;
             position: relative;
             border-radius: 10px;
             display: flex;
@@ -35,15 +35,11 @@
             transition: all 0.3s ease;
         }
 
-        .navbar a:hover {
-            background-color: #000;
-            color: #fff;
-        }
-
         /* Active State */
         .navbar a.active {
-            background-color: #000;
-            color: #fff;
+            background-color: #fff;
+            color: #000;
+            border: 2px solid black;
         }
 /* UNTUK BAGIAN DOWNLOAD */
         .card-download{

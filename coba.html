@@ -1,165 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bitcoin Address Balance</title>
-  <style>
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-      
-      body {
-        font-family: Arial, sans-serif;
-        background-color: #f5f5f5;
-        color: #333;
-      }
-      
-      .container {
-        display: flex;
-        justify-content: space-around;
-        margin: 40px 0;
-      }
-      
-      .card {
-        background-color: #fff;
-        border-radius: 8px;
-        padding: 20px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        width: 45%;
-      }
-      
-      .card-left {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
-      
-      .header {
-        text-align: center;
-        margin-bottom: 20px;
-      }
-      
-      .logo {
-        width: 50px;
-        height: 50px;
-      }
-      
-      .title {
-        font-size: 1.2em;
-        font-weight: bold;
-      }
-      
-      .qr-code-wrapper {
-        display: flex;
-        justify-content: space-between;
-      }
-      
-      .qr-code {
-        width: 50%;
-      }
-      
-      .details-wrapper {
-        width: 45%;
-      }
-      
-      .balance {
-        margin-top: 20px;
-      }
-      
-      .balance-title {
-        font-weight: bold;
-      }
-      
-      .balance-amount {
-        font-size: 1.5em;
-        font-weight: bold;
-      }
-      
-      .currency {
-        font-size: 1.2em;
-      }
-      
-      .balance-sats {
-        margin-top: 10px;
-        font-size: 1.1em;
-        color: #888;
-      }
-      
-      .buttons {
-        margin-top: 20px;
-      }
-      
-      .btn {
-        display: inline-block;
-        padding: 10px 20px;
-        background-color: #ff8f01;
-        color: white;
-        text-decoration: none;
-        border-radius: 4px;
-      }
-      
-      .thanks {
-        text-align: center;
-        margin-top: 40px;
-        font-size: 1.1em;
-      }
-      
-      .separator {
-        border-bottom: 1px solid #ccc;
-        margin-bottom: 20px;
-      }
-      
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Bitcoin</title>
+    <link rel="icon" href="https://i.pinimg.com/736x/da/d7/14/dad71415d8ae744ec3ab390383a7193a.jpg" type="image/png">
+    <link rel="stylesheet" href="src/css/bitcoin.css">
+
+     <!-- Open Graph Meta Tags -->
+     <meta property="og:title" content="M. Kaspul Anwar - ML Engineer">
+     <meta property="og:description" content="Welcome to my personal portfolio website. Dive into my AI projects, insights, and academic journey in the field of technology and machine learning.">
+     <meta property="og:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi277pyUPRZ8IhkUAFHI1jBDt3eIYK5G6s1irQa-s4EuHJk3lelIWWgmEBHnOd67UlyhJAP5Wu8UVyNHALP0oqK2hhJg_yjeqyWth77ZHVvAFTklphyzVGSstUyrHtY4W7OfIuLnA6gDyOIQeTHrwN5nSOrpyTYtxf8rW5E-_n9ZLfVloBwz6xTrqxZYhfs/s1600/anwar.JPG">
+     <meta property="og:url" content="https://mkaspulanwar.com">
+     <meta property="og:type" content="website">
+     <meta property="og:site_name" content="M. Kaspul Anwar">
+     <meta name="theme-color" content="#ffffff">
 </head>
 <body>
+    <nav class="navbar">
+        <a href="index.html" data-target="home" id="home-link">Home</a>
+        <a href="resume.html" data-target="resume" id="resume-link">Resume</a>
+        <a href="projects.html" data-target="projects" id="projects-link">Projects</a>
+        <a href="articles.html" data-target="articles" id="articles-link">Articles</a>
+        <a href="bitcoin.html" data-target="bitcoin" id="bitcoin-link" class="active">Assets</a>
+    </nav>
+    <div class="container">
+        
+        <!-- Card Bitcoin -->
+        <div class="card card-left">
+            <div class="header">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="logo">
+                    <path fill="#ff8f01" d="M504 256c0 137-111 248-248 248S8 393 8 256 119 8 256 8s248 111 248 248zm-141.7-35.3c4.9-33-20.2-50.7-54.6-62.6l11.1-44.7-27.2-6.8-10.9 43.5c-7.2-1.8-14.5-3.5-21.8-5.1l10.9-43.8-27.2-6.8-11.2 44.7c-5.9-1.3-11.7-2.7-17.4-4.1l0-.1-37.5-9.4-7.2 29.1s20.2 4.6 19.8 4.9c11 2.8 13 10 12.7 15.8l-12.7 50.9c.8 .2 1.7 .5 2.8 .9-.9-.2-1.9-.5-2.9-.7l-17.8 71.3c-1.3 3.3-4.8 8.4-12.5 6.5 .3 .4-19.8-4.9-19.8-4.9l-13.5 31.1 35.4 8.8c6.6 1.7 13 3.4 19.4 5l-11.3 45.2 27.2 6.8 11.2-44.7a1038.2 1038.2 0 0 0 21.7 5.6l-11.1 44.5 27.2 6.8 11.3-45.1c46.4 8.8 81.3 5.2 96-36.7 11.8-33.8-.6-53.3-25-66 17.8-4.1 31.2-15.8 34.7-39.9zm-62.2 87.2c-8.4 33.8-65.3 15.5-83.8 10.9l14.9-59.9c18.4 4.6 77.6 13.7 68.8 49zm8.4-87.7c-7.7 30.7-55 15.1-70.4 11.3l13.5-54.3c15.4 3.8 64.8 11 56.8 43z"/>
+                </svg>
+                <span class="title">Bitcoin</span>
+            </div>
+            <div class="qr-code-wrapper">
+                <div class="qr-code">
+                    <img loading="eager" src="src/imgs/qr-code.png" alt="QR Code">
+                </div>
+                <div class="details-wrapper">
+                    <div class="address">
+                        Address:<br>
+                        <span>bc1q8y5pnaxvk3pq2564cpl7u63n075pye25h7nx3j</span>
+                    </div>
+                    <div class="info">
+                        <p><span class="info-btc">Owner:</span> M. Kaspul Anwar</p>
+                        <p><span class="info-btc">Type:</span> Native Segwit</p>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-  <div class="container">
-    <div class="card card-left">
-      <div class="header">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="logo">
-          <path fill="#ff8f01" d="M504 256c0 137-111 248-248 248S8 393 8 256 119 8 256 8s248 111 248 248zm-141.7-35.3c4.9-33-20.2-50.7-54.6-62.6l11.1-44.7-27.2-6.8-10.9 43.5c-7.2-1.8-14.5-3.5-21.8-5.1l10.9-43.8-27.2-6.8-11.2 44.7c-5.9-1.3-11.7-2.7-17.4-4.1l0-.1-37.5-9.4-7.2 29.1s20.2 4.6 19.8 4.9c11 2.8 13 10 12.7 15.8l-12.7 50.9c.8 .2 1.7 .5 2.8 .9-.9-.2-1.9-.5-2.9-.7l-17.8 71.3c-1.3 3.3-4.8 8.4-12.5 6.5 .3 .4-19.8-4.9-19.8-4.9l-13.5 31.1 35.4 8.8c6.6 1.7 13 3.4 19.4 5l-11.3 45.2 27.2 6.8 11.2-44.7a1038.2 1038.2 0 0 0 21.7 5.6l-11.1 44.5 27.2 6.8 11.3-45.1c46.4 8.8 81.3 5.2 96-36.7 11.8-33.8-.6-53.3-25-66 17.8-4.1 31.2-15.8 34.7-39.9zm-62.2 87.2c-8.4 33.8-65.3 15.5-83.8 10.9l14.9-59.9c18.4 4.6 77.6 13.7 68.8 49zm8.4-87.7c-7.7 30.7-55 15.1-70.4 11.3l13.5-54.3c15.4 3.8 64.8 11 56.8 43z"/>
-        </svg>
-        <span class="title">Satoshi</span>
-      </div>
-      <div class="qr-code-wrapper">
-        <div class="qr-code">
-          <img loading="eager" src="src/imgs/qr-code.png" alt="QR Code">
+        <!-- Card Details -->
+        <div class="card card-right">
+            <h2>Account Details</h2>
+            <div class="separator"></div>
+            <div class="balance">
+                <div class="balance-title">My Balance:</div>
+                <div class="balance-amount">
+                    100.000<span class="currency">sats</span>
+                </div>
+                <div class="balance-sats">(Rp. Failed To Load)</div>
+            </div>
+            <div class="buttons">
+                <a href="https://bitaps.com/bc1q8y5pnaxvk3pq2564cpl7u63n075pye25h7nx3j" class="btn">View Explorer</a>
+            </div>
         </div>
-        <div class="details-wrapper">
-          <div class="address">
-            Address:<br>
-            <span id="address"></span>
-          </div>
-          <div class="info">
-            <p><span class="info-btc">Owner:</span> M. Kaspul Anwar</p>
-            <p><span class="info-btc">Type:</span> Native Segwit</p>
-          </div>
-        </div>
-      </div>
     </div>
-
-    <div class="card card-right">
-      <h2>Account Details</h2>
-      <div class="separator"></div>
-      <div class="balance">
-        <div class="balance-title">My Balance:</div>
-        <div class="balance-amount">
-          <span id="balance">0</span> <span class="currency">sats</span>
-        </div>
-        <div class="balance-sats">(Rp. <span id="converted">Loading...</span>)</div>
-      </div>
-      <div class="buttons">
-        <a href="https://www.blockcypher.com/btc/address/" id="explorerLink" class="btn">View Explorer</a>
-      </div>
+    <div class="thanks">
+        Thank You <br> Satoshi Nakamoto - 03 Januari 2009
     </div>
-  </div>
-  <div class="thanks">
-    Thank You <br> Satoshi Nakamoto - 03 Januari 2009
-  </div>
-
-  <script src="src/js/coba.js"></script>
 </body>
 </html>

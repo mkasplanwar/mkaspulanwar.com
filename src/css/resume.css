@@ -1,270 +1,273 @@
 /* BAGIAN SEMUANYA */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
-        }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
 
-        body {
-            background: #f9f9f9;
-            color: #333;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px;
-        }
+body {
+    background: #f9f9f9;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
 /* BAGIAN NAVBAR */
-        .navbar {
-            display: flex;
-            gap: 5px;
-            font-size: 15px;
-            margin-top: 20px;
-            margin-bottom: 30px;
-        }
+.navbar {
+    display: flex;
+    gap: 5px;
+    font-size: 15px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
 
-        .navbar a {
-            text-decoration: none;
-            color: #000;
-            transition: color 0.3s;
-            padding: 12px;
-            position: relative;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            transition: all 0.3s ease;
-        }
+.navbar a {
+    text-decoration: none;
+    color: #000;
+    transition: color 0.3s;
+    padding: 10px 8px;
+    position: relative;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+}
 
-        /* Active State */
-        .navbar a.active {
-            background-color: #fff;
-            color: #000;
-            border: 2px solid black;
-            padding: 10px;
-        }
+.navbar a:hover {
+    background-color: #000;
+    color: #fff;
+}
+
+/* Active State */
+.navbar a.active {
+    background-color: #000;
+    color: #fff;
+}
 /* UNTUK BAGIAN DOWNLOAD */
-        .card-download{
-            width: 1145px;
-            background-color: #fff;
-            border: 2px solid #000;
-            border-radius: 10px;
-            padding: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            
-        }
+.card-download{
+    width: 760px;
+    background-color: #fff;
+    border: 2px solid #000;
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    
+}
 
-        .card-download .left-content {
-            font-size: 18px;
-        }
+.card-download .left-content {
+    font-size: 18px;
+}
 
-        .card-download .right-content {
-            display: flex;
-            gap: 10px;
-        }
+.card-download .right-content {
+    display: flex;
+    gap: 10px;
+}
 
-        .card-download  a{
-            background-color: white;
-            border: 2px solid black;
-            border-radius: 8px;
-            padding: 10px 10px;
-            font-size: 14px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            color: #000;
-        }
+.card-download  a{
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 8px;
+    padding: 10px 10px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    color: #000;
+}
 
-        .card-download a:hover {
-            background-color: black;
-            color: white;
-        }
+.card-download a:hover {
+    background-color: black;
+    color: white;
+}
 
-        .card-download a:focus {
-            outline: none;
-        }
+.card-download a:focus {
+    outline: none;
+}
 
 /* BAGIAN 2 CARD RESUME */
-        .resume-container {
-            display: flex;
-            gap: 10px;
-            margin-top: 20px;
-            width: 100%;
-            justify-content: center;
-        }
+.resume-container {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+    width: 100%;
+    justify-content: center;
+}
 
-        .kiri-card, .kanan-card {
-            width: 375px;
-            background-color: #fff;
-            border: 2px solid #000;
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
+.kiri-card, .kanan-card {
+    width: 375px;
+    background-color: #fff;
+    border: 2px solid #000;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
 
-        .kiri-card h3, .kanan-card h3 {
-            font-size: 20px;
-            margin-bottom: 20px;
-        }
-        .kiri-card .keterangan, .kanan-card .keterangan{
-            font-size: 12px;
-            padding-left: 60px;
-            margin-top: -25px;
-            text-align: justify;
-        }
-        .company-info {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-        .company-info .circle {
-            width: 50px;
-            height: 50px;
-            background-color: white;
-            border-radius: 50%;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden; /* Prevent content overflow */
-            flex-shrink: 0; /* Prevent shrinking */
-        }
-        .company-info img {
-            width: 35px;
-            height: 35px;
-            object-fit: contain;
-        }
-        .company-info span {
-            font-size: 16px;
-            font-weight: bold;
-        }
+.kiri-card h3, .kanan-card h3 {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+.kiri-card .keterangan, .kanan-card .keterangan{
+    font-size: 12px;
+    padding-left: 60px;
+    margin-top: -25px;
+    text-align: justify;
+}
+.company-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+.company-info .circle {
+    width: 50px;
+    height: 50px;
+    background-color: white;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Prevent content overflow */
+    flex-shrink: 0; /* Prevent shrinking */
+}
+.company-info img {
+    width: 35px;
+    height: 35px;
+    object-fit: contain;
+}
+.company-info span {
+    font-size: 16px;
+    font-weight: bold;
+}
 
 /* KIRI CARD */
-        /* Bagian Programming Skill */
-        .skills-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: px;
-            justify-content: center; /* Rata kiri pada mode desktop */
-            padding: 10px;
-            padding-top: 0px;
-        }
-        .skill {
-            text-align: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 5px;
-            padding: 5px 8px;
-            border-radius: 8px;
-            color: rgb(0, 0, 0);
-            flex-basis: 145px; /* Setiap skill memiliki lebar tetap */
-            margin: 5px;
-            border: 1.5px solid black;
-            transition: background-color 0.3s ease, transform 0.3s ease;
+/* Bagian Programming Skill */
+.skills-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: px;
+    justify-content: center; /* Rata kiri pada mode desktop */
+    padding: 10px;
+    padding-top: 0px;
+}
+.skill {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding: 5px 8px;
+    border-radius: 8px;
+    color: rgb(0, 0, 0);
+    flex-basis: 145px; /* Setiap skill memiliki lebar tetap */
+    margin: 5px;
+    border: 1.5px solid black;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 
-        }
-        .skill .logo {
-            font-size: 25px;
-            color: inherit; /* Mengikuti warna teks */
-            transition: transform 0.3s ease; /* Transisi untuk ikon */
-        }
-        .skill img{
-            height: 25px;
-            transition: transform 0.3s ease; /* Transisi untuk ikon */
-        }
-        .skill:hover {
-            background-color: #fff; /* Latar abu-abu terang saat hover */
-            transform: scale(1.05); /* Membesar sedikit */
-        }
-        .html .logo { color: #E44D26; }
-        .css .logo { color: #1572B6; }
-        .javascript .logo { color: #F7DF1E; }
-        .nodejs .logo { color: #8CC84B; }
-        .python .logo { color: #3776AB; }
-        .php .logo { color: #8C5B9F; }
+}
+.skill .logo {
+    font-size: 25px;
+    color: inherit; /* Mengikuti warna teks */
+    transition: transform 0.3s ease; /* Transisi untuk ikon */
+}
+.skill img{
+    height: 25px;
+    transition: transform 0.3s ease; /* Transisi untuk ikon */
+}
+.skill:hover {
+    background-color: #fff; /* Latar abu-abu terang saat hover */
+    transform: scale(1.05); /* Membesar sedikit */
+}
+.html .logo { color: #E44D26; }
+.css .logo { color: #1572B6; }
+.javascript .logo { color: #F7DF1E; }
+.nodejs .logo { color: #8CC84B; }
+.python .logo { color: #3776AB; }
+.php .logo { color: #8C5B9F; }
 
-        
-        .skill p {
-            font-size: 12px;
-            margin: 0;
-            text-transform: uppercase;
-            font-weight: bold;
-        }
-        .skill:hover .logo {
-            transform: scale(1.2); /* Ikon membesar saat hover */
-        }
-        .skill:hover img {
-            transform: scale(1.2); /* Ikon membesar saat hover */
-        }
 
-        /* Media query untuk mode mobile */
-        @media (max-width: 768px) {
-            .skills-container {
-                justify-content: center; /* Rata tengah pada mode mobile */
-            }
+.skill p {
+    font-size: 12px;
+    margin: 0;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+.skill:hover .logo {
+    transform: scale(1.2); /* Ikon membesar saat hover */
+}
+.skill:hover img {
+    transform: scale(1.2); /* Ikon membesar saat hover */
+}
 
-            .skill {
-                flex-basis: 120px; /* Mengurangi lebar skill pada layar kecil */
-            }
-        }
+/* Media query untuk mode mobile */
+@media (max-width: 768px) {
+    .skills-container {
+        justify-content: center; /* Rata tengah pada mode mobile */
+    }
+
+    .skill {
+        flex-basis: 120px; /* Mengurangi lebar skill pada layar kecil */
+    }
+}
 
 /* RESPONSIFITAS 3 KARTU */
-        /* Media Queries for Responsiveness */
-        @media (max-width: 900px) {
-            .card-download{
-                width: 100%;
-                padding: 15px;
-            }
+/* Media Queries for Responsiveness */
+@media (max-width: 900px) {
+    .card-download{
+        width: 100%;
+        padding: 15px;
+    }
 
-            .resume-container {
-                flex-direction: column;
-                gap: 20px;
-            }
+    .resume-container {
+        flex-direction: column;
+        gap: 20px;
+    }
 
-            .experience-card, .kiri-card {
-                width: 100%;
-            }
-        }
+    .experience-card, .kiri-card {
+        width: 100%;
+    }
+}
 
-        @media (max-width: 600px) {
-            .card-download {
-                width: 100%;
-                padding: 10px;
-            }
+@media (max-width: 600px) {
+    .card-download {
+        width: 100%;
+        padding: 10px;
+    }
 
-            .kanan-card, .kiri-card {
-                width: 100%;
-                padding: 15px;
-            }
-        }
+    .kanan-card, .kiri-card {
+        width: 100%;
+        padding: 15px;
+    }
+}
 
-        .circular-image {
-            width: 35px; /* Tentukan lebar gambar */
-            height: 35px; /* Tentukan tinggi gambar */
-            border-radius: 50%; /* Membuat gambar menjadi bulat */
-            overflow: hidden; /* Menghindari bagian yang keluar */
-            display: inline-block; /* Supaya tetap dalam kotak */
-        }
-        
-        .circular-image img {
-            width: 100%; /* Agar gambar menyesuaikan container */
-            height: 100%; /* Sesuaikan tinggi */
-            object-fit: cover; /* Pastikan gambar tetap proporsional */
-        }
+.circular-image {
+    width: 35px; /* Tentukan lebar gambar */
+    height: 35px; /* Tentukan tinggi gambar */
+    border-radius: 50%; /* Membuat gambar menjadi bulat */
+    overflow: hidden; /* Menghindari bagian yang keluar */
+    display: inline-block; /* Supaya tetap dalam kotak */
+}
+
+.circular-image img {
+    width: 100%; /* Agar gambar menyesuaikan container */
+    height: 100%; /* Sesuaikan tinggi */
+    object-fit: cover; /* Pastikan gambar tetap proporsional */
+}
 
 /* RESPONSIFITAS NAVBAR */
 @media (max-width: 400px) {
-    .navbar {
-        gap: 5px;
-        font-size: 14px;
-    }
+.navbar {
+gap: 5px;
+font-size: 14px;
+}
 
-    .navbar a {
-        padding: 10px 6px;  
-        
-    }
+.navbar a {
+padding: 10px 6px;  
+
+}
 }

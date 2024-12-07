@@ -68,8 +68,9 @@ body {
     gap: 10px;
 }
 
-.card-download  a{
-    background-color: white;
+.card-download  .resume{
+    color: #fff;
+    background-color: #000;
     border: 2px solid black;
     border-radius: 8px;
     padding: 10px 10px;
@@ -77,12 +78,28 @@ body {
     cursor: pointer;
     transition: all 0.3s ease;
     text-decoration: none;
+    
+}
+.card-download  .certif{
     color: #000;
+    background-color: #fff;
+    border: 2px solid black;
+    border-radius: 8px;
+    padding: 10px 10px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    
 }
 
-.card-download a:hover {
-    background-color: black;
-    color: white;
+.card-download .resume:hover {
+    background-color: #fff;
+    color: #000;
+}
+.card-download .certif:hover {
+    background-color: #000;
+    color: #fff;
 }
 
 .card-download a:focus {

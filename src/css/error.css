@@ -48,18 +48,6 @@ body {
     color: #010409;
 }
 
-
-/* RESPONSIFITAS NAVBAR */
-@media (max-width: 400px) {
-    .navbar {
-        gap: 5px;
-        font-size: 14px;
-    }
-
-    .navbar a {
-        padding: 10px 6px;  
-    }
-}
 .error-container {
     text-align: center;
     padding: 40px;

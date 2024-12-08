@@ -54,18 +54,6 @@ body {
     border: 2px solid #f8f8ff;
 
 }
-
-/* RESPONSIFITAS NAVBAR */
-@media (max-width: 400px) {
-    .navbar {
-        gap: 5px;
-        font-size: 14px;
-    }
-
-    .navbar a {
-        padding: 10px 6px;  
-    }
-}
         
 .container {
     max-width: 760px;

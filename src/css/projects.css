@@ -54,19 +54,6 @@ body {
     border: 2px solid #f8f8ff;
 
 }
-
-/* RESPONSIFITAS NAVBAR */
-@media (max-width: 400px) {
-    .navbar {
-        gap: 5px;
-        font-size: 14px;
-    }
-
-    .navbar a {
-        padding: 10px 6px;  
-    }
-}
-
 .projects-container {
     display: flex;
     flex-wrap: wrap; /* Elemen turun ke baris baru jika ruang tidak cukup */

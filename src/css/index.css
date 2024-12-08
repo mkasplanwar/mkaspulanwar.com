@@ -184,7 +184,10 @@ body {
     border-radius: var(--border-radius);
     color: var(--second-color);
 }
-
+.button:hover, .social-icons a:hover{
+    background-color: var(--second-color);
+    color: var(--main-color);
+}
 /* Media Queries */
 @media (max-width: 550px) {
     .home-section {
@@ -218,13 +221,6 @@ body {
 }
 
 @media(max-width: 400px) {
-    .navbar {
-        font-size: 14px;
-    }
-
-    .navbar a {
-        padding: 10px 6px;
-    }
 
     .buttons {
         justify-content: center;

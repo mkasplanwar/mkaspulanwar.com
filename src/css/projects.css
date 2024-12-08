@@ -1,1 +1,218 @@
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}body{background:#010409;color:#f8f8ff;display:flex;flex-direction:column;align-items:center;padding:20px;min-height:100vh}.navbar{display:flex;gap:5px;font-size:15px;margin-top:20px;margin-bottom:35px}.navbar a{text-decoration:none;color:#f8f8ff;transition:color 0.3s;padding:12px 8px;position:relative;border-radius:10px;display:flex;align-items:center;transition:all 0.3s ease}.navbar a:hover{background-color:#f8f8ff;color:#010409}.navbar a.active{background-color:#010409;color:#f8f8ff;border:2px solid #f8f8ff}@media (max-width:400px){.navbar{gap:5px;font-size:14px}.navbar a{padding:10px 6px}}.projects-container{display:flex;flex-wrap:wrap;gap:20px;justify-content:center;width:100%;max-width:1200px}.project-card{width:31%;margin-right:1%;border:2px solid #f8f8ff;background-color:#010409;overflow:hidden;border-radius:15px;display:flex;flex-direction:column;box-shadow:0 4px 8px rgb(0 0 0 / .1);transition:transform 0.3s ease;position:relative}.project-banner{width:100%;height:auto;display:block}.project-details{padding:10px;border-top:2px solid #f8f8ff;flex-grow:1;display:flex;flex-direction:column}.project-title{font-size:22px;font-weight:700;margin-bottom:10px}.project-description{margin-top:5px;font-size:14px;color:#f8f8ff;line-height:1.5;max-height:4.5em;overflow:hidden;text-overflow:ellipsis}.buttons-container{display:flex;justify-content:space-between;gap:10px;margin-top:10px}.button{flex:1;display:flex;align-items:center;justify-content:center;background-color:010409;border:2px solid #f8f8ff;border-radius:10px;padding:8px;text-align:center;cursor:pointer;font-weight:700;color:#f8f8ff;transition:all 0.3s ease;text-decoration:none}.button i{margin-right:8px;font-size:15px}.button:hover{background-color:#f8f8ff;color:#010409}.badge{position:absolute;padding:5px 10px;font-size:14px;font-weight:700;border-radius:20px}.pinned{top:10px;right:10px;color:#f8f8ff;border:2px solid #f8f8ff;background-color:#ff4747;display:flex;align-items:center;gap:5px}.language{top:10px;left:10px;color:#f8f8ff;background-color:#010409;border:2px solid #f8f8ff;box-shadow:0 2px 4px rgb(0 0 0 / .2)}@media screen and (max-width:768px){.project-card{width:100%}}.see-all-projects{margin-top:20px;padding:10px 20px;font-size:16px;font-weight:700;background-color:#010409;border:2px solid #f8f8ff;border-radius:10px;color:#f8f8ff;cursor:pointer;transition:all 0.3s ease}.see-all-projects:hover{background-color:#f8f8ff;color:#010409}
+/* 
+
+    #010409 main color
+    #F8F8FF Second Color
+    #AFEEEE Hover color Opsional
+
+*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #010409;
+    color: #f8f8ff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+.navbar {
+    display: flex;
+    gap: 5px;
+    font-size: 15px;
+    margin-top: 20px;
+    margin-bottom: 35px;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: #f8f8ff;
+    transition: color 0.3s;
+    padding: 12px 8px;
+    position: relative;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.navbar a:hover {
+    background-color: #f8f8ff;
+    color: #010409;
+}
+
+/* Active State */
+.navbar a.active {
+    background-color: #010409;
+    color: #f8f8ff;
+    border: 2px solid #f8f8ff;
+
+}
+
+/* RESPONSIFITAS NAVBAR */
+@media (max-width: 400px) {
+    .navbar {
+        gap: 5px;
+        font-size: 14px;
+    }
+
+    .navbar a {
+        padding: 10px 6px;  
+    }
+}
+
+.projects-container {
+    display: flex;
+    flex-wrap: wrap; /* Elemen turun ke baris baru jika ruang tidak cukup */
+    gap: 20px; /* Jarak antar card */
+    /* justify-content: flex-start; Mulai dari sisi kiri */
+    justify-content: center;
+    width: 100%;
+    max-width: 1200px;
+}
+
+
+.project-card {
+    /* width: calc(33.333% - 20px); Lebar 1/3 dari baris, dikurangi jarak antar card */
+    width: 31%; /* Lebar setiap kartu sekitar 1/3 dari baris (dengan margin antar kartu) */
+    margin-right: 1%; /* Jarak antar kartu di baris yang sama */
+    border: 2px solid #f8f8ff; /* Border hitam di sekitar kartu */
+    background-color: #010409; /* Warna latar belakang kartu */
+    overflow: hidden; /* Sembunyikan elemen yang melampaui batas kartu */
+    border-radius: 15px; /* Sudut kartu melengkung */
+    display: flex; /* Menggunakan flexbox untuk mengatur konten di dalam kartu */
+    flex-direction: column; /* Konten di dalam kartu tersusun secara vertikal */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Tambahkan bayangan lembut untuk efek melayang */
+    transition: transform 0.3s ease; /* Efek transisi halus saat ada interaksi hover */
+    position: relative; /* Memungkinkan penempatan elemen tambahan seperti badge */
+}
+
+
+.project-banner {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.project-details {
+    padding: 10px;
+    border-top: 2px solid #f8f8ff;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.project-title {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.project-description {
+    margin-top: 5px;
+    font-size: 14px;
+    color: #f8f8ff;
+    line-height: 1.5;
+    max-height: 4.5em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.buttons-container {
+    display: flex;
+    justify-content: space-between; /* Sejajar di semua mode */
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.button {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: 010409;
+    border: 2px solid #f8f8ff;
+    border-radius: 10px;
+    padding: 8px;
+    text-align: center;
+    cursor: pointer;
+    font-weight: bold;
+    color: #f8f8ff;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.button i {
+    margin-right: 8px; /* Jarak ikon dari teks */
+    font-size: 15px;
+}
+
+.button:hover {
+    background-color: #f8f8ff; /* Warna latar hitam */
+    color: #010409; /* Teks putih */
+}
+/* Styling untuk badge */
+.badge {
+    position: absolute;
+    padding: 5px 10px;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 20px;
+}
+
+/* Badge Disematkan dengan ikon - letakkan di kanan atas */
+.pinned {
+    top: 10px;
+    right: 10px;
+    color: #f8f8ff;
+    border: 2px solid #f8f8ff;
+    background-color: #ff4747; /* Warna untuk badge "Disematkan" */
+    display: flex;
+    align-items: center; /* Agar ikon dan teks sejajar */
+    gap: 5px; /* Memberikan jarak antara ikon dan teks */
+}
+
+/* Badge Bahasa Pemrograman - letakkan di kiri atas */
+.language {
+    top: 10px;
+    left: 10px;
+    color: #f8f8ff;
+    background-color: #010409; /* Warna untuk badge bahasa pemrograman */
+    border: 2px solid #f8f8ff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Styling untuk project card dan banner */
+
+
+
+@media screen and (max-width: 768px) {
+    .project-card {
+        width: 100%; /* Lebar penuh di tablet dan mobile */
+    }
+}
+
+/* Tombol "Lihat Semua Projects" */
+.see-all-projects {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: #010409;
+    border: 2px solid #f8f8ff;
+    border-radius: 10px;
+    color: #f8f8ff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.see-all-projects:hover {
+    background-color: #f8f8ff;
+    color: #010409;
+}

@@ -1,3 +1,10 @@
+/* 
+
+    #010409 main color
+    #F8F8FF Second Color
+    #AFEEEE Hover color Opsional
+
+*/
 * {
     margin: 0;
     padding: 0;
@@ -6,8 +13,8 @@
 }
 
 body {
-    background: #f9f9f9;
-    color: #333;
+    background: #010409;
+    color: #f8f8ff;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -25,7 +32,7 @@ body {
 
 .navbar a {
     text-decoration: none;
-    color: #000;
+    color: #f8f8ff;
     transition: color 0.3s;
     padding: 12px 8px;
     position: relative;
@@ -36,15 +43,15 @@ body {
 }
 
 .navbar a:hover {
-    background-color: #000;
-    color: #fff;
+    background-color: #f8f8ff;
+    color: #010409;
 }
 
 /* Active State */
 .navbar a.active {
-    background-color: #fff;
-    color: #000;
-    border: 2px solid #000;
+    background-color: #010409;
+    color: #f8f8ff;
+    border: 2px solid #f8f8ff;
 
 }
 
@@ -75,8 +82,8 @@ body {
     /* width: calc(33.333% - 20px); Lebar 1/3 dari baris, dikurangi jarak antar card */
     width: 31%; /* Lebar setiap kartu sekitar 1/3 dari baris (dengan margin antar kartu) */
     margin-right: 1%; /* Jarak antar kartu di baris yang sama */
-    border: 2px solid black; /* Border hitam di sekitar kartu */
-    background-color: white; /* Warna latar belakang kartu */
+    border: 2px solid #f8f8ff; /* Border hitam di sekitar kartu */
+    background-color: #010409; /* Warna latar belakang kartu */
     overflow: hidden; /* Sembunyikan elemen yang melampaui batas kartu */
     border-radius: 15px; /* Sudut kartu melengkung */
     display: flex; /* Menggunakan flexbox untuk mengatur konten di dalam kartu */
@@ -95,7 +102,7 @@ body {
 
 .project-details {
     padding: 10px;
-    border-top: 2px solid black;
+    border-top: 2px solid #f8f8ff;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
@@ -110,7 +117,7 @@ body {
 .project-description {
     margin-top: 5px;
     font-size: 14px;
-    color: #555;
+    color: #f8f8ff;
     line-height: 1.5;
     max-height: 4.5em;
     overflow: hidden;
@@ -129,14 +136,14 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: white;
-    border: 2px solid black;
+    background-color: 010409;
+    border: 2px solid #f8f8ff;
     border-radius: 10px;
     padding: 8px;
     text-align: center;
     cursor: pointer;
     font-weight: bold;
-    color: #000;
+    color: #f8f8ff;
     transition: all 0.3s ease;
     text-decoration: none;
 }
@@ -147,24 +154,24 @@ body {
 }
 
 .button:hover {
-    background-color: #000; /* Warna latar hitam */
-    color: #fff; /* Teks putih */
+    background-color: #f8f8ff; /* Warna latar hitam */
+    color: #010409; /* Teks putih */
 }
 /* Styling untuk badge */
 .badge {
     position: absolute;
     padding: 5px 10px;
-    color: #fff;
     font-size: 14px;
     font-weight: bold;
     border-radius: 20px;
-    background-color: #333;
 }
 
 /* Badge Disematkan dengan ikon - letakkan di kanan atas */
 .pinned {
     top: 10px;
     right: 10px;
+    color: #f8f8ff;
+    border: 2px solid #f8f8ff;
     background-color: #ff4747; /* Warna untuk badge "Disematkan" */
     display: flex;
     align-items: center; /* Agar ikon dan teks sejajar */
@@ -175,10 +182,9 @@ body {
 .language {
     top: 10px;
     left: 10px;
-    color: #333;
-    background-color: #fff; /* Warna untuk badge bahasa pemrograman */
-    border: 1px solid #000;
-    padding: 5px 10px;
+    color: #f8f8ff;
+    background-color: #010409; /* Warna untuk badge bahasa pemrograman */
+    border: 2px solid #f8f8ff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
@@ -198,15 +204,15 @@ body {
     padding: 10px 20px;
     font-size: 16px;
     font-weight: bold;
-    background-color: white;
-    border: 2px solid black;
+    background-color: #010409;
+    border: 2px solid #f8f8ff;
     border-radius: 10px;
-    color: black;
+    color: #f8f8ff;
     cursor: pointer;
     transition: all 0.3s ease;
 }
 
 .see-all-projects:hover {
-    background-color: black;
-    color: white;
+    background-color: #f8f8ff;
+    color: #010409;
 }

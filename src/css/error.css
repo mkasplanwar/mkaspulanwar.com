@@ -4,23 +4,26 @@
     box-sizing: border-box;
     font-family: Arial, sans-serif;
 }
-
+html, body {
+    height: 100%; /* Pastikan tinggi body dan html mencakup 100% viewport */
+    overflow: hidden; /* Menghilangkan kemungkinan scrolling */
+    margin: 0; /* Pastikan tidak ada margin default */
+    padding: 0;
+}
 body {
     display: flex;
-    flex-direction: column; /* Sudah ada */
-    justify-content: center; /* Menempatkan kontainer di tengah secara vertikal */
-    align-items: center; /* Menempatkan kontainer di tengah secara horizontal */
+    justify-content: center; /* Pusatkan secara vertikal */
+    align-items: center; /* Pusatkan secara horizontal */
     background: #f9f9f9;
     color: #333;
-    padding: 20px;
-    min-height: 100vh; /* Sudah ada */
+    min-height: 100vh; /* Mengatur tinggi body sesuai viewport */
     margin: 0;
+    padding: 0;
 }
-
-
 .error-container {
     text-align: center;
     padding: 40px;
+    margin: 0px 25px;
     border-radius: 15px;
     background: #fff;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
@@ -28,8 +31,6 @@ body {
     position: relative;
     border: 2px solid black;
 }
-
-
 /* Circle with icon inside */
 .error-container::before {
     content: "!";

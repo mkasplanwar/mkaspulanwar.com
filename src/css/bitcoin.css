@@ -6,8 +6,8 @@
 }
 
 body {
-    background: #f9f9f9;
-    color: #333;
+    background: #ffffff;
+    color: #000000;
     display: flex;
     flex-direction: column; /* Mengatur elemen di body agar vertikal */
     align-items: center; /* Memastikan semua elemen di tengah secara horizontal */
@@ -164,7 +164,7 @@ body {
     font-size: 16px;
     margin-bottom: 16px;
     font-weight: bold;
-    color: #555;
+    color: #000000;
 }
 
 .card-right .balance .balance-amount {
@@ -181,7 +181,7 @@ body {
 
 .card-right .balance .balance-sats {
     font-size: 14px;
-    color: #777;
+    color: #000000;
     margin-top: 10px;
 }
 
@@ -198,7 +198,7 @@ body {
     border: 2px solid #000;
     border-radius: 5px;
     background-color: #fff;
-    color: #333;
+    color: #000000;
     font-weight: bold;
     width: 100%;
     text-align: center;
@@ -214,7 +214,7 @@ body {
     margin-top: 40px;
     text-align: center;
     font-size: 14px;
-    color: #888;
+    color: #000000;
     font-weight: 500;
     letter-spacing: 1px;
     text-transform: uppercase;

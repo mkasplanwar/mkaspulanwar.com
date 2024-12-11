@@ -7,8 +7,8 @@
 }
 
 body {
-    background: #f9f9f9;
-    color: #333;
+    background: #ffffff;
+    color: #000000;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -25,7 +25,7 @@ body {
 
 .navbar a {
     text-decoration: none;
-    color: #000;
+    color: #000000;
     transition: color 0.3s;
     padding: 12px 8px;
     position: relative;
@@ -36,22 +36,22 @@ body {
 }
 
 .navbar a:hover {
-    background-color: #000;
-    color: #fff;
+    background-color: #000000;
+    color: #ffffff;
 }
 
 /* Active State */
 .navbar a.active {
-    background-color: #fff;
-    color: #000;
-    border: 2px solid #000;
+    background-color: #ffffff;
+    color: #000000;
+    border: 2px solid #000000;
 
 }
 /* UNTUK BAGIAN DOWNLOAD */
 .card-download{
     width: 760px;
-    background-color: #fff;
-    border: 2px solid #000;
+    background-color: #ffffff;
+    border: 2px solid #000000;
     border-radius: 10px;
     padding: 20px;
     display: flex;
@@ -149,76 +149,6 @@ body {
 .company-info span {
     font-size: 16px;
     font-weight: bold;
-}
-
-/* KIRI CARD */
-/* Bagian Programming Skill */
-.skills-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: px;
-    justify-content: center; /* Rata kiri pada mode desktop */
-    padding: 10px;
-    padding-top: 0px;
-}
-.skill {
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
-    padding: 5px 8px;
-    border-radius: 8px;
-    color: rgb(0, 0, 0);
-    flex-basis: 145px; /* Setiap skill memiliki lebar tetap */
-    margin: 5px;
-    border: 1.5px solid black;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-
-}
-.skill .logo {
-    font-size: 25px;
-    color: inherit; /* Mengikuti warna teks */
-    transition: transform 0.3s ease; /* Transisi untuk ikon */
-}
-.skill img{
-    height: 25px;
-    transition: transform 0.3s ease; /* Transisi untuk ikon */
-}
-.skill:hover {
-    background-color: #fff; /* Latar abu-abu terang saat hover */
-    transform: scale(1.05); /* Membesar sedikit */
-}
-.html .logo { color: #E44D26; }
-.css .logo { color: #1572B6; }
-.javascript .logo { color: #F7DF1E; }
-.nodejs .logo { color: #8CC84B; }
-.python .logo { color: #3776AB; }
-.php .logo { color: #8C5B9F; }
-
-
-.skill p {
-    font-size: 12px;
-    margin: 0;
-    text-transform: uppercase;
-    font-weight: bold;
-}
-.skill:hover .logo {
-    transform: scale(1.2); /* Ikon membesar saat hover */
-}
-.skill:hover img {
-    transform: scale(1.2); /* Ikon membesar saat hover */
-}
-
-/* Media query untuk mode mobile */
-@media (max-width: 768px) {
-    .skills-container {
-        justify-content: center; /* Rata tengah pada mode mobile */
-    }
-
-    .skill {
-        flex-basis: 120px; /* Mengurangi lebar skill pada layar kecil */
-    }
 }
 
 /* RESPONSIFITAS 3 KARTU */

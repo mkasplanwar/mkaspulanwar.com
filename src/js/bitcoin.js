@@ -11,7 +11,7 @@
         }
     
         async function calculateBalance() {
-            const satsAmount = 102975// Jumlah Satoshi 
+            const satsAmount = 106038// Jumlah Satoshi 
             const satToBtc = satsAmount / 100000000; // Konversi Satoshi ke Bitcoin (1 BTC = 100 juta sats)
     
             // Ambil harga Bitcoin dalam Rupiah

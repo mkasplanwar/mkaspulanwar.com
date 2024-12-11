@@ -68,6 +68,7 @@ body {
 .card-download .right-content {
     display: flex;
     gap: 5px;
+    font-weight: bold;
 }
 
 

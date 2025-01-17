@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M. Kaspul Anwar</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">       
+    <link rel="icon" href="src/imgs/favicon.png" type="image/png">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="M. Kaspul Anwar - ML Engineer">
+    <meta property="og:description" content="Welcome to my personal portfolio website. Dive into my AI projects, insights, and academic journey in the field of technology and machine learning.">
+    <meta property="og:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi277pyUPRZ8IhkUAFHI1jBDt3eIYK5G6s1irQa-s4EuHJk3lelIWWgmEBHnOd67UlyhJAP5Wu8UVyNHALP0oqK2hhJg_yjeqyWth77ZHVvAFTklphyzVGSstUyrHtY4W7OfIuLnA6gDyOIQeTHrwN5nSOrpyTYtxf8rW5E-_n9ZLfVloBwz6xTrqxZYhfs/s1600/anwar.JPG">
+    <meta property="og:url" content="https://mkaspulanwar.com">
+    <meta property="og:type" content="website">
+    <meta name="theme-color" content="#ffffff">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background: #ffffff;
+            color: #000000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .navbar {
+            display: flex;
+            gap: 5px;
+            font-size: 15px;
+            margin-top: 20px;
+            margin-bottom: 35px;
+        }
+        
+        .navbar a {
+            text-decoration: none;
+            color: #000000;
+            transition: color 0.3s;
+            padding: 12px 8px;
+            position: relative;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar a:hover {
+            background-color: #000000;
+            color: #ffffff;
+        }
+        
+        /* Active State */
+        .navbar a.active {
+            background-color: #ffffff;
+            color: #000000;
+            border: 2px solid #000000;
+        
+        }
+        
+        
+        
+        .container {
+            max-width: 800px;
+            width: 100%;
+        }
+        
+        .home-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: stretch;
+            gap: 15px;
+            max-width: 800px;
+            margin: auto;
+        }
+        
+        .card {
+            
+            background: #ffffff;
+            border: 2px solid #000000;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .card-left {
+            flex: 1;
+            min-width: 200px;
+            max-width: 100%;
+        }
+        
+        .card-left img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 15px;
+            border: 2px solid #000000;
+        }
+        
+        .card-right {
+            flex: 2;
+            min-width: 300px;
+            max-width: 500px;
+            text-align: left;
+        }
+        
+        .card-right h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            color: #000000;
+            position: relative;
+        }
+        
+        .card-right h1::after {
+            content: '';
+            display: block;
+            width: calc(100%);
+            height: 2px;
+            background-color: #000000;
+            margin-top: 10px;
+        }
+        
+        .card-right h2 {
+            font-size: 18px;
+            color: #000000;
+            margin-bottom: 15px;
+            margin-top: 15px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .card-right p {
+            font-size: 16px;
+            line-height: 1.5;
+            color: #000000;
+            text-align: justify;
+            margin-bottom: 20px;
+        }
+        
+        .buttons {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .button {
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #000000;
+            background-color: #ffffff;
+            border: 2px solid #000000;
+            border-radius: 8px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .button i{
+            font-size: 18px;
+        }
+        
+        .button:hover {
+            background-color: #000000;
+            color: #ffffff;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+        
+        .social-icons a {
+            font-size: 25px;
+            text-decoration: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            background-color: #ffffff; /* Latar belakang ikon */
+            border: 2px solid #000000; /* Border ikon */
+            transition: all 0.3s ease; /* Efek transisi */
+            border-radius: 10px;
+        }
+        
+        /* Target hanya ikon (bukan link wrappernya) untuk memastikan warna asli */
+        .social-icons a{
+            color: inherit; /* Pastikan mengikuti warna asli Font Awesome */
+        }
+        
+        /* Tambahkan efek hover jika diinginkan */
+        .social-icons a:hover {
+            background-color: #000000; /* Perubahan latar belakang pada hover */
+            color: #ffffff;
+        }
+        
+        
+        
+        @media (max-width: 550px) {
+            .home-section {
+                flex-direction: column;
+                gap: 20px;
+            }
+        
+            .card-left,
+            .card-right {
+                width: 100%;
+            }
+        
+            .card-right h1,
+            .card-right h2 {
+                text-align: center; /* Rata tengah */
+                justify-content: center;
+            }
+            .card-right h1::after {
+               margin: auto;
+               margin-top: 10px;
+            }
+        
+            .buttons {
+                justify-content: center;
+            }
+        
+            .social-icons {
+                justify-content: center; /* Rata tengah */
+            }
+            .social-icons a {
+                border-radius: 10px;
+            }
+        }
+        @media(max-width: 400px){
+            .navbar {
+                gap: 5px;
+                font-size: 14px;
+            }
+        
+            .navbar a {
+                padding: 10px 6px;
+            }
+            .buttons {
+                justify-content: center;
+                width: 100%; /* Pastikan tombol-tombol memiliki lebar 100% */
+            }
+        }
+        
+        @media (max-width: 390px) {
+            
+        
+            .button {
+                width: 100%; /* Tombol mengambil lebar penuh */
+                text-align: center; /* Mengatur teks di tengah */
+                display: block; /* Pastikan tombol menjadi blok untuk bisa menempati lebar penuh */
+                padding: 10px 0; /* Padding vertikal untuk tombol agar terlihat lebih besar */
+            }
+        
+            .social-icons {
+                justify-content: center; /* Rata tengah */
+            }
+            .social-icons a {
+                border-radius: 10px;
+            }
+        }
+        
+        
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="active">Home</a>
+        <a href="resume.html">Resume</a>
+        <a href="projects.html">Projects</a>
+        <a href="mailto:mkasplanwar@gmail.com">Contact</a>
+        <a href="bitcoin.html">Bitcoin</a>
+    </nav>
+    
+    <main>
+        <section class="home-section">
+            <div class="card card-left">
+                <!-- Optimisasi: Ganti gambar ini dengan versi terkompresi untuk mempercepat loading -->
+                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi277pyUPRZ8IhkUAFHI1jBDt3eIYK5G6s1irQa-s4EuHJk3lelIWWgmEBHnOd67UlyhJAP5Wu8UVyNHALP0oqK2hhJg_yjeqyWth77ZHVvAFTklphyzVGSstUyrHtY4W7OfIuLnA6gDyOIQeTHrwN5nSOrpyTYtxf8rW5E-_n9ZLfVloBwz6xTrqxZYhfs/s1600/anwar.JPG" alt="M. Kaspul Anwar">
+            </div>
+
+            <div class="card card-right">
+                <h1>M. Kaspul Anwar</h1>
+                <h2>I'm a <span id="typing-profession"></span></h2>
+                <p>
+                    I am an undergraduate student at the State Islamic University of Antasari Banjarmasin, majoring in Information Technology. I have a passion for data management and developing AI-based solutions.
+                </p>
+                <div class="buttons">
+                    <a href="error.html" class="button">View Resume</a>
+                    <a href="https://github.com/mkasplanwar" class="button">Contact Me</a>
+                    <div class="social-icons">
+                        <a href="bitcoin.html"><i class="fa-brands fa-github"></i></a>
+                        <a href="https://www.instagram.com/mkasplanwar/" ><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://www.linkedin.com/in/mkasplanwar/" ><i class="fa-brands fa-linkedin"></i></a>
+                        
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const professions = [
+    "AI Engineer",
+    "Data Scientist",
+    "Programmer",
+    "Bitcoin Enthusiast",
+];
+
+let currentProfession = 0;
+let typingIndex = 0;
+const typingSpeed = 60;
+const erasingSpeed = 30;
+const delayBetween = 1000;
+
+const typingElement = document.getElementById("typing-profession");
+
+function typeProfession() {
+    if (typingIndex < professions[currentProfession].length) {
+        typingElement.textContent += professions[currentProfession].charAt(typingIndex);
+        typingIndex++;
+        setTimeout(typeProfession, typingSpeed);
+    } else {
+        setTimeout(eraseProfession, delayBetween);
+    }
+}
+
+function eraseProfession() {
+    if (typingIndex > 0) {
+        typingElement.textContent = professions[currentProfession].substring(0, typingIndex - 1);
+        typingIndex--;
+        setTimeout(eraseProfession, erasingSpeed);
+    } else {
+        currentProfession = (currentProfession + 1) % professions.length;
+        setTimeout(typeProfession, typingSpeed);
+    }
+}
+
+typeProfession();
+    </script>
+</body>
+</html>

@@ -3,298 +3,431 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bitcoin Wallet Card</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <title>Financial Report</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
         }
 
         body {
-            background: #f5f5f5;
-            color: #333;
+            background: #f8f8f8;
+            color: #111111;
             min-height: 100vh;
-            padding: 20px;
+            padding: 1.5rem;
         }
 
         .container {
-            max-width: 480px;
+            max-width: 1200px;
             margin: 0 auto;
-        }
-
-        .card {
             background: white;
-            border-radius: 20px;
-            padding: 25px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            border: 1px solid #000;
-            margin-bottom: 20px;
-            position: relative;
+            border: 1px solid #e5e5e5;
+            border-radius: 12px;
             overflow: hidden;
         }
 
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 150px;
-            height: 150px;
-            background: linear-gradient(45deg, transparent, rgba(247, 147, 26, 0.1));
-            border-radius: 50%;
+        .header {
+            padding: 2rem;
+            background: #ffffff;
+            border-bottom: 1px solid #e5e5e5;
         }
 
-        .card-header {
+        .company-info {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
+            margin-bottom: 2rem;
         }
 
-        .bitcoin-logo {
-            width: 40px;
-            height: 40px;
+        .company-name {
+            font-size: 1.25rem;
+            font-weight: 500;
+            color: #111111;
         }
 
-        .chip {
-            width: 45px;
-            height: 35px;
-            background: linear-gradient(45deg, #bbb, #ddd);
-            border-radius: 7px;
-            margin-right: 10px;
+        .timestamp {
+            font-size: 0.875rem;
+            color: #666666;
         }
 
-        .balance-title {
-            font-size: 14px;
-            color: #666;
-            margin-bottom: 5px;
-        }
-
-        .balance {
-            font-size: 28px;
-            font-weight: 600;
-            color: #000;
-            margin-bottom: 5px;
-        }
-
-        .usd-balance {
-            font-size: 16px;
-            color: #666;
-        }
-
-        .address-section {
-            background: #fff;
-            border: 1px solid #000;
-            border-radius: 15px;
-            padding: 20px;
-            margin-bottom: 20px;
-        }
-
-        .address-label {
-            font-size: 14px;
-            color: #666;
-            margin-bottom: 10px;
-        }
-
-        .address {
-            font-size: 16px;
-            word-break: break-all;
-            margin-bottom: 15px;
-            font-family: monospace;
-        }
-
-        .transaction {
+        .total-assets {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px;
-            border-bottom: 1px solid #eee;
+            flex-direction: column;
+            gap: 0.5rem;
         }
 
-        .transaction:last-child {
-            border-bottom: none;
+        .assets-label {
+            font-size: 0.875rem;
+            color: #666666;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
-        .transaction-info {
-            flex: 1;
-        }
-
-        .transaction-date {
-            font-size: 12px;
-            color: #666;
-        }
-
-        .transaction-address {
-            font-size: 14px;
-            color: #444;
-        }
-
-        .transaction-amount {
-            font-size: 16px;
+        .assets-value {
+            font-size: 2.5rem;
             font-weight: 600;
+            color: #111111;
         }
 
-        .received {
-            color: #00a651;
-        }
-
-        .sent {
-            color: #dc3545;
-        }
-
-        .copy-btn {
-            background: #000;
-            color: #fff;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 8px;
-            font-size: 14px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .copy-btn:hover {
-            opacity: 0.9;
-        }
-
-        .qr-section {
-            text-align: center;
-            margin: 20px 0;
-        }
-
-        .qr-container {
-            background: white;
-            display: inline-block;
-            padding: 15px;
-            border: 1px solid #000;
-            border-radius: 12px;
+        .main-content {
+            padding: 2rem;
         }
 
         .section-title {
-            font-size: 18px;
-            font-weight: 600;
-            margin-bottom: 15px;
-            color: #000;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #666666;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+        }
+
+        .assets-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 2rem;
+        }
+
+        .assets-table th {
+            text-align: left;
+            padding: 1rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: #666666;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            background: #fafafa;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .assets-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .asset-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .asset-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #e5e5e5;
+            border-radius: 8px;
+            background: #fafafa;
+            font-size: 1.2rem;
+        }
+
+        .asset-name {
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+        }
+
+        .asset-amount {
+            font-size: 0.875rem;
+            color: #666666;
+        }
+
+        .asset-value {
+            font-weight: 500;
+        }
+
+        .change-value {
+            font-size: 0.875rem;
+        }
+
+        .positive {
+            color: #10B981;
+        }
+
+        .negative {
+            color: #EF4444;
+        }
+
+        .charts-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .chart-card {
+            background: white;
+            border: 1px solid #e5e5e5;
+            border-radius: 8px;
+            padding: 1rem;
+            min-height: 400px;
+        }
+
+        .chart-title {
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 0;
+            }
+
+            .container {
+                border: none;
+                border-radius: 0;
+            }
+
+            .assets-table {
+                display: block;
+                overflow-x: auto;
+            }
+
+            .assets-value {
+                font-size: 2rem;
+            }
+
+            .charts-container {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="card">
-            <div class="card-header">
-                <div class="chip"></div>
-                <svg class="bitcoin-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#f7931a">
-                    <path d="M23.638 14.904c-1.602 6.43-8.113 10.34-14.542 8.736C2.67 22.05-1.244 15.525.362 9.105 1.962 2.67 8.475-1.243 14.9.358c6.43 1.605 10.342 8.115 8.738 14.548v-.002zm-6.35-4.613c.24-1.59-.974-2.45-2.64-3.03l.54-2.153-1.315-.33-.525 2.107c-.345-.087-.705-.167-1.064-.25l.526-2.127-1.32-.33-.54 2.165c-.285-.067-.565-.132-.84-.2l-1.815-.45-.35 1.407s.974.225.955.236c.535.136.63.486.615.766l-1.477 5.92c-.075.18-.24.45-.614.35.015.02-.96-.24-.96-.24l-.66 1.51 1.71.426.93.242-.54 2.19 1.32.327.54-2.17c.36.1.705.19 1.05.273l-.51 2.154 1.32.33.545-2.19c2.24.427 3.93.255 4.64-1.774.57-1.637-.03-2.58-1.217-3.196.854-.193 1.5-.76 1.68-1.93h.01zm-3.01 4.22c-.404 1.64-3.157.75-4.05.53l.72-2.9c.896.23 3.757.67 3.33 2.37zm.41-4.24c-.37 1.49-2.662.735-3.405.55l.654-2.64c.744.18 3.137.524 2.75 2.084v.006z"/>
-                </svg>
+        <header class="header">
+            <div class="company-info">
+                <div class="company-name">Financial Report</div>
+                <div class="timestamp">17 Januari 2025, 14:30 WIB</div>
             </div>
-            <div class="balance-title">Total Balance</div>
-            <div class="balance"><span id="btcBalance">1.2345</span> BTC</div>
-            <div class="usd-balance">$<span id="usdBalance">0</span> USD</div>
-        </div>
+            <div class="total-assets">
+                <div class="assets-label">Total Aset</div>
+                <div class="assets-value" id="totalBalance">Loading...</div>
+            </div>
+        </header>
 
-        <div class="address-section">
-            <div class="address-label">Bitcoin Address</div>
-            <div class="address" id="btcAddress">bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh</div>
-            <button class="copy-btn" onclick="copyAddress()">Copy Address</button>
-        </div>
+        <main class="main-content">
+            <h2 class="section-title">Rincian Aset</h2>
+            <table class="assets-table">
+                <thead>
+                    <tr>
+                        <th>Aset</th>
+                        <th>Nominal</th>
+                        <th>Nilai (IDR)</th>
+                        <th>Perubahan 24h</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="asset-info">
+                                <div class="asset-icon">
+                                    <i class="fa-solid fa-rupiah-sign"></i>
+                                </div>
+                                <div>
+                                    <div class="asset-name">Rupiah</div>
+                                    <div class="asset-amount">Cash</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>-</td>
+                        <td class="asset-value">Rp 200.000</td>
+                        <td class="change-value positive">+0.00%</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="asset-info">
+                                <div class="asset-icon">
+                                    <i class="fa-solid fa-bitcoin-sign"></i>
+                                </div>
+                                <div>
+                                    <div class="asset-name">Bitcoin</div>
+                                    <div class="asset-amount">Digital</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>0.001 BTC</td>
+                        <td class="asset-value">Rp 500.000</td>
+                        <td class="change-value negative">-2.15%</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="asset-info">
+                                <div class="asset-icon">
+                                    <i class="fas fa-chart-line"></i>
+                                </div>
+                                <div>
+                                    <div class="asset-name">BBCA</div>
+                                    <div class="asset-amount">Stocks</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>10 Lot</td>
+                        <td class="asset-value">Rp 9.000.000</td>
+                        <td class="change-value positive">+1.25%</td>
+                    </tr>
+                </tbody>
+            </table>
 
-        <div class="qr-section">
-            <div class="qr-container" id="qrcode"></div>
-        </div>
-
-        <div class="card">
-            <div class="section-title">Recent Transactions</div>
-            <div id="transactionList"></div>
-        </div>
+            <h2 class="section-title">Performa Aset</h2>
+            <div class="charts-container">
+                <div class="chart-card">
+                    <h3 class="chart-title">Distribusi Aset</h3>
+                    <div id="pieChart"></div>
+                </div>
+                <div class="chart-card">
+                    <h3 class="chart-title">Performa 7 Hari Terakhir</h3>
+                    <div id="lineChart"></div>
+                </div>
+            </div>
+        </main>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/recharts/2.1.12/Recharts.js"></script>
     <script>
-        // Generate QR Code
-        new QRCode(document.getElementById("qrcode"), {
-            text: document.getElementById("btcAddress").textContent,
-            width: 128,
-            height: 128
-        });
-
-        // Copy address function
-        function copyAddress() {
-            const address = document.getElementById("btcAddress").textContent;
-            navigator.clipboard.writeText(address);
-            const button = document.querySelector('.copy-btn');
-            button.textContent = 'Copied!';
-            setTimeout(() => {
-                button.textContent = 'Copy Address';
-            }, 2000);
-        }
-
-        // Format date
-        function formatDate(date) {
-            return new Date(date).toLocaleDateString('id-ID', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric',
-                hour: '2-digit',
-                minute: '2-digit'
-            });
-        }
-
-        // Sample transactions
-        const transactions = [
-            {
-                date: '2024-01-10T14:30:00',
-                type: 'received',
-                amount: 0.1234,
-                from: 'bc1q...xyz'
-            },
-            {
-                date: '2024-01-08T09:15:00',
-                type: 'sent',
-                amount: 0.0567,
-                to: '3FZbgi...abc'
-            },
-            {
-                date: '2024-01-05T18:45:00',
-                type: 'received',
-                amount: 0.0789,
-                from: '1A1zP1...def'
-            }
+        // Data performa 7 hari (diinput manual)
+        const performanceData = [
+            { date: '11/01/2025', total: 8700000 },
+            { date: '12/01/2025', total: 8900000 },
+            { date: '13/01/2025', total: 9100000 },
+            { date: '14/01/2025', total: 9300000 },
+            { date: '15/01/2025', total: 9500000 },
+            { date: '16/01/2025', total: 9600000 },
+            { date: '17/01/2025', total: 9700000 }
         ];
 
-        // Display transactions
-        const transactionList = document.getElementById('transactionList');
-        transactions.forEach(tx => {
-            const txElement = document.createElement('div');
-            txElement.className = 'transaction';
-            
-            const isReceived = tx.type === 'received';
-            const amount = isReceived ? `+${tx.amount}` : `-${tx.amount}`;
-            const address = isReceived ? `From: ${tx.from}` : `To: ${tx.to}`;
-            
-            txElement.innerHTML = `
-                <div class="transaction-info">
-                    <div class="transaction-date">${formatDate(tx.date)}</div>
-                    <div class="transaction-address">${address}</div>
-                </div>
-                <div class="transaction-amount ${tx.type}">${amount} BTC</div>
-            `;
-            
-            transactionList.appendChild(txElement);
-        });
+        // Fungsi untuk mengambil data dari tabel
+        function getTableData() {
+            const rows = document.querySelectorAll('.assets-table tbody tr');
+            const data = [];
+            let total = 0;
 
-        // Get Bitcoin price
-        async function getBitcoinPrice() {
-            const btcBalance = parseFloat(document.getElementById('btcBalance').textContent);
-            const price = 42000; // Sample price in USD
-            const usdBalance = (btcBalance * price).toLocaleString('en-US', {
-                maximumFractionDigits: 2
+            rows.forEach(row => {
+                const name = row.querySelector('.asset-name').textContent;
+                const valueText = row.querySelector('.asset-value').textContent;
+                const value = parseInt(valueText.replace(/[^0-9]/g, ''));
+                
+                data.push({
+                    name: name,
+                    value: value
+                });
+                
+                total += value;
             });
-            document.getElementById('usdBalance').textContent = usdBalance;
+
+            // Update total balance
+            document.getElementById('totalBalance').textContent = 
+                new Intl.NumberFormat('id-ID', {
+                    style: 'currency',
+                    currency: 'IDR',
+                    minimumFractionDigits: 0
+                }).format(total);
+
+            return data;
         }
 
-        getBitcoinPrice();
+        // Format currency
+        const formatToRupiah = (value) => {
+            return new Intl.NumberFormat('id-ID', {
+                style: 'currency',
+                currency: 'IDR',
+                minimumFractionDigits: 0
+            }).format(value);
+        };
+
+        const { PieChart, Pie, Cell, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } = Recharts;
+
+        // Colors for pie chart
+        const COLORS = ['#10B981', '#3B82F6', '#8B5CF6'];
+
+        // Pie Chart Component
+        function renderPieChart() {
+            const data = getTableData();
+            
+            const chart = React.createElement(ResponsiveContainer, {
+                width: '100%',
+                height: 300
+            }, 
+                React.createElement(PieChart, null,
+                    React.createElement(Pie, {
+                        data: data,
+                        dataKey: 'value',
+                        nameKey: 'name',
+                        cx: '50%',
+                        cy: '50%',
+                        outerRadius: 100,
+                        fill: '#8884d8',
+                        label: ({name, percent}) => `${name} ${(percent * 100).toFixed(0)}%`
+                    }, 
+                        data.map((entry, index) => 
+                            React.createElement(Cell, {
+                                key: `cell-${index}`,
+                                fill: COLORS[index % COLORS.length]
+                            })
+                        )
+                    ),
+                    React.createElement(Tooltip, {
+                        formatter: (value) => formatToRupiah(value)
+                    })
+                )
+            );
+
+            ReactDOM.render(chart, document.getElementById('pieChart'));
+        }
+
+        // Line Chart Component
+        function renderLineChart() {
+            const chart = React.createElement(ResponsiveContainer, {
+                width: '100%',
+                height: 300
+            },
+                React.createElement(LineChart, {
+                    data: performanceData
+                }, [
+                    React.createElement(CartesianGrid, {
+                        strokeDasharray: '3 3',
+                        key: 'grid'
+                    }),
+                    React.createElement(XAxis, {
+                        dataKey: 'date',
+                        key: 'x-axis'
+                    }),
+                    React.createElement(YAxis, {
+                        tickFormatter: formatToRupiah,
+                        width: 100,
+                        key: 'y-axis'
+                    }),
+                    React.createElement(Tooltip, {
+                        formatter: (value) => formatToRupiah(value),
+                        key: 'tooltip'
+                    }),
+                    React.createElement(Line, {
+                        type: 'monotone',
+                        dataKey: 'total',
+                        stroke: '#3B82F6',
+                        strokeWidth: 2,
+                        dot: { r: 4 },
+                        activeDot: { r: 6 },
+                        key: 'line'
+                    })
+                ])
+            );
+
+            ReactDOM.render(chart, document.getElementById('lineChart'));
+        }
+
+        // Render both charts when page loads
+        window.addEventListener('load', () => {
+            renderPieChart();
+            renderLineChart();
+        });
     </script>
 </body>
 </html>

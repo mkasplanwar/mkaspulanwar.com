@@ -13,19 +13,48 @@
     <meta property="og:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi277pyUPRZ8IhkUAFHI1jBDt3eIYK5G6s1irQa-s4EuHJk3lelIWWgmEBHnOd67UlyhJAP5Wu8UVyNHALP0oqK2hhJg_yjeqyWth77ZHVvAFTklphyzVGSstUyrHtY4W7OfIuLnA6gDyOIQeTHrwN5nSOrpyTYtxf8rW5E-_n9ZLfVloBwz6xTrqxZYhfs/s1600/anwar.JPG">
     <meta property="og:url" content="https://mkaspulanwar.com">
     <meta property="og:type" content="website">
-    <meta name="theme-color" content="#ffffff">
+    <meta name="theme-color" content="#000000">
 
     <style>
+        :root {
+            /* Dark theme - menggunakan hitam pekat */
+            --bg-dark: #000000;
+            --text-dark: #ffffff;
+            --card-dark: #0a0a0a;
+            --border-dark: #ffffff;
+            
+            /* Light theme */
+            --bg-light: #ffffff;
+            --text-light: #000000;
+            --card-light: #ffffff;
+            --border-light: #000000;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: var(--bg-dark);
+            --text-color: var(--text-dark);
+            --card-color: var(--card-dark);
+            --border-color: var(--border-dark);
+        }
+
+        [data-theme="light"] {
+            --bg-color: var(--bg-light);
+            --text-color: var(--text-light);
+            --card-color: var(--card-light);
+            --border-color: var(--border-light);
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Arial', sans-serif;
+            transition: background-color 0.3s, color 0.3s;
         }
         
         body {
-            background: #ffffff;
-            color: #000000;
+            background: var(--bg-color);
+            color: var(--text-color);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -38,34 +67,38 @@
             font-size: 15px;
             margin-top: 20px;
             margin-bottom: 35px;
+            align-items: center;
         }
         
-        .navbar a {
+        .navbar a, .theme-toggle {
             text-decoration: none;
-            color: #000000;
-            transition: color 0.3s;
+            color: var(--text-color);
+            transition: all 0.3s;
             padding: 12px 8px;
-            position: relative;
             border-radius: 10px;
             display: flex;
             align-items: center;
-            transition: all 0.3s ease;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 15px;
+            margin-left: 10px;
+            color: var(--text-color);
         }
         
-        .navbar a:hover {
-            background-color: #000000;
-            color: #ffffff;
+        .navbar a:hover, .theme-toggle:hover {
+            background-color: var(--text-color);
+            color: var(--bg-color);
         }
         
-        /* Active State */
         .navbar a.active {
-            background-color: #ffffff;
-            color: #000000;
-            border: 2px solid #000000;
-        
+            background-color: var(--card-color);
+            color: var(--text-color);
+            border: 2px solid var(--border-color);
         }
-        
-        
         
         .container {
             max-width: 800px;
@@ -83,12 +116,11 @@
         }
         
         .card {
-            
-            background: #ffffff;
-            border: 2px solid #000000;
+            background: var(--card-color);
+            border: 2px solid var(--border-color);
             border-radius: 15px;
             padding: 20px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 8px 32px rgba(255, 255, 255, 0.1);
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -105,7 +137,7 @@
             height: 300px;
             object-fit: cover;
             border-radius: 15px;
-            border: 2px solid #000000;
+            border: 2px solid var(--border-color);
         }
         
         .card-right {
@@ -118,22 +150,22 @@
         .card-right h1 {
             font-size: 28px;
             margin-bottom: 10px;
-            color: #000000;
+            color: var(--text-color);
             position: relative;
         }
         
         .card-right h1::after {
             content: '';
             display: block;
-            width: calc(100%);
+            width: 100%;
             height: 2px;
-            background-color: #000000;
+            background-color: var(--text-color);
             margin-top: 10px;
         }
         
         .card-right h2 {
             font-size: 18px;
-            color: #000000;
+            color: var(--text-color);
             margin-bottom: 15px;
             margin-top: 15px;
             display: flex;
@@ -144,7 +176,7 @@
         .card-right p {
             font-size: 16px;
             line-height: 1.5;
-            color: #000000;
+            color: var(--text-color);
             text-align: justify;
             margin-bottom: 20px;
         }
@@ -161,21 +193,18 @@
             padding: 10px 20px;
             font-size: 16px;
             font-weight: bold;
-            color: #000000;
-            background-color: #ffffff;
-            border: 2px solid #000000;
+            color: var(--text-color);
+            background-color: var(--card-color);
+            border: 2px solid var(--border-color);
             border-radius: 8px;
             text-decoration: none;
             cursor: pointer;
             transition: all 0.3s ease;
         }
-        .button i{
-            font-size: 18px;
-        }
-        
+
         .button:hover {
-            background-color: #000000;
-            color: #ffffff;
+            background-color: var(--text-color);
+            color: var(--bg-color);
         }
         
         .social-icons {
@@ -192,24 +221,17 @@
             align-items: center;
             width: 40px;
             height: 40px;
-            background-color: #ffffff; /* Latar belakang ikon */
-            border: 2px solid #000000; /* Border ikon */
-            transition: all 0.3s ease; /* Efek transisi */
+            background-color: var(--card-color);
+            border: 2px solid var(--border-color);
+            color: var(--text-color);
+            transition: all 0.3s ease;
             border-radius: 10px;
         }
         
-        /* Target hanya ikon (bukan link wrappernya) untuk memastikan warna asli */
-        .social-icons a{
-            color: inherit; /* Pastikan mengikuti warna asli Font Awesome */
-        }
-        
-        /* Tambahkan efek hover jika diinginkan */
         .social-icons a:hover {
-            background-color: #000000; /* Perubahan latar belakang pada hover */
-            color: #ffffff;
+            background-color: var(--text-color);
+            color: var(--bg-color);
         }
-        
-        
         
         @media (max-width: 550px) {
             .home-section {
@@ -224,26 +246,16 @@
         
             .card-right h1,
             .card-right h2 {
-                text-align: center; /* Rata tengah */
+                text-align: center;
                 justify-content: center;
             }
             .card-right h1::after {
                margin: auto;
                margin-top: 10px;
             }
-        
-            .buttons {
-                justify-content: center;
-            }
-        
-            .social-icons {
-                justify-content: center; /* Rata tengah */
-            }
-            .social-icons a {
-                border-radius: 10px;
-            }
         }
-        @media(max-width: 400px){
+
+        @media(max-width: 400px) {
             .navbar {
                 gap: 5px;
                 font-size: 14px;
@@ -253,46 +265,35 @@
                 padding: 10px 6px;
             }
             .buttons {
-                justify-content: center;
-                width: 100%; /* Pastikan tombol-tombol memiliki lebar 100% */
+                width: 100%;
             }
         }
         
         @media (max-width: 390px) {
-            
-        
             .button {
-                width: 100%; /* Tombol mengambil lebar penuh */
-                text-align: center; /* Mengatur teks di tengah */
-                display: block; /* Pastikan tombol menjadi blok untuk bisa menempati lebar penuh */
-                padding: 10px 0; /* Padding vertikal untuk tombol agar terlihat lebih besar */
-            }
-        
-            .social-icons {
-                justify-content: center; /* Rata tengah */
-            }
-            .social-icons a {
-                border-radius: 10px;
+                width: 100%;
+                text-align: center;
+                display: block;
+                padding: 10px 0;
             }
         }
-        
-        
     </style>
 </head>
-<body>
+<body data-theme="dark">
     <nav class="navbar">
         <a href="index.html" class="active">Home</a>
         <a href="resume.html">Resume</a>
         <a href="projects.html">Projects</a>
-        <a href="mailto:mkasplanwar@gmail.com">Contact</a>
         <a href="bitcoin.html">Bitcoin</a>
+        <button class="theme-toggle">
+            <i class="fas fa-moon"></i>
+        </button>
     </nav>
     
     <main>
         <section class="home-section">
             <div class="card card-left">
-                <!-- Optimisasi: Ganti gambar ini dengan versi terkompresi untuk mempercepat loading -->
-                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi277pyUPRZ8IhkUAFHI1jBDt3eIYK5G6s1irQa-s4EuHJk3lelIWWgmEBHnOd67UlyhJAP5Wu8UVyNHALP0oqK2hhJg_yjeqyWth77ZHVvAFTklphyzVGSstUyrHtY4W7OfIuLnA6gDyOIQeTHrwN5nSOrpyTYtxf8rW5E-_n9ZLfVloBwz6xTrqxZYhfs/s1600/anwar.JPG" alt="M. Kaspul Anwar">
+                <img src="src/imgs/anwar.jpg" alt="M. Kaspul Anwar">
             </div>
 
             <div class="card card-right">
@@ -306,9 +307,9 @@
                     <a href="https://github.com/mkasplanwar" class="button">Contact Me</a>
                     <div class="social-icons">
                         <a href="bitcoin.html"><i class="fa-brands fa-github"></i></a>
-                        <a href="https://www.instagram.com/mkasplanwar/" ><i class="fa-brands fa-instagram"></i></a>
-                        <a href="https://www.linkedin.com/in/mkasplanwar/" ><i class="fa-brands fa-linkedin"></i></a>
-                        
+                        <a href="https://www.instagram.com/mkasplanwar/"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://www.linkedin.com/in/mkasplanwar/"><i class="fa-brands fa-linkedin"></i></a>
+                        <a href="http://t.me/mkasplanwar"><i class="fa-brands fa-telegram"></i></a>
                     </div>
                 </div>
             </div>
@@ -316,43 +317,57 @@
     </main>
 
     <script>
+        // Theme Toggler
+        const themeToggle = document.querySelector('.theme-toggle');
+        const themeIcon = themeToggle.querySelector('i');
+        
+        themeToggle.addEventListener('click', () => {
+            const body = document.body;
+            const currentTheme = body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            
+            body.setAttribute('data-theme', newTheme);
+            themeIcon.className = newTheme === 'light' ? 'fas fa-moon' : 'fas fa-sun';
+        });
+
+        // Typing Animation
         const professions = [
-    "AI Engineer",
-    "Data Scientist",
-    "Programmer",
-    "Bitcoin Enthusiast",
-];
+            "AI Engineer",
+            "Data Scientist",
+            "Programmer",
+            "Bitcoin Enthusiast",
+        ];
 
-let currentProfession = 0;
-let typingIndex = 0;
-const typingSpeed = 60;
-const erasingSpeed = 30;
-const delayBetween = 1000;
+        let currentProfession = 0;
+        let typingIndex = 0;
+        const typingSpeed = 60;
+        const erasingSpeed = 30;
+        const delayBetween = 1000;
 
-const typingElement = document.getElementById("typing-profession");
+        const typingElement = document.getElementById("typing-profession");
 
-function typeProfession() {
-    if (typingIndex < professions[currentProfession].length) {
-        typingElement.textContent += professions[currentProfession].charAt(typingIndex);
-        typingIndex++;
-        setTimeout(typeProfession, typingSpeed);
-    } else {
-        setTimeout(eraseProfession, delayBetween);
-    }
-}
+        function typeProfession() {
+            if (typingIndex < professions[currentProfession].length) {
+                typingElement.textContent += professions[currentProfession].charAt(typingIndex);
+                typingIndex++;
+                setTimeout(typeProfession, typingSpeed);
+            } else {
+                setTimeout(eraseProfession, delayBetween);
+            }
+        }
 
-function eraseProfession() {
-    if (typingIndex > 0) {
-        typingElement.textContent = professions[currentProfession].substring(0, typingIndex - 1);
-        typingIndex--;
-        setTimeout(eraseProfession, erasingSpeed);
-    } else {
-        currentProfession = (currentProfession + 1) % professions.length;
-        setTimeout(typeProfession, typingSpeed);
-    }
-}
+        function eraseProfession() {
+            if (typingIndex > 0) {
+                typingElement.textContent = professions[currentProfession].substring(0, typingIndex - 1);
+                typingIndex--;
+                setTimeout(eraseProfession, erasingSpeed);
+            } else {
+                currentProfession = (currentProfession + 1) % professions.length;
+                setTimeout(typeProfession, typingSpeed);
+            }
+        }
 
-typeProfession();
+        typeProfession();
     </script>
 </body>
 </html>

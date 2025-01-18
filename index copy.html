@@ -101,7 +101,7 @@
         }
         
         .container {
-            max-width: 800px;
+            max-width: 900px;
             width: 100%;
         }
         
@@ -111,7 +111,7 @@
             justify-content: center;
             align-items: stretch;
             gap: 15px;
-            max-width: 800px;
+            max-width: 835px;
             margin: auto;
         }
         
@@ -143,7 +143,8 @@
         .card-right {
             flex: 2;
             min-width: 300px;
-            max-width: 500px;
+            max-width: 600px;
+            width: 100%;
             text-align: left;
         }
         
@@ -185,8 +186,8 @@
             display: flex;
             gap: 10px;
             align-items: center;
-            flex-wrap: wrap;
-            justify-content: center;
+            flex-wrap: nowrap;
+            justify-content: flex-start;
         }
         
         .button {
@@ -200,6 +201,7 @@
             text-decoration: none;
             cursor: pointer;
             transition: all 0.3s ease;
+            white-space: nowrap;
         }
 
         .button:hover {
@@ -210,7 +212,7 @@
         .social-icons {
             display: flex;
             gap: 10px;
-            justify-content: center;
+            margin-left: 0;
         }
         
         .social-icons a {
@@ -237,6 +239,7 @@
             .home-section {
                 flex-direction: column;
                 gap: 20px;
+                max-width: 600px;
             }
         
             .card-left,
@@ -253,6 +256,13 @@
                margin: auto;
                margin-top: 10px;
             }
+            .buttons {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .social-icons {
+                margin-top: 10px;
+            }
         }
 
         @media(max-width: 400px) {
@@ -264,17 +274,21 @@
             .navbar a {
                 padding: 10px 6px;
             }
-            .buttons {
-                width: 100%;
-            }
         }
         
         @media (max-width: 390px) {
+            .buttons {
+                flex-direction: column;
+            }
+
             .button {
                 width: 100%;
                 text-align: center;
-                display: block;
-                padding: 10px 0;
+            }
+
+            .social-icons {
+                margin-top: 10px;
+                justify-content: center;
             }
         }
     </style>
@@ -304,9 +318,9 @@
                 </p>
                 <div class="buttons">
                     <a href="error.html" class="button">View Resume</a>
-                    <a href="https://github.com/mkasplanwar" class="button">Contact Me</a>
+                    <a href="mailto:mkaspulanwar2002@gmail.com" class="button">Contact Me</a>
                     <div class="social-icons">
-                        <a href="bitcoin.html"><i class="fa-brands fa-github"></i></a>
+                        <a href="bhttps://github.com/mkasplanwar"><i class="fa-brands fa-github"></i></a>
                         <a href="https://www.instagram.com/mkasplanwar/"><i class="fa-brands fa-instagram"></i></a>
                         <a href="https://www.linkedin.com/in/mkasplanwar/"><i class="fa-brands fa-linkedin"></i></a>
                         <a href="http://t.me/mkasplanwar"><i class="fa-brands fa-telegram"></i></a>

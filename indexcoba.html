@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>M. Kaspul Anwar</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="icon" href="src/imgs/favicon.png" type="image/png">
 
     <!-- Open Graph Meta Tags -->
@@ -21,7 +21,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
+            font-family: 'Montserrat', sans-serif;
         }
         
         body {
@@ -31,7 +31,6 @@
             flex-direction: column;
             align-items: center;
             padding: 20px;
-            min-height: 100vh;
         }
         
         .navbar {
@@ -40,23 +39,19 @@
             font-size: 15px;
             margin-top: 20px;
             margin-bottom: 35px;
-            align-items: center;
-            width: 100%;
-            max-width: 900px;
-            justify-content: center;
-            flex-wrap: wrap;
+            background: #000000;
+            padding: 8px;
+            border-radius: 12px;
+            border: 2px solid #ffffff;
         }
         
         .navbar a {
             text-decoration: none;
             color: #ffffff;
-            transition: all 0.3s;
-            padding: 12px 16px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
             font-weight: 500;
-            white-space: nowrap;
+            padding: 10px 15px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
         }
         
         .navbar a:hover {
@@ -65,13 +60,12 @@
         }
         
         .navbar a.active {
-            background-color: #0a0a0a;
-            color: #ffffff;
-            border: 2px solid #ffffff;
+            background-color: #ffffff;
+            color: #000000;
         }
         
         .container {
-            max-width: 900px;
+            max-width: 800px;
             width: 100%;
         }
         
@@ -79,54 +73,49 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            align-items: flex-start;
-            gap: 20px;
-            max-width: 900px;
+            align-items: stretch;
+            gap: 15px;
+            max-width: 840px;
             margin: auto;
-            padding: 0 15px;
         }
         
         .card {
-            background: #0a0a0a;
+            background: #000000;
             border: 2px solid #ffffff;
-            border-radius: 15px;
-            padding: 25px;
-            box-shadow: 0 8px 32px rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 20px;
             display: flex;
             flex-direction: column;
-            justify-content: flex-start;
+            justify-content: center;
         }
         
         .card-left {
             flex: 1;
-            min-width: 250px;
-            max-width: 300px;
-            width: 100%;
+            min-width: 200px;
+            max-width: 100%;
         }
         
         .card-left img {
             width: 100%;
-            height: auto;
-            aspect-ratio: 1;
+            height: 300px;
             object-fit: cover;
-            border-radius: 15px;
+            border-radius: 10px;
             border: 2px solid #ffffff;
         }
         
         .card-right {
             flex: 2;
             min-width: 300px;
-            width: 100%;
+            max-width: 550px;
             text-align: left;
         }
         
         .card-right h1 {
-            font-size: clamp(24px, 5vw, 32px);
+            font-size: 28px;
             margin-bottom: 10px;
             color: #ffffff;
             position: relative;
-            font-weight: 700;
-            letter-spacing: -0.5px;
+            font-weight: 600;
         }
         
         .card-right h1::after {
@@ -139,13 +128,14 @@
         }
         
         .card-right h2 {
-            font-size: clamp(16px, 4vw, 18px);
+            font-size: 18px;
             color: #ffffff;
-            margin: 15px 0;
+            margin-bottom: 15px;
+            margin-top: 15px;
             display: flex;
             align-items: center;
             gap: 5px;
-            font-weight: 600;
+            font-weight: 500;
         }
         
         .card-right p {
@@ -167,20 +157,17 @@
         
         .button {
             padding: 10px 20px;
-            font-size: 16px;
-            font-weight: 600;
+            font-size: 15px;
+            font-weight: 500;
             color: #ffffff;
-            background-color: #0a0a0a;
+            background-color: #000000;
             border: 2px solid #ffffff;
             border-radius: 8px;
             text-decoration: none;
             cursor: pointer;
-            transition: all 0.3s ease;
-            white-space: nowrap;
-            text-align: center;
-            min-width: 140px;
+            transition: all 0.2s ease;
         }
-
+        
         .button:hover {
             background-color: #ffffff;
             color: #000000;
@@ -189,22 +176,22 @@
         .social-icons {
             display: flex;
             gap: 10px;
-            flex-wrap: wrap;
+            margin-left: 5px;
         }
         
         .social-icons a {
-            font-size: 25px;
+            font-size: 18px;
             text-decoration: none;
             display: flex;
             justify-content: center;
             align-items: center;
-            width: 40px;
-            height: 40px;
-            background-color: #0a0a0a;
+            width: 38px;
+            height: 38px;
+            background-color: #000000;
             border: 2px solid #ffffff;
             color: #ffffff;
-            transition: all 0.3s ease;
-            border-radius: 10px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
         }
         
         .social-icons a:hover {
@@ -212,80 +199,64 @@
             color: #000000;
         }
         
-        /* Responsive Breakpoints */
         @media (max-width: 768px) {
-            .home-section {
-                padding: 0 10px;
-            }
-            
-            .card {
-                padding: 20px;
-            }
-            
-            .card-left {
-                max-width: 250px;
-            }
         }
-
-        @media (max-width: 640px) {
+        
+        @media (max-width: 550px) {
             .home-section {
                 flex-direction: column;
-                align-items: center;
+                gap: 20px;
             }
-            
-            .card-left {
-                max-width: 100%;
-            }
-            
-            .card-left img {
-                max-height: 300px;
+        
+            .card-left,
+            .card-right {
                 width: 100%;
-                object-fit: cover;
             }
-            
-            .buttons {
+        
+            .card-right h1,
+            .card-right h2 {
+                text-align: center;
                 justify-content: center;
             }
             
+            .card-right h1::after {
+                margin: auto;
+                margin-top: 10px;
+            }
+        
+            .buttons {
+                justify-content: center;
+            }
+        
             .social-icons {
                 justify-content: center;
-                margin-top: 15px;
             }
         }
-
-        @media (max-width: 480px) {
+        
+        @media (max-width: 400px) {
             .navbar {
-                gap: 8px;
-            }
-            
-            .navbar a {
-                padding: 10px 14px;
+                gap: 4px;
                 font-size: 14px;
-            }
-            
-            .card {
-                padding: 15px;
-            }
-            
-            .button {
-                width: 100%;
-                min-width: unset;
-            }
-            
-            .buttons {
-                flex-direction: column;
-                width: 100%;
-            }
-        }
-
-        @media (max-width: 350px) {
-            body {
-                padding: 10px;
+                padding: 6px;
             }
             
             .navbar a {
                 padding: 8px 12px;
-                font-size: 13px;
+            }
+            
+            .buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            .button {
+                width: 100%;
+                text-align: center;
+            }
+            
+            .social-icons {
+                margin-top: 10px;
+                justify-content: center;
             }
         }
     </style>
@@ -323,7 +294,6 @@
             </div>
         </section>
     </main>
-
     <script>
         const professions = [
             "AI Engineer",

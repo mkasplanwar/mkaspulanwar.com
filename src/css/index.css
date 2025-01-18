@@ -2,52 +2,60 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Arial', sans-serif;
+    font-family: 'Montserrat', sans-serif;
 }
 
 body {
-    background: #ffffff;
-    color: #000000;
+    background: #000000;
+    color: #ffffff;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 20px;
 }
 
+.navbar-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 35px;
+}
+
+.navbar-wrapper {
+    display: flex;
+    justify-content: center;
+    background: #000000;
+    border: 2px solid #ffffff;
+    border-radius: 12px;
+    padding: 8px;
+    margin-top: 20px;
+}
+
 .navbar {
     display: flex;
     gap: 5px;
     font-size: 15px;
-    margin-top: 20px;
-    margin-bottom: 35px;
+    justify-content: center;
 }
 
 .navbar a {
     text-decoration: none;
-    color: #000000;
-    transition: color 0.3s;
-    padding: 12px 8px;
-    position: relative;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    transition: all 0.3s ease;
+    color: #ffffff;
+    font-weight: 500;
+    padding: 10px 15px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
 }
 
 .navbar a:hover {
-    background-color: #000000;
-    color: #ffffff;
+    background-color: #ffffff;
+    color: #000000;
 }
 
-/* Active State */
 .navbar a.active {
     background-color: #ffffff;
     color: #000000;
-    border: 2px solid #000000;
-
 }
-
-
 
 .container {
     max-width: 800px;
@@ -60,17 +68,15 @@ body {
     justify-content: center;
     align-items: stretch;
     gap: 15px;
-    max-width: 800px;
+    max-width: 880px;
     margin: auto;
 }
 
 .card {
-    
-    background: #ffffff;
-    border: 2px solid #000000;
-    border-radius: 15px;
+    background: #000000;
+    border: 2px solid #ffffff;
+    border-radius: 12px;
     padding: 20px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -86,49 +92,52 @@ body {
     width: 100%;
     height: 300px;
     object-fit: cover;
-    border-radius: 15px;
-    border: 2px solid #000000;
+    border-radius: 10px;
+    border: 2px solid #ffffff;
 }
 
 .card-right {
     flex: 2;
     min-width: 300px;
-    max-width: 500px;
+    max-width: 570px;
     text-align: left;
 }
 
 .card-right h1 {
     font-size: 28px;
     margin-bottom: 10px;
-    color: #000000;
+    color: #ffffff;
     position: relative;
+    font-weight: 600;
 }
 
 .card-right h1::after {
     content: '';
     display: block;
-    width: calc(100%);
+    width: 100%;
     height: 2px;
-    background-color: #000000;
+    background-color: #ffffff;
     margin-top: 10px;
 }
 
 .card-right h2 {
     font-size: 18px;
-    color: #000000;
+    color: #ffffff;
     margin-bottom: 15px;
     margin-top: 15px;
     display: flex;
     align-items: center;
     gap: 5px;
+    font-weight: 500;
 }
 
 .card-right p {
     font-size: 16px;
-    line-height: 1.5;
-    color: #000000;
+    line-height: 1.6;
+    color: #ffffff;
     text-align: justify;
     margin-bottom: 20px;
+    font-weight: 400;
 }
 
 .buttons {
@@ -136,64 +145,73 @@ body {
     gap: 10px;
     align-items: center;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
 .button {
     padding: 10px 20px;
     font-size: 16px;
-    font-weight: bold;
-    color: #000000;
-    background-color: #ffffff;
-    border: 2px solid #000000;
+    font-weight: 500;
+    color: #ffffff;
+    background-color: #000000;
+    border: 2px solid #ffffff;
     border-radius: 8px;
     text-decoration: none;
     cursor: pointer;
-    transition: all 0.3s ease;
-}
-.button i{
-    font-size: 18px;
+    transition: all 0.2s ease;
 }
 
 .button:hover {
-    background-color: #000000;
-    color: #ffffff;
+    background-color: #ffffff;
+    color: #000000;
 }
 
 .social-icons {
     display: flex;
     gap: 10px;
-    justify-content: center;
+    margin-left: 5px;
 }
 
 .social-icons a {
-    font-size: 25px;
+    font-size: 24px;
     text-decoration: none;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 40px;
-    height: 40px;
-    background-color: #ffffff; /* Latar belakang ikon */
-    border: 2px solid #000000; /* Border ikon */
-    transition: all 0.3s ease; /* Efek transisi */
-    border-radius: 10px;
-}
-
-/* Target hanya ikon (bukan link wrappernya) untuk memastikan warna asli */
-.social-icons a{
-    color: inherit; /* Pastikan mengikuti warna asli Font Awesome */
-}
-
-/* Tambahkan efek hover jika diinginkan */
-.social-icons a:hover {
-    background-color: #000000; /* Perubahan latar belakang pada hover */
+    width: 42px;
+    height: 42px;
+    background-color: #000000;
+    border: 2px solid #ffffff;
     color: #ffffff;
+    border-radius: 8px;
+    transition: all 0.2s ease;
 }
 
+.social-icons a:hover {
+    background-color: #ffffff;
+    color: #000000;
+}
 
+@media (max-width: 768px) {
+    .navbar-wrapper {
+        width: 400px;
+    }
+}
 
 @media (max-width: 550px) {
+    .navbar-container {
+        max-width: 100%;
+        margin-bottom: 25px;
+    }
+    
+    .navbar-wrapper {
+        width: 100%;
+        max-width: 550px;
+    }
+    .navbar{
+        gap: 1px;
+        
+    }
     .home-section {
         flex-direction: column;
         gap: 20px;
@@ -206,55 +224,55 @@ body {
 
     .card-right h1,
     .card-right h2 {
-        text-align: center; /* Rata tengah */
+        text-align: center;
         justify-content: center;
     }
-    .card-right h1::after {
-       margin: auto;
-       margin-top: 10px;
-    }
-
-    .buttons {
-        justify-content: center;
-    }
-
-    .social-icons {
-        justify-content: center; /* Rata tengah */
-    }
-    .social-icons a {
-        border-radius: 10px;
-    }
-}
-@media(max-width: 400px){
-    .navbar {
-        gap: 5px;
-        font-size: 14px;
-    }
-
-    .navbar a {
-        padding: 10px 6px;
-    }
-    .buttons {
-        justify-content: center;
-        width: 100%; /* Pastikan tombol-tombol memiliki lebar 100% */
-    }
-}
-
-@media (max-width: 390px) {
     
+    .card-right h1::after {
+        margin: auto;
+        margin-top: 10px;
+    }
 
-    .button {
-        width: 100%; /* Tombol mengambil lebar penuh */
-        text-align: center; /* Mengatur teks di tengah */
-        display: block; /* Pastikan tombol menjadi blok untuk bisa menempati lebar penuh */
-        padding: 10px 0; /* Padding vertikal untuk tombol agar terlihat lebih besar */
+    .buttons {
+        justify-content: center;
     }
 
     .social-icons {
-        justify-content: center; /* Rata tengah */
-    }
-    .social-icons a {
-        border-radius: 10px;
+        justify-content: center;
     }
 }
 
+@media (max-width: 430px) {
+    .navbar-wrapper {
+        padding: 8px;
+    }
+    
+    .navbar a {
+        padding: 8px 12px;
+    }
+    
+    .buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .button {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .social-icons {
+        margin-top: 10px;
+        justify-content: center;
+    }
+}
+@media (max-width: 388px) {
+    .navbar{
+        font-size: 13px;
+        gap: 1px;
+    }
+    
+    .navbar a {
+        padding: 8px 10px;
+    }
+}

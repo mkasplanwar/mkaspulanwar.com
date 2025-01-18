@@ -33,12 +33,18 @@
             padding: 20px;
         }
         
+        .navbar-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 35px;
+        }
+        
         .navbar {
             display: flex;
             gap: 5px;
             font-size: 15px;
             margin-top: 20px;
-            margin-bottom: 35px;
             background: #000000;
             padding: 8px;
             border-radius: 12px;
@@ -200,9 +206,21 @@
         }
         
         @media (max-width: 768px) {
+            .navbar {
+                width: 400px;
+            }
         }
         
         @media (max-width: 550px) {
+            .navbar-container {
+                max-width: 100%;
+            }
+            
+            .navbar {
+                width: 100%;
+                max-width: 550px;
+            }
+            
             .home-section {
                 flex-direction: column;
                 gap: 20px;
@@ -262,12 +280,14 @@
     </style>
 </head>
 <body>
-    <nav class="navbar">
-        <a href="index.html" class="active">Home</a>
-        <a href="resume.html">Resume</a>
-        <a href="projects.html">Projects</a>
-        <a href="bitcoin.html">Bitcoin</a>
-    </nav>
+    <div class="navbar-container">
+        <nav class="navbar">
+            <a href="index.html" class="active">Home</a>
+            <a href="resume.html">Resume</a>
+            <a href="projects.html">Projects</a>
+            <a href="bitcoin.html">Bitcoin</a>
+        </nav>
+    </div>
     
     <main>
         <section class="home-section">

@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume - M. Kaspul Anwar</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="icon" href="src/imgs/favicon.png" type="image/png">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        body {
+            background: #000000;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            min-height: 100vh;
+            position: relative;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 150px;
+            background: linear-gradient(180deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .navbar-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .navbar-wrapper {
+            display: flex;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid #ffffff;
+            border-radius: 12px;
+            padding: 8px;
+            margin-top: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+        }
+        
+        .navbar {
+            display: flex;
+            gap: 5px;
+            font-size: 15px;
+            justify-content: center;
+        }
+        
+        .navbar a {
+            text-decoration: none;
+            color: #ffffff;
+            font-weight: 500;
+            padding: 10px 15px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar a.active {
+            background-color: #ffffff;
+            color: #000000;
+            box-shadow: 0 2px 10px rgba(255, 255, 255, 0.2);
+        }
+        
+        .resume-section {
+            max-width: 1000px;
+            width: 100%;
+            margin: auto;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .download-container {
+            margin-bottom: 25px;
+        }
+        
+        .download-card {
+            background: rgba(0, 0, 0, 0.6);
+            border: 2px solid #ffffff;
+            border-radius: 16px;
+            padding: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .download-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .download-icon {
+            font-size: 24px;
+            background: #000000;
+            border: 2px solid #ffffff;
+            padding: 12px;
+            border-radius: 10px;
+            color: #ffffff;
+        }
+        
+        .download-text h3 {
+            font-size: 18px;
+            margin-bottom: 4px;
+            color: #ffffff;
+        }
+        
+        .download-text p {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .download-buttons {
+            display: flex;
+            gap: 12px;
+        }
+        
+        .download-btn {
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn-primary {
+            background: #000000;
+            color: #ffffff;
+            border: 2px solid #ffffff;
+        }
+        
+        .btn-secondary {
+            background: #000000;
+            color: #ffffff;
+            border: 2px solid #ffffff;
+        }
+        
+        .resume-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+        
+        .card {
+            background: rgba(0, 0, 0);
+            border: 2px solid #ffffff;
+            border-radius: 16px;
+            padding: 15px; /* Reduced from 25px to 15px */
+            width: 100%;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(255, 255, 255, 0.1);
+        }
+        
+        .section-title {
+            font-size: 24px;
+            color: #ffffff;
+            margin-bottom: 25px;
+            position: relative;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .section-title i {
+            font-size: 22px;
+            background: #000000;
+            border: 2px solid #ffffff;
+            padding: 10px;
+            border-radius: 10px;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100%;
+            height: 2px;
+            background: #ffffff;
+            margin-top: 10px;
+        }
+        
+        .resume-item {
+            position: relative;
+            padding: 12px;
+            border-radius: 12px;
+            margin-bottom: 0px;
+        }
+        
+        .resume-item h3 {
+            font-size: 18px;
+            margin-bottom: 8px;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+        
+        .logo-container {
+            width: 50px; /* Changed from 48px to 50px */
+            height: 50px; /* Changed from 48px to 50px */
+            min-width: 50px; /* Changed from 48px to 50px */
+            border-radius: 50%;
+            background: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8px;
+            box-shadow: 0 6px 12px rgba(255, 255, 255, 0.3), /* Enhanced shadow */
+                       0 2px 4px rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px); /* Adds slight lift effect */
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .logo-container:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 16px rgba(255, 255, 255, 0.35),
+                       0 3px 6px rgba(255, 255, 255, 0.25);
+        }
+        
+        .logo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 50%;
+        }
+        
+        .resume-item h4 {
+            font-size: 14px;
+            color: #ffffff;
+            margin-bottom: 6px;
+            font-weight: normal;
+            padding-left: 75px; /* Adjusted for new logo size */
+        }
+        
+        .resume-item p {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.4;
+            padding-left: 75px; /* Adjusted for new logo size */
+            margin-bottom: 3px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .resume-item p i {
+            font-size: 11px;
+            opacity: 0.8;
+        }
+        
+        @media (max-width: 768px) {
+            .resume-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .download-card {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+            
+            .download-info {
+                flex-direction: column;
+            }
+            
+            .navbar-wrapper {
+                width: 400px;
+            }
+        }
+        
+        @media (max-width: 550px) {
+            .navbar-container {
+                max-width: 100%;
+                margin-bottom: 20px;
+            }
+            
+            .navbar-wrapper {
+                width: 100%;
+                max-width: 550px;
+            }
+            
+            .navbar {
+                gap: 1px;
+            }
+        
+            .download-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+        
+            .download-btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 430px) {
+            .navbar-wrapper {
+                padding: 8px;
+            }
+            
+            .navbar a {
+                padding: 8px 12px;
+            }
+        
+            .card {
+                padding: 12px; /* Further reduced for mobile */
+            }
+        
+            .resume-item {
+                padding: 8px;
+            }
+        }
+        
+        @media (max-width: 388px) {
+            .navbar {
+                font-size: 13px;
+                gap: 1px;
+            }
+            
+            .navbar a {
+                padding: 8px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar-container">
+        <div class="navbar-wrapper">
+            <nav class="navbar">
+                <a href="index.html">Home</a>
+                <a href="resume.html" class="active">Resume</a>
+                <a href="projects.html">Projects</a>
+                <a href="bitcoin.html">Bitcoin</a>
+            </nav>
+        </div>
+    </div>
+
+    <main class="resume-section">
+        <div class="download-container">
+            <div class="download-card">
+                <div class="download-info">
+                    <i class="fas fa-cloud-download-alt download-icon"></i>
+                    <div class="download-text">
+                        <h3>Download Documents</h3>
+                        <p>Get my complete resume and certifications</p>
+                    </div>
+                </div>
+                <div class="download-buttons">
+                    <a href="path/to/resume.pdf" class="download-btn btn-primary">
+                        <i class="fas fa-file-pdf"></i>
+                        Resume
+                    </a>
+                    <a href="src/document/sertifikatku.pdf" class="download-btn btn-secondary">
+                        <i class="fas fa-certificate"></i>
+                        Certificates
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="resume-grid">
+            <div class="card">
+                <h2 class="section-title">
+                    <i class="fas fa-graduation-cap"></i>
+                    Education & Organization
+                </h2>
+                <div class="resume-item">
+                    <h3>
+                        <div class="logo-container">
+                            <img src="https://assets.nsd.co.id/images/kampus/logo/UIN_Antasari_2edit22.png" alt="UIN Logo">
+                        </div>
+                        Bachelor's Degree Program In Information Technology
+                    </h3>
+                    <h4>Universitas Islam Negeri Antasari Banjarbaru</h4>
+                    <p><i class="fas fa-calendar"></i>September 4, 2023 - Present [Dilokasi]</p>
+                    <p><i class="fas fa-star"></i>GPA: 3.91/4.00</p>
+                </div>
+                <div class="resume-item">
+                    <h3>
+                        <div class="logo-container">
+                            <img src="https://ugc.production.linktr.ee/d3cQv9tQuG9rfiv2Xx7Q_N0s1vwgo0nYV6pr1" alt="SMAN 1 Logo">
+                        </div>
+                        Al-Mazaya International Islamic Senior High School
+                    </h3>
+                    <h4>Science Major</h4>
+                    <p><i class="fas fa-calendar"></i>July 2018 - May 2021 [Dilokasi]</p>
+                    <p><i class="fas fa-star"></i>GPA: 3.80/4.00</p>
+                </div>
+                <div class="resume-item">
+                    <h3>
+                        <div class="logo-container">
+                            <img src="src/imgs/apt.png" alt="Organization Logo">
+                        </div>
+                        Antasari Programming Team
+                    </h3>
+                    <h4>Active Member</h4>
+                    <p><i class="fas fa-calendar"></i>December 02, 2023 - Present [Dilokasi]</p>
+                    <p><i class="fas fa-check"></i>Led technology initiatives and projects</p>
+                    <p><i class="fas fa-check"></i>Managed a team of 10 members</p>
+                </div>
+                <div class="resume-item">
+                    <h3>
+                        <div class="logo-container">
+                            <img src="src/imgs/imm.png" alt="Committee Logo">
+                        </div>
+                        Muhammadiyah University Student Association 
+                    </h3>
+                    <h4>Commissionary Leadership at Antasari State Islamic University Banjarbaru</h4>
+                    
+                    <p><i class="fas fa-check"></i>Head of Media and Communications Division</p>
+                    <p><i class="fas fa-calendar"></i>September 08, 2024 - Present [Part Time]</p>
+                    <p><i class="fas fa-check"></i>Active Cadre</p>
+                    <p><i class="fas fa-calendar"></i>December, 2023 - Present [Part Time]</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2 class="section-title">
+                    <i class="fas fa-briefcase"></i>
+                    Work Experience
+                </h2>
+                <div class="resume-item">
+                    <h3>
+                        <div class="logo-container">
+                            <img src="src/imgs/ekraf.png" alt="Company Logo">
+                        </div>
+                        Committee Member in the Security Division - Volunteer
+                    </h3>
+                    <h4>Banua Creative Festival 2024 </h4>
+                    <p><i class="fas fa-calendar"></i>December 13, 2024 [Banjarbaru]</p>
+                    <p><i class="fas fa-check"></i>Organize By Ruang Ekonomi Kreative Kalimantan Selatan</p>
+                    <p><i class="fas fa-check"></i>Organize By Pemerintah Daerah Kalimantan Selatan dan Universitas Lambung Mangkurat</p>
+                </div>
+                <div class="resume-item">
+                    <h3>
+                        <div class="logo-container">
+                            <img src="src/imgs/ti.png" alt="Company Logo">
+                        </div>
+                        Accreditation Preparation Team
+                    </h3>
+                    <h4>Information Technology Study Program</h4>
+                    <p><i class="fas fa-calendar"></i>May 27 - June 2, 2024 [Banjarmasin]</p>
+                    <p><i class="fas fa-check"></i>Member of the accreditation preparation team, led by Munsyi, S.Kom, M.T.</p>
+                    
+                </div>
+                <div class="resume-item">
+                    <h3>
+                        <div class="logo-container">
+                            <img src="src/imgs/ti.png" alt="Company Logo">
+                        </div>
+                        Website Administrator
+                    </h3>
+                    <h4>Information Technology Study Program</h4>
+                    <p><i class="fas fa-calendar"></i>January 2024 - June 2024 [Part-Time]</p>
+                    <p><i class="fas fa-check"></i>https://ti.uin-antasari.ac.id</p>
+                    <p><i class="fas fa-check"></i>Official Website of the Information Technology Study Program</p>
+                </div>
+                <div class="resume-item">
+                    <h3>
+                        <div class="logo-container">
+                            <img src="src/imgs/ulm.png" alt="Company Logo">
+                        </div>
+                        IT Support & Assistance
+                    </h3>
+                    <h4> The International Conference on Energy, Sustainable Development, and Management - (ICESDM) 2023</h4>
+                    <p><i class="fas fa-calendar"></i>November 2 - November 4, 2023 [Banjarmasin]</p>
+                    <p><i class="fas fa-check"></i>Organize by Universitas Lambung Mangkurat</p>
+                    <p><i class="fas fa-check"></i>Provided technical assistance and ensured the smooth operation of hardware and software</p>
+                    
+                </div>
+                <div class="resume-item">
+                    <h3>
+                        <div class="logo-container">
+                            <img src="src/imgs/bic.jpeg" alt="Company Logo">
+                        </div>
+                        Machine Operator - Trolley Machine
+                    </h3>
+                    <h4>PT. Basirih Industrial Corporation</h4>
+                    <p><i class="fas fa-calendar"></i>August 21, 2022 - June 24, 2023 [Full-Time]</p>
+                    <p><i class="fas fa-check"></i>Operated machinery and ensured proper functioning of the equipment. </p>
+                </div>
+                <div class="resume-item">
+                    <h3>
+                        <div class="logo-container">
+                            <img src="src/imgs/bic.jpeg" alt="Company Logo">
+                        </div>
+                        Administrative Staff - Tally Clerk
+                    </h3>
+                    <h4>PT. Basirih Industrial Corporation</h4>
+                    <p><i class="fas fa-calendar"></i>July 24 - August 20, 2022 [Full-Time]</p>
+                    <p><i class="fas fa-check"></i>Recorded data, compiled reports, and ensured proper documentation. Managed documents related to field projects and operations</p>
+                </div>
+                <div class="resume-item">
+                    <h3>
+                        <div class="logo-container">
+                            <img src="src/imgs/bic.jpeg" alt="Company Logo">
+                        </div>
+                        Contract Employee
+                    </h3>
+                    <h4>PT. Basirih Industrial Corporation</h4>
+                    <p><i class="fas fa-calendar"></i>July 29, 2021 - August 18, 2022 [Full-Time]</p>
+                    <p><i class="fas fa-check"></i>Assisted in product finishing using machinery under the guidance of the operator</p>
+                </div>
+                <div class="resume-item">
+                    <h3>
+                        <div class="logo-container">
+                            <img src="src/imgs/cpid.png" alt="Company Logo">
+                        </div>
+                        Content Writer & Web Administrator
+                    </h3>
+                    <h4>Caripengetahuan.Id</h4>
+                    <p><i class="fas fa-calendar"></i>August 15, 2019 - May 20, 2021 [Part-Time]</p>
+                    <p><i class="fas fa-check"></i>Developed informative and engaging content</p>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

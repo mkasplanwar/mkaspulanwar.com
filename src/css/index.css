@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
 * {
     margin: 0;
     padding: 0;
@@ -70,7 +71,7 @@ body {
     justify-content: center;
     align-items: stretch;
     gap: 15px;
-    max-width: 840px;
+    max-width: 880px;
     margin: auto;
 }
 
@@ -101,7 +102,7 @@ body {
 .card-right {
     flex: 2;
     min-width: 300px;
-    max-width: 570px;
+    max-width: 580px;
     text-align: left;
 }
 

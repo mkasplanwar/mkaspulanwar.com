@@ -1,209 +1,341 @@
-/* BAGIAN SEMUANYA */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Arial', sans-serif;
+    font-family: 'Montserrat', sans-serif;
 }
 
 body {
-    background: #ffffff;
-    color: #000000;
+    background: #000000;
+    color: #ffffff;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    min-height: 100vh;
+    position: relative;
 }
-/* BAGIAN NAVBAR */
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 150px;
+    background: linear-gradient(180deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.navbar-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 2;
+}
+
+.navbar-wrapper {
+    display: flex;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.8);
+    border: 2px solid #ffffff;
+    border-radius: 12px;
+    padding: 8px;
+    margin-top: 20px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+}
+
 .navbar {
     display: flex;
     gap: 5px;
     font-size: 15px;
-    margin-top: 20px;
-    margin-bottom: 35px;
+    justify-content: center;
 }
 
 .navbar a {
     text-decoration: none;
-    color: #000000;
-    transition: color 0.3s;
-    padding: 12px 8px;
-    position: relative;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
+    color: #ffffff;
+    font-weight: 500;
+    padding: 10px 15px;
+    border-radius: 8px;
     transition: all 0.3s ease;
 }
 
-.navbar a:hover {
-    background-color: #000000;
-    color: #ffffff;
-}
-
-/* Active State */
 .navbar a.active {
     background-color: #ffffff;
     color: #000000;
-    border: 2px solid #000000;
-
-}
-/* UNTUK BAGIAN DOWNLOAD */
-.card-download{
-    width: 760px;
-    background-color: #ffffff;
-    border: 2px solid #000000;
-    border-radius: 10px;
-    padding: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    
+    box-shadow: 0 2px 10px rgba(255, 255, 255, 0.2);
 }
 
-.card-download .left-content {
-    font-size: 18px;
-}
-
-.card-download .right-content {
-    display: flex;
-    gap: 5px;
-    font-weight: bold;
-}
-
-
-.card-download  .certif, .card-download  .resume{
-    color: #000;
-    background-color: #fff;
-    border: 2px solid black;
-    border-radius: 8px;
-    padding: 10px 10px;
-    font-size: 14px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    text-decoration: none;
-    
-}
-
-
-.card-download .certif:hover, .card-download .resume:hover {
-    background-color: #000;
-    color: #fff;
-}
-
-.card-download a:focus {
-    outline: none;
-}
-
-/* BAGIAN 2 CARD RESUME */
-.resume-container {
-    display: flex;
-    gap: 10px;
-    margin-top: 20px;
+.resume-section {
+    max-width: 1000px;
     width: 100%;
-    justify-content: center;
+    margin: auto;
+    position: relative;
+    z-index: 2;
 }
 
-.kiri-card, .kanan-card {
-    width: 375px;
-    background-color: #fff;
-    border: 2px solid #000;
-    border-radius: 10px;
+.download-container {
+    margin-bottom: 25px;
+}
+
+.download-card {
+    background: rgba(0, 0, 0, 0.6);
+    border: 2px solid #ffffff;
+    border-radius: 16px;
     padding: 20px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.kiri-card h3, .kanan-card h3 {
-    font-size: 20px;
-    margin-bottom: 20px;
-}
-.kiri-card .keterangan, .kanan-card .keterangan{
-    font-size: 12px;
-    padding-left: 60px;
-    margin-top: -25px;
-    text-align: justify;
-}
-.company-info {
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
     display: flex;
     align-items: center;
-    gap: 10px;
-    margin-bottom: 20px;
+    justify-content: space-between;
 }
-.company-info .circle {
-    width: 50px;
-    height: 50px;
-    background-color: white;
+
+.download-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.download-icon {
+    font-size: 24px;
+    background: #000000;
+    border: 2px solid #ffffff;
+    padding: 12px;
+    border-radius: 10px;
+    color: #ffffff;
+}
+
+.download-text h3 {
+    font-size: 18px;
+    margin-bottom: 4px;
+    color: #ffffff;
+}
+
+.download-text p {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.download-buttons {
+    display: flex;
+    gap: 12px;
+}
+
+.download-btn {
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-primary {
+    background: #000000;
+    color: #ffffff;
+    border: 2px solid #ffffff;
+}
+
+.btn-secondary {
+    background: #000000;
+    color: #ffffff;
+    border: 2px solid #ffffff;
+}
+
+.resume-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+}
+
+.card {
+    background: rgba(0, 0, 0);
+    border: 2px solid #ffffff;
+    border-radius: 16px;
+    padding: 15px; /* Reduced from 25px to 15px */
+    width: 100%;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(255, 255, 255, 0.1);
+}
+
+.section-title {
+    font-size: 24px;
+    color: #ffffff;
+    margin-bottom: 25px;
+    position: relative;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.section-title i {
+    font-size: 22px;
+    background: #000000;
+    border: 2px solid #ffffff;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: #ffffff;
+    margin-top: 10px;
+}
+
+.resume-item {
+    position: relative;
+    padding: 12px;
+    border-radius: 12px;
+    margin-bottom: 0px;
+}
+
+.resume-item h3 {
+    font-size: 18px;
+    margin-bottom: 8px;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.logo-container {
+    width: 50px; /* Changed from 48px to 50px */
+    height: 50px; /* Changed from 48px to 50px */
+    min-width: 50px; /* Changed from 48px to 50px */
     border-radius: 50%;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background: #ffffff;
     display: flex;
-    justify-content: center;
     align-items: center;
-    overflow: hidden; /* Prevent content overflow */
-    flex-shrink: 0; /* Prevent shrinking */
+    justify-content: center;
+    padding: 8px;
+    box-shadow: 0 6px 12px rgba(255, 255, 255, 0.3), /* Enhanced shadow */
+               0 2px 4px rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px); /* Adds slight lift effect */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-.company-info img {
-    width: 35px;
-    height: 35px;
+
+.logo-container:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(255, 255, 255, 0.35),
+               0 3px 6px rgba(255, 255, 255, 0.25);
+}
+
+.logo-container img {
+    width: 100%;
+    height: 100%;
     object-fit: contain;
-}
-.company-info span {
-    font-size: 16px;
-    font-weight: bold;
+    border-radius: 50%;
 }
 
-/* RESPONSIFITAS 3 KARTU */
-/* Media Queries for Responsiveness */
-@media (max-width: 900px) {
-    .card-download{
-        width: 100%;
-        padding: 15px;
+.resume-item h4 {
+    font-size: 14px;
+    color: #ffffff;
+    margin-bottom: 6px;
+    font-weight: normal;
+    padding-left: 75px; /* Adjusted for new logo size */
+}
+
+.resume-item p {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.4;
+    padding-left: 75px; /* Adjusted for new logo size */
+    margin-bottom: 3px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.resume-item p i {
+    font-size: 11px;
+    opacity: 0.8;
+}
+
+@media (max-width: 768px) {
+    .resume-grid {
+        grid-template-columns: 1fr;
     }
-
-    .resume-container {
+    
+    .download-card {
         flex-direction: column;
-        gap: 20px;
+        text-align: center;
+        gap: 15px;
+    }
+    
+    .download-info {
+        flex-direction: column;
+    }
+    
+    .navbar-wrapper {
+        width: 400px;
+    }
+}
+
+@media (max-width: 550px) {
+    .navbar-container {
+        max-width: 100%;
+        margin-bottom: 20px;
+    }
+    
+    .navbar-wrapper {
+        width: 100%;
+        max-width: 550px;
+    }
+    
+    .navbar {
+        gap: 1px;
     }
 
-    .experience-card, .kiri-card {
+    .download-buttons {
+        flex-direction: column;
         width: 100%;
     }
-}
 
-@media (max-width: 600px) {
-    .card-download {
+    .download-btn {
         width: 100%;
-        padding: 10px;
-    }
-
-    .kanan-card, .kiri-card {
-        width: 100%;
-        padding: 15px;
+        justify-content: center;
     }
 }
 
-.circular-image {
-    width: 35px; /* Tentukan lebar gambar */
-    height: 35px; /* Tentukan tinggi gambar */
-    border-radius: 50%; /* Membuat gambar menjadi bulat */
-    overflow: hidden; /* Menghindari bagian yang keluar */
-    display: inline-block; /* Supaya tetap dalam kotak */
+@media (max-width: 430px) {
+    .navbar-wrapper {
+        padding: 8px;
+    }
+    
+    .navbar a {
+        padding: 8px 12px;
+    }
+
+    .card {
+        padding: 12px; /* Further reduced for mobile */
+    }
+
+    .resume-item {
+        padding: 8px;
+    }
 }
 
-.circular-image img {
-    width: 100%; /* Agar gambar menyesuaikan container */
-    height: 100%; /* Sesuaikan tinggi */
-    object-fit: cover; /* Pastikan gambar tetap proporsional */
-}
-
-/* RESPONSIFITAS NAVBAR */
-@media (max-width: 400px) {
-.navbar {
-gap: 5px;
-font-size: 14px;
-}
-
-.navbar a {
-padding: 10px 6px;  
-
-}
+@media (max-width: 388px) {
+    .navbar {
+        font-size: 13px;
+        gap: 1px;
+    }
+    
+    .navbar a {
+        padding: 8px 10px;
+    }
 }

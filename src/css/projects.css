@@ -1,13 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
+    box-sizing: border-box; 
+    font-family: 'Montserrat', sans-serif; 
 }
 
 body {
-    background: #ffffff;
-    color: #000000;
+    background: #000000;
+    color: #ffffff;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -15,49 +16,47 @@ body {
     min-height: 100vh;
 }
 
+.navbar-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 2;
+}
+
+.navbar-wrapper {
+    display: flex;
+    justify-content: center;
+    background: #000000;
+    border: 2px solid #ffffff;
+    border-radius: 12px;
+    padding: 8px;
+    margin-top: 20px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+}
+
 .navbar {
     display: flex;
     gap: 5px;
     font-size: 15px;
-    margin-top: 20px;
-    margin-bottom: 35px;
+    justify-content: center;
 }
 
 .navbar a {
     text-decoration: none;
-    color: #000;
-    transition: color 0.3s;
-    padding: 12px 8px;
-    position: relative;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
+    color: #ffffff;
+    font-weight: 500;
+    padding: 10px 15px;
+    border-radius: 8px;
     transition: all 0.3s ease;
 }
 
-.navbar a:hover {
-    background-color: #000;
-    color: #fff;
-}
-
-/* Active State */
 .navbar a.active {
-    background-color: #fff;
-    color: #000;
-    border: 2px solid #000;
-
-}
-
-/* RESPONSIFITAS NAVBAR */
-@media (max-width: 400px) {
-    .navbar {
-        gap: 5px;
-        font-size: 14px;
-    }
-
-    .navbar a {
-        padding: 10px 6px;  
-    }
+    background-color: #ffffff;
+    color: #000000;
+    box-shadow: 0 2px 10px rgba(255, 255, 255, 0.2);
 }
 
 .projects-container {
@@ -75,13 +74,13 @@ body {
     /* width: calc(33.333% - 20px); Lebar 1/3 dari baris, dikurangi jarak antar card */
     width: 31%; /* Lebar setiap kartu sekitar 1/3 dari baris (dengan margin antar kartu) */
     margin-right: 1%; /* Jarak antar kartu di baris yang sama */
-    border: 2px solid black; /* Border hitam di sekitar kartu */
-    background-color: white; /* Warna latar belakang kartu */
+    border: 2px solid #ffffff; /* Border hitam di sekitar kartu */
+    background-color: #000000; /* Warna latar belakang kartu */
     overflow: hidden; /* Sembunyikan elemen yang melampaui batas kartu */
     border-radius: 15px; /* Sudut kartu melengkung */
     display: flex; /* Menggunakan flexbox untuk mengatur konten di dalam kartu */
     flex-direction: column; /* Konten di dalam kartu tersusun secara vertikal */
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Tambahkan bayangan lembut untuk efek melayang */
+    box-shadow: 0px 4px 8px rgba(255, 255, 255, 0.1); /* Tambahkan bayangan lembut untuk efek melayang */
     transition: transform 0.3s ease; /* Efek transisi halus saat ada interaksi hover */
     position: relative; /* Memungkinkan penempatan elemen tambahan seperti badge */
 }
@@ -95,7 +94,7 @@ body {
 
 .project-details {
     padding: 10px;
-    border-top: 2px solid black;
+    border-top: 2px solid #ffffff;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
@@ -110,7 +109,7 @@ body {
 .project-description {
     margin-top: 5px;
     font-size: 14px;
-    color: #000000;
+    color: #ffffff;
     line-height: 1.5;
     max-height: 4.5em;
     overflow: hidden;
@@ -129,14 +128,14 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: white;
-    border: 2px solid black;
+    background-color: #000000;
+    border: 2px solid #ffffff;
     border-radius: 10px;
     padding: 8px;
     text-align: center;
     cursor: pointer;
     font-weight: bold;
-    color: #000;
+    color: #ffffff;
     transition: all 0.3s ease;
     text-decoration: none;
 }
@@ -147,8 +146,8 @@ body {
 }
 
 .button:hover {
-    background-color: #000; /* Warna latar hitam */
-    color: #fff; /* Teks putih */
+    background-color: #ffffff; /* Warna latar hitam */
+    color: #000000; /* Teks putih */
 }
 /* Styling untuk badge */
 .badge {
@@ -175,33 +174,24 @@ body {
 .language {
     top: 10px;
     left: 10px;
-    color: #000000;
-    background-color: #fff; /* Warna untuk badge bahasa pemrograman */
-    border: 1px solid #000;
+    color: #ffffff;
+    background-color: #000000; /* Warna untuk badge bahasa pemrograman */
+    border: 1px solid #ffffff;
     padding: 5px 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 /* Styling untuk project card dan banner */
-
-
-
-@media screen and (max-width: 768px) {
-    .project-card {
-        width: 100%; /* Lebar penuh di tablet dan mobile */
-    }
-}
-
 /* Tombol "Lihat Semua Projects" */
 .see-all-projects {
     margin-top: 20px;
     padding: 10px 20px;
     font-size: 16px;
     font-weight: bold;
-    background-color: white;
-    border: 2px solid black;
+    background-color: #000000;
+    border: 2px solid #ffffff;
     border-radius: 10px;
-    color: black;
+    color: #ffffff;
     cursor: pointer;
     transition: all 0.3s ease;
 }
@@ -210,3 +200,48 @@ body {
     background-color: black;
     color: white;
 }
+
+
+@media screen and (max-width: 768px) {
+    .navbar-wrapper {
+        width: 400px;
+    }
+    .project-card {
+        width: 100%; /* Lebar penuh di tablet dan mobile */
+    }
+}
+@media(max-width:550px){
+    .navbar-container {
+        max-width: 100%;
+        margin-bottom: 20px;
+    }
+    
+    .navbar-wrapper {
+        width: 100%;
+        max-width: 550px;
+    }
+    
+    .navbar {
+        gap: 1px;
+    }
+}
+@media(max-width: 430px){
+    .navbar-wrapper {
+        padding: 8px;
+    }
+    
+    .navbar a {
+        padding: 8px 12px;
+    }
+}
+@media (max-width: 388px) {
+    .navbar {
+        font-size: 13px;
+        gap: 1px;
+    }
+    
+    .navbar a {
+        padding: 8px 10px;
+    }
+}
+

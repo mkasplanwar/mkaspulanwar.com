@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navigation Component</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            background: #000000;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        /* Copy mulai dari sini */
+        .navbar-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 25px;
+            max-width: 400px;
+            margin: auto;
+        }
+
+        .navbar-wrapper {
+            display: flex;
+            justify-content: center;
+            background: #000000;
+            border: 2px solid #ffffff;
+            border-radius: 12px;
+            padding: 8px;
+            margin-top: 20px;
+            width: 100%;
+            max-width: 840px;
+        }
+
+        .navbar {
+            display: flex;
+            gap: 5px;
+            font-size: 16px;
+            justify-content: center;
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: #ffffff;
+            font-weight: 500;
+            padding: 12px 15px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .navbar a:hover {
+            background-color: #ffffff;
+            color: #000000;
+        }
+
+        .navbar a.active {
+            background-color: #ffffff;
+            color: #000000;
+        }
+
+        /* Media Queries */
+        @media (max-width: 768px) {
+            .navbar-wrapper {
+                width: 400px;
+            }
+        }
+
+        @media (max-width: 550px) {
+            .navbar-container {
+                max-width: 100%;
+                margin-bottom: 25px;
+            }
+            
+            .navbar-wrapper {
+                width: 100%;
+                max-width: 550px;
+            }
+            
+            .navbar {
+                gap: 1px;
+            }
+        }
+
+        @media (max-width: 430px) {
+            .navbar-wrapper {
+                padding: 8px;
+            }
+            
+            .navbar a {
+                padding: 8px 12px;
+                font-size: 13px;
+            }
+        }
+
+        @media (max-width: 388px) {
+            .navbar {
+                font-size: 13px;
+                gap: 1px;
+            }
+            
+            .navbar a {
+                padding: 8px 10px;
+            }
+        }
+        /* Copy sampai sini */
+    </style>
+</head>
+<body>
+    <!-- Copy mulai dari sini -->
+    <div class="navbar-container">
+        <div class="navbar-wrapper">
+            <nav class="navbar">
+                <a href="index.html" class="active">Home</a>
+                <a href="resume.html">Resume</a>
+                <a href="projects.html">Projects</a>
+                <a href="bitcoin.html">Bitcoin</a>
+            </nav>
+        </div>
+    </div>
+    <!-- Copy sampai sini -->
+</body>
+</html>

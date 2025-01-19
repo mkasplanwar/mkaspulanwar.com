@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Previous head content remains the same until the style tag -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume - M. Kaspul Anwar</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="icon" href="src/imgs/favicon.png" type="image/png">
+    
+    <style>
+        /* Previous styles remain the same until the logo-container */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        body {
+            background: #000000;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .navbar-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 25px;
+        }
+        
+        .navbar-wrapper {
+            display: flex;
+            justify-content: center;
+            background: #000000;
+            border: 2px solid #ffffff;
+            border-radius: 12px;
+            padding: 8px;
+            margin-top: 20px;
+        }
+        
+        .navbar {
+            display: flex;
+            gap: 5px;
+            font-size: 15px;
+            justify-content: center;
+        }
+        
+        .navbar a {
+            text-decoration: none;
+            color: #ffffff;
+            font-weight: 500;
+            padding: 10px 15px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+        
+        .navbar a:hover {
+            background-color: #ffffff;
+            color: #000000;
+        }
+        
+        .navbar a.active {
+            background-color: #ffffff;
+            color: #000000;
+        }
+
+        .resume-section {
+            max-width: 1000px;
+            width: 100%;
+            margin: auto;
+        }
+
+        .downloads-container {
+            margin-bottom: 20px;
+        }
+
+        .resume-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .card {
+            background: #000000;
+            border: 2px solid #ffffff;
+            border-radius: 12px;
+            padding: 20px;
+            width: 100%;
+        }
+
+        .section-title {
+            font-size: 24px;
+            color: #ffffff;
+            margin-bottom: 20px;
+            position: relative;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100%;
+            height: 2px;
+            background-color: #ffffff;
+            margin-top: 10px;
+        }
+
+        .resume-item {
+            margin-bottom: 20px;
+            padding-left: 20px;
+            border-left: 2px solid #ffffff;
+            position: relative;
+        }
+
+        .resume-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .resume-item h3 {
+            font-size: 18px;
+            margin-bottom: 5px;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-container {
+            width: 45px;
+            height: 45px;
+            min-width: 45px;
+            border-radius: 50%;
+            background: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6px;  /* Added padding to prevent logo from touching the edges */
+        }
+
+        .logo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;  /* Changed from cover to contain */
+            border-radius: 50%;
+        }
+
+        .resume-item h4 {
+            font-size: 16px;
+            color: #ffffff;
+            margin-bottom: 5px;
+            font-weight: normal;
+            padding-left: 60px;  /* Added padding to align with title */
+        }
+
+        .resume-item p {
+            font-size: 14px;
+            color: #ffffff;
+            line-height: 1.6;
+            padding-left: 60px;  /* Added padding to align with title */
+        }
+
+        .downloads-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .download-card {
+            background: #000000;
+            border: 2px solid #ffffff;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            color: #ffffff;
+        }
+
+        .download-card:hover {
+            background-color: #ffffff;
+            color: #000000;
+        }
+
+        .download-card i {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .download-card h3 {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .download-card p {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .resume-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .downloads-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .navbar-wrapper {
+                width: 400px;
+            }
+            
+            .resume-item h4,
+            .resume-item p {
+                padding-left: 60px;  /* Maintain alignment on mobile */
+            }
+        }
+
+        @media (max-width: 550px) {
+            .navbar-container {
+                max-width: 100%;
+                margin-bottom: 25px;
+            }
+            
+            .navbar-wrapper {
+                width: 100%;
+                max-width: 550px;
+            }
+            
+            .navbar {
+                gap: 1px;
+            }
+        }
+
+        @media (max-width: 430px) {
+            .navbar-wrapper {
+                padding: 8px;
+            }
+            
+            .navbar a {
+                padding: 8px 12px;
+            }
+        }
+
+        @media (max-width: 388px) {
+            .navbar {
+                font-size: 13px;
+                gap: 1px;
+            }
+            
+            .navbar a {
+                padding: 8px 10px;
+            }
+        }
+    </style>
+</head>
+<!-- Body remains the same -->
+<body>
+    <div class="navbar-container">
+        <div class="navbar-wrapper">
+            <nav class="navbar">
+                <a href="index.html">Home</a>
+                <a href="resume.html" class="active">Resume</a>
+                <a href="projects.html">Projects</a>
+                <a href="bitcoin.html">Bitcoin</a>
+            </nav>
+        </div>
+    </div>
+
+    <main class="resume-section">
+        <div class="downloads-container">
+            <div class="downloads-grid">
+                <a href="path/to/resume.pdf" class="download-card">
+                    <i class="fas fa-file-pdf"></i>
+                    <h3>Download Resume</h3>
+                    <p>Get my full resume in PDF format</p>
+                </a>
+                <a href="path/to/certificates.pdf" class="download-card">
+                    <i class="fas fa-certificate"></i>
+                    <h3>Download Certificates</h3>
+                    <p>View all my certifications</p>
+                </a>
+            </div>
+        </div>
+
+        <div class="resume-grid">
+            <div class="card">
+                <h2 class="section-title">
+                    <i class="fas fa-graduation-cap"></i>
+                    Education & Organization
+                </h2>
+                <div class="resume-item">
+                    <h3>
+                        <div class="logo-container">
+                            <img src="https://assets.nsd.co.id/images/kampus/logo/UIN_Antasari_2edit22.png" alt="UIN Logo">
+                        </div>
+                        Bachelor's Degree program In Information Technology
+                    </h3>
+                    <h4>Universitas Islam Negeri Antasari Banjarbaru</h4>
+                    <p>September 4, 2023 - Present [Dilokasi]</p>
+                    <p>GPA: 3.91/4.00</p>
+                </div>
+                <div class="resume-item">
+                    <h3>
+                        <div class="logo-container">
+                            <img src="https://ugc.production.linktr.ee/d3cQv9tQuG9rfiv2Xx7Q_N0s1vwgo0nYV6pr1" alt="SMAN 1 Logo">
+                        </div>
+                        Science Major
+                    </h3>
+                    <h4>SMAN 1 Kandangan</h4>
+                    <p>2017 - 2020</p>
+                </div>
+                <div class="resume-item">
+                    <h3>
+                        <div class="logo-container">
+                            <img src="src/imgs/org1-logo.png" alt="Organization Logo">
+                        </div>
+                        Head of Technology Division
+                    </h3>
+                    <h4>Student Organization Name</h4>
+                    <p>2022 - 2023</p>
+                    <p>• Led technology initiatives and projects</p>
+                    <p>• Managed a team of 10 members</p>
+                </div>
+                <div class="resume-item">
+                    <h3>
+                        <div class="logo-container">
+                            <img src="src/imgs/org2-logo.png" alt="Committee Logo">
+                        </div>
+                        Committee Member
+                    </h3>
+                    <h4>Campus Event Name</h4>
+                    <p>2021 - 2022</p>
+                    <p>• Organized technical workshops and seminars</p>
+                    <p>• Coordinated with speakers and participants</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2 class="section-title">
+                    <i class="fas fa-briefcase"></i>
+                    Work Experience
+                </h2>
+                <div class="resume-item">
+                    <h3>
+                        <div class="logo-container">
+                            <img src="src/imgs/company1-logo.png" alt="Company Logo">
+                        </div>
+                        Machine Learning Engineer
+                    </h3>
+                    <h4>Tech Company Name</h4>
+                    <p>2023 - Present</p>
+                    <p>• Developed and implemented machine learning models for data analysis</p>
+                    <p>• Collaborated with cross-functional teams to integrate AI solutions</p>
+                </div>
+                <div class="resume-item">
+                    <h3>
+                        <div class="logo-container">
+                            <img src="src/imgs/company2-logo.png" alt="Company Logo">
+                        </div>
+                        Data Science Intern
+                    </h3>
+                    <h4>Company Name</h4>
+                    <p>2022 - 2023</p>
+                    <p>• Assisted in data preprocessing and analysis</p>
+                    <p>• Created visualization dashboards for business insights</p>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

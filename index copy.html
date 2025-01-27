@@ -5,23 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>M. Kaspul Anwar</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">       
-    <link rel="icon" href="src/imgs/favicon.png" type="image/png">
-    <link rel="stylesheet" href="src/css/index.css">
-
-    <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="M. Kaspul Anwar - ML Engineer">
-    <meta property="og:description" content="Welcome to my personal portfolio website. Dive into my AI projects, insights, and academic journey in the field of technology and machine learning.">
-    <meta property="og:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi277pyUPRZ8IhkUAFHI1jBDt3eIYK5G6s1irQa-s4EuHJk3lelIWWgmEBHnOd67UlyhJAP5Wu8UVyNHALP0oqK2hhJg_yjeqyWth77ZHVvAFTklphyzVGSstUyrHtY4W7OfIuLnA6gDyOIQeTHrwN5nSOrpyTYtxf8rW5E-_n9ZLfVloBwz6xTrqxZYhfs/s1600/anwar.JPG">
-    <meta property="og:url" content="https://mkaspulanwar.com">
-    <meta property="og:type" content="website">
-    <meta name="theme-color" content="#000000">
-
-    <link rel="apple-touch-icon" sizes="180x180" href="src/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="src/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="src/favicon/favicon-16x16.png">
-    <link rel="manifest" href="src/favicon/site.webmanifest">
-    
-    
+    <style>
+        
+    </style>
 </head>
 <body>
     <div class="nav-block">
@@ -61,7 +47,44 @@
         </section>
     </main>
 
-    <!-- Optimisasi: Tambahkan async untuk mencegah blocking -->
-    <script src="src/js/index.js" async></script>
+    <script>
+        const professions = [
+            "AI Engineer",
+            "Programmer",
+            "Data Scientist",
+            "Bitcoin Enthusiast",
+        ];
+
+        let currentProfession = 0;
+        let typingIndex = 0;
+        const typingSpeed = 60;
+        const erasingSpeed = 30;
+        const delayBetween = 1000;
+
+        const typingElement = document.getElementById("typing-profession");
+
+        function typeProfession() {
+            if (typingIndex < professions[currentProfession].length) {
+                typingElement.textContent += professions[currentProfession].charAt(typingIndex);
+                typingIndex++;
+                setTimeout(typeProfession, typingSpeed);
+            } else {
+                setTimeout(eraseProfession, delayBetween);
+            }
+        }
+
+        function eraseProfession() {
+            if (typingIndex > 0) {
+                typingElement.textContent = professions[currentProfession].substring(0, typingIndex - 1);
+                typingIndex--;
+                setTimeout(eraseProfession, erasingSpeed);
+            } else {
+                currentProfession = (currentProfession + 1) % professions.length;
+                setTimeout(typeProfession, typingSpeed);
+            }
+        }
+
+        typeProfession();
+    </script>
 </body>
 </html>

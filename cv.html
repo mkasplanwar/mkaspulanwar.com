@@ -224,46 +224,14 @@
             color: #ffffff;
         }
 
-        .certificate-buttons {
-            display: flex;
-            gap: 8px;
-            margin-top: 10px;
-        }
-
-        .certificate-download {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background-color: transparent;
-            color: #000000;
-            padding: 6px 12px;
-            border-radius: 16px;
-            text-decoration: none;
-            font-size: 13px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            border: 1.5px solid #000000;
-        }
-
-        .certificate-download:hover {
-            background-color: #000000;
-            color: #ffffff;
-        }
-
-        @media (max-width: 1024px) {
+        @media (max-width: 768px) {
             main {
                 grid-template-columns: 1fr;
                 max-width: 800px;
                 margin: 0 auto;
             }
-        }
-
-        @media (max-width: 768px) {
             .navbar, main {
                 padding: 15px;
-            }
-            .download-section {
-                padding: 0 15px;
             }
             .resume-card {
                 padding: 20px;
@@ -299,22 +267,125 @@
                 background-color: #000000;
                 color: #ffffff;
             }
-            .download-section {
-                padding: 0 10px;
-                flex-direction: column;
-            }
-            .download-button {
-                width: 100%;
-                justify-content: center;
-            }
             .resume-card {
                 padding: 15px;
             }
             .section-title {
-                font-size: 18px;
+                font-size: 20px;
             }
             .item-title {
                 font-size: 15px;
+            }
+        }
+        .download-section {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .download-card {
+            background: #ffffff;
+            border: 2px solid #000000;
+            border-radius: 12px;
+            padding: 22px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .download-header {
+            margin-right: 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .download-text {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        
+        .download-title {
+            font-size: 20px;
+            font-weight: 600;
+        }
+        
+        .download-description {
+            font-size: 14px;
+            color: #666666;
+        }
+        
+        .download-buttons {
+            display: flex;
+            gap: 12px;
+        }
+        
+        .download-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background-color: #ffffff;
+            color: #000000;
+            padding: 10px 20px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: 2px solid #000000;
+            white-space: nowrap;
+        }
+        
+        .download-button:hover {
+            background-color: #000000;
+            color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .download-button i {
+            font-size: 15px;
+        }
+        
+        
+        
+        @media (max-width: 768px) {
+            .download-card {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 20px;
+                padding: 20px;
+            }
+        
+            .download-header {
+                margin-right: 0;
+            }
+        
+            .download-buttons {
+                width: 100%;
+                justify-content: flex-start;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .download-section {
+                padding: 0 15px;
+            }
+        
+            .download-card {
+                padding: 18px;
+            }
+        
+            .download-buttons {
+                flex-direction: column;
+            }
+        
+            .download-button {
+                width: 100%;
+                justify-content: center;
             }
         }
     </style>
@@ -332,6 +403,26 @@
             </div>
         </div>
     </header>
+    <section class="download-section">
+        <div class="download-card">
+            <div class="download-header">
+                <div class="download-text">
+                    <h2 class="download-title">My Documents</h2>
+                    <p class="download-description">Download my resume and certificates in PDF format</p>
+                </div>
+            </div>
+            <div class="download-buttons">
+                <a href="path/to/resume.pdf" class="download-button">
+                    <i class="fas fa-file-pdf"></i>
+                    Resume
+                </a>
+                <a href="path/to/certificates.pdf" class="download-button">
+                    <i class="fas fa-certificate"></i>
+                    Certificates
+                </a>
+            </div>
+        </div>
+    </section>
     <main>
         <div class="resume-card">
             <div class="resume-section">
@@ -378,7 +469,7 @@
                 <h2 class="section-title">Lisensi dan Sertifikasi</h2>
                 <div class="resume-item">
                     <div class="institution-logo">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQjqenriFknhB2bXwXOAYGaMKLfyCAIS72hw&s" alt="TensorFlow Logo">
+                        <img src="src/imgs/udemy.png" alt="TensorFlow Logo">
                     </div>
                     <div class="resume-item-content">
                         <h3 class="item-title">TensorFlow: Advanced Techniques Specialization</h3>

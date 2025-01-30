@@ -18,7 +18,7 @@
 }
 
 body {
-    background: #ffffff;
+    background: #f3f2ef;
     color: #000000;
     display: flex;
     flex-direction: column;
@@ -32,7 +32,6 @@ body {
 /* Navigation Styles */
 .navbar {
     width: 100%;
-    background-color: rgba(255, 255, 255, 0.95);
     margin-top: 20px;
 }
 
@@ -45,7 +44,7 @@ body {
 
 .nav-wrapper {
     background: #ffffff;
-    border: 2px solid #000000;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15);
     border-radius: 12px;
     padding: 8px;
     width: 100%;
@@ -85,7 +84,7 @@ body {
 
 .download-card {
     background: #ffffff;
-    border: 2px solid #000000;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15);
     border-radius: 12px;
     padding: 22px 30px;
     display: flex;
@@ -163,7 +162,7 @@ main {
 /* Resume Card Styles */
 .resume-card {
     background: #ffffff;
-    border: 2px solid #000000;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15);
     border-radius: 12px;
     padding: 25px;
     width: 100%;
@@ -264,16 +263,20 @@ main {
     margin-top: 4px;
 }
 
+/* Fixed Info Item Styles */
 .info-item {
-    display: flex;
-    align-items: center;
-    gap: 6px;
+    position: relative;
+    padding-left: 15px;
     font-size: 13px;
     color: #666666;
+    line-height: 1.4;
 }
 
 .info-item::before {
     content: "•";
+    position: absolute;
+    left: 0;
+    top: 0;
     font-size: 15px;
     color: #444444;
 }
@@ -509,7 +512,15 @@ main {
                         <h3 class="item-title">Accreditation Documentation Assistant</h3>
                         <h4 class="item-subtitle">Information Technology Program</h4>
                         <div class="item-date">May 27 - June 02, 2024</div>
-                        <p class="item-description"> Prepared and organized accreditation documents, ensuring compliance with BAN-PT standards.</p>
+                        <!-- <p class="item-description"> Managed the official website of the Information Technology Study Program, ensuring updates, performance, and user experience.</p> -->
+                        <div class="education-info">
+                            <div class="info-item">
+                                <span> Prepared and organized accreditation documents, ensuring compliance with BAN-PT standards</span>
+                            </div>
+                            <div class="info-item">
+                                <span>Assisted in drafting and reviewing reports under the guidance of Munsyi, S.Kom., M.T</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="resume-item">
@@ -520,7 +531,12 @@ main {
                         <h3 class="item-title"> Web Administrator</h3>
                         <h4 class="item-subtitle">Information Technology Program</h4>
                         <div class="item-date">January 01 - June 01, 2024</div>
-                        <p class="item-description"> Managed the official website of the Information Technology Study Program, ensuring updates, performance, and user experience.</p>
+                        <div class="education-info">
+                            <div class="info-item">
+                                <span> Managed and maintained the official website of the Information Technology Study Program (ti.uin-antasari.ac.id).</span>
+                            </div>
+                            
+                        </div>
                     </div>
                 </div>
                 <div class="resume-item">
@@ -531,8 +547,18 @@ main {
                         <h3 class="item-title">IT Support & Assistance</h3>
                         <h4 class="item-subtitle">Lambung Mangkurat University</h4>
                         <div class="item-date">November 02, 2023</div>
-                        <p class="item-description"> Delivered technical support for The International Conference on Energy, Sustainable Development, and Management (ICESDM) 
-                            2023.</p>
+                        <div class="education-info">
+                            <div class="info-item">
+                                <span>  Delivered technical support for The International Conference on Energy, Sustainable Development, and Management (ICESDM) 
+                                    2023.</span>
+                            </div>
+                            <div class="info-item">
+                                <span> Ensured smooth operation of hardware, software, and audiovisual systems for virtual and in-person sessions.</span>
+                            </div>
+                            <div class="info-item">
+                                <span>Resolved technical issues efficiently and facilitated seamless conference activities under the guidance of Munsyi, S.Kom., M.T.</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="resume-item">
@@ -543,7 +569,14 @@ main {
                         <h3 class="item-title"> Frontend Developer & Content Creator</h3>
                         <h4 class="item-subtitle">Caripengetahuan.Id</h4>
                         <div class="item-date">August 15, 2019 - May 20, 2021</div>
-                        <p class="item-description">Contributed to achieving 1.2 million total readers over three years and a record of 1,081 online users at the same time</p>
+                        <div class="education-info">
+                            <div class="info-item">
+                                <span>Developed and maintained website front-end to ensure optimal performance and seamless user experience.</span>
+                            </div>
+                            <div class="info-item">
+                                <span>Contributed to achieving 1.2 million total readers over two years and a record of 1,081 online users at the same time</span>
+                            </div>
+                        </div>
                     </div>
             </div>
 

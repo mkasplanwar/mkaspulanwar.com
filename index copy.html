@@ -64,6 +64,11 @@
             border-radius: 8px;
             transition: all 0.2s ease;
         }
+        .nav-block__link:hover {
+            background-color: #ffffff;
+            color: #000000;
+        }
+
 
         .nav-block__link--active {
             background-color: #ffffff;
@@ -99,12 +104,12 @@
         .card-left {
             flex: 1;
             min-width: 200px;
-            max-width: 300px;
+            max-width: 100%;
         }
 
         .card-left img {
             width: 100%;
-            height: 300px;
+            height: 100%;
             object-fit: cover;
             border-radius: 10px;
             border: 2px solid #ffffff;
@@ -113,7 +118,7 @@
         .card-right {
             flex: 2;
             min-width: 300px;
-            max-width: 660px;
+            max-width: 610px;
             text-align: left;
         }
 
@@ -131,7 +136,7 @@
             width: 100%;
             height: 2px;
             background-color: #ffffff;
-            margin-top: 10px;
+            margin-top: 20px;
         }
 
         .card-right h2 {
@@ -210,9 +215,35 @@
             .nav-block__wrapper {
                 width: 400px;
             }
+            .card-left,
+            .card-right {
+                max-width: 100%;
+                width: 100%;
+            }
+            .card-left img {
+                width: 100%;
+                height: 300px;
+                object-fit: cover;
+                border-radius: 10px;
+                border: 2px solid #ffffff;
+            }
+            .buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            .button {
+                width: 100%;
+                text-align: center;
+            }
+            
+            .social-icons {
+                margin-top: 10px;
+                justify-content: center;
+            }
         }
 
-        @media (max-width: 550px) {
+        @media (max-width: 570px) {
             .nav-block {
                 max-width: 100%;
                 margin-bottom: 25px;
@@ -224,6 +255,13 @@
             }
             .nav-block__menu {
                 gap: 1px;
+                font-size: 15px;
+            }
+    
+            .nav-block__link {
+                padding: 10px 15px;
+                border-radius: 8px;
+                transition: all 0.2s ease;
             }
             .home-section {
                 flex-direction: column;
@@ -244,25 +282,37 @@
             
             .card-right h1::after {
                 margin: auto;
-                margin-top: 10px;
+                margin-top: 20px;
             }
 
             .buttons {
-                justify-content: center;
+                flex-direction: column;
+                width: 100%;
+            }
+            .button {
+                width: 100%;
+                text-align: center;
             }
 
             .social-icons {
+                margin-top: 10px;
                 justify-content: center;
             }
         }
 
-        @media (max-width: 430px) {
+        @media (max-width: 450px) {
             .nav-block__wrapper {
                 padding: 8px;
             }
-            
+            .nav-block__menu {
+                gap: 1px;
+                font-size: 15px;
+            }
+    
             .nav-block__link {
-                padding: 8px 12px;
+                padding: 10px 10px;
+                border-radius: 8px;
+                transition: all 0.2s ease;
             }
             
             .buttons {
@@ -288,7 +338,7 @@
             }
             
             .nav-block__link {
-                padding: 8px 10px;
+                padding: 10px 7px;
             }
         }  
     </style>
@@ -298,10 +348,10 @@
     <div class="nav-block">
         <div class="nav-block__wrapper">
             <nav class="nav-block__menu">
-                <a href="index.html" class="nav-block__link nav-block__link--active">Home</a>
+                <a href="index.html" class="nav-block__link nav-block__link--active">About</a>
                 <a href="resume.html" class="nav-block__link">Resume</a>
                 <a href="projects.html" class="nav-block__link">Projects</a>
-                <a href="bitcoin.html" class="nav-block__link">Bitcoin</a>
+                <a href="bitcoin.html" class="nav-block__link">Contacts</a>
             </nav>
         </div>
     </div>
@@ -325,7 +375,7 @@
                         <a href="https://github.com/mkasplanwar"><i class="fa-brands fa-github"></i></a>
                         <a href="https://www.linkedin.com/in/mkasplanwar/"><i class="fa-brands fa-linkedin"></i></a>
                         <a href="https://www.instagram.com/mkasplanwar/"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="https://www.instagram.com/mkasplanwar/"><i class="fa-solid fa-bitcoin-sign"></i></a>
+                        <a href="bitcoin.html"><i class="fa-solid fa-bitcoin-sign"></i></a>
                     </div>
                 </div>
             </div>

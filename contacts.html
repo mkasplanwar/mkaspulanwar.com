@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - M. Kaspul Anwar</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            background: #000000;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            max-width: 1200px;
+            min-height: 100vh;
+            margin: 0 auto;
+        }
+
+        /* Navbar Styles */
+        .nav-block {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 25px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .nav-block__wrapper {
+            display: flex;
+            justify-content: center;
+            background: #000000;
+            border: 2px solid #ffffff;
+            border-radius: 12px;
+            padding: 8px;
+            margin-top: 20px;
+            width: auto;
+        }
+
+        .nav-block__menu {
+            display: flex;
+            gap: 5px;
+            font-size: 15px;
+            justify-content: center;
+        }
+
+        .nav-block__link {
+            text-decoration: none;
+            color: #ffffff;
+            font-weight: 500;
+            padding: 10px 15px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+        
+        .nav-block__link:hover {
+            background-color: #ffffff;
+            color: #000000;
+        }
+
+        .nav-block__link--active {
+            background-color: #ffffff;
+            color: #000000;
+        }
+
+        /* Contact Card Styles */
+        .contact-section {
+            width: 100%;
+            max-width: 800px;
+            margin: 0px auto;
+            margin-bottom: 20px;
+        }
+
+        .contact-card {
+            background: #000000;
+            border: 2px solid #ffffff;
+            border-radius: 12px;
+            padding: 30px;
+        }
+
+        .contact-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .contact-header h1 {
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .contact-header p {
+            color: #cccccc;
+            font-size: 16px;
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .contact-item {
+            padding: 20px;
+            border: 1px solid #333;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            border-color: #ffffff;
+            transform: translateY(-2px);
+        }
+
+        .contact-item h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .contact-item i {
+            font-size: 20px;
+        }
+
+        .contact-item p {
+            color: #cccccc;
+            font-size: 15px;
+            line-height: 1.5;
+        }
+
+        .contact-item a {
+            color: #ffffff;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 8px;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .contact-item a:hover {
+            color: #cccccc;
+        }
+
+        .availability {
+            margin-top: 30px;
+            padding: 20px;
+            border: 1px solid #333;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .availability h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+
+        .availability p {
+            color: #cccccc;
+            font-size: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .nav-block__wrapper {
+                width: 400px;
+            }
+            
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 570px) {
+            .nav-block__wrapper {
+                width: 100%;
+            }
+            
+            .nav-block__menu {
+                gap: 1px;
+                font-size: 15px;
+            }
+
+            .nav-block__link {
+                padding: 10px 15px;
+            }
+
+            .contact-card {
+                padding: 20px;
+            }
+        }
+        @media (max-width: 450px) {
+            .nav-block__wrapper {
+                padding: 8px;
+            }
+            .nav-block__menu {
+                gap: 1px;
+                font-size: 15px;
+            }
+    
+            .nav-block__link {
+                padding: 10px 10px;
+                border-radius: 8px;
+                transition: all 0.2s ease;
+            }
+        }
+        @media (max-width: 388px) {
+            .nav-block__menu {
+                font-size: 13px;
+                gap: 1px;
+            }
+            
+            .nav-block__link {
+                padding: 10px 7px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-block">
+        <div class="nav-block__wrapper">
+            <nav class="nav-block__menu">
+                <a href="index.html" class="nav-block__link">About</a>
+                <a href="resume.html" class="nav-block__link">Resume</a>
+                <a href="projects.html" class="nav-block__link">Projects</a>
+                <a href="contacts.html" class="nav-block__link nav-block__link--active">Contacts</a>
+            </nav>
+        </div>
+    </div>
+
+    <section class="contact-section">
+        <div class="contact-card">
+            <div class="contact-header">
+                <h1>Let's Connect</h1>
+                <p>I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.</p>
+            </div>
+
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <h3><i class="fas fa-envelope"></i> Email</h3>
+                    <p>For formal inquiries and collaborations</p>
+                    <a href="mailto:mkasplanwar@gmail.com">mkasplanwar@gmail.com</a>
+                </div>
+
+                <div class="contact-item">
+                    <h3><i class="fab fa-telegram"></i> Telegram</h3>
+                    <p>Quick responses and instant messaging</p>
+                    <a href="https://t.me/mkasplanwar">@mkasplanwar</a>
+                </div>
+
+                <div class="contact-item">
+                    <h3><i class="fa-brands fa-instagram"></i> Instagram</h3>
+                    <p>Direct communication and business inquiries</p>
+                    <a href="https://www.instagram.com/mkasplanwar/">@mkasplanwar</a>
+                </div>
+
+                <div class="contact-item">
+                    <h3><i class="fab fa-linkedin"></i> LinkedIn</h3>
+                    <p>Professional network and career opportunities</p>
+                    <a href="https://www.linkedin.com/in/mkasplanwar">linkedin.com/in/mkasplanwar</a>
+                </div>
+            </div>
+
+            <div class="availability">
+                <h3><i class="fas fa-circle"></i> Currently Available</h3>
+                <p>Open for freelance projects, full-time positions, and collaborations</p>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

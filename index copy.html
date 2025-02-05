@@ -4,7 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>M. Kaspul Anwar</title>
+    <!-- fontawesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">       
+    <!-- Devicon -->
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
     <link rel="icon" href="src/imgs/favicon.png" type="image/png">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
@@ -223,9 +226,6 @@
             .card-left img {
                 width: 100%;
                 height: 300px;
-                object-fit: cover;
-                border-radius: 10px;
-                border: 2px solid #ffffff;
             }
             .buttons {
                 flex-direction: column;
@@ -273,6 +273,10 @@
                 max-width: 100%;
                 width: 100%;
             }
+            .card-left img {
+                width: 100%;
+                height: 400px;
+            }
 
             .card-right h1,
             .card-right h2 {
@@ -283,20 +287,6 @@
             .card-right h1::after {
                 margin: auto;
                 margin-top: 20px;
-            }
-
-            .buttons {
-                flex-direction: column;
-                width: 100%;
-            }
-            .button {
-                width: 100%;
-                text-align: center;
-            }
-
-            .social-icons {
-                margin-top: 10px;
-                justify-content: center;
             }
         }
 
@@ -314,20 +304,9 @@
                 border-radius: 8px;
                 transition: all 0.2s ease;
             }
-            
-            .buttons {
-                flex-direction: column;
+            .card-left img {
                 width: 100%;
-            }
-            
-            .button {
-                width: 100%;
-                text-align: center;
-            }
-            
-            .social-icons {
-                margin-top: 10px;
-                justify-content: center;
+                height: 100%;
             }
         }
 
@@ -341,6 +320,107 @@
                 padding: 10px 7px;
             }
         }  
+        /* Updated styles for Tech Skills card */
+    .skills-section {
+        margin-top: 20px;
+        width: 100%;
+        max-width: 1000px;
+    }
+
+    .skills-card {
+        background: #000000;
+        border: 2px solid #ffffff;
+        border-radius: 12px;
+        padding: 25px;
+        width: 100%;
+    }
+
+    .skills-card h2 {
+        font-size: 24px;
+        color: #ffffff;
+        margin-bottom: 20px;
+        position: relative;
+        font-weight: 600;
+    }
+
+    .skills-card h2::after {
+        content: '';
+        display: block;
+        width: 100%;
+        height: 2px;
+        background-color: #ffffff;
+        margin-top: 15px;
+    }
+
+    .skills-category {
+        margin-bottom: 25px;
+    }
+
+    .skills-category:last-child {
+        margin-bottom: 0;
+    }
+
+    .skills-category h3 {
+        font-size: 18px;
+        color: #ffffff;
+        margin-bottom: 15px;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .skills-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .skill-tag {
+        background: #000000;
+        border: 2px solid #ffffff;
+        border-radius: 6px;
+        padding: 8px 16px;
+        color: #ffffff;
+        font-size: 14px;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: all 0.3s ease;
+    }
+
+    .skill-tag:hover {
+        background: #ffffff;
+        color: #000000;
+        transform: translateY(-2px);
+    }
+
+    .skill-tag i {
+        font-size: 16px;
+    }
+
+    @media (max-width: 768px) {
+        .skills-tags {
+            gap: 8px;
+        }
+        
+        .skill-tag {
+            padding: 6px 12px;
+            font-size: 13px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .skills-card {
+            padding: 20px;
+        }
+
+        .skill-tag {
+            padding: 5px 10px;
+            font-size: 12px;
+        }
+    }
     </style>
     
 </head>
@@ -381,6 +461,123 @@
             </div>
         </section>
     </main>
+    <!-- Tech Skills section -->
+    <section class="skills-section">
+        <div class="skills-card">
+            <h2>Tech Skills & Tools</h2>
+            
+            <div class="skills-category">
+                <h3><i class="fas fa-code"></i>Languages, Framework & Library</h3>
+                <div class="skills-tags">
+                    <div class="skill-tag">
+                        <i class="fab fa-python"></i>
+                        <span>Python</span>
+                    </div>
+                    <div class="skill-tag">
+                        <i class="devicon-r-plain"></i>
+                        <span>R</span>
+                    </div>
+                    <div class="skill-tag">
+                        <i class="devicon-cplusplus-plain"></i>
+                        <span>C++</span>
+                    </div>
+                    <div class="skill-tag">
+                        <i class="devicon-mysql-original"></i>
+                        <span>SQL</span>
+                    </div>
+                    <div class="skill-tag">
+                        <i class="devicon-tensorflow-original"></i>
+                        <span>TensorFlow</span>
+                    </div>
+                    <div class="skill-tag">
+                        <i class="devicon-pytorch-original"></i>
+                        <span>PyTourch</span>
+                    </div>
+                    <div class="skill-tag">
+                        <i class="devicon-keras-plain"></i>
+                        <span>Keras</span>
+                    </div>
+                    <div class="skill-tag">
+                        <i class="devicon-scikitlearn-plain"></i>
+                        <span>Scikit-Learn</span>
+                    </div>
+                    <div class="skill-tag">
+                        <i class="devicon-pandas-plain"></i>
+                        <span>Pandas</span>
+                    </div>
+                    <div class="skill-tag">
+                        <i class="devicon-numpy-plain"></i>
+                        <span>Numpy</span>
+                    </div>
+                    <div class="skill-tag">
+                        <i class="devicon-matplotlib-plain"></i>
+                        <span>Matplotlib</span>
+                    </div>
+            
+                    <div class="skill-tag">
+                        <i class="devicon-plotly-plain"></i>
+                        <span>plotly</span>
+                    </div>
+                    <div class="skill-tag">
+                        <i class="fab fa-js"></i>
+                        <span>JavaScript</span>
+                    </div>
+                    <div class="skill-tag">
+                        <i class="fab fa-html5"></i>
+                        <span>HTML5</span>
+                    </div>
+                    <div class="skill-tag">
+                        <i class="fab fa-css3-alt"></i>
+                        <span>CSS3</span>
+                    </div>
+                    <div class="skill-tag">
+                        <i class="devicon-tailwindcss-original"></i>
+                        <span>Tailwind</span>
+                    </div>
+            
+                    <div class="skill-tag">
+                        <i class="fab fa-php"></i>
+                        <span>PHP</span>
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="skills-category">
+                <h3><i class="fas fa-tools"></i> Tools & Others</h3>
+                <div class="skills-tags">
+                    <div class="skill-tag git">
+                        <i class="fab fa-git-alt"></i>
+                        <span>Git</span>
+                    </div>
+                    <div class="skill-tag">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </div>
+                    <div class="skill-tag">
+                        <i class="fa-solid fa-shapes"></i>
+                        <span>Roboflow</span>
+                    </div>
+                    <div class="skill-tag">
+                        <i class="fab fa-blogger"></i>
+                        <span>Blogger</span>
+                    </div>
+                    <div class="skill-tag">
+                        <i class="fab fa-wordpress"></i>
+                        <span>WordPress</span>
+                    </div>
+                    <div class="skill-tag">
+                        <i class="devicon-vercel-original"></i>
+                        <span>Vercel</span>
+                    </div>
+                    <div class="skill-tag">
+                        <i class="devicon-netlify-plain"></i>
+                        <span>Netlify</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
    <script>
     const professions = [

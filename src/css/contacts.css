@@ -19,6 +19,7 @@
             margin: 0 auto;
         }
 
+        /* Navbar Styles */
         .nav-block {
             width: 100%;
             display: flex;
@@ -65,180 +66,116 @@
             color: #000000;
         }
 
-        .projects-section {
+        /* Contact Card Styles */
+        .contact-section {
             width: 100%;
-            max-width: 1000px;
-            margin: 0 auto;
+            max-width: 800px;
+            margin: 0px auto;
             margin-bottom: 20px;
         }
 
-        .projects-card {
+        .contact-card {
             background: #000000;
             border: 2px solid #ffffff;
             border-radius: 12px;
-            padding: 25px;
+            padding: 30px;
         }
 
-        .projects-header {
+        .contact-header {
             text-align: center;
             margin-bottom: 30px;
         }
 
-        .projects-header h1 {
-            font-size: 28px;
+        .contact-header h1 {
+            font-size: 32px;
             font-weight: 600;
-            margin-bottom: 12px;
+            margin-bottom: 15px;
         }
 
-        .projects-header p {
+        .contact-header p {
             color: #cccccc;
-            font-size: 15px;
-            line-height: 1.5;
+            font-size: 16px;
+            line-height: 1.6;
             max-width: 600px;
             margin: 0 auto;
         }
 
-        .projects-grid {
+        .contact-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            margin-top: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
         }
 
-        .project-item {
-            background: #111111;
+        .contact-item {
+            padding: 20px;
             border: 1px solid #333;
-            border-radius: 10px;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            height: 100%;
+            border-radius: 8px;
+            transition: all 0.3s ease;
         }
 
-        .project-image {
-            width: 100%;
-            height: 160px;
-            background: #222;
-            position: relative;
-            overflow: hidden;
+        .contact-item:hover {
+            border-color: #ffffff;
+            transform: translateY(-2px);
         }
 
-        .project-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .project-content {
-            padding: 15px;
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
-        }
-
-        .project-info {
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            min-height: 0;
-        }
-
-        .project-content h3 {
-            font-size: 16px;
+        .contact-item h3 {
+            font-size: 18px;
             font-weight: 600;
-            margin-bottom: 8px;
-            color: #ffffff;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            min-height: 40px;
-        }
-
-        .project-content p {
-            color: #cccccc;
-            font-size: 13px;
-            line-height: 1.4;
             margin-bottom: 12px;
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            min-height: 55px;
-        }
-
-        .project-tags {
             display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-            margin-bottom: 12px;
-        }
-
-        .project-tag {
-            background: #222;
-            color: #fff;
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 11px;
-            font-weight: 500;
-        }
-
-        .project-links {
-            display: flex;
-            gap: 8px;
-            margin-top: auto;
-        }
-
-        .project-button {
-            flex: 1;
-            display: inline-flex;
             align-items: center;
-            justify-content: center;
-            gap: 6px;
-            background: #222;
+            gap: 10px;
+        }
+
+        .contact-item i {
+            font-size: 20px;
+        }
+
+        .contact-item p {
+            color: #cccccc;
+            font-size: 15px;
+            line-height: 1.5;
+        }
+
+        .contact-item a {
             color: #ffffff;
             text-decoration: none;
-            font-size: 13px;
+            display: inline-block;
+            margin-top: 8px;
             font-weight: 500;
-            padding: 8px 12px;
-            border-radius: 6px;
-            transition: all 0.2s ease;
+            transition: color 0.2s ease;
         }
 
-        .project-button:hover {
-            background: #333;
+        .contact-item a:hover {
+            color: #cccccc;
         }
 
-        .project-button.github {
-            background: #24292e;
+        .availability {
+            margin-top: 30px;
+            padding: 20px;
+            border: 1px solid #333;
+            border-radius: 8px;
+            text-align: center;
         }
 
-        .project-button.github:hover {
-            background: #2f363d;
+        .availability h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #ffffff;
         }
 
-        .project-button.demo {
-            background: #2563eb;
-        }
-
-        .project-button.demo:hover {
-            background: #1d4ed8;
-        }
-
-        @media (max-width: 1024px) {
-            .projects-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
+        .availability p {
+            color: #cccccc;
+            font-size: 15px;
         }
 
         @media (max-width: 768px) {
             .nav-block__wrapper {
                 width: 400px;
             }
-        }
-
-        @media (max-width: 640px) {
-            .projects-grid {
+            
+            .contact-grid {
                 grid-template-columns: 1fr;
             }
         }
@@ -257,11 +194,10 @@
                 padding: 10px 15px;
             }
 
-            .projects-card {
-                padding: 15px;
+            .contact-card {
+                padding: 20px;
             }
         }
-
         @media (max-width: 450px) {
             .nav-block__wrapper {
                 padding: 8px;
@@ -273,9 +209,10 @@
     
             .nav-block__link {
                 padding: 10px 10px;
+                border-radius: 8px;
+                transition: all 0.2s ease;
             }
         }
-
         @media (max-width: 388px) {
             .nav-block__menu {
                 font-size: 13px;

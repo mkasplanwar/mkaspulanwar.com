@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Digital Property - M. Kaspul Anwar</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="icon" href="src/imgs/favicon.png" type="image/png">
     <link rel="stylesheet" href="src/css/bitcoin.css">
 
@@ -22,218 +23,76 @@
     <link rel="manifest" href="src/favicon/site.webmanifest">
 </head>
 <body>
-    <div class="tooltip"></div>
-    <div class="nav-block">
-        <div class="nav-block__wrapper">
-            <nav class="nav-block__menu">
-                <a href="index.html" class="nav-block__link">About</a>
-                <a href="resume.html" class="nav-block__link">Resume</a>
-                <a href="projects.html" class="nav-block__link">Projects</a>
-                <a href="contacts.html" class="nav-block__link">Contacts</a>
-            </nav>
-        </div>
-    </div>
+    <div class="wallet-section">
+        <a href="#" class="back-button">
+            <i class="fas fa-arrow-left"></i>
+            <span>Back</span>
+        </a>
 
-    <section class="wallet-section">
         <div class="wallet-card">
             <div class="wallet-header">
-                <h1>Digital Property</h1>
-                <p>Secure Bitcoin Storage</p>
-            </div>
-
-            <div class="balance-display">
-                <div class="balance-label">Total Property</div>
-                <div class="bitcoin-balance">
-                    <i class="fab fa-bitcoin"></i>
-                    0.001 BTC
+                <div class="header-background"></div>
+                <i class="fab fa-bitcoin btc-icon"></i>
+                <div class="header-text">
+                    <h1>Digital Property</h1>
+                    <p>Personal Bitcoin Dashboard</p>
                 </div>
-                <div id="fiat-value" class="fiat-value">
-                    <div class="loading">Loading current value...</div>
-                </div>
-            </div>
-
-            <div class="wallet-address-section">
-                <div class="wallet-address-header">
-                    <i class="fas fa-wallet"></i>
-                    <h3>Property Address</h3>
-                </div>
-                <div class="address-container">
-                    <div class="address-text">bc1q8y5pnaxvk3pq2564cpl7u63n075pye25h7nx3j</div>
-                    <div class="address-actions">
-                        <button class="action-button" onclick="copyAddress()" title="Copy Address">
-                            <i class="far fa-copy"></i>
-                        </button>
-                        <button class="action-button explorer-button" onclick="openExplorer()" title="View on Explorer">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="wallet-type">
+                <div class="header-badge">
                     <i class="fas fa-shield-alt"></i> Native Segwit
                 </div>
             </div>
 
-            <div class="update-time">
-                <p>Last updated: <span id="update-time">Loading...</span></p>
+            <div class="main-content">
+                <div class="balance-display">
+                    <div class="crypto-amount">100.000 Sats</div>
+                    <div class="fiat-value" id="fiat-value">Loading current value...</div>
+                </div>
+                <div class="quote-container">
+                    <p class="quote-text">
+                        "If you don't believe it or don't get it, I don't have the time to try to convince you, sorry."
+                    </p>
+                    <p class="quote-author">— Satoshi Nakamoto</p>
+                </div>
+            </div>
+            <div class="wallet-details">
+                <div class="details-header">
+                    <i class="fas fa-wallet"></i>
+                    <span>Wallet Information</span>
+                </div>
+                <div class="details-content">
+                    <div class="address-section">
+                        <div class="address-text">bc1q8y5pnaxvk3pq2564cpl7u63n075pye25h7nx3j</div>
+                        <div class="address-actions">
+                            <button class="action-button" onclick="copyAddress()">
+                                <i class="far fa-copy"></i>Copy
+                            </button>
+                            <button class="action-button" onclick="openExplorer()">
+                                <i class="fas fa-external-link-alt"></i>Explorer
+                            </button>
+                        </div>
+                    </div>
+                    <div class="qr-code">
+                        <img src="src/imgs/qr-code.png" alt="Wallet QR Code" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="transaction-info">
+                <div class="info-row">
+                    <span class="info-label">Purchase Date</span>
+                    <span class="info-value">2024-08-28 11:38:23</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Holding Period</span>
+                    <span class="info-value">5 months 11 days</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Last Updated</span>
+                    <span class="info-value" id="update-time">2025-02-08 14:10:30</span>
+                </div>
             </div>
         </div>
-    </section>
-
-    <script>
-       // Constant values
-const CONFIG = {
-    BTC_AMOUNT: 0.001,
-    ADDRESS: 'bc1q8y5pnaxvk3pq2564cpl7u63n075pye25h7nx3j',
-    UPDATE_INTERVAL: 60000, // 60 seconds
-    TOOLTIP_DURATION: 2000, // 2 seconds
-    API_ENDPOINT: 'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=idr'
-};
-
-// Format functions
-function formatIDR(number) {
-    const formatter = new Intl.NumberFormat('id-ID', {
-        minimumFractionDigits: 3,
-        maximumFractionDigits: 3
-    });
-    return `Rp ${formatter.format(number)}`;
-}
-
-function formatDateTime() {
-    const now = new Date();
-    return now.toLocaleString('id-ID', { 
-        timeZone: 'Asia/Jakarta',
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit',
-        hour12: false
-    }) + ' WIB';
-}
-
-// UI update functions
-function updateFiatValue(value) {
-    const fiatValueElement = document.getElementById('fiat-value');
-    fiatValueElement.innerHTML = value;
-    fiatValueElement.classList.add('loaded');
-}
-
-function updateLastUpdated() {
-    document.getElementById('update-time').textContent = formatDateTime();
-}
-
-function showError(message = 'Error loading price data') {
-    const fiatValueElement = document.getElementById('fiat-value');
-    fiatValueElement.innerHTML = message;
-    console.error(message);
-}
-
-// Tooltip functions
-function showTooltip(text, targetElement) {
-    const tooltip = document.querySelector('.tooltip');
-    const rect = targetElement.getBoundingClientRect();
-    
-    tooltip.textContent = text;
-    tooltip.style.display = 'block';
-    
-    // Position tooltip
-    const tooltipRect = tooltip.getBoundingClientRect();
-    tooltip.style.left = `${rect.left - tooltipRect.width/2 + rect.width/2}px`;
-    tooltip.style.top = `${rect.bottom + 10}px`;
-    
-    // Add animation
-    tooltip.classList.add('show');
-    
-    // Hide tooltip after duration
-    setTimeout(() => {
-        tooltip.style.display = 'none';
-        tooltip.classList.remove('show');
-    }, CONFIG.TOOLTIP_DURATION);
-}
-
-// Main price update function
-async function updateBitcoinPrice() {
-    try {
-        // Fetch BTC price
-        const response = await fetch(CONFIG.API_ENDPOINT);
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        
-        const data = await response.json();
-        const btcPriceIDR = data.bitcoin.idr;
-        
-        // Calculate and update total value
-        const totalValueIDR = CONFIG.BTC_AMOUNT * btcPriceIDR;
-        updateFiatValue(formatIDR(totalValueIDR));
-        
-        // Update timestamp
-        updateLastUpdated();
-        
-    } catch (error) {
-        showError(`Error: ${error.message}`);
-    }
-}
-
-// Copy function
-function copyAddress() {
-    navigator.clipboard.writeText(CONFIG.ADDRESS)
-        .then(() => {
-            const copyButton = event.target.closest('.action-button');
-            showTooltip('Address copied!', copyButton);
-        })
-        .catch(err => {
-            console.error('Failed to copy:', err);
-            showTooltip('Failed to copy address', event.target.closest('.action-button'));
-        });
-}
-
-// Explorer button hover effects
-function setupExplorerButtonEffects() {
-    const explorerButton = document.querySelector('.explorer-button');
-    
-    explorerButton.addEventListener('mouseenter', (e) => {
-        e.target.style.transform = 'translateY(-2px)';
-    });
-
-    explorerButton.addEventListener('mouseleave', (e) => {
-        e.target.style.transform = 'translateY(0)';
-    });
-}
-function openExplorer() {
-    const address = 'bc1q8y5pnaxvk3pq2564cpl7u63n075pye25h7nx3j';
-    window.open(`https://bitaps.com/${address}`, '_blank');
-}
-
-// Error handling for fetch failures
-function handleFetchError(error) {
-    console.error('Fetch error:', error);
-    showError('Failed to update price data');
-}
-
-// Initialize everything
-function initialize() {
-    // Initial price update
-    updateBitcoinPrice().catch(handleFetchError);
-    
-    // Setup periodic updates
-    setInterval(() => {
-        updateBitcoinPrice().catch(handleFetchError);
-    }, CONFIG.UPDATE_INTERVAL);
-    
-    // Setup UI elements
-    setupExplorerButtonEffects();
-    
-    // Add global error handling
-    window.addEventListener('error', (event) => {
-        console.error('Global error:', event.error);
-        showError('An unexpected error occurred');
-    });
-}
-
-// Start the application
-document.addEventListener('DOMContentLoaded', initialize);
-    </script>
+    </div>
+    <script src="src/js/bitcoin.js"></script>
 </body>
 </html>

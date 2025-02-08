@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Property - M. Kaspul Anwar</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            background: #000000;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            max-width: 1200px;
+            min-height: 100vh;
+            margin: 0 auto;
+        }
+
+        .nav-block {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 25px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .nav-block__wrapper {
+            display: flex;
+            justify-content: center;
+            background: #000000;
+            border: 2px solid #ffffff;
+            border-radius: 12px;
+            padding: 8px;
+            margin-top: 20px;
+            width: auto;
+        }
+
+        .nav-block__menu {
+            display: flex;
+            gap: 5px;
+            font-size: 15px;
+            justify-content: center;
+        }
+
+        .nav-block__link {
+            text-decoration: none;
+            color: #ffffff;
+            font-weight: 500;
+            padding: 10px 15px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+        
+        .nav-block__link:hover {
+            background-color: #ffffff;
+            color: #000000;
+        }
+
+        .nav-block__link--active {
+            background-color: #ffffff;
+            color: #000000;
+        }
+
+        .wallet-section {
+            width: 100%;
+            max-width: 800px;
+            margin: 0px auto;
+            margin-bottom: 20px;
+        }
+
+        .wallet-card {
+            background: linear-gradient(145deg, #1a1a1a 0%, #000000 100%);
+            border: 2px solid #ffffff;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .wallet-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #F7931A, #ffd700);
+        }
+
+        .wallet-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .wallet-header h1 {
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            background: linear-gradient(45deg, #F7931A, #ffd700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .wallet-header p {
+            color: #cccccc;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .balance-display {
+            background: linear-gradient(145deg, #1e1e1e, #0a0a0a);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 20px 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .balance-display::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1));
+            pointer-events: none;
+        }
+
+        .balance-label {
+            color: #cccccc;
+            font-size: 16px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .bitcoin-balance {
+            font-size: 48px;
+            font-weight: 700;
+            color: #F7931A;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .bitcoin-balance i {
+            font-size: 42px;
+        }
+
+        .fiat-value {
+            font-size: 24px;
+            font-weight: 600;
+            color: #ffffff;
+            text-align: center;
+            margin: 15px 0;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .fiat-value.loaded {
+            opacity: 1;
+        }
+
+        .loading {
+            text-align: center;
+            color: #cccccc;
+        }
+
+        .wallet-address-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 30px;
+        }
+
+        .wallet-address-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .wallet-address-header i {
+            color: #F7931A;
+            font-size: 20px;
+        }
+
+        .address-container {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 10px 0;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+        .address-container:hover {
+            border-color: rgba(247, 147, 26, 0.3);
+            box-shadow: 0 0 15px rgba(247, 147, 26, 0.1);
+        }
+        
+
+        .address-text {
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            word-break: break-all;
+            color: #ffffff;
+            flex-grow: 1;
+        }
+
+        .address-actions {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .action-button {
+            background: none;
+            border: 1px solid rgba(247, 147, 26, 0.3);
+            color: #F7931A;
+            cursor: pointer;
+            padding: 8px;
+            width: 36px;
+            height: 36px;
+            transition: all 0.2s ease;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .action-button:hover {
+            background: rgba(247, 147, 26, 0.1);
+            border-color: #F7931A;
+            transform: translateY(-1px);
+        }
+
+        .action-button:active {
+            transform: translateY(0);
+        }
+        
+        .action-button i {
+            font-size: 16px;
+            transition: all 0.2s ease;
+        }
+        
+        .action-button:hover i {
+            transform: scale(1.1);
+        }
+
+        .explorer-button {
+            background: #F7931A;
+            color: #000000;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .explorer-button:hover {
+            background: #ffd700;
+            transform: translateY(-1px);
+        }
+
+        .wallet-type {
+            display: inline-block;
+            background: rgba(247, 147, 26, 0.1);
+            color: #F7931A;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            margin-top: 10px;
+        }
+
+        .update-time {
+            margin-top: 30px;
+            text-align: center;
+            color: #cccccc;
+            font-size: 14px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .tooltip {
+            position: fixed;
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 5px;
+            font-size: 12px;
+            pointer-events: none;
+            z-index: 100;
+            display: none;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            .nav-block__wrapper {
+                width: 400px;
+            }
+            
+            .bitcoin-balance {
+                font-size: 36px;
+            }
+
+            .bitcoin-balance i {
+                font-size: 32px;
+            }
+
+            .fiat-value {
+                font-size: 24px;
+            }
+
+            .address-container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .address-actions {
+                justify-content: flex-end;
+                margin-top: 10px;
+            }
+        }
+
+        @media (max-width: 570px) {
+            .nav-block__wrapper {
+                width: 100%;
+            }
+            
+            .nav-block__menu {
+                gap: 1px;
+                font-size: 15px;
+            }
+
+            .nav-block__link {
+                padding: 10px 15px;
+            }
+
+            .wallet-card {
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 450px) {
+            .nav-block__wrapper {
+                padding: 8px;
+            }
+            .nav-block__menu {
+                gap: 1px;
+                font-size: 15px;
+            }
+    
+            .nav-block__link {
+                padding: 10px 10px;
+            }
+
+            .wallet-header h1 {
+                font-size: 28px;
+            }
+        }
+
+        @media (max-width: 388px) {
+            .nav-block__menu {
+                font-size: 13px;
+                gap: 1px;
+            }
+            
+            .nav-block__link {
+                padding: 10px 7px;
+            }
+
+            .bitcoin-balance {
+                font-size: 28px;
+            }
+
+            .bitcoin-balance i {
+                font-size: 24px;
+            }
+
+            .fiat-value {
+                font-size: 20px;
+            }
+
+            .wallet-header h1 {
+                font-size: 24px;
+            }
+            .action-button {
+                width: 32px;
+                height: 32px;
+                padding: 6px;
+            }
+        
+            .action-button i {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="tooltip"></div>
+    <div class="nav-block">
+        <div class="nav-block__wrapper">
+            <nav class="nav-block__menu">
+                <a href="index.html" class="nav-block__link">About</a>
+                <a href="resume.html" class="nav-block__link">Resume</a>
+                <a href="projects.html" class="nav-block__link">Projects</a>
+                <a href="contacts.html" class="nav-block__link">Contacts</a>
+            </nav>
+        </div>
+    </div>
+
+    <section class="wallet-section">
+        <div class="wallet-card">
+            <div class="wallet-header">
+                <h1>Digital Property</h1>
+                <p>Secure Bitcoin Storage</p>
+            </div>
+
+            <div class="balance-display">
+                <div class="balance-label">Total Property</div>
+                <div class="bitcoin-balance">
+                    <i class="fab fa-bitcoin"></i>
+                    0.001 BTC
+                </div>
+                <div id="fiat-value" class="fiat-value">
+                    <div class="loading">Loading current value...</div>
+                </div>
+            </div>
+
+            <div class="wallet-address-section">
+                <div class="wallet-address-header">
+                    <i class="fas fa-wallet"></i>
+                    <h3>Property Address</h3>
+                </div>
+                <div class="address-container">
+                    <div class="address-text">bc1q8y5pnaxvk3pq2564cpl7u63n075pye25h7nx3j</div>
+                    <div class="address-actions">
+                        <button class="action-button" onclick="copyAddress()" title="Copy Address">
+                            <i class="far fa-copy"></i>
+                        </button>
+                        <button class="action-button explorer-button" onclick="openExplorer()" title="View on Explorer">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="wallet-type">
+                    <i class="fas fa-shield-alt"></i> Native Segwit
+                </div>
+            </div>
+
+            <div class="update-time">
+                <p>Last updated: <span id="update-time">Loading...</span></p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+       // Constant values
+const CONFIG = {
+    BTC_AMOUNT: 0.001,
+    ADDRESS: 'bc1q8y5pnaxvk3pq2564cpl7u63n075pye25h7nx3j',
+    UPDATE_INTERVAL: 60000, // 60 seconds
+    TOOLTIP_DURATION: 2000, // 2 seconds
+    API_ENDPOINT: 'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=idr'
+};
+
+// Format functions
+function formatIDR(number) {
+    const formatter = new Intl.NumberFormat('id-ID', {
+        minimumFractionDigits: 3,
+        maximumFractionDigits: 3
+    });
+    return `Rp ${formatter.format(number)}`;
+}
+
+function formatDateTime() {
+    const now = new Date();
+    return now.toLocaleString('id-ID', { 
+        timeZone: 'Asia/Jakarta',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: false
+    }) + ' WIB';
+}
+
+// UI update functions
+function updateFiatValue(value) {
+    const fiatValueElement = document.getElementById('fiat-value');
+    fiatValueElement.innerHTML = value;
+    fiatValueElement.classList.add('loaded');
+}
+
+function updateLastUpdated() {
+    document.getElementById('update-time').textContent = formatDateTime();
+}
+
+function showError(message = 'Error loading price data') {
+    const fiatValueElement = document.getElementById('fiat-value');
+    fiatValueElement.innerHTML = message;
+    console.error(message);
+}
+
+// Tooltip functions
+function showTooltip(text, targetElement) {
+    const tooltip = document.querySelector('.tooltip');
+    const rect = targetElement.getBoundingClientRect();
+    
+    tooltip.textContent = text;
+    tooltip.style.display = 'block';
+    
+    // Position tooltip
+    const tooltipRect = tooltip.getBoundingClientRect();
+    tooltip.style.left = `${rect.left - tooltipRect.width/2 + rect.width/2}px`;
+    tooltip.style.top = `${rect.bottom + 10}px`;
+    
+    // Add animation
+    tooltip.classList.add('show');
+    
+    // Hide tooltip after duration
+    setTimeout(() => {
+        tooltip.style.display = 'none';
+        tooltip.classList.remove('show');
+    }, CONFIG.TOOLTIP_DURATION);
+}
+
+// Main price update function
+async function updateBitcoinPrice() {
+    try {
+        // Fetch BTC price
+        const response = await fetch(CONFIG.API_ENDPOINT);
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        
+        const data = await response.json();
+        const btcPriceIDR = data.bitcoin.idr;
+        
+        // Calculate and update total value
+        const totalValueIDR = CONFIG.BTC_AMOUNT * btcPriceIDR;
+        updateFiatValue(formatIDR(totalValueIDR));
+        
+        // Update timestamp
+        updateLastUpdated();
+        
+    } catch (error) {
+        showError(`Error: ${error.message}`);
+    }
+}
+
+// Copy function
+function copyAddress() {
+    navigator.clipboard.writeText(CONFIG.ADDRESS)
+        .then(() => {
+            const copyButton = event.target.closest('.action-button');
+            showTooltip('Address copied!', copyButton);
+        })
+        .catch(err => {
+            console.error('Failed to copy:', err);
+            showTooltip('Failed to copy address', event.target.closest('.action-button'));
+        });
+}
+
+// Explorer button hover effects
+function setupExplorerButtonEffects() {
+    const explorerButton = document.querySelector('.explorer-button');
+    
+    explorerButton.addEventListener('mouseenter', (e) => {
+        e.target.style.transform = 'translateY(-2px)';
+    });
+
+    explorerButton.addEventListener('mouseleave', (e) => {
+        e.target.style.transform = 'translateY(0)';
+    });
+}
+
+// Error handling for fetch failures
+function handleFetchError(error) {
+    console.error('Fetch error:', error);
+    showError('Failed to update price data');
+}
+
+// Initialize everything
+function initialize() {
+    // Initial price update
+    updateBitcoinPrice().catch(handleFetchError);
+    
+    // Setup periodic updates
+    setInterval(() => {
+        updateBitcoinPrice().catch(handleFetchError);
+    }, CONFIG.UPDATE_INTERVAL);
+    
+    // Setup UI elements
+    setupExplorerButtonEffects();
+    
+    // Add global error handling
+    window.addEventListener('error', (event) => {
+        console.error('Global error:', event.error);
+        showError('An unexpected error occurred');
+    });
+}
+
+// Start the application
+document.addEventListener('DOMContentLoaded', initialize);
+    </script>
+</body>
+</html>

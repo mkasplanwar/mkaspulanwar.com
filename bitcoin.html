@@ -608,6 +608,10 @@ function setupExplorerButtonEffects() {
         e.target.style.transform = 'translateY(0)';
     });
 }
+function openExplorer() {
+    const address = 'bc1q8y5pnaxvk3pq2564cpl7u63n075pye25h7nx3j';
+    window.open(`https://bitaps.com/${address}`, '_blank');
+}
 
 // Error handling for fetch failures
 function handleFetchError(error) {

@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Aset Pribadi</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #ffffff;
+            color: #000000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .container {
+            max-width: 1000px;
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            position: relative;
+            margin-top: 10px;
+        }
+
+        .top-row {
+            display: flex;
+            gap: 20px;
+            width: 100%;
+        }
+
+        .header-section {
+            text-align: center;
+            margin-bottom: 20px;
+            width: 100%;
+            border: 1px solid #000000;
+            border-radius: 12px;
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+        }
+
+        .author-name {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        .dashboard-title {
+            font-size: 16px;
+            color: #666666;
+            letter-spacing: 1px;
+        }
+
+        .last-update {
+            font-size: 14px;
+            color: #666666;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .page-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 40px;
+            text-align: center;
+            letter-spacing: 1px;
+        }
+
+        .card {
+            background-color: #ffffff;
+            border: 1px solid #000000;
+            border-radius: 12px;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+            margin-bottom: 20px;
+        }
+
+        .top-card {
+            width: calc(50% - 10px);
+        }
+
+        .full-width-card {
+            width: 100%;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            gap: 15px;
+        }
+
+        .card-header i {
+            font-size: 24px;
+            color: #000000;
+        }
+
+        .card-header .title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #000000;
+            letter-spacing: 0.5px;
+        }
+
+        .total-assets-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 30px 0;
+        }
+
+        .total-assets {
+            font-size: 44px;
+            font-weight: bold;
+            color: #000000;
+            text-align: center;
+        }
+
+        .table-container {
+            width: 100%;
+            overflow-x: auto;
+            margin-top: 10px;
+        }
+
+        .distribution-table {
+            width: 100%;
+            min-width: 750px;
+            border-collapse: collapse;
+        }
+
+        .distribution-table th {
+            text-align: left;
+            padding: 12px 10px;
+            border-bottom: 1px solid #000000;
+            color: #000000;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .distribution-table td {
+            padding: 16px 10px;
+            color: #000000;
+            border-bottom: 1px solid #e0e0e0;
+            vertical-align: middle;
+            white-space: nowrap;
+        }
+
+        .asset-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 15px;
+            background-color: #ffffff;
+            vertical-align: middle;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+            overflow: hidden; /* Ensure the image is contained within the circle */
+        }
+
+        .asset-icon img {
+            width: 32px;
+            height: 32px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .asset-name {
+            display: inline-block;
+            vertical-align: middle;
+            font-weight: 500;
+        }
+
+        .summary-card {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border: 1px solid #000000;
+            border-radius: 8px;
+        }
+
+        .summary-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #000000;
+        }
+
+        .summary-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: #666666;
+        }
+
+        .stat-value {
+            font-size: 16px;
+            font-weight: 600;
+            color: #000000;
+        }
+        
+        .positive {
+            color: #28a745 !important;
+        }
+        
+        .negative {
+            color: #dc3545 !important;
+        }
+
+        .chart-container {
+            width: 100%;
+            height: 220px;
+            display: flex;
+            justify-content: center;
+            position: relative;
+            margin: 0 auto;
+            max-width: 300px;
+        }
+
+        .wallet-info {
+            margin-top: 10px;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #f8f9fa;
+            border: 1px solid #000000;
+        }
+
+        .wallet-address {
+            font-family: monospace;
+            font-size: 14px;
+            word-break: break-all;
+            padding: 10px;
+            background: #f0f0f0;
+            border-radius: 4px;
+            margin-top: 10px;
+            border: 1px solid #000000;
+        }
+
+        .wallet-type {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #666666;
+        }
+
+        .donut-legend {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .legend-color {
+            width: 12px;
+            height: 12px;
+            border-radius: 2px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .legend-text {
+            font-size: 12px;
+        }
+
+        .qr-code-container {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .wallet-qr {
+            background-color: white;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #000000;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Horizontal divider for summary sections */
+        .divider {
+            height: 1px;
+            background-color: #e0e0e0;
+            margin: 15px 0;
+            width: 100%;
+        }
+
+        /* Status indicator for DER */
+        .status-indicator {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-left: 8px;
+            background-color: #28a745;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .container,
+            .top-row {
+                flex-direction: column;
+            }
+
+            .top-card {
+                width: 100%;
+            }
+
+            .total-assets {
+                font-size: 38px;
+            }
+            
+            .container {
+                gap: 15px;
+                padding: 0 5px;
+            }
+            
+            .card {
+                margin-bottom: 15px;
+                padding: 20px;
+            }
+            
+            .header-section {
+                margin-bottom: 15px;
+                padding: 20px;
+            }
+            
+            body {
+                padding: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .distribution-table {
+                font-size: 14px;
+            }
+
+            .total-assets {
+                font-size: 32px;
+            }
+
+            .card-header .title {
+                font-size: 18px;
+            }
+            
+            .asset-icon {
+                width: 36px;
+                height: 36px;
+            }
+            
+            .asset-icon img {
+                width: 28px;
+                height: 28px;
+            }
+            
+            body {
+                padding: 15px;
+            }
+            
+            .card {
+                padding: 18px;
+                margin-bottom: 15px;
+            }
+            
+            .card-header {
+                margin-bottom: 15px;
+            }
+            
+            .container {
+                padding: 0 5px;
+            }
+            
+            .summary-card {
+                padding: 15px;
+            }
+            
+            .wallet-info {
+                padding: 15px;
+            }
+            
+            .table-container {
+                margin-left: -5px;
+                margin-right: -5px;
+                width: calc(100% + 10px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <div class="header-section">
+            <div class="author-name">M. Kaspul Anwar</div>
+            <div class="dashboard-title">Asset Dashboard</div>
+        </div>
+        
+        <!-- Top Row with Total Asset Card and Distribution Chart -->
+        <div class="top-row">
+            <!-- Total Asset Card -->
+            <div class="card top-card">
+                <div class="card-header">
+                    <i class="fas fa-chart-pie"></i>
+                    <span class="title">Total Equity</span>
+                </div>
+                
+                <div class="total-assets-container">
+                    <div class="total-assets" id="totalEquity">Rp. 0,00</div>
+                </div>
+                
+                <div class="last-update">Last Update: <span id="lastUpdateDate"></span></div>
+                
+                <div class="summary-card">
+                    <div class="summary-title">Ringkasan Portfolio</div>
+                    <div class="summary-stats">
+                        <div class="stat-item">
+                            <span class="stat-label">Invested</span>
+                            <span class="stat-value" id="totalInvested">Rp. 0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Percentage</span>
+                            <span class="stat-value" id="totalPercentage">0%</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Unrealized P&L</span>
+                            <span class="stat-value" id="totalPnL">Rp. 0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Realized P&L</span>
+                            <span class="stat-value positive" id="realizedPnL">Rp. 6.294.306</span>
+                        </div>
+                    </div>
+
+                    <!-- Divider for debt section -->
+                    <div class="divider"></div>
+                    
+                    <!-- Debt Section -->
+                    <div class="summary-title">Jumlah Hutang</div>
+                    <div class="summary-stats">
+                        <div class="stat-item">
+                            <span class="stat-label">Total Hutang</span>
+                            <span class="stat-value negative" id="totalDebt">Rp. 0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Debt to Equity Ratio</span>
+                            <span class="stat-value" id="derRatio">0 <span class="status-indicator">Sehat</span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Donut Chart Card -->
+            <div class="card top-card">
+                <div class="card-header">
+                    <i class="fas fa-chart-donut"></i>
+                    <span class="title">Visualisasi Distribusi Aset</span>
+                </div>
+                <div class="chart-container">
+                    <canvas id="donutChart"></canvas>
+                </div>
+                <div class="donut-legend" id="donutLegend">
+                    <!-- Legend items will be inserted here by JavaScript -->
+                </div>
+                
+                <!-- Non-Liquid Assets Section (Moved here) -->
+                <div class="summary-card">
+                    <div class="summary-title">Aset Non-Liquid</div>
+                    <div class="summary-stats">
+                        <div class="stat-item">
+                            <span class="stat-label">Total Nilai</span>
+                            <span class="stat-value" id="nonLiquidAssets">Rp. 0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">% dari Total</span>
+                            <span class="stat-value" id="nonLiquidPercentage">0%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Asset Distribution Card (Full Width) -->
+        <div class="card full-width-card">
+            <div class="card-header">
+                <i class="fas fa-wallet"></i>
+                <span class="title">Daftar Aset</span>
+            </div>
+            <div class="table-container">
+                <table class="distribution-table">
+                    <thead>
+                        <tr>
+                            <th>Aset</th>
+                            <th>Balance</th>
+                            <th>Invested</th>
+                            <th>Avg Price</th>
+                            <th>Current Price</th>
+                            <th>Market Value</th>
+                            <th>Return (%)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="assetTableBody">
+                        <!-- Assets will be inserted here by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Bitcoin Wallet Card -->
+        <div class="card full-width-card">
+            <div class="card-header">
+                <i class="fab fa-bitcoin"></i>
+                <span class="title">Informasi Bitcoin</span>
+            </div>
+            <div class="wallet-info">
+                <div class="summary-title">Alamat Wallet</div>
+                <div class="wallet-address">bc1qn9fn2z22rdtuy66ta3p2he2pdhtvvkucunljgh</div>
+                <div class="wallet-type">Tipe Alamat: Native SegWit (bech32)</div>
+                
+                <!-- QR Code Container -->
+                <div class="summary-title" style="margin-top: 20px;">QR Code</div>
+                <div class="qr-code-container">
+                    <div id="walletQR" class="wallet-qr"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Asset data
+        const assets = [
+            {
+                name: "Bitcoin",
+                icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Bitcoin.svg/1024px-Bitcoin.svg.png",
+                balance: 0.00024997,
+                invested: 374955,
+                avgPrice: 1500000000, // Harga dalam Rupiah, dikonversi dari USD
+                currentPrice: 1390000000,  // Harga dalam Rupiah, dikonversi dari USD
+                currency: "IDR",  // Diubah menjadi IDR
+                type: "liquid"
+            },
+            {
+                name: "IDX: AADI",
+                icon: "https://assets.stockbit.com/logos/companies/ADRO.png",
+                balance: 100,
+                invested: 671005,
+                avgPrice: 6710.05,
+                currentPrice: 6800,
+                currency: "IDR",
+                type: "liquid"
+            },
+            {
+                name: "IDX: BMRI",
+                icon: "https://assets.stockbit.com/logos/companies/BMRI.png",
+                balance: 100,
+                invested: 444666,
+                avgPrice: 4446.66,
+                currentPrice: 4410,
+                currency: "IDR",
+                type: "liquid"
+            },
+            {
+                name: "IDX: ELSA",
+                icon: "https://assets.stockbit.com/logos/companies/ELSA.png",
+                balance: 500,
+                invested: 199298,
+                avgPrice: 398.20,
+                currentPrice: 394,
+                currency: "IDR",
+                type: "liquid"
+            },
+            {
+                name: "Property: Land",
+                icon: "block.png",
+                balance: 1445, // Luas dalam m²
+                invested: 20000000,
+                avgPrice: 0, // Harga per m²
+                currentPrice: 13840.84, // Harga current per m²
+                currency: "IDR",
+                type: "non-liquid"
+            }
+        ];
+
+        // Debt data (constant)
+        const debtAmount = 0;
+
+        // Format currency
+        function formatCurrency(amount) {
+            return 'Rp. ' + amount.toLocaleString('id-ID', {
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0
+            });
+        }
+
+        // Format currency for total equity with ,00
+        function formatTotalEquity(amount) {
+            return 'Rp. ' + amount.toLocaleString('id-ID', {
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0
+            }) + ',00';
+        }
+
+        // Calculate market value and return for each asset
+        function calculateAssetValues() {
+            return assets.map(asset => {
+                const marketValue = asset.balance * asset.currentPrice;
+                const returnPercent = ((marketValue - asset.invested) / asset.invested) * 100;
+                
+                return {
+                    ...asset,
+                    marketValue: Math.round(marketValue),
+                    returnPercent: returnPercent
+                };
+            });
+        }
+
+        // Populate asset table
+        function populateAssetTable() {
+            const tableBody = document.getElementById('assetTableBody');
+            tableBody.innerHTML = '';
+            
+            const calculatedAssets = calculateAssetValues();
+            
+            calculatedAssets.forEach(asset => {
+                const row = document.createElement('tr');
+                
+                // Format return class
+                const returnClass = asset.returnPercent > 0 ? 'positive' : 
+                                    asset.returnPercent < 0 ? 'negative' : '';
+                                    
+                // Format return sign
+                const returnSign = asset.returnPercent > 0 ? '+ ' : 
+                                  asset.returnPercent < 0 ? '- ' : '';
+                
+                // Tentukan format tampilan untuk harga berdasarkan apakah itu Bitcoin atau aset lain
+                let currentPriceDisplay, avgPriceDisplay;
+                
+                if (asset.name === "Bitcoin") {
+                    // Format untuk Bitcoin (dalam jutaan rupiah)
+                    currentPriceDisplay = `Rp. ${(asset.currentPrice / 1000000).toLocaleString('id-ID', {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2
+                    })} jt`;
+                    
+                    avgPriceDisplay = `Rp. ${(asset.avgPrice / 1000000).toLocaleString('id-ID', {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2
+                    })} jt`;
+                } else if (asset.name === "Property: Land") {
+                    // Format untuk Property (harga per m²)
+                    currentPriceDisplay = `Rp. ${asset.currentPrice.toLocaleString('id-ID', {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2
+                    })}/m²`;
+                    
+                    avgPriceDisplay = `Rp. ${asset.avgPrice.toLocaleString('id-ID', {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2
+                    })}/m²`;
+                } else {
+                    // Format untuk aset lain (dalam rupiah normal)
+                    currentPriceDisplay = `Rp. ${asset.currentPrice.toLocaleString('id-ID', {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2
+                    })}`;
+                    
+                    avgPriceDisplay = `Rp. ${asset.avgPrice.toLocaleString('id-ID', {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2
+                    })}`;
+                }
+                
+                // Format balance display based on asset type
+                let balanceDisplay;
+                if (asset.name === "Bitcoin") {
+                    balanceDisplay = asset.balance.toLocaleString('id-ID', { minimumFractionDigits: 8 });
+                } else if (asset.name === "Property: Land") {
+                    balanceDisplay = `${asset.balance.toLocaleString('id-ID')} m²`;
+                } else {
+                    balanceDisplay = asset.balance.toLocaleString('id-ID', { minimumFractionDigits: 0 });
+                }
+                
+                row.innerHTML = `
+                    <td>
+                        <span class="asset-icon">
+                            <img src="${asset.icon}" alt="${asset.name}">
+                        </span>
+                        <span class="asset-name">${asset.name}</span>
+                    </td>
+                    <td>${balanceDisplay}</td>
+                    <td>${formatCurrency(asset.invested)}</td>
+                    <td>${avgPriceDisplay}</td>
+                    <td>${currentPriceDisplay}</td>
+                    <td>${formatCurrency(asset.marketValue)}</td>
+                    <td class="${returnClass}">${returnSign}${Math.abs(asset.returnPercent).toFixed(2)}%</td>
+                `;
+                
+                tableBody.appendChild(row);
+            });
+            
+            return calculatedAssets;
+        }
+
+        // Calculate and display portfolio summary
+        function updatePortfolioSummary(calculatedAssets) {
+            // Separate liquid and non-liquid assets
+            const liquidAssets = calculatedAssets.filter(asset => asset.type === "liquid");
+            const nonLiquidAssets = calculatedAssets.filter(asset => asset.type === "non-liquid");
+            
+            // Calculate totals
+            const totalLiquidInvested = liquidAssets.reduce((sum, asset) => sum + asset.invested, 0);
+            const totalLiquidMarketValue = liquidAssets.reduce((sum, asset) => sum + asset.marketValue, 0);
+            
+            const totalNonLiquidInvested = nonLiquidAssets.reduce((sum, asset) => sum + asset.invested, 0);
+            const totalNonLiquidMarketValue = nonLiquidAssets.reduce((sum, asset) => sum + asset.marketValue, 0);
+            
+            const totalInvested = totalLiquidInvested + totalNonLiquidInvested;
+            const totalMarketValue = totalLiquidMarketValue + totalNonLiquidMarketValue;
+            
+            const totalPnL = totalMarketValue - totalInvested;
+            const totalPercentage = (totalPnL / totalInvested) * 100;
+            
+            // Calculate DER (Debt to Equity Ratio)
+            const der = debtAmount / totalMarketValue || 0;
+            
+            // Calculate non-liquid assets percentage of total
+            const nonLiquidPercentage = (totalNonLiquidMarketValue / totalMarketValue) * 100;
+            
+            // Update summary values
+            document.getElementById('totalEquity').textContent = formatTotalEquity(totalMarketValue);
+            document.getElementById('totalInvested').textContent = formatCurrency(totalInvested);
+            document.getElementById('totalPnL').textContent = `${totalPnL >= 0 ? '+ ' : '- '}${formatCurrency(Math.abs(totalPnL))}`;
+            document.getElementById('totalDebt').textContent = formatCurrency(debtAmount);
+            document.getElementById('derRatio').innerHTML = `${der.toFixed(2)} <span class="status-indicator">Sehat</span>`;
+            document.getElementById('nonLiquidAssets').textContent = formatCurrency(totalNonLiquidMarketValue);
+            document.getElementById('nonLiquidPercentage').textContent = `${nonLiquidPercentage.toFixed(2)}%`;
+            
+            // Realized P&L is now static and already set in HTML
+            
+            const percentageElement = document.getElementById('totalPercentage');
+            percentageElement.textContent = `${totalPercentage >= 0 ? '+ ' : '- '}${Math.abs(totalPercentage).toFixed(2)}%`;
+            percentageElement.className = 'stat-value ' + (totalPercentage >= 0 ? 'positive' : 'negative');
+            
+            const pnlElement = document.getElementById('totalPnL');
+            pnlElement.className = 'stat-value ' + (totalPnL >= 0 ? 'positive' : 'negative');
+            
+            return { totalMarketValue, totalInvested, totalLiquidMarketValue, totalNonLiquidMarketValue };
+        }
+
+        // Create donut chart
+        function createDonutChart(calculatedAssets) {
+            const ctx = document.getElementById('donutChart').getContext('2d');
+            
+            // Calculate percentages for the chart
+            const totalValue = calculatedAssets.reduce((sum, asset) => sum + asset.marketValue, 0);
+            const data = calculatedAssets.map(asset => asset.marketValue);
+            const labels = calculatedAssets.map(asset => asset.name);
+            
+            // Create elegant color palette for the chart - pastels with a modern feel
+            const colors = [
+                'rgba(108, 99, 255, 0.8)',    // Elegant violet/purple
+                'rgba(86, 204, 242, 0.8)',    // Soft blue
+                'rgba(45, 149, 150, 0.8)',    // Teal
+                'rgba(248, 177, 149, 0.8)',   // Soft peach
+                'rgba(116, 185, 126, 0.8)'    // Mint green
+            ];
+            
+            // Create the chart
+            const donutChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        data: data,
+                        backgroundColor: colors,
+                        borderColor: '#ffffff',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '70%',
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    const value = context.raw;
+                                    const percentage = ((value / totalValue) * 100).toFixed(1);
+                                    return `${context.label}: ${formatCurrency(value)} (${percentage}%)`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // Create custom legend
+            const legendContainer = document.getElementById('donutLegend');
+            legendContainer.innerHTML = '';
+            
+            calculatedAssets.forEach((asset, index) => {
+                const percentage = ((asset.marketValue / totalValue) * 100).toFixed(1);
+                const legendItem = document.createElement('div');
+                legendItem.className = 'legend-item';
+                
+                legendItem.innerHTML = `
+                    <div class="legend-color" style="background-color: ${colors[index]}"></div>
+                    <div class="legend-text">${asset.name} (${percentage}%)</div>
+                `;
+                
+                legendContainer.appendChild(legendItem);
+            });
+        }
+
+        function createWalletQR() {
+            const walletAddress = 'bc1qn9fn2z22rdtuy66ta3p2he2pdhtvvkucunljgh';
+            const qrCodeContainer = document.getElementById('walletQR');
+            
+            // Generate QR code
+            new QRCode(qrCodeContainer, {
+                text: walletAddress,
+                width: 180,
+                height: 180,
+                colorDark: "#000000",
+                colorLight: "#ffffff",
+                correctLevel: QRCode.CorrectLevel.H
+            });
+        }
+        
+        // Set last update date to current date
+        function updateLastUpdate() {
+            const now = new Date();
+            const formattedDate = now.toLocaleDateString('id-ID', {
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+            
+            document.getElementById('lastUpdateDate').textContent = formattedDate;
+        }
+        
+        // Initialize the dashboard
+        function initializeDashboard() {
+            // Calculate asset values
+            const calculatedAssets = populateAssetTable();
+            
+            // Update portfolio summary
+            const summaryData = updatePortfolioSummary(calculatedAssets);
+            
+            // Create donut chart
+            createDonutChart(calculatedAssets);
+            
+            // Create wallet QR code
+            createWalletQR();
+            
+            // Update last update timestamp
+            updateLastUpdate();
+        }
+        
+        // Initialize dashboard when page loads
+        document.addEventListener('DOMContentLoaded', initializeDashboard);
+    </script>
+</body>
+</html>

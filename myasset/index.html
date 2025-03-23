@@ -453,7 +453,7 @@
                 </div>
                 
                 <div class="total-assets-container">
-                    <div class="total-assets" id="totalEquity">Rp. 0,00</div>
+                    <div class="total-assets" id="totalEquity">Rp. 0</div>
                 </div>
                 
                 <div class="last-update">Last Update: <span id="lastUpdateDate"></span></div>
@@ -582,7 +582,7 @@
                 balance: 0.00024997,
                 invested: 374955,
                 avgPrice: 1500000000, // Harga dalam Rupiah, dikonversi dari USD
-                currentPrice: 1390000000,  // Harga dalam Rupiah, dikonversi dari USD
+                currentPrice: 1389316053.93,  // Harga dalam Rupiah, dikonversi dari USD
                 currency: "IDR",  // Diubah menjadi IDR
                 type: "liquid"
             },
@@ -644,7 +644,7 @@
             return 'Rp. ' + amount.toLocaleString('id-ID', {
                 minimumFractionDigits: 0,
                 maximumFractionDigits: 0
-            }) + ',00';
+            });
         }
 
         // Calculate market value and return for each asset
@@ -724,7 +724,7 @@
                 } else if (asset.name === "Property: Land") {
                     balanceDisplay = `${asset.balance.toLocaleString('id-ID')} m²`;
                 } else {
-                    balanceDisplay = asset.balance.toLocaleString('id-ID', { minimumFractionDigits: 0 });
+                    balanceDisplay = asset.balance.toLocaleString('id-ID', { minimumFractionDigits: 0 }) + ' lembar';
                 }
                 
                 row.innerHTML = `

@@ -597,7 +597,7 @@ const assets = [
     type: "liquid"
 },
 {
-    name: "Cash: Rupiah",
+    name: "RDN: Rupiah",
     icon: "/myasset/rupiah.png", // Ganti dengan path icon yang sesuai
     balance: 100000, // Jumlah Rupiah yang dimiliki
     invested: 100000,
@@ -607,12 +607,12 @@ const assets = [
     type: "liquid"
 },
 {
-    name: "IDX: AADI",
+    name: "IDX: ADRO",
     icon: "https://assets.stockbit.com/logos/companies/ADRO.png",
-    balance: 100,
-    invested: 671005,
-    avgPrice: 6710.05,
-    currentPrice: 6800,
+    balance: 300,
+    invested: 690000,
+    avgPrice: 2300,
+    currentPrice: 1750,
     currency: "IDR",
     type: "liquid"
 },
@@ -622,17 +622,18 @@ const assets = [
     balance: 100,
     invested: 444666,
     avgPrice: 4446.66,
-    currentPrice: 4410,
+    currentPrice: 4460,
     currency: "IDR",
     type: "liquid"
 },
 {
-    name: "IDX: ELSA",
-    icon: "https://assets.stockbit.com/logos/companies/ELSA.png",
-    balance: 500,
-    invested: 199298,
-    avgPrice: 398.20,
-    currentPrice: 394,
+    name: "Pisang Jago",
+    icon: "https://s2.coinmarketcap.com/static/img/coins/200x200/28066.png",
+    balance: "50%",
+    invested: 200000,
+    avgPrice: 0,
+    currentPrice: 0, // Ini sekarang diartikan sebagai nilai valuasi per saham/unit bisnis
+    marketValue: 200000, // Nilai bisnis saat ini (bisa berubah-ubah)
     currency: "IDR",
     type: "liquid"
 },
@@ -662,7 +663,12 @@ return 'Rp. ' + amount.toLocaleString('id-ID', {
 // Calculate market value and return for each asset
 function calculateAssetValues() {
 return assets.map(asset => {
-    const marketValue = asset.balance * asset.currentPrice;
+    // Jika asset adalah Pisang Jago, gunakan nilai marketValue yang sudah ditetapkan
+    // Jika tidak, hitung dari balance dan currentPrice
+    const marketValue = asset.name === "Pisang Jago" ? 
+        asset.marketValue : 
+        asset.balance * asset.currentPrice;
+    
     const returnPercent = ((marketValue - asset.invested) / asset.invested) * 100;
     
     return {
@@ -720,6 +726,10 @@ calculatedAssets.forEach(asset => {
         // Format untuk Rupiah
         currentPriceDisplay = `Rp. 1,00`;
         avgPriceDisplay = `Rp. 1,00`;
+    } else if (asset.name === "Pisang Jago") {
+        // Format untuk Pisang Jago (bisnis)
+        currentPriceDisplay = `Valuasi saat ini`;
+        avgPriceDisplay = `N/A`;
     } else {
         // Format untuk aset lain (dalam rupiah normal)
         currentPriceDisplay = `Rp. ${asset.currentPrice.toLocaleString('id-ID', {
@@ -741,6 +751,8 @@ calculatedAssets.forEach(asset => {
         balanceDisplay = `${asset.balance.toLocaleString('id-ID')} m²`;
     } else if (asset.name === "Cash: Rupiah") {
         balanceDisplay = `Rp. ${asset.balance.toLocaleString('id-ID')}`;
+    } else if (asset.name === "Pisang Jago") {
+        balanceDisplay = asset.balance; // Simply display "Rp"
     } else {
         balanceDisplay = asset.balance.toLocaleString('id-ID', { minimumFractionDigits: 0 }) + ' lembar';
     }

@@ -581,8 +581,8 @@ const assets = [
     icon: "/myasset/tanah.png",
     balance: 1445, // Luas dalam m²
     invested: 20000000,
-    avgPrice: 0, // Harga per m²
-    currentPrice: 13840.84, // Harga current per m²
+    avgPrice: 13840.8305, // Harga per m²
+    currentPrice: 13840.8305, // Harga current per m²
     currency: "IDR",
     type: "non-liquid"
 },
@@ -592,7 +592,7 @@ const assets = [
     balance: 0.00024997,
     invested: 374955,
     avgPrice: 1500000000, // Harga dalam Rupiah, dikonversi dari USD
-    currentPrice: 1389316053.93,  // Harga dalam Rupiah, dikonversi dari USD
+    currentPrice: 1451464941.81,  // Harga dalam Rupiah, dikonversi dari USD
     currency: "IDR",  // Diubah menjadi IDR
     type: "liquid"
 },
@@ -700,7 +700,7 @@ calculatedAssets.forEach(asset => {
     // Tentukan format tampilan untuk harga berdasarkan apakah itu Bitcoin atau aset lain
     let currentPriceDisplay, avgPriceDisplay;
     
-    if (asset.name === "Bitcoin") {
+    if (asset.name === "SoV: Bitcoin") {
         // Format untuk Bitcoin (dalam jutaan rupiah)
         currentPriceDisplay = `Rp. ${(asset.currentPrice / 1000000).toLocaleString('id-ID', {
             minimumFractionDigits: 2,
@@ -722,7 +722,7 @@ calculatedAssets.forEach(asset => {
             minimumFractionDigits: 2,
             maximumFractionDigits: 2
         })}/m²`;
-    } else if (asset.name === "Cash: Rupiah") {
+    } else if (asset.name === "RDN: Rupiah") {
         // Format untuk Rupiah
         currentPriceDisplay = `Rp. 1,00`;
         avgPriceDisplay = `Rp. 1,00`;
@@ -745,11 +745,11 @@ calculatedAssets.forEach(asset => {
     
     // Format balance display based on asset type
     let balanceDisplay;
-    if (asset.name === "Bitcoin") {
+    if (asset.name === "SoV: Bitcoin") {
         balanceDisplay = asset.balance.toLocaleString('id-ID', { minimumFractionDigits: 8 });
     } else if (asset.name === "Property: Land") {
         balanceDisplay = `${asset.balance.toLocaleString('id-ID')} m²`;
-    } else if (asset.name === "Cash: Rupiah") {
+    } else if (asset.name === "RDN: Rupiah") {
         balanceDisplay = `Rp. ${asset.balance.toLocaleString('id-ID')}`;
     } else if (asset.name === "Pisang Jago") {
         balanceDisplay = asset.balance; // Simply display "Rp"

@@ -580,8 +580,8 @@ const assets = [
 {
     name: "RDN: Rupiah",
     icon: "/myasset/rupiah.png",
-    balance: "Rp. 0",
-    invested: 0,
+    balance: "Rp. 40.000",
+    invested: 40000,
     avgPrice: 1,
     currentPrice: 1,
     currency: "IDR",
@@ -835,12 +835,13 @@ function createDonutChart(calculatedAssets) {
     const labels = calculatedAssets.map(asset => asset.name);
 
     const colors = [
-        'rgba(116, 185, 126, 0.8)',   // Mint green
-        'rgba(255, 183, 77, 0.8)',     // Amber gold
-        'rgba(248, 177, 149, 0.8)',   // Soft peach
-        'rgba(108, 99, 255, 0.8)',    // Elegant violet/purple
-        'rgba(86, 204, 242, 0.8)',    // Soft blue
-        'rgba(45, 149, 150, 0.8)',    // Teal
+        'rgba(65, 131, 215, 0.8)',    // Vibrant Blue
+        'rgba(46, 204, 113, 0.8)',    // Emerald Green
+        'rgba(241, 196, 15, 0.8)',    // Sunflower Yellow
+        'rgba(231, 76, 60, 0.8)',     // Passionate Red
+        'rgba(155, 89, 182, 0.8)',    // Rich Purple
+        'rgba(52, 152, 219, 0.8)',    // Bright Blue
+        'rgba(230, 126, 34, 0.8)'     // Warm Orange
     ];
 
     // Create the chart

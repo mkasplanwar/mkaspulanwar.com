@@ -474,7 +474,7 @@
                             <span class="stat-value" id="totalPnL">Rp. 0</span>
                         </div>
                         <div class="stat-item">
-                            <span class="stat-label">Realized P&L</span>
+                            <span class="stat-label">Realized (Since 2021)</span>
                             <span class="stat-value positive" id="realizedPnL">Rp. 6.294.306</span>
                         </div>
                     </div>
@@ -544,6 +544,7 @@
                             <th>Current Price</th>
                             <th>Market Value</th>
                             <th>Return (%)</th>
+                            <th>Keterangan</th>
                         </tr>
                     </thead>
                     <tbody id="assetTableBody">
@@ -576,202 +577,208 @@
     <script>
         // Asset data
 const assets = [
-        {
-            name: "RDN: Rupiah",
-            icon: "/myasset/rupiah.png",
-            balance: "Rp. 0",
-            invested: 0,
-            avgPrice: 1,
-            currentPrice: 1,
-            currency: "IDR",
-            type: "liquid"
-        },
-        {
-            name: "Property: Land",
-            icon: "/myasset/tanah.png",
-            balance: "1.445 m²",
-            invested: 20000000,
-            avgPrice: 13840.8305, // Harga per m²
-            currentPrice: 13840.8305, // Harga current per m²
-            currency: "IDR",
-            type: "non-liquid"
-        },
-        {
-            name: "SoV: Bitcoin",
-            icon: "/myasset/bitcoin.png",
-            balance: "24.997 sats",
-            invested: 374955,
-            avgPrice: 1500000000, // Harga dalam Rupiah, dikonversi dari USD
-            currentPrice: 1451464941.81,  // Harga dalam Rupiah, dikonversi dari USD
-            currency: "IDR",
-            type: "liquid"
-        },
-
-        {
-            name: "IDX: PGEO",
-            icon: "https://assets.stockbit.com/logos/companies/PGEO.png",
-            balance: "600 lembar",
-            invested: 477715.5,
-            avgPrice: 796.19,
-            currentPrice: 795,
-            currency: "IDR",
-            type: "liquid"
-        },
-        {
-            name: "IDX: ADRO",
-            icon: "https://assets.stockbit.com/logos/companies/ADRO.png",
-            balance: "200 lembar",
-            invested: 344516,
-            avgPrice: 1722.58,
-            currentPrice: 1810,
-            currency: "IDR",
-            type: "liquid"
-        },
-        {
-            name: "IDX: BMRI",
-            icon: "https://assets.stockbit.com/logos/companies/BMRI.png",
-            balance: "100 lembar",
-            invested: 444666,
-            avgPrice: 4446.66,
-            currentPrice: 5075,
-            currency: "IDR",
-            type: "liquid"
-        },
-        {
-            name: "Pisang Jago",
-            icon: "https://s2.coinmarketcap.com/static/img/coins/200x200/28066.png",
-            balance: "50% ",
-            invested: 0,
-            avgPrice: 0,
-            currentPrice: 0,
-            marketValue: 0,
-            currency: "IDR",
-            type: "liquid"
-        }
-        
-        ];
+{
+    name: "RDN: Rupiah",
+    icon: "/myasset/rupiah.png",
+    balance: "Rp. 0",
+    invested: 0,
+    avgPrice: 1,
+    currentPrice: 1,
+    currency: "IDR",
+    type: "liquid",
+    description: "Saldo rekening RDN Di Bank BCA"
+},
+{
+    name: "Property: Land",
+    icon: "/myasset/tanah.png",
+    balance: "1.445 m²",
+    invested: 20000000,
+    avgPrice: 13840.8305, // Harga per m²
+    currentPrice: 13840.8305, // Harga current per m²
+    currency: "IDR",
+    type: "non-liquid",
+    description: "Kepemilikan Property Tanah"
+},
+{
+    name: "SoV: Bitcoin",
+    icon: "/myasset/bitcoin.png",
+    balance: "24.997 sats",
+    invested: 374955,
+    avgPrice: 1500000000, // Harga dalam Rupiah, dikonversi dari USD
+    currentPrice: 1451464941.81,  // Harga dalam Rupiah, dikonversi dari USD
+    currency: "IDR",
+    type: "liquid",
+    description: "Store of Value, Digital Asset, Freedom Money"
+},
+{
+    name: "IDX: PGEO",
+    icon: "https://assets.stockbit.com/logos/companies/PGEO.png",
+    balance: "600 lembar",
+    invested: 477715.5,
+    avgPrice: 796.19,
+    currentPrice: 795,
+    currency: "IDR",
+    type: "liquid",
+    description: "Saham perusahaan Energi Panas Bumi"
+},
+{
+    name: "IDX: ADRO",
+    icon: "https://assets.stockbit.com/logos/companies/ADRO.png",
+    balance: "200 lembar",
+    invested: 344516,
+    avgPrice: 1722.58,
+    currentPrice: 1810,
+    currency: "IDR",
+    type: "liquid",
+    description: "Saham Perusahan Energi Terbarukan & Batu Bara"
+},
+{
+    name: "IDX: BMRI",
+    icon: "https://assets.stockbit.com/logos/companies/BMRI.png",
+    balance: "100 lembar",
+    invested: 444666,
+    avgPrice: 4446.66,
+    currentPrice: 5075,
+    currency: "IDR",
+    type: "liquid",
+    description: "Saham Bank BUMN di Indonesia"
+},
+{
+    name: "Pisang Jago",
+    icon: "https://s2.coinmarketcap.com/static/img/coins/200x200/28066.png",
+    balance: "50% ",
+    invested: 0,
+    avgPrice: 0,
+    currentPrice: 0,
+    marketValue: 0,
+    currency: "IDR",
+    type: "liquid",
+    description: "Kepemilikan bisnis Makanan Ringan"
+}
+];
 
 // Debt data (constant)
 const debtAmount = 0;
 
 // Format currency
 function formatCurrency(amount) {
-    return 'Rp. ' + amount.toLocaleString('id-ID', {
-        minimumFractionDigits: 0,
-        maximumFractionDigits: 0
-    });
+return 'Rp. ' + amount.toLocaleString('id-ID', {
+minimumFractionDigits: 0,
+maximumFractionDigits: 0
+});
 }
 
 // Format currency for total equity with ,00
 function formatTotalEquity(amount) {
-    return 'Rp. ' + amount.toLocaleString('id-ID', {
-        minimumFractionDigits: 0,
-        maximumFractionDigits: 0
-    });
+return 'Rp. ' + amount.toLocaleString('id-ID', {
+minimumFractionDigits: 0,
+maximumFractionDigits: 0
+});
 }
 
 // Calculate market value and return for each asset
 function calculateAssetValues() {
-    return assets.map(asset => {
-        // Jika asset adalah Pisang Jago, gunakan nilai marketValue yang sudah ditetapkan
-        // Jika tidak, hitung dari invested dan current price
-        const marketValue = asset.name === "Pisang Jago" ? 
-            asset.marketValue : 
-            (asset.invested * (asset.currentPrice / asset.avgPrice));
-        
-        const returnPercent = ((marketValue - asset.invested) / asset.invested) * 100;
-        
-        return {
-            ...asset,
-            marketValue: Math.round(marketValue),
-            returnPercent: returnPercent
-        };
-    });
+return assets.map(asset => {
+// Jika asset adalah Pisang Jago, gunakan nilai marketValue yang sudah ditetapkan
+// Jika tidak, hitung dari invested dan current price
+const marketValue = asset.name === "Pisang Jago" ? 
+    asset.marketValue : 
+    (asset.invested * (asset.currentPrice / asset.avgPrice));
+
+const returnPercent = ((marketValue - asset.invested) / asset.invested) * 100;
+
+return {
+    ...asset,
+    marketValue: Math.round(marketValue),
+    returnPercent: returnPercent
+};
+});
 }
 
 // Populate asset table
 function populateAssetTable() {
-    const tableBody = document.getElementById('assetTableBody');
-    tableBody.innerHTML = '';
+const tableBody = document.getElementById('assetTableBody');
+tableBody.innerHTML = '';
 
-    const calculatedAssets = calculateAssetValues();
+const calculatedAssets = calculateAssetValues();
 
-    calculatedAssets.forEach(asset => {
-        const row = document.createElement('tr');
-        
-        // Format return class
-        const returnClass = asset.returnPercent > 0 ? 'positive' : 
-                            asset.returnPercent < 0 ? 'negative' : '';
-                            
-        // Format return sign
-        const returnSign = asset.returnPercent > 0 ? '+ ' : 
-                          asset.returnPercent < 0 ? '- ' : '';
-        
-        // Tentukan format tampilan untuk harga berdasarkan apakah itu Bitcoin atau aset lain
-        let currentPriceDisplay, avgPriceDisplay;
-        
-        if (asset.name === "SoV: Bitcoin") {
-            // Format untuk Bitcoin (dalam jutaan rupiah)
-            currentPriceDisplay = `Rp. ${(asset.currentPrice / 1000000).toLocaleString('id-ID', {
-                minimumFractionDigits: 2,
-                maximumFractionDigits: 2
-            })} jt`;
-            
-            avgPriceDisplay = `Rp. ${(asset.avgPrice / 1000000).toLocaleString('id-ID', {
-                minimumFractionDigits: 2,
-                maximumFractionDigits: 2
-            })} jt`;
-        } else if (asset.name === "Property: Land") {
-            // Format untuk Property (harga per m²)
-            currentPriceDisplay = `Rp. ${asset.currentPrice.toLocaleString('id-ID', {
-                minimumFractionDigits: 2,
-                maximumFractionDigits: 2
-            })}/m²`;
-            
-            avgPriceDisplay = `Rp. ${asset.avgPrice.toLocaleString('id-ID', {
-                minimumFractionDigits: 2,
-                maximumFractionDigits: 2
-            })}/m²`;
-        } else if (asset.name === "RDN: Rupiah") {
-            // Format untuk Rupiah
-            currentPriceDisplay = `Rp. 1,00`;
-            avgPriceDisplay = `Rp. 1,00`;
-        } else if (asset.name === "Pisang Jago") {
-            // Format untuk Pisang Jago (bisnis)
-            currentPriceDisplay = `Valuasi saat ini`;
-            avgPriceDisplay = `N/A`;
-        } else {
-            // Format untuk aset lain (dalam rupiah normal)
-            currentPriceDisplay = `Rp. ${asset.currentPrice.toLocaleString('id-ID', {
-                minimumFractionDigits: 2,
-                maximumFractionDigits: 2
-            })}`;
-            
-            avgPriceDisplay = `Rp. ${asset.avgPrice.toLocaleString('id-ID', {
-                minimumFractionDigits: 2,
-                maximumFractionDigits: 2
-            })}`;
-        }
-        
-        row.innerHTML = `
-            <td>
-                <span class="asset-icon">
-                    <img src="${asset.icon}" alt="${asset.name}">
-                </span>
-                <span class="asset-name">${asset.name}</span>
-            </td>
-            <td>${asset.balance}</td>
-            <td>${formatCurrency(asset.invested)}</td>
-            <td>${avgPriceDisplay}</td>
-            <td>${currentPriceDisplay}</td>
-            <td>${formatCurrency(asset.marketValue)}</td>
-            <td class="${returnClass}">${returnSign}${Math.abs(asset.returnPercent).toFixed(2)}%</td>
-        `;
-        
-        tableBody.appendChild(row);
-    });
+calculatedAssets.forEach(asset => {
+const row = document.createElement('tr');
 
-    return calculatedAssets;
+// Format return class
+const returnClass = asset.returnPercent > 0 ? 'positive' : 
+                    asset.returnPercent < 0 ? 'negative' : '';
+                    
+// Format return sign
+const returnSign = asset.returnPercent > 0 ? '+ ' : 
+                  asset.returnPercent < 0 ? '- ' : '';
+
+// Tentukan format tampilan untuk harga berdasarkan apakah itu Bitcoin atau aset lain
+let currentPriceDisplay, avgPriceDisplay;
+
+if (asset.name === "SoV: Bitcoin") {
+    // Format untuk Bitcoin (dalam jutaan rupiah)
+    currentPriceDisplay = `Rp. ${(asset.currentPrice / 1000000).toLocaleString('id-ID', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    })} jt`;
+    
+    avgPriceDisplay = `Rp. ${(asset.avgPrice / 1000000).toLocaleString('id-ID', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    })} jt`;
+} else if (asset.name === "Property: Land") {
+    // Format untuk Property (harga per m²)
+    currentPriceDisplay = `Rp. ${asset.currentPrice.toLocaleString('id-ID', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    })}/m²`;
+    
+    avgPriceDisplay = `Rp. ${asset.avgPrice.toLocaleString('id-ID', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    })}/m²`;
+} else if (asset.name === "RDN: Rupiah") {
+    // Format untuk Rupiah
+    currentPriceDisplay = `Rp. 1,00`;
+    avgPriceDisplay = `Rp. 1,00`;
+} else if (asset.name === "Pisang Jago") {
+    // Format untuk Pisang Jago (bisnis)
+    currentPriceDisplay = `Valuasi saat ini`;
+    avgPriceDisplay = `N/A`;
+} else {
+    // Format untuk aset lain (dalam rupiah normal)
+    currentPriceDisplay = `Rp. ${asset.currentPrice.toLocaleString('id-ID', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    })}`;
+    
+    avgPriceDisplay = `Rp. ${asset.avgPrice.toLocaleString('id-ID', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    })}`;
+}
+
+row.innerHTML = `
+    <td>
+        <span class="asset-icon">
+            <img src="${asset.icon}" alt="${asset.name}">
+        </span>
+        <span class="asset-name">${asset.name}</span>
+    </td>
+    <td>${asset.balance}</td>
+    <td>${formatCurrency(asset.invested)}</td>
+    <td>${avgPriceDisplay}</td>
+    <td>${currentPriceDisplay}</td>
+    <td>${formatCurrency(asset.marketValue)}</td>
+    <td class="${returnClass}">${returnSign}${Math.abs(asset.returnPercent).toFixed(2)}%</td>
+    <td>${asset.description}</td>
+`;
+
+tableBody.appendChild(row);
+});
+
+return calculatedAssets;
 }
 
 // Calculate and display portfolio summary

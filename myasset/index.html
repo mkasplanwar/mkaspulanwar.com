@@ -433,6 +433,107 @@
                 width: calc(100% + 10px);
             }
         }
+        /* New styles for the wallet and archive cards */
+.wallet-content {
+    padding: 20px 0;
+}
+
+.wallet-label {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #000000;
+}
+
+.wallet-address {
+    font-family: monospace;
+    font-size: 14px;
+    word-break: break-all;
+    padding: 12px;
+    background: #f8f9fa;
+    border-radius: 6px;
+    border: 1px solid #000000;
+    margin-bottom: 8px;
+}
+
+.wallet-type {
+    font-size: 14px;
+    color: #666666;
+    margin-bottom: 20px;
+}
+
+.quote-content {
+    padding: 20px 0;
+}
+
+blockquote.quote {
+    font-size: 18px;
+    font-style: italic;
+    color: #333;
+    margin: 0 0 25px 0;
+    padding: 0 20px;
+    border-left: 3px solid #000000;
+}
+
+blockquote.quote footer {
+    font-size: 14px;
+    color: #666;
+    margin-top: 8px;
+}
+
+.archive-section {
+    margin-top: 20px;
+}
+
+.archive-label {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #000000;
+}
+
+.archive-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.archive-btn {
+    padding: 10px 15px;
+    background-color: #f8f9fa;
+    border: 1px solid #000000;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #000000;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.archive-btn:hover {
+    background-color: #000000;
+    color: #ffffff;
+}
+
+@media (max-width: 768px) {
+    .wallet-content,
+    .quote-content {
+        padding: 15px 0;
+    }
+    
+    blockquote.quote {
+        font-size: 16px;
+        padding: 0 15px;
+    }
+    
+    .archive-buttons {
+        gap: 8px;
+    }
+    
+    .archive-btn {
+        padding: 8px 12px;
+    }
+}
     </style>
 </head>
 <body>
@@ -554,142 +655,44 @@
             </div>
         </div>
 
-        <!-- Replace the existing Bitcoin Wallet Card with these two cards wrapped in a container div -->
-<div class="top-row"> <!-- Reusing top-row class for side-by-side layout -->
-    <!-- Bitcoin Wallet Card (Left) -->
+        <!-- Wallet and Archive Section (Full Width Container) -->
+<div class="top-row">
+    <!-- Bitcoin Wallet Card -->
     <div class="card top-card">
         <div class="card-header">
             <i class="fa-solid fa-cube"></i>
-            <span class="title">Informasi My Address</span>
+            <span class="title">Bitcoin Address</span>
         </div>
-        <div class="wallet-info">
-            <div class="summary-title">Alamat Wallet</div>
+        <div class="wallet-content">
+            <div class="wallet-label">Alamat Wallet</div>
             <div class="wallet-address">bc1qn9fn2z22rdtuy66ta3p2he2pdhtvvkucunljgh</div>
-            <div class="wallet-type">Tipe Alamat: Native SegWit (bech32)</div>
-            
-            <!-- QR Code Container -->
-            <div class="summary-title" style="margin-top: 20px;">QR Code</div>
+            <div class="wallet-type">Native SegWit (bech32)</div>
             <div class="qr-code-container">
                 <div id="walletQR" class="wallet-qr"></div>
             </div>
         </div>
     </div>
 
-    <!-- Quote and Archive Card (Right) -->
+    <!-- Quote and Archive Card -->
     <div class="card top-card">
         <div class="card-header">
-            <i class="fa-solid fa-quote-right"></i>
-            <span class="title">Quote of The Day</span>
+            <i class="fa-solid fa-quote-left"></i>
+            <span class="title">Quote & Archived</span>
         </div>
-        <div class="quote-container">
-            <blockquote class="quote-text">
-                "I was born poor, but I will make sure I die as a billionaire.
-                <footer class="quote-author">- M. Kaspul Anwar</footer>
+        <div class="quote-content">
+            <blockquote class="quote">
+                "I was born poor, but I will make sure I die as a billionaire."
+                <footer>— M. Kaspul Anwar</footer>
             </blockquote>
-            
             <div class="archive-section">
-                <div class="summary-title">Arsip Laporan Keuangan</div>
+                <div class="archive-label">Arsip Laporan Keuangan</div>
                 <div class="archive-buttons">
-                    <button class="archive-btn" onclick="downloadReport('februari2024')">
-                        <i class="fas fa-file-archive"></i>
-                        Google Drive (Since. 2021)
-                    </button>
+                    <button class="archive-btn">Google Drive</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-<!-- Add these styles to your existing <style> section -->
-<style>
-/* Quote Styles */
-.quote-container {
-    padding: 20px;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.quote-text {
-    font-size: 1.1em;
-    font-style: italic;
-    color: #333;
-    margin: 0;
-    padding: 20px;
-    border-left: 4px solid #4183d7;
-    background-color: #f8f9fa;
-    border-radius: 0 8px 8px 0;
-}
-
-.quote-author {
-    margin-top: 10px;
-    font-size: 0.9em;
-    color: #666;
-    font-style: normal;
-}
-
-/* Archive Section Styles */
-.archive-section {
-    margin-top: 30px;
-}
-
-.archive-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-top: 15px;
-}
-
-.archive-btn {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 12px 20px;
-    background-color: #ffffff;
-    border: 1px solid #000000;
-    border-radius: 8px;
-    cursor: pointer;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 14px;
-    transition: all 0.3s ease;
-}
-
-.archive-btn:hover {
-    background-color: #f8f9fa;
-    transform: translateY(-1px);
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-.archive-btn i {
-    font-size: 16px;
-    color: #4183d7;
-}
-
-/* Responsive adjustments for the new cards */
-@media (max-width: 768px) {
-    .quote-container {
-        padding: 15px;
-    }
-    
-    .quote-text {
-        font-size: 1em;
-        padding: 15px;
-    }
-    
-    .archive-btn {
-        padding: 10px 15px;
-    }
-}
-</style>
-
-<!-- Add this JavaScript function for the archive buttons -->
-<script>
-function downloadReport(month) {
-    // Add your download logic here
-    alert(`Downloading financial report for ${month}`);
-}
-</script>
         
     </div>
 

@@ -8,6 +8,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     
     <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="M. Kaspul Anwar - ML Engineer">
@@ -118,9 +119,10 @@
 
         .card-header {
             display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-            gap: 15px;
+        align-items: center;
+        position: relative; /* Add relative positioning */
+        margin-bottom: 20px;
+        gap: 15px;
         }
 
         .card-header i {
@@ -558,7 +560,7 @@ blockquote.quote footer {
                     <div class="total-assets" id="totalEquity">Rp. 0</div>
                 </div>
                 
-                <div class="last-update">Last Update: <span id="lastUpdateDate"></span></div>
+                <div class="last-update">Last Update: <br> 27 Maret 2025, Pukul 17.00 Wita</div>
                 
                 <div class="summary-card">
                     <div class="summary-title">Ringkasan Portfolio</div>
@@ -602,7 +604,7 @@ blockquote.quote footer {
             <!-- Donut Chart Card -->
             <div class="card top-card">
                 <div class="card-header">
-                    <i class="fas fa-chart-donut"></i>
+                    <i class="material-icons">donut_large</i>
                     <span class="title">Visualisasi Distribusi Aset</span>
                 </div>
                 <div class="chart-container">
@@ -661,8 +663,8 @@ blockquote.quote footer {
     <!-- Quote and Archive Card -->
     <div class="card top-card">
         <div class="card-header">
-            <i class="fa-solid fa-quote-left"></i>
-            <span class="title">Quote & Archived</span>
+            <i class="fa-solid fa-folder-open"></i>
+            <span class="title">Archived</span>
         </div>
         <div class="quote-content">
             <blockquote class="quote">
@@ -738,7 +740,7 @@ const assets = [
     balance: "700 lembar",
     invested: 557334.75,
     avgPrice: 796.19,
-    currentPrice: 810,
+    currentPrice: 805,
     currency: "IDR",
     type: "liquid",
     description: "PT. Pertamina Geothermal Energy. Tbk <br> Saham perusahaan Energi Panas Bumi"
@@ -749,7 +751,7 @@ const assets = [
     balance: "200 lembar",
     invested: 344516,
     avgPrice: 1722.58,
-    currentPrice: 1830,
+    currentPrice: 1845,
     currency: "IDR",
     type: "liquid",
     description: "PT. Alamtri Resources Indonesia. Tbk <br >Saham Perusahan Energi Terbarukan & Batu Bara"
@@ -760,7 +762,7 @@ const assets = [
     balance: "100 lembar",
     invested: 444666,
     avgPrice: 4446.66,
-    currentPrice: 5250,
+    currentPrice: 5200,
     currency: "IDR",
     type: "liquid",
     description: "PT. Bank Mandiri (persero). TBK <br> Saham Bank BUMN Terbesar di Indonesia"
@@ -1032,19 +1034,7 @@ function createWalletQR() {
     });
 }
 
-// Set last update date to current date
-function updateLastUpdate() {
-    const now = new Date();
-    const formattedDate = now.toLocaleDateString('id-ID', {
-        day: 'numeric',
-        month: 'long',
-        year: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit'
-    });
 
-    document.getElementById('lastUpdateDate').textContent = formattedDate;
-}
 
 // Initialize the dashboard
 function initializeDashboard() {

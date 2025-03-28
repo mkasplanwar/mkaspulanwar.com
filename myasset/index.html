@@ -718,19 +718,8 @@ blockquote.quote footer {
         // Asset data
 const assets = [
 {
-    name: "RDN: Rupiah",
-    icon: "/myasset/rupiah.png",
-    balance: "Rp. 123.000",
-    invested: 123000,
-    avgPrice: 1,
-    currentPrice: 1,
-    currency: "IDR",
-    type: "liquid",
-    description: "Saldo rekening RDN Di Bank BCA"
-},
-{
     name: "Property: Land",
-    icon: "/myasset/tanah.png",
+    icon: "/myasset/bumi.png",
     balance: "1.445 m²",
     invested: 20000000,
     avgPrice: 13840.8305, // Harga per m²
@@ -738,17 +727,6 @@ const assets = [
     currency: "IDR",
     type: "non-liquid",
     description: "Kepemilikan Property Tanah"
-},
-{
-    name: "SoV: Bitcoin",
-    icon: "/myasset/bitcoin.png",
-    balance: "24.997 sats",
-    invested: 374955,
-    avgPrice: 1500000000, // Harga dalam Rupiah, dikonversi dari USD
-    currentPrice: 1459008945.14,  // Harga dalam Rupiah, dikonversi dari USD
-    currency: "IDR",
-    type: "liquid",
-    description: "Store of Value, Digital Asset, Freedom Money"
 },
 {
     name: "IDX: PGEO",
@@ -762,6 +740,28 @@ const assets = [
     description: "PT. Pertamina Geothermal Energy. Tbk <br> Saham perusahaan Energi Panas Bumi"
 },
 {
+    name: "IDX: BMRI",
+    icon: "https://assets.stockbit.com/logos/companies/BMRI.png",
+    balance: "100 lembar",
+    invested: 444666,
+    avgPrice: 4446.66,
+    currentPrice: 5200,
+    currency: "IDR",
+    type: "liquid",
+    description: "PT. Bank Mandiri (persero). TBK <br> Saham Bank BUMN Terbesar di Indonesia"
+},
+{
+    name: "SOV: Bitcoin",
+    icon: "/myasset/bitcoin.png",
+    balance: "24.102 sats",
+    invested: 361530,
+    avgPrice: 1500000000, // Harga dalam Rupiah, dikonversi dari USD
+    currentPrice: 1391094786.38,  // Harga dalam Rupiah, dikonversi dari USD
+    currency: "IDR",
+    type: "liquid",
+    description: "Store of Value, Digital Asset, Freedom Money"
+},
+{
     name: "IDX: ADRO",
     icon: "https://assets.stockbit.com/logos/companies/ADRO.png",
     balance: "200 lembar",
@@ -773,15 +773,15 @@ const assets = [
     description: "PT. Alamtri Resources Indonesia. Tbk <br >Saham Perusahan Energi Terbarukan & Batu Bara"
 },
 {
-    name: "IDX: BMRI",
-    icon: "https://assets.stockbit.com/logos/companies/BMRI.png",
-    balance: "100 lembar",
-    invested: 444666,
-    avgPrice: 4446.66,
-    currentPrice: 5200,
+    name: "CLA: USDT",
+    icon: "/myasset/usdt.png",
+    balance: "$ 11",
+    invested: 182160,
+    avgPrice: 1,
+    currentPrice: 1,
     currency: "IDR",
     type: "liquid",
-    description: "PT. Bank Mandiri (persero). TBK <br> Saham Bank BUMN Terbesar di Indonesia"
+    description: "Collateralized Loan Asset (CLA) <br> (Bitcoin As Collateral)"
 },
 {
     name: "Pisang Jago",
@@ -988,14 +988,14 @@ function createDonutChart(calculatedAssets) {
     const labels = calculatedAssets.map(asset => asset.name);
 
     const colors = [
-        'rgba(65, 131, 215, 0.8)',    // Vibrant Blue
-        'rgba(46, 204, 113, 0.8)',    // Emerald Green
-        'rgba(241, 196, 15, 0.8)',    // Sunflower Yellow
-        'rgba(231, 76, 60, 0.8)',     // Passionate Red
-        'rgba(155, 89, 182, 0.8)',    // Rich Purple
-        'rgba(52, 152, 219, 0.8)',    // Bright Blue
-        'rgba(230, 126, 34, 0.8)'     // Warm Orange
-    ];
+    'rgba(39, 174, 96, 0.8)',   // Soft Green (Keuangan & Stabilitas)
+    'rgba(211, 84, 0, 0.8)',    // Burnt Orange (Kontras & Energi)
+    'rgba(41, 128, 185, 0.8)',  // Muted Blue (Modern & Minimalis)
+    'rgba(243, 156, 18, 0.8)',  // Muted Gold (Keuangan & Kepercayaan)
+    'rgba(44, 62, 80, 0.8)',    // Deep Navy (Elegan & Profesional)
+    'rgba(142, 68, 173, 0.8)',  // Royal Purple (Eksklusif & Refined)
+    'rgba(149, 165, 166, 0.8)'  // Warm Gray (Netral & Modern)
+];
 
     // Create the chart
     const donutChart = new Chart(ctx, {

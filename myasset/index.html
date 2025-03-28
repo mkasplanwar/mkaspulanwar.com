@@ -139,6 +139,7 @@
 
         .total-assets-container {
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             margin: 30px 0;
@@ -149,6 +150,13 @@
             font-weight: bold;
             color: #000000;
             text-align: center;
+            line-height: 1.2;
+        }
+        .usd-equivalent {
+            font-size: 18px;
+            color: #666666;
+            text-align: center;
+            margin-top: 5px;
         }
 
         .table-container {
@@ -360,6 +368,9 @@
             .total-assets {
                 font-size: 38px;
             }
+            .usd-equivalent {
+                font-size: 16px;
+            }
             
             .container {
                 gap: 15px;
@@ -387,7 +398,10 @@
             }
 
             .total-assets {
-                font-size: 32px;
+                font-size: 36px;
+            }
+            .usd-equivalent {
+                font-size: 14px;
             }
 
             .card-header .title {
@@ -537,6 +551,7 @@ blockquote.quote footer {
         padding: 8px 12px;
     }
 }
+
     </style>
 </head>
 <body>
@@ -558,6 +573,7 @@ blockquote.quote footer {
                 
                 <div class="total-assets-container">
                     <div class="total-assets" id="totalEquity">Rp. 0</div>
+                    <div class="usd-equivalent" id="usdEquivalent">$ 0</div>
                 </div>
                 
                 <div class="last-update">Last Update: <br> 27 Maret 2025, Pukul 17.00 Wita</div>
@@ -797,7 +813,7 @@ function formatTotalEquity(amount) {
 return 'Rp. ' + amount.toLocaleString('id-ID', {
 minimumFractionDigits: 0,
 maximumFractionDigits: 0
-});
+}) ;
 }
 
 // Calculate market value and return for each asset
@@ -904,7 +920,12 @@ tableBody.appendChild(row);
 
 return calculatedAssets;
 }
-
+// Add a function to convert IDR to USD
+function convertIDRtoUSD(idrAmount) {
+    // Using a fixed exchange rate of 1 USD = 15,500 IDR (adjust as needed)
+    const exchangeRate = 16500;
+    return idrAmount / exchangeRate;
+}
 // Calculate and display portfolio summary
 function updatePortfolioSummary(calculatedAssets) {
     // Separate liquid and non-liquid assets
@@ -912,26 +933,34 @@ function updatePortfolioSummary(calculatedAssets) {
     const nonLiquidAssets = calculatedAssets.filter(asset => asset.type === "non-liquid");
 
     // Calculate totals
-    const totalLiquidInvested = liquidAssets.reduce((sum, asset) => sum + asset.invested, 0);
-    const totalLiquidMarketValue = liquidAssets.reduce((sum, asset) => sum + asset.marketValue, 0);
+            const totalLiquidInvested = calculatedAssets.filter(asset => asset.type === "liquid").reduce((sum, asset) => sum + asset.invested, 0);
+            const totalLiquidMarketValue = calculatedAssets.filter(asset => asset.type === "liquid").reduce((sum, asset) => sum + asset.marketValue, 0);
 
-    const totalNonLiquidInvested = nonLiquidAssets.reduce((sum, asset) => sum + asset.invested, 0);
-    const totalNonLiquidMarketValue = nonLiquidAssets.reduce((sum, asset) => sum + asset.marketValue, 0);
+            const totalNonLiquidInvested = calculatedAssets.filter(asset => asset.type === "non-liquid").reduce((sum, asset) => sum + asset.invested, 0);
+            const totalNonLiquidMarketValue = calculatedAssets.filter(asset => asset.type === "non-liquid").reduce((sum, asset) => sum + asset.marketValue, 0);
 
-    const totalInvested = totalLiquidInvested + totalNonLiquidInvested;
-    const totalMarketValue = totalLiquidMarketValue + totalNonLiquidMarketValue;
+            const totalInvested = totalLiquidInvested + totalNonLiquidInvested;
+            const totalMarketValue = totalLiquidMarketValue + totalNonLiquidMarketValue;
 
-    const totalPnL = totalMarketValue - totalInvested;
-    const totalPercentage = (totalPnL / totalInvested) * 100;
+            const totalPnL = totalMarketValue - totalInvested;
+            const totalPercentage = (totalPnL / totalInvested) * 100;
 
     // Calculate DER (Debt to Equity Ratio)
     const der = debtAmount / totalMarketValue || 0;
+
+     // Convert total market value to USD
+     const usdEquivalent = convertIDRtoUSD(totalMarketValue);
+
 
     // Calculate non-liquid assets percentage of total
     const nonLiquidPercentage = (totalNonLiquidMarketValue / totalMarketValue) * 100;
 
     // Update summary values
     document.getElementById('totalEquity').textContent = formatTotalEquity(totalMarketValue);
+    document.getElementById('usdEquivalent').textContent = `≈ $ ${usdEquivalent.toLocaleString('en-US', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    })}`;
     document.getElementById('totalInvested').textContent = formatCurrency(totalInvested);
     document.getElementById('totalPnL').textContent = `${totalPnL >= 0 ? '+ ' : '- '}${formatCurrency(Math.abs(totalPnL))}`;
     document.getElementById('totalDebt').textContent = formatCurrency(debtAmount);

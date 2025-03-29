@@ -759,7 +759,7 @@ const assets = [
     currentPrice: 1391094786.38,  // Harga dalam Rupiah, dikonversi dari USD
     currency: "IDR",
     type: "liquid",
-    description: "Store of Value, Digital Asset, Freedom Money"
+    description: "Store of Value (Digital Asset) <br> Collateral Asset, Yield 0,27% per Tahun"
 },
 {
     name: "IDX: ADRO",
@@ -982,20 +982,24 @@ function updatePortfolioSummary(calculatedAssets) {
 function createDonutChart(calculatedAssets) {
     const ctx = document.getElementById('donutChart').getContext('2d');
 
-    // Calculate percentages for the chart
-    const totalValue = calculatedAssets.reduce((sum, asset) => sum + asset.marketValue, 0);
-    const data = calculatedAssets.map(asset => asset.marketValue);
-    const labels = calculatedAssets.map(asset => asset.name);
+    // Filter out Property Land for the chart
+    const filteredAssets = calculatedAssets.filter(asset => asset.name !== "Property: Land");
+
+    // Calculate percentages for the chart (based on filtered assets only)
+    const totalFilteredValue = filteredAssets.reduce((sum, asset) => sum + asset.marketValue, 0);
+    const data = filteredAssets.map(asset => asset.marketValue);
+    const labels = filteredAssets.map(asset => asset.name);
 
     const colors = [
-    'rgba(39, 174, 96, 0.8)',   // Soft Green (Keuangan & Stabilitas)
-    'rgba(211, 84, 0, 0.8)',    // Burnt Orange (Kontras & Energi)
-    'rgba(41, 128, 185, 0.8)',  // Muted Blue (Modern & Minimalis)
-    'rgba(243, 156, 18, 0.8)',  // Muted Gold (Keuangan & Kepercayaan)
-    'rgba(44, 62, 80, 0.8)',    // Deep Navy (Elegan & Profesional)
-    'rgba(142, 68, 173, 0.8)',  // Royal Purple (Eksklusif & Refined)
-    'rgba(149, 165, 166, 0.8)'  // Warm Gray (Netral & Modern)
-];
+        
+        'rgba(211, 84, 0, 0.8)',    // Burnt Orange (Kontras & Energi)
+        'rgba(41, 128, 185, 0.8)',  // Muted Blue (Modern & Minimalis)
+        'rgba(243, 156, 18, 0.8)',  // Muted Gold (Keuangan & Kepercayaan)
+        'rgba(44, 62, 80, 0.8)',    // Deep Navy (Elegan & Profesional)
+        'rgba(39, 174, 96, 0.8)',   // Soft Green (Keuangan & Stabilitas)
+        'rgba(142, 68, 173, 0.8)',  // Royal Purple (Eksklusif & Refined)
+        'rgba(149, 165, 166, 0.8)'  // Warm Gray (Netral & Modern)
+    ];
 
     // Create the chart
     const donutChart = new Chart(ctx, {
@@ -1021,7 +1025,7 @@ function createDonutChart(calculatedAssets) {
                     callbacks: {
                         label: function(context) {
                             const value = context.raw;
-                            const percentage = ((value / totalValue) * 100).toFixed(1);
+                            const percentage = ((value / totalFilteredValue) * 100).toFixed(1);
                             return `${context.label}: ${formatCurrency(value)} (${percentage}%)`;
                         }
                     }
@@ -1030,12 +1034,18 @@ function createDonutChart(calculatedAssets) {
         }
     });
 
-    // Create custom legend
+    // Create custom legend - also filtered
     const legendContainer = document.getElementById('donutLegend');
     legendContainer.innerHTML = '';
 
-    calculatedAssets.forEach((asset, index) => {
-        const percentage = ((asset.marketValue / totalValue) * 100).toFixed(1);
+    // Add a note that Property Land is excluded
+    const noteElement = document.createElement('div');
+    noteElement.className = 'chart-note';
+    //noteElement.innerHTML = '<em>* Property Land excluded for better visualization</em>';
+    legendContainer.appendChild(noteElement);
+
+    filteredAssets.forEach((asset, index) => {
+        const percentage = ((asset.marketValue / totalFilteredValue) * 100).toFixed(1);
         const legendItem = document.createElement('div');
         legendItem.className = 'legend-item';
         

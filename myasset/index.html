@@ -1258,7 +1258,7 @@ function updatePortfolioSummary(calculatedAssets) {
             const totalPercentage = (totalPnL / totalInvested) * 100;
 
     // Calculate DER (Debt to Equity Ratio)
-    const der = debtAmount / totalMarketValue || 0;
+    const der = debtAmount / (totalMarketValue - totalNonLiquidInvested) || 0;
 
      // Convert total market value to USD
      const usdEquivalent = convertIDRtoUSD(totalMarketValue);

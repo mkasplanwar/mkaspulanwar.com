@@ -936,16 +936,8 @@ blockquote.quote footer {
                     <div class="loan-detail-value" id="interestRate">6.00%</div>
                 </div>
                 <div class="loan-detail-row">
-                    <div class="loan-detail-label">Annual Interest Payment</div>
-                    <div class="loan-detail-value" id="annualInterest">Rp. 0</div>
-                </div>
-                <div class="loan-detail-row">
                     <div class="loan-detail-label">BTC Yield Rate</div>
                     <div class="loan-detail-value" id="btcYieldRate">0.27%</div>
-                </div>
-                <div class="loan-detail-row">
-                    <div class="loan-detail-label">Annual BTC Yield</div>
-                    <div class="loan-detail-value" id="annualBtcYield">0 sats</div>
                 </div>
                 <div class="loan-detail-row">
                     <div class="loan-detail-label">Liquidation Price</div>
@@ -1404,8 +1396,7 @@ function initializeBitcoinCollateralStrategy() {
     const btcCollateralBtc = bitcoinCollateralSats / satsToBtc;
     const btcValueIdr = (btcCollateralBtc * btcPrice);
     const usdtValueIdr = usdtBorrowed * usdtPrice;
-    const annualInterestIdr = usdtValueIdr * (interestRate / 100);
-    const annualBtcYieldSats = bitcoinCollateralSats * (btcYieldRate / 100);
+   
     
     // Update DOM elements
     document.getElementById('btcCollateral').textContent = `${bitcoinCollateralSats.toLocaleString()} sats`;
@@ -1415,10 +1406,10 @@ function initializeBitcoinCollateralStrategy() {
     document.getElementById('usdtValueIDR').textContent = `Rp. ${usdtValueIdr.toLocaleString('id-ID', {maximumFractionDigits: 0})}`;
     
     document.getElementById('interestRate').textContent = `${interestRate.toFixed(2)}%`;
-    document.getElementById('annualInterest').textContent = `Rp. ${annualInterestIdr.toLocaleString('id-ID', {maximumFractionDigits: 0})}`;
+    
     
     document.getElementById('btcYieldRate').textContent = `${btcYieldRate.toFixed(2)}%`;
-    document.getElementById('annualBtcYield').textContent = `${annualBtcYieldSats.toLocaleString()} sats`;
+    
     
     document.getElementById('liquidationPrice').textContent = `$${liquidationPrice.toLocaleString('en-US', {maximumFractionDigits: 2})}`;
     

@@ -551,7 +551,228 @@ blockquote.quote footer {
         padding: 8px 12px;
     }
 }
+/* Bitcoin Collateral Strategy Styles */
+.collateral-strategy-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-top: 20px;
+}
 
+.collateral-info-container {
+    flex: 1;
+    min-width: 300px;
+}
+
+.loan-summary {
+    margin-bottom: 25px;
+}
+
+.loan-metrics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.loan-metric-item {
+    flex: 1;
+    min-width: 200px;
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #f8f9fa;
+    border: 1px solid #000000;
+}
+
+.loan-metric-icon {
+    background-color: white;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.loan-metric-icon img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+}
+
+.loan-metric-details {
+    flex: 1;
+}
+
+.loan-metric-label {
+    font-size: 14px;
+    color: #666666;
+    margin-bottom: 4px;
+}
+
+.loan-metric-value {
+    font-size: 18px;
+    font-weight: 600;
+    color: #000000;
+}
+
+.loan-metric-secondary {
+    font-size: 14px;
+    color: #666666;
+    margin-top: 2px;
+}
+
+.loan-details {
+    background-color: #f8f9fa;
+    border: 1px solid #000000;
+    border-radius: 8px;
+    padding: 15px;
+}
+
+.loan-detail-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.loan-detail-row:last-child {
+    border-bottom: none;
+}
+
+.loan-detail-label {
+    font-size: 14px;
+    color: #666666;
+}
+
+.loan-detail-value {
+    font-size: 14px;
+    font-weight: 600;
+    color: #000000;
+}
+
+/* LTV Chart Styles */
+.ltv-chart-container {
+    flex: 1;
+    min-width: 300px;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border: 1px solid #000000;
+    border-radius: 8px;
+}
+
+.ltv-chart-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.ltv-current, .ltv-max {
+    display: flex;
+    flex-direction: column;
+}
+
+.ltv-label {
+    font-size: 14px;
+    color: #666666;
+    margin-bottom: 5px;
+}
+
+.ltv-value {
+    font-size: 18px;
+    font-weight: 600;
+    color: #000000;
+}
+
+.ltv-bar-container {
+    margin: 25px 0;
+}
+
+.ltv-bar-wrapper {
+    position: relative;
+    height: 24px;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.ltv-bar-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #e0e0e0;
+    border-radius: 12px;
+}
+
+.ltv-bar-progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0%; /* Will be set by JS */
+    background-color: #28a745;
+    border-radius: 12px;
+    transition: width 0.5s ease-in-out;
+}
+
+.ltv-danger-zone {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 9%; /* 100% - liquidation LTV */
+    background-color: rgba(220, 53, 69, 0.3);
+    border-radius: 0 12px 12px 0;
+}
+
+.ltv-markers {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    height: 20px;
+}
+
+.ltv-marker {
+    position: absolute;
+    font-size: 12px;
+    color: #666666;
+    transform: translateX(-50%);
+}
+
+.ltv-status {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.status-indicator-large {
+    display: inline-block;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 600;
+    background-color: #28a745;
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .collateral-strategy-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .loan-metrics {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .ltv-chart-container {
+        padding: 15px;
+    }
+}
     </style>
 </head>
 <body>
@@ -673,7 +894,90 @@ blockquote.quote footer {
                 </table>
             </div>
         </div>
+        <!-- Bitcoin Collateral Strategy Card (Full Width) -->
+<div class="card full-width-card">
+    <div class="card-header">
+        <i class="fa-solid fa-coins"></i>
+        <span class="title">Bitcoin Collateral Strategy</span>
+    </div>
+    <div class="collateral-strategy-container">
+        <!-- Two-column layout for desktop -->
+        <div class="collateral-info-container">
+            <!-- Loan Summary Section -->
+            <div class="loan-summary">
+                <div class="loan-metrics">
+                    <div class="loan-metric-item">
+                        <div class="loan-metric-icon">
+                            <img src="/myasset/bitcoin.png" alt="Bitcoin">
+                        </div>
+                        <div class="loan-metric-details">
+                            <div class="loan-metric-label">Bitcoin Collateral</div>
+                            <div class="loan-metric-value" id="btcCollateral">0 sats</div>
+                            <div class="loan-metric-secondary" id="btcValueIDR">Rp. 0</div>
+                        </div>
+                    </div>
+                    <div class="loan-metric-item">
+                        <div class="loan-metric-icon">
+                            <img src="/myasset/usdt.png" alt="USDT">
+                        </div>
+                        <div class="loan-metric-details">
+                            <div class="loan-metric-label">USDT Borrowed</div>
+                            <div class="loan-metric-value" id="usdtBorrowed">0 USDT</div>
+                            <div class="loan-metric-secondary" id="usdtValueIDR">Rp. 0</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Interest and LTV Details -->
+            <div class="loan-details">
+                <div class="loan-detail-row">
+                    <div class="loan-detail-label">Annual Interest Rate</div>
+                    <div class="loan-detail-value" id="interestRate">6.00%</div>
+                </div>
+                <div class="loan-detail-row">
+                    <div class="loan-detail-label">BTC Yield Rate</div>
+                    <div class="loan-detail-value" id="btcYieldRate">0.27%</div>
+                </div>
+                <div class="loan-detail-row">
+                    <div class="loan-detail-label">Liquidation Price</div>
+                    <div class="loan-detail-value" id="liquidationPrice">$0</div>
+                </div>
+            </div>
+        </div>
         
+        <!-- LTV Bar Chart Section -->
+        <div class="ltv-chart-container">
+            <div class="ltv-chart-header">
+                <div class="ltv-current">
+                    <span class="ltv-label">Current LTV</span>
+                    <span class="ltv-value" id="currentLTV">0%</span>
+                </div>
+                <div class="ltv-max">
+                    <span class="ltv-label">Liquidation LTV</span>
+                    <span class="ltv-value" id="liquidationLTV">0%</span>
+                </div>
+            </div>
+            <div class="ltv-bar-container">
+                <div class="ltv-bar-wrapper">
+                    <div class="ltv-bar-background"></div>
+                    <div class="ltv-bar-progress" id="ltvProgressBar"></div>
+                    <div class="ltv-danger-zone"></div>
+                </div>
+                <div class="ltv-markers">
+                    <div class="ltv-marker" style="left: 0%">0%</div>
+                    <div class="ltv-marker" style="left: 25%">25%</div>
+                    <div class="ltv-marker" style="left: 50%">50%</div>
+                    <div class="ltv-marker" style="left: 75%">75%</div>
+                    <div class="ltv-marker" style="left: 100%">100%</div>
+                </div>
+            </div>
+            <div class="ltv-status">
+                <div class="status-indicator-large" id="ltvStatusIndicator">Status: Healthy</div>
+            </div>
+        </div>
+    </div>
+</div>
         <!-- Wallet and Archive Section (Full Width Container) -->
 <div class="top-row">
     <!-- Quote and Archive Card -->
@@ -719,7 +1023,7 @@ blockquote.quote footer {
 const assets = [
 {
     name: "Property: Land",
-    icon: "/myasset/coin.png",
+    icon: "/myasset/bumi.png",
     balance: "1.445 m²",
     invested: 20000000,
     avgPrice: 13840.8305, // Harga per m²
@@ -773,27 +1077,16 @@ const assets = [
     description: "PT. Alamtri Resources Indonesia. Tbk <br >Saham Perusahan Energi Terbarukan & Batu Bara"
 },
 {
-    name: "IDX: MERK",
-    icon: "https://assets.stockbit.com/logos/companies/MERK.png",
-    balance: "0 lembar",
+    name: "CLA: USDT",
+    icon: "/myasset/usdt.png",
+    balance: "$ 11",
     invested: 0,
     avgPrice: 1,
     currentPrice: 1,
     currency: "IDR",
     type: "liquid",
-    description: "-"
-},
-/*{
-    name: "CLA: USDT",
-    icon: "/myasset/usdt.png",
-    balance: "$ 11",
-    invested: 182160,
-    avgPrice: 1,
-    currentPrice: 1,
-    currency: "IDR",
-    type: "liquid",
     description: "Collateralized Loan Asset (CLA) <br> (Bitcoin As Collateral), Yield 6% per tahun"
-},*/
+},
 {
     name: "Pisang Jago",
     icon: "/myasset/pisang.png",
@@ -809,7 +1102,7 @@ const assets = [
 ];
 
 // Debt data (constant)
-const debtAmount = 176000 ;
+const debtAmount = 183000 ;
 
 // Format currency
 function formatCurrency(amount) {
@@ -1006,11 +1299,10 @@ function createDonutChart(calculatedAssets) {
         'rgba(211, 84, 0, 0.8)',    // Burnt Orange (Kontras & Energi)
         'rgba(41, 128, 185, 0.8)',  // Muted Blue (Modern & Minimalis)
         'rgba(243, 156, 18, 0.8)',  // Muted Gold (Keuangan & Kepercayaan)
-        'rgba(142, 68, 173, 0.8)',  // Royal Purple (Eksklusif & Refined)
         'rgba(44, 62, 80, 0.8)',    // Deep Navy (Elegan & Profesional)
         'rgba(39, 174, 96, 0.8)',   // Soft Green (Keuangan & Stabilitas)
-        
-        
+        'rgba(142, 68, 173, 0.8)',  // Royal Purple (Eksklusif & Refined)
+        'rgba(149, 165, 166, 0.8)'  // Warm Gray (Netral & Modern)
     ];
 
     // Create the chart
@@ -1086,7 +1378,87 @@ function createWalletQR() {
 }
 
 
+// Bitcoin Collateral Strategy Script
+function initializeBitcoinCollateralStrategy() {
+    // Configuration and constants
+    const bitcoinCollateralSats = 27630; // 27,630 satoshis collateral
+    const usdtBorrowed = 10.5559018; // USDT borrowed
+    const currentLTV = 45.97; // Current LTV percentage
+    const liquidationLTV = 91; // Liquidation LTV percentage
+    const interestRate = 6.0; // Annual interest rate on USDT loan (%)
+    const btcYieldRate = 0.27; // Annual yield rate on BTC collateral (%)
+    const usdtPrice = 16500; // USDT to IDR exchange rate
+    const btcPrice = 1391094786.38; // BTC to IDR price (for 1 BTC)
+    const satsToBtc = 100000000; // Conversion from sats to BTC
+    const liquidationPrice = 41982.96; // Liquidation price in USD
+    
+    // Calculations
+    const btcCollateralBtc = bitcoinCollateralSats / satsToBtc;
+    const btcValueIdr = (btcCollateralBtc * btcPrice);
+    const usdtValueIdr = usdtBorrowed * usdtPrice;
+   
+    
+    // Update DOM elements
+    document.getElementById('btcCollateral').textContent = `${bitcoinCollateralSats.toLocaleString()} sats`;
+    document.getElementById('btcValueIDR').textContent = `Rp. ${btcValueIdr.toLocaleString('id-ID', {maximumFractionDigits: 0})}`;
+    
+    document.getElementById('usdtBorrowed').textContent = `${usdtBorrowed.toFixed(2)} USDT`;
+    document.getElementById('usdtValueIDR').textContent = `Rp. ${usdtValueIdr.toLocaleString('id-ID', {maximumFractionDigits: 0})}`;
+    
+    document.getElementById('interestRate').textContent = `${interestRate.toFixed(2)}%`;
+    
+    
+    document.getElementById('btcYieldRate').textContent = `${btcYieldRate.toFixed(2)}%`;
+    
+    
+    document.getElementById('liquidationPrice').textContent = `$${liquidationPrice.toLocaleString('en-US', {maximumFractionDigits: 2})}`;
+    
+    // Update LTV indicators
+    document.getElementById('currentLTV').textContent = `${currentLTV.toFixed(2)}%`;
+    document.getElementById('liquidationLTV').textContent = `${liquidationLTV.toFixed(2)}%`;
+    
+    // Set the progress bar width to match current LTV
+    const progressBar = document.getElementById('ltvProgressBar');
+    progressBar.style.width = `${currentLTV}%`;
+    
+    // Set the danger zone width
+    const dangerZone = document.querySelector('.ltv-danger-zone');
+    dangerZone.style.width = `${100 - liquidationLTV}%`;
+    
+    // Update LTV status color based on proximity to liquidation
+    const ltvStatusIndicator = document.getElementById('ltvStatusIndicator');
+    const ltvRatio = currentLTV / liquidationLTV;
+    
+    if (ltvRatio < 0.78) {
+        progressBar.style.backgroundColor = '#28a745'; // Green - Safe
+        ltvStatusIndicator.style.backgroundColor = '#28a745';
+        ltvStatusIndicator.textContent = 'Status: Healthy';
+    } else if (ltvRatio < 0.85) {
+        progressBar.style.backgroundColor = '#ffc107'; // Yellow - Caution
+        ltvStatusIndicator.style.backgroundColor = '#ffc107';
+        ltvStatusIndicator.style.color = '#000000';
+        ltvStatusIndicator.textContent = 'Status: Caution';
+    } else {
+        progressBar.style.backgroundColor = '#dc3545'; // Red - Warning
+        ltvStatusIndicator.style.backgroundColor = '#dc3545';
+        ltvStatusIndicator.textContent = 'Status: Warning';
+    }
+}
 
+// Add event listener to initialize the Bitcoin Collateral Strategy
+document.addEventListener('DOMContentLoaded', function() {
+    // Make sure the main dashboard initializes first, then initialize our strategy
+    if (typeof initializeDashboard === 'function') {
+        const originalInitialize = initializeDashboard;
+        initializeDashboard = function() {
+            originalInitialize();
+            initializeBitcoinCollateralStrategy();
+        };
+    } else {
+        // If initializeDashboard doesn't exist yet, just add our own listener
+        initializeBitcoinCollateralStrategy();
+    }
+});
 // Initialize the dashboard
 function initializeDashboard() {
     // Calculate asset values
@@ -1100,6 +1472,8 @@ function initializeDashboard() {
 
     // Create wallet QR code
     createWalletQR();
+
+    initializeBitcoinCollateralStrategy();
 
     // Update last update timestamp
     updateLastUpdate();

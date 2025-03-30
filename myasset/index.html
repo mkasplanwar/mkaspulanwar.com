@@ -582,12 +582,8 @@ blockquote.quote footer {
                     <div class="summary-title">Ringkasan Portfolio</div>
                     <div class="summary-stats">
                         <div class="stat-item">
-                            <span class="stat-label">Invested</span>
+                            <span class="stat-label">Invested (Liquid Asset)</span>
                             <span class="stat-value" id="totalInvested">Rp. 0</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-label">Non-Liquid Asset</span>
-                            <span class="stat-value" id="totalnonliquid">Rp. 0</span>
                         </div>
                         <div class="stat-item">
                             <span class="stat-label">Percentage</span>
@@ -610,11 +606,11 @@ blockquote.quote footer {
                     <div class="summary-title">Collateral Strategy</div>
                     <div class="summary-stats">
                         <div class="stat-item">
-                            <span class="stat-label">Total Hutang</span>
+                            <span class="stat-label">USDT Borrowed</span>
                             <span class="stat-value negative" id="totalDebt">Rp. 0</span>
                         </div>
                         <div class="stat-item">
-                            <span class="stat-label">Debt to Equity Ratio</span>
+                            <span class="stat-label">Loan to Equity Ratio</span>
                             <span class="stat-value" id="derRatio">0 <span class="status-indicator">Sehat</span></span>
                         </div>
                     </div>
@@ -650,7 +646,7 @@ blockquote.quote footer {
                 </div>
             </div>
         </div>
-
+        
         <!-- Asset Distribution Card (Full Width) -->
         <div class="card full-width-card">
             <div class="card-header">
@@ -677,88 +673,7 @@ blockquote.quote footer {
                 </table>
             </div>
         </div>
-        <!-- Add this card to your top-row div, after your other cards -->
-<div class="card full-width-card">
-    <div class="card-header">
-        <i class="fa-solid fa-coins"></i>
-        <span class="title">Collateral Strategy</span>
-    </div>
-    
-    <div style="display: flex; flex-wrap: wrap; gap: 20px; margin-top: 15px;">
-        <!-- Left side: Strategy details -->
-        <div style="flex: 1; min-width: 300px;">
-            <div class="table-container">
-                <table class="distribution-table">
-                    <thead>
-                        <tr>
-                            <th>Asset</th>
-                            <th>Role</th>
-                            <th>Balance</th>
-                            <th>Yield</th>
-                            <th>Annual Return</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <span class="asset-icon">
-                                    <img src="/myasset/bitcoin.png" alt="Bitcoin">
-                                </span>
-                                <span class="asset-name">Bitcoin</span>
-                            </td>
-                            <td>Collateral</td>
-                            <td id="btcCollateralBalance">27.630 sats</td>
-                            <td id="btcCollateralYield" class="positive">+0.27%</td>
-                            <td id="btcCollateralReturn" class="positive">+0 IDR</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="asset-icon">
-                                    <img src="/myasset/usdt.png" alt="USDT">
-                                </span>
-                                <span class="asset-name">USDT</span>
-                            </td>
-                            <td>Loan</td>
-                            <td id="usdtLoanBalance">$11</td>
-                            <td id="usdtLoanYield" class="negative">-6.00%</td>
-                            <td id="usdtLoanInterest" class="negative">-0 IDR</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="summary-card" style="margin-top: 20px;">
-                <div class="summary-title">Strategy Overview</div>
-                <div class="summary-stats">
-                    <div class="stat-item">
-                        <span class="stat-label">Net Yield</span>
-                        <span class="stat-value" id="netYield">-5.73%</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-label">LTV Ratio</span>
-                        <span class="stat-value" id="ltvRatio">0%</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-label">Net Annual Return</span>
-                        <span class="stat-value" id="netAnnualReturn">Rp. 0</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-label">Strategy Status</span>
-                        <span class="stat-value" id="strategyStatus"><span class="status-indicator">Active</span></span>
-                    </div>
-                </div>
-            </div>
-        </div>
         
-        <!-- Right side: Chart visualization -->
-        <div style="flex: 1; min-width: 300px;">
-            <div style="height: 300px; width: 100%;">
-                <canvas id="strategyYieldChart"></canvas>
-            </div>
-        </div>
-    </div>
-    
-</div>
         <!-- Wallet and Archive Section (Full Width Container) -->
 <div class="top-row">
     <!-- Quote and Archive Card -->
@@ -883,7 +798,7 @@ const assets = [
 ];
 
 // Debt data (constant)
-const debtAmount = 182000 ;
+const debtAmount = 183000 ;
 
 // Format currency
 function formatCurrency(amount) {
@@ -1024,7 +939,7 @@ function updatePortfolioSummary(calculatedAssets) {
             const totalNonLiquidInvested = calculatedAssets.filter(asset => asset.type === "non-liquid").reduce((sum, asset) => sum + asset.invested, 0);
             const totalNonLiquidMarketValue = calculatedAssets.filter(asset => asset.type === "non-liquid").reduce((sum, asset) => sum + asset.marketValue, 0);
 
-            const totalInvested = totalLiquidInvested ;
+            const totalInvested = totalLiquidInvested;
             const totalMarketValue = totalLiquidMarketValue + totalNonLiquidMarketValue;
 
             const totalPnL = totalMarketValue - totalNonLiquidInvested - totalInvested;
@@ -1047,7 +962,6 @@ function updatePortfolioSummary(calculatedAssets) {
         maximumFractionDigits: 2
     })}`;
     document.getElementById('totalInvested').textContent = formatCurrency(totalInvested);
-    document.getElementById('totalnonliquid').textContent = formatCurrency(totalNonLiquidInvested);
     document.getElementById('totalPnL').textContent = `${totalPnL >= 0 ? '+ ' : '- '}${formatCurrency(Math.abs(totalPnL))}`;
     document.getElementById('totalDebt').textContent = formatCurrency(debtAmount);
     document.getElementById('derRatio').innerHTML = `${der.toFixed(2)} <span class="status-indicator">Sehat</span>`;
@@ -1159,124 +1073,7 @@ function createWalletQR() {
     });
 }
 
-// Add this to your script section, before the initializeDashboard function
 
-// Bitcoin Collateral Strategy data and functions
-function initializeCollateralStrategy() {
-    // Constants and data
-    const btcCollateralAmount = 27630; // in sats
-    const btcPriceInIDR = 1391094786.38; // IDR per BTC
-    const usdtLoanAmount = 10.556; // in USDT
-    const usdtPriceInIDR = 16500; // IDR per USD
-    
-    const btcCollateralValueIDR = (btcCollateralAmount / 100000000) * btcPriceInIDR; // Convert sats to BTC
-    const usdtLoanValueIDR = usdtLoanAmount * usdtPriceInIDR;
-    
-    const btcYieldRate = 0.0027; // 0.27% annual
-    const usdtInterestRate = 0.06; // 6% annual
-    
-    const btcAnnualYieldIDR = btcCollateralValueIDR * btcYieldRate;
-    const usdtAnnualInterestIDR = usdtLoanValueIDR * usdtInterestRate;
-    
-    const netAnnualReturn = btcAnnualYieldIDR - usdtAnnualInterestIDR;
-    const netYieldRate = (netAnnualReturn / btcCollateralValueIDR) * 100;
-    
-    const ltvRatio = (usdtLoanValueIDR / btcCollateralValueIDR) * 100;
-    
-    // Update the HTML elements
-    document.getElementById('btcCollateralBalance').textContent = `${btcCollateralAmount.toLocaleString()} sats`;
-    document.getElementById('btcCollateralReturn').textContent = `+${formatCurrency(btcAnnualYieldIDR).replace('Rp. ', '')}`;
-    
-    document.getElementById('usdtLoanBalance').textContent = `$${usdtLoanAmount.toLocaleString()}`;
-    document.getElementById('usdtLoanInterest').textContent = `-${formatCurrency(usdtAnnualInterestIDR).replace('Rp. ', '')}`;
-    
-    const netYieldElement = document.getElementById('netYield');
-    netYieldElement.textContent = `${netYieldRate >= 0 ? '+' : ''}${netYieldRate.toFixed(2)}%`;
-    netYieldElement.className = `stat-value ${netYieldRate >= 0 ? 'positive' : 'negative'}`;
-    
-    document.getElementById('ltvRatio').textContent = `${ltvRatio.toFixed(2)}%`;
-    
-    const netAnnualReturnElement = document.getElementById('netAnnualReturn') ;
-    netAnnualReturnElement.textContent = 'Rp. '+`${netAnnualReturn >= 0 ? '+' : ''}${formatCurrency(Math.abs(netAnnualReturn)).replace('Rp. ', '')}`;
-    netAnnualReturnElement.className = `stat-value ${netAnnualReturn >= 0 ? 'positive' : 'negative'}`;
-    
-    // Create bar chart
-    createStrategyYieldChart(btcCollateralValueIDR, usdtLoanValueIDR, netAnnualReturn);
-    // Create bar chart
-    //createStrategyYieldChart(btcAnnualYieldIDR, usdtAnnualInterestIDR, netAnnualReturn);
-}
-
-function createStrategyYieldChart(btcYield, usdtInterest, netReturn) {
-    const ctx = document.getElementById('strategyYieldChart').getContext('2d');
-    
-    const labels = ['Bitcon', 'usdt', 'Net Return'];
-    const data = [btcYield, usdtInterest, netReturn]; // USDT interest is negative
-    
-    const backgroundColors = [
-        'rgba(247, 147, 26, 0.7)', // Bitcoin orange
-        'rgba(38, 161, 123, 0.7)',  // Tether green
-        netReturn >= 0 ? 'rgba(39, 174, 96, 0.7)' : 'rgba(231, 76, 60, 0.7)' // Green or red based on net return
-    ];
-    
-    const borderColors = [
-        'rgba(247, 147, 26, 1)',
-        'rgba(38, 161, 123, 1)',
-        netReturn >= 0 ? 'rgba(39, 174, 96, 1)' : 'rgba(231, 76, 60, 1)'
-    ];
-    
-    new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: labels,
-            datasets: [{
-                label: 'Annual Return (IDR)',
-                data: data,
-                backgroundColor: backgroundColors,
-                borderColor: borderColors,
-                borderWidth: 1
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                title: {
-                    display: true,
-                    text: 'Annual Yield Comparison',
-                    font: {
-                        size: 16,
-                        weight: 'bold'
-                    },
-                    padding: {
-                        top: 10,
-                        bottom: 20
-                    }
-                },
-                legend: {
-                    display: false
-                },
-                tooltip: {
-                    callbacks: {
-                        label: function(context) {
-                            let value = context.raw;
-                            return `${value >= 0 ? '+' : ''}${formatCurrency(Math.abs(value))}`;
-                        }
-                    }
-                }
-            },
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    ticks: {
-                        callback: function(value) {
-                            return formatCurrency(Math.abs(value));
-                        }
-                    }
-                }
-            }
-        }
-    });
-}
 
 // Initialize the dashboard
 function initializeDashboard() {
@@ -1288,8 +1085,7 @@ function initializeDashboard() {
 
     // Create donut chart
     createDonutChart(calculatedAssets);
-    // Initialize Bitcoin Collateral Strategy
-    initializeCollateralStrategy();
+
     // Create wallet QR code
     createWalletQR();
 

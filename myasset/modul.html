@@ -1383,7 +1383,7 @@ function initializeBitcoinCollateralStrategy() {
     // Configuration and constants
     const bitcoinCollateralSats = 27630; // 27,630 satoshis collateral
     const usdtBorrowed = 10.5559018; // USDT borrowed
-    const currentLTV = 45.97; // Current LTV percentage
+    const currentLTV = 57; // Current LTV percentage
     const liquidationLTV = 91; // Liquidation LTV percentage
     const interestRate = 6.0; // Annual interest rate on USDT loan (%)
     const btcYieldRate = 0.27; // Annual yield rate on BTC collateral (%)
@@ -1429,11 +1429,11 @@ function initializeBitcoinCollateralStrategy() {
     const ltvStatusIndicator = document.getElementById('ltvStatusIndicator');
     const ltvRatio = currentLTV / liquidationLTV;
     
-    if (ltvRatio < 0.78) {
+    if (ltvRatio <= 0.5) {
         progressBar.style.backgroundColor = '#28a745'; // Green - Safe
         ltvStatusIndicator.style.backgroundColor = '#28a745';
         ltvStatusIndicator.textContent = 'Status: Healthy';
-    } else if (ltvRatio < 0.85) {
+    } else if (ltvRatio <= 0.7) {
         progressBar.style.backgroundColor = '#ffc107'; // Yellow - Caution
         ltvStatusIndicator.style.backgroundColor = '#ffc107';
         ltvStatusIndicator.style.color = '#000000';

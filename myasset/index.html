@@ -1019,227 +1019,196 @@ blockquote.quote footer {
     </div>
 
     <script>
-        // Asset data
-const assets = [
-{
-    name: "Property: Land",
-    icon: "/myasset/coin.png",
-    balance: "1.445 m²",
-    invested: 20000000,
-    avgPrice: 13840.8305, // Harga per m²
-    currentPrice: 13840.8305, // Harga current per m²
-    currency: "IDR",
-    type: "non-liquid",
-    description: "Kepemilikan Property Tanah"
-},
-{
-    name: "IDX: PGEO",
-    icon: "https://assets.stockbit.com/logos/companies/PGEO.png",
-    balance: "700 lembar",
-    invested: 557334.75,
-    avgPrice: 796.19,
-    currentPrice: 805,
-    currency: "IDR",
-    type: "liquid",
-    description: "PT. Pertamina Geothermal Energy. Tbk <br> Saham perusahaan Energi Panas Bumi"
-},
-{
-    name: "IDX: BMRI",
-    icon: "https://assets.stockbit.com/logos/companies/BMRI.png",
-    balance: "100 lembar",
-    invested: 444666,
-    avgPrice: 4446.66,
-    currentPrice: 5200,
-    currency: "IDR",
-    type: "liquid",
-    description: "PT. Bank Mandiri (persero). TBK <br> Saham Bank BUMN Terbesar di Indonesia"
-},
-{
-    name: "Bitcoin",
-    icon: "/myasset/bitcoin.png",
-    balance: "27.630 sats",
-    invested: 414450,
-    avgPrice: 1500000000, // Harga dalam Rupiah, dikonversi dari USD
-    currentPrice: 1373592083.36,  // Harga dalam Rupiah, dikonversi dari USD
-    currency: "IDR",
-    type: "liquid",
-    description: "Store of Value (Digital Asset) <br> Collateral Asset, Yield 0,27% per Tahun"
-},
-{
-    name: "IDX: ADRO",
-    icon: "https://assets.stockbit.com/logos/companies/ADRO.png",
-    balance: "200 lembar",
-    invested: 344516,
-    avgPrice: 1722.58,
-    currentPrice: 1845,
-    currency: "IDR",
-    type: "liquid",
-    description: "PT. Alamtri Resources Indonesia. Tbk <br >Saham Perusahan Energi Terbarukan & Batu Bara"
-},
-/*
-{
-    name: "IDX: MERK",
-    icon: "https://assets.stockbit.com/logos/companies/MERK.png",
-    balance: "0 lembar",
-    invested: 0,
-    avgPrice: 1,
-    currentPrice: 1,
-    currency: "IDR",
-    type: "liquid",
-    description: "-"
-},
+        // Constants for global use
+const EXCHANGE_RATES = {
+    USD_TO_IDR: 16500,
+    USDT_TO_IDR: 16560
+};
 
-    name: "CLA: USDT",
-    icon: "/myasset/usdt.png",
-    balance: "$ 11",
-    invested: 182160,
-    avgPrice: 1,
-    currentPrice: 1,
-    currency: "IDR",
-    type: "liquid",
-    description: "Collateralized Loan Asset (CLA) <br> (Bitcoin As Collateral), Yield 6% per tahun"
-},
-{
-    name: "Pisang Jago",
-    icon: "/myasset/banana.png",
-    balance: "50% ",
-    invested: 153000,
-    avgPrice: 1,
-    currentPrice: 1,
-    marketValue: 153000,
-    currency: "IDR",
-    type: "liquid",
-    description: "Kepemilikan bisnis Makanan Ringan"
-}*/
+const BTC_CONSTANTS = {
+    PRICE_IDR: 1373592083.36,  // BTC price in IDR
+    SATS_TO_BTC: 100000000     // Conversion from satoshis to BTC
+};
+
+// Asset data
+const assets = [
+    {
+        name: "Property: Land",
+        icon: "/myasset/coin.png",
+        balance: "1.445 m²",
+        invested: 20000000,
+        avgPrice: 13840.8305, // Harga per m²
+        currentPrice: 13840.8305, // Harga current per m²
+        currency: "IDR",
+        type: "non-liquid",
+        description: "Kepemilikan Property Tanah"
+    },
+    {
+        name: "IDX: PGEO",
+        icon: "https://assets.stockbit.com/logos/companies/PGEO.png",
+        balance: "700 lembar",
+        invested: 557334.75,
+        avgPrice: 796.19,
+        currentPrice: 805,
+        currency: "IDR",
+        type: "liquid",
+        description: "PT. Pertamina Geothermal Energy. Tbk <br> Saham perusahaan Energi Panas Bumi"
+    },
+    {
+        name: "IDX: BMRI",
+        icon: "https://assets.stockbit.com/logos/companies/BMRI.png",
+        balance: "100 lembar",
+        invested: 444666,
+        avgPrice: 4446.66,
+        currentPrice: 5200,
+        currency: "IDR",
+        type: "liquid",
+        description: "PT. Bank Mandiri (persero). TBK <br> Saham Bank BUMN Terbesar di Indonesia"
+    },
+    {
+        name: "Bitcoin",
+        icon: "/myasset/bitcoin.png",
+        balance: "27.630 sats",
+        invested: 414450,
+        avgPrice: 1500000000, // Harga dalam Rupiah, dikonversi dari USD
+        currentPrice: BTC_CONSTANTS.PRICE_IDR, // Using global constant now
+        currency: "IDR",
+        type: "liquid",
+        description: "Store of Value (Digital Asset) <br> Collateral Asset, Yield 0,27% per Tahun"
+    },
+    {
+        name: "IDX: ADRO",
+        icon: "https://assets.stockbit.com/logos/companies/ADRO.png",
+        balance: "200 lembar",
+        invested: 344516,
+        avgPrice: 1722.58,
+        currentPrice: 1845,
+        currency: "IDR",
+        type: "liquid",
+        description: "PT. Alamtri Resources Indonesia. Tbk <br >Saham Perusahan Energi Terbarukan & Batu Bara"
+    }
 ];
 
+// Bitcoin Collateral Strategy Configuration
+const BITCOIN_STRATEGY = {
+    COLLATERAL_SATS: 27630,         // 27,630 satoshis collateral
+    USDT_BORROWED: 10.5559018,      // USDT borrowed
+    LIQUIDATION_LTV: 91,            // Liquidation LTV percentage
+    INTEREST_RATE: 6.0,             // Annual interest rate on USDT loan (%)
+    BTC_YIELD_RATE: 0.27,           // Annual yield rate on BTC collateral (%)
+    LIQUIDATION_PRICE_USD: 41982.96 // Liquidation price in USD
+};
 
-// Format currency
+// Format currency for general use
 function formatCurrency(amount) {
-return 'Rp. ' + amount.toLocaleString('id-ID', {
-minimumFractionDigits: 0,
-maximumFractionDigits: 0
-});
+    return 'Rp. ' + amount.toLocaleString('id-ID', {
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0
+    });
 }
 
-// Format currency for total equity with ,00
+// Format currency for total equity
 function formatTotalEquity(amount) {
-return 'Rp. ' + amount.toLocaleString('id-ID', {
-minimumFractionDigits: 0,
-maximumFractionDigits: 0
-}) ;
+    return 'Rp. ' + amount.toLocaleString('id-ID', {
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0
+    });
+}
+
+// Convert IDR to USD
+function convertIDRtoUSD(idrAmount) {
+    return idrAmount / EXCHANGE_RATES.USD_TO_IDR;
 }
 
 // Calculate market value and return for each asset
 function calculateAssetValues() {
-return assets.map(asset => {
-// Jika asset adalah Pisang Jago, gunakan nilai marketValue yang sudah ditetapkan
-// Jika tidak, hitung dari invested dan current price
-const marketValue = asset.name === "Pisang Jago" ? 
-    asset.marketValue : 
-    (asset.invested * (asset.currentPrice / asset.avgPrice));
+    return assets.map(asset => {
+        // For Pisang Jago, use preset marketValue, otherwise calculate
+        const marketValue = asset.name === "Pisang Jago" ? 
+            asset.marketValue : 
+            (asset.invested * (asset.currentPrice / asset.avgPrice));
 
-const returnPercent = ((marketValue - asset.invested) / asset.invested) * 100;
+        const returnPercent = ((marketValue - asset.invested) / asset.invested) * 100;
 
-return {
-    ...asset,
-    marketValue: Math.round(marketValue),
-    returnPercent: returnPercent
-};
-});
+        return {
+            ...asset,
+            marketValue: Math.round(marketValue),
+            returnPercent: returnPercent
+        };
+    });
+}
+
+// Format price display based on asset type
+function formatPriceDisplay(asset, isAvgPrice = false) {
+    const price = isAvgPrice ? asset.avgPrice : asset.currentPrice;
+    
+    if (asset.name === "Bitcoin") {
+        // Format for Bitcoin (in millions of rupiah)
+        return `Rp. ${(price / 1000000).toLocaleString('id-ID', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        })} jt`;
+    } else if (asset.name === "Property: Land") {
+        // Format for Property (price per m²)
+        return `Rp. ${price.toLocaleString('id-ID', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        })}/m²`;
+    } else if (asset.name === "RDN: Rupiah") {
+        // Format for Rupiah
+        return `Rp. 1,00`;
+    } else if (asset.name === "Pisang Jago") {
+        // Format for Pisang Jago (business)
+        return isAvgPrice ? `N/A` : `Valuasi saat ini`;
+    } else {
+        // Format for other assets (in normal rupiah)
+        return `Rp. ${price.toLocaleString('id-ID', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        })}`;
+    }
 }
 
 // Populate asset table
 function populateAssetTable() {
-const tableBody = document.getElementById('assetTableBody');
-tableBody.innerHTML = '';
+    const tableBody = document.getElementById('assetTableBody');
+    tableBody.innerHTML = '';
 
-const calculatedAssets = calculateAssetValues();
+    const calculatedAssets = calculateAssetValues();
 
-calculatedAssets.forEach(asset => {
-const row = document.createElement('tr');
+    calculatedAssets.forEach(asset => {
+        const row = document.createElement('tr');
 
-// Format return class
-const returnClass = asset.returnPercent > 0 ? 'positive' : 
-                    asset.returnPercent < 0 ? 'negative' : '';
-                    
-// Format return sign
-const returnSign = asset.returnPercent > 0 ? '+ ' : 
-                  asset.returnPercent < 0 ? '- ' : '';
+        // Format return class
+        const returnClass = asset.returnPercent > 0 ? 'positive' : 
+                            asset.returnPercent < 0 ? 'negative' : '';
+                            
+        // Format return sign
+        const returnSign = asset.returnPercent > 0 ? '+ ' : 
+                          asset.returnPercent < 0 ? '- ' : '';
 
-// Tentukan format tampilan untuk harga berdasarkan apakah itu Bitcoin atau aset lain
-let currentPriceDisplay, avgPriceDisplay;
+        row.innerHTML = `
+            <td>
+                <span class="asset-icon">
+                    <img src="${asset.icon}" alt="${asset.name}">
+                </span>
+                <span class="asset-name">${asset.name}</span>
+            </td>
+            <td>${asset.balance}</td>
+            <td>${formatCurrency(asset.invested)}</td>
+            <td>${formatPriceDisplay(asset, true)}</td>
+            <td>${formatPriceDisplay(asset)}</td>
+            <td>${formatCurrency(asset.marketValue)}</td>
+            <td class="${returnClass}">${returnSign}${Math.abs(asset.returnPercent).toFixed(2)}%</td>
+            <td>${asset.description}</td>
+        `;
 
-if (asset.name === "Bitcoin") {
-    // Format untuk Bitcoin (dalam jutaan rupiah)
-    currentPriceDisplay = `Rp. ${(asset.currentPrice / 1000000).toLocaleString('id-ID', {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2
-    })} jt`;
-    
-    avgPriceDisplay = `Rp. ${(asset.avgPrice / 1000000).toLocaleString('id-ID', {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2
-    })} jt`;
-} else if (asset.name === "Property: Land") {
-    // Format untuk Property (harga per m²)
-    currentPriceDisplay = `Rp. ${asset.currentPrice.toLocaleString('id-ID', {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2
-    })}/m²`;
-    
-    avgPriceDisplay = `Rp. ${asset.avgPrice.toLocaleString('id-ID', {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2
-    })}/m²`;
-} else if (asset.name === "RDN: Rupiah") {
-    // Format untuk Rupiah
-    currentPriceDisplay = `Rp. 1,00`;
-    avgPriceDisplay = `Rp. 1,00`;
-} else if (asset.name === "Pisang Jago") {
-    // Format untuk Pisang Jago (bisnis)
-    currentPriceDisplay = `Valuasi saat ini`;
-    avgPriceDisplay = `N/A`;
-} else {
-    // Format untuk aset lain (dalam rupiah normal)
-    currentPriceDisplay = `Rp. ${asset.currentPrice.toLocaleString('id-ID', {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2
-    })}`;
-    
-    avgPriceDisplay = `Rp. ${asset.avgPrice.toLocaleString('id-ID', {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2
-    })}`;
+        tableBody.appendChild(row);
+    });
+
+    return calculatedAssets;
 }
 
-row.innerHTML = `
-    <td>
-        <span class="asset-icon">
-            <img src="${asset.icon}" alt="${asset.name}">
-        </span>
-        <span class="asset-name">${asset.name}</span>
-    </td>
-    <td>${asset.balance}</td>
-    <td>${formatCurrency(asset.invested)}</td>
-    <td>${avgPriceDisplay}</td>
-    <td>${currentPriceDisplay}</td>
-    <td>${formatCurrency(asset.marketValue)}</td>
-    <td class="${returnClass}">${returnSign}${Math.abs(asset.returnPercent).toFixed(2)}%</td>
-    <td>${asset.description}</td>
-`;
-
-tableBody.appendChild(row);
-});
-
-return calculatedAssets;
-}
-// Add a function to convert IDR to USD
-function convertIDRtoUSD(idrAmount) {
-    // Using a fixed exchange rate of 1 USD = 15,500 IDR (adjust as needed)
-    const exchangeRate = 16500;
-    return idrAmount / exchangeRate;
-}
 // Calculate and display portfolio summary
 function updatePortfolioSummary(calculatedAssets) {
     // Separate liquid and non-liquid assets
@@ -1247,25 +1216,26 @@ function updatePortfolioSummary(calculatedAssets) {
     const nonLiquidAssets = calculatedAssets.filter(asset => asset.type === "non-liquid");
 
     // Calculate totals
-            const totalLiquidInvested = calculatedAssets.filter(asset => asset.type === "liquid").reduce((sum, asset) => sum + asset.invested, 0);
-            const totalLiquidMarketValue = calculatedAssets.filter(asset => asset.type === "liquid").reduce((sum, asset) => sum + asset.marketValue, 0);
+    const totalLiquidInvested = liquidAssets.reduce((sum, asset) => sum + asset.invested, 0);
+    const totalLiquidMarketValue = liquidAssets.reduce((sum, asset) => sum + asset.marketValue, 0);
 
-            const totalNonLiquidInvested = calculatedAssets.filter(asset => asset.type === "non-liquid").reduce((sum, asset) => sum + asset.invested, 0);
-            const totalNonLiquidMarketValue = calculatedAssets.filter(asset => asset.type === "non-liquid").reduce((sum, asset) => sum + asset.marketValue, 0);
+    const totalNonLiquidInvested = nonLiquidAssets.reduce((sum, asset) => sum + asset.invested, 0);
+    const totalNonLiquidMarketValue = nonLiquidAssets.reduce((sum, asset) => sum + asset.marketValue, 0);
 
-            const totalInvested = totalLiquidInvested;
-            const totalMarketValue = totalLiquidMarketValue + totalNonLiquidMarketValue;
+    const totalInvested = totalLiquidInvested;
+    const totalMarketValue = totalLiquidMarketValue + totalNonLiquidMarketValue;
 
-            const totalPnL = totalMarketValue - totalNonLiquidInvested - totalInvested;
-            const totalPercentage = (totalPnL / totalInvested) * 100;
-    // Debt data (constant)
-    const debtAmount = 176000 ;//usdt borrowed
+    const totalPnL = totalMarketValue - totalNonLiquidInvested - totalInvested;
+    const totalPercentage = (totalPnL / totalInvested) * 100;
+    
+    // Use USDT borrowed value for debt amount, converted to IDR
+    const debtAmount = BITCOIN_STRATEGY.USDT_BORROWED * EXCHANGE_RATES.USDT_TO_IDR;
+    
     // Calculate DER (Debt to Equity Ratio)
-    const der = debtAmount / (totalMarketValue - totalNonLiquidInvested) || 0;
+    const der = debtAmount / totalLiquidMarketValue || 0;
 
-     // Convert total market value to USD
-     const usdEquivalent = convertIDRtoUSD(totalMarketValue);
-
+    // Convert total market value to USD
+    const usdEquivalent = convertIDRtoUSD(totalMarketValue);
 
     // Calculate non-liquid assets percentage of total
     const nonLiquidPercentage = (totalNonLiquidMarketValue / totalMarketValue) * 100;
@@ -1306,15 +1276,12 @@ function createDonutChart(calculatedAssets) {
     const labels = filteredAssets.map(asset => asset.name);
 
     const colors = [
-        
-        'rgba(211, 84, 0, 0.8)',    // Burnt Orange (Kontras & Energi)
-        'rgba(41, 128, 185, 0.8)',  // Muted Blue (Modern & Minimalis)
-        'rgba(243, 156, 18, 0.8)',  // Muted Gold (Keuangan & Kepercayaan)
-        'rgba(142, 68, 173, 0.8)',  // Royal Purple (Eksklusif & Refined)
-        'rgba(44, 62, 80, 0.8)',    // Deep Navy (Elegan & Profesional)
-        'rgba(39, 174, 96, 0.8)',   // Soft Green (Keuangan & Stabilitas)
-        
-        
+        'rgba(211, 84, 0, 0.8)',    // Burnt Orange
+        'rgba(41, 128, 185, 0.8)',   // Muted Blue
+        'rgba(243, 156, 18, 0.8)',   // Muted Gold
+        'rgba(142, 68, 173, 0.8)',   // Royal Purple
+        'rgba(44, 62, 80, 0.8)',     // Deep Navy
+        'rgba(39, 174, 96, 0.8)'     // Soft Green
     ];
 
     // Create the chart
@@ -1350,14 +1317,13 @@ function createDonutChart(calculatedAssets) {
         }
     });
 
-    // Create custom legend - also filtered
+    // Create custom legend
     const legendContainer = document.getElementById('donutLegend');
     legendContainer.innerHTML = '';
 
-    // Add a note that Property Land is excluded
+    // Add note about Property Land exclusion
     const noteElement = document.createElement('div');
     noteElement.className = 'chart-note';
-    //noteElement.innerHTML = '<em>* Property Land excluded for better visualization</em>';
     legendContainer.appendChild(noteElement);
 
     filteredAssets.forEach((asset, index) => {
@@ -1374,6 +1340,7 @@ function createDonutChart(calculatedAssets) {
     });
 }
 
+// Create wallet QR code
 function createWalletQR() {
     const walletAddress = 'bc1qn9fn2z22rdtuy66ta3p2he2pdhtvvkucunljgh';
     const qrCodeContainer = document.getElementById('walletQR');
@@ -1389,42 +1356,34 @@ function createWalletQR() {
     });
 }
 
+// Initialize Bitcoin Collateral Strategy
 function initializeBitcoinCollateralStrategy() {
-    // Configuration and constants
-    const bitcoinCollateralSats = 27630; // 27,630 satoshis collateral
-    const usdtBorrowed = 10.5559018; // USDT borrowed
-    const liquidationLTV = 91; // Liquidation LTV percentage
-    const interestRate = 6.0; // Annual interest rate on USDT loan (%)
-    const btcYieldRate = 0.27; // Annual yield rate on BTC collateral (%)
-    const usdtPrice = 16560; // USDT to IDR exchange rate
-    const btcPrice = 1373592083.36; // BTC to IDR price (for 1 BTC)
-    const satsToBtc = 100000000; // Conversion from sats to BTC
-    const liquidationPrice = 41982.96; // Liquidation price in USD
+    // Get values from constants
+    const { COLLATERAL_SATS, USDT_BORROWED, LIQUIDATION_LTV, INTEREST_RATE, 
+            BTC_YIELD_RATE, LIQUIDATION_PRICE_USD } = BITCOIN_STRATEGY;
     
     // Calculations
-    const btcCollateralBtc = bitcoinCollateralSats / satsToBtc;
-    const btcValueIdr = (btcCollateralBtc * btcPrice);
-    const usdtValueIdr = usdtBorrowed * usdtPrice;
+    const btcCollateralBtc = COLLATERAL_SATS / BTC_CONSTANTS.SATS_TO_BTC;
+    const btcValueIdr = btcCollateralBtc * BTC_CONSTANTS.PRICE_IDR;
+    const usdtValueIdr = USDT_BORROWED * EXCHANGE_RATES.USDT_TO_IDR;
     
-    // Calculate current LTV automatically
+    // Calculate current LTV
     const currentLTV = (usdtValueIdr / btcValueIdr) * 100;
     
     // Update DOM elements
-    document.getElementById('btcCollateral').textContent = `${bitcoinCollateralSats.toLocaleString()} sats`;
+    document.getElementById('btcCollateral').textContent = `${COLLATERAL_SATS.toLocaleString()} sats`;
     document.getElementById('btcValueIDR').textContent = `Rp. ${btcValueIdr.toLocaleString('id-ID', {maximumFractionDigits: 0})}`;
     
-    document.getElementById('usdtBorrowed').textContent = `${usdtBorrowed.toFixed(2)} USDT`;
+    document.getElementById('usdtBorrowed').textContent = `${USDT_BORROWED.toFixed(2)} USDT`;
     document.getElementById('usdtValueIDR').textContent = `Rp. ${usdtValueIdr.toLocaleString('id-ID', {maximumFractionDigits: 0})}`;
     
-    document.getElementById('interestRate').textContent = `${interestRate.toFixed(2)}%`;
-    
-    document.getElementById('btcYieldRate').textContent = `${btcYieldRate.toFixed(2)}%`;
-    
-    document.getElementById('liquidationPrice').textContent = `$${liquidationPrice.toLocaleString('en-US', {maximumFractionDigits: 2})}`;
+    document.getElementById('interestRate').textContent = `${INTEREST_RATE.toFixed(2)}%`;
+    document.getElementById('btcYieldRate').textContent = `${BTC_YIELD_RATE.toFixed(2)}%`;
+    document.getElementById('liquidationPrice').textContent = `$${LIQUIDATION_PRICE_USD.toLocaleString('en-US', {maximumFractionDigits: 2})}`;
     
     // Update LTV indicators
     document.getElementById('currentLTV').textContent = `${currentLTV.toFixed(2)}%`;
-    document.getElementById('liquidationLTV').textContent = `${liquidationLTV.toFixed(2)}%`;
+    document.getElementById('liquidationLTV').textContent = `${LIQUIDATION_LTV.toFixed(2)}%`;
     
     // Set the progress bar width to match current LTV
     const progressBar = document.getElementById('ltvProgressBar');
@@ -1432,7 +1391,7 @@ function initializeBitcoinCollateralStrategy() {
     
     // Set the danger zone width
     const dangerZone = document.querySelector('.ltv-danger-zone');
-    dangerZone.style.width = `${100 - liquidationLTV}%`;
+    dangerZone.style.width = `${100 - LIQUIDATION_LTV}%`;
     
     // Update LTV status color based on proximity to liquidation
     const ltvStatusIndicator = document.getElementById('ltvStatusIndicator');
@@ -1452,25 +1411,14 @@ function initializeBitcoinCollateralStrategy() {
         ltvStatusIndicator.style.backgroundColor = '#dc3545';
         ltvStatusIndicator.textContent = 'Status: Warning';
     }
-    
 }
 
+// Update last update timestamp
+function updateLastUpdate() {
+    // If you need to dynamically update the timestamp, implement this function
+    // Currently the timestamp is hardcoded in the HTML
+}
 
-
-// Add event listener to initialize the Bitcoin Collateral Strategy
-document.addEventListener('DOMContentLoaded', function() {
-    // Make sure the main dashboard initializes first, then initialize our strategy
-    if (typeof initializeDashboard === 'function') {
-        const originalInitialize = initializeDashboard;
-        initializeDashboard = function() {
-            originalInitialize();
-            initializeBitcoinCollateralStrategy();
-        };
-    } else {
-        // If initializeDashboard doesn't exist yet, just add our own listener
-        initializeBitcoinCollateralStrategy();
-    }
-});
 // Initialize the dashboard
 function initializeDashboard() {
     // Calculate asset values
@@ -1485,6 +1433,7 @@ function initializeDashboard() {
     // Create wallet QR code
     createWalletQR();
 
+    // Initialize Bitcoin collateral strategy
     initializeBitcoinCollateralStrategy();
 
     // Update last update timestamp

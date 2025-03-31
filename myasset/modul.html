@@ -797,7 +797,7 @@ blockquote.quote footer {
                     <div class="usd-equivalent" id="usdEquivalent">$ 0</div>
                 </div>
                 
-                <div class="last-update">Last Update: <br> 27 Maret 2025, Pukul 17.00 Wita</div>
+                <div class="last-update">Last Update: <br> 31 Maret 2025, Pukul 17.00 Wita</div>
                 
                 <div class="summary-card">
                     <div class="summary-title">Ringkasan Portfolio</div>
@@ -824,7 +824,7 @@ blockquote.quote footer {
                     <div class="divider"></div>
                     
                     <!-- Debt Section -->
-                    <div class="summary-title">Collateral Strategy</div>
+                    <div class="summary-title">Bitcoin Collateral Strategy</div>
                     <div class="summary-stats">
                         <div class="stat-item">
                             <span class="stat-label">USDT Borrowed</span>
@@ -897,8 +897,8 @@ blockquote.quote footer {
         <!-- Bitcoin Collateral Strategy Card (Full Width) -->
 <div class="card full-width-card">
     <div class="card-header">
-        <i class="fa-solid fa-coins"></i>
-        <span class="title">Bitcoin Collateral Strategy</span>
+        <i class="fa-solid fa-landmark"></i>
+        <span class="title">Collateral Strategy</span>
     </div>
     <div class="collateral-strategy-container">
         <!-- Two-column layout for desktop -->
@@ -932,16 +932,16 @@ blockquote.quote footer {
             <!-- Interest and LTV Details -->
             <div class="loan-details">
                 <div class="loan-detail-row">
-                    <div class="loan-detail-label">Annual Interest Rate</div>
-                    <div class="loan-detail-value" id="interestRate">6.00%</div>
+                    <div class="loan-detail-label">USDT Interest Rate</div>
+                    <div class="loan-detail-value negative" id="interestRate">0</div>
                 </div>
                 <div class="loan-detail-row">
-                    <div class="loan-detail-label">BTC Yield Rate</div>
-                    <div class="loan-detail-value" id="btcYieldRate">0.27%</div>
+                    <div class="loan-detail-label">Bitcoin Yield Rate</div>
+                    <div class="loan-detail-value positive" id="btcYieldRate">0</div>
                 </div>
                 <div class="loan-detail-row">
-                    <div class="loan-detail-label">Liquidation Price</div>
-                    <div class="loan-detail-value" id="liquidationPrice">$0</div>
+                    <div class="loan-detail-label">Bitcoin Liquidation Price</div>
+                    <div class="loan-detail-value negative" id="liquidationPrice">$0</div>
                 </div>
             </div>
         </div>
@@ -1023,7 +1023,7 @@ blockquote.quote footer {
 const assets = [
 {
     name: "Property: Land",
-    icon: "/myasset/bumi.png",
+    icon: "/myasset/coin.png",
     balance: "1.445 m²",
     invested: 20000000,
     avgPrice: 13840.8305, // Harga per m²
@@ -1060,7 +1060,7 @@ const assets = [
     balance: "27.630 sats",
     invested: 414450,
     avgPrice: 1500000000, // Harga dalam Rupiah, dikonversi dari USD
-    currentPrice: 1391094786.38,  // Harga dalam Rupiah, dikonversi dari USD
+    currentPrice: 1373592083.36,  // Harga dalam Rupiah, dikonversi dari USD
     currency: "IDR",
     type: "liquid",
     description: "Store of Value (Digital Asset) <br> Collateral Asset, Yield 0,27% per Tahun"
@@ -1076,11 +1076,23 @@ const assets = [
     type: "liquid",
     description: "PT. Alamtri Resources Indonesia. Tbk <br >Saham Perusahan Energi Terbarukan & Batu Bara"
 },
+/*
 {
+    name: "IDX: MERK",
+    icon: "https://assets.stockbit.com/logos/companies/MERK.png",
+    balance: "0 lembar",
+    invested: 0,
+    avgPrice: 1,
+    currentPrice: 1,
+    currency: "IDR",
+    type: "liquid",
+    description: "-"
+},
+
     name: "CLA: USDT",
     icon: "/myasset/usdt.png",
     balance: "$ 11",
-    invested: 0,
+    invested: 182160,
     avgPrice: 1,
     currentPrice: 1,
     currency: "IDR",
@@ -1089,7 +1101,7 @@ const assets = [
 },
 {
     name: "Pisang Jago",
-    icon: "/myasset/pisang.png",
+    icon: "/myasset/banana.png",
     balance: "50% ",
     invested: 153000,
     avgPrice: 1,
@@ -1098,11 +1110,9 @@ const assets = [
     currency: "IDR",
     type: "liquid",
     description: "Kepemilikan bisnis Makanan Ringan"
-}
+}*/
 ];
 
-// Debt data (constant)
-const debtAmount = 183000 ;
 
 // Format currency
 function formatCurrency(amount) {
@@ -1248,7 +1258,8 @@ function updatePortfolioSummary(calculatedAssets) {
 
             const totalPnL = totalMarketValue - totalNonLiquidInvested - totalInvested;
             const totalPercentage = (totalPnL / totalInvested) * 100;
-
+    // Debt data (constant)
+    const debtAmount = 176000 ;//usdt borrowed
     // Calculate DER (Debt to Equity Ratio)
     const der = debtAmount / (totalMarketValue - totalNonLiquidInvested) || 0;
 
@@ -1299,10 +1310,11 @@ function createDonutChart(calculatedAssets) {
         'rgba(211, 84, 0, 0.8)',    // Burnt Orange (Kontras & Energi)
         'rgba(41, 128, 185, 0.8)',  // Muted Blue (Modern & Minimalis)
         'rgba(243, 156, 18, 0.8)',  // Muted Gold (Keuangan & Kepercayaan)
+        'rgba(142, 68, 173, 0.8)',  // Royal Purple (Eksklusif & Refined)
         'rgba(44, 62, 80, 0.8)',    // Deep Navy (Elegan & Profesional)
         'rgba(39, 174, 96, 0.8)',   // Soft Green (Keuangan & Stabilitas)
-        'rgba(142, 68, 173, 0.8)',  // Royal Purple (Eksklusif & Refined)
-        'rgba(149, 165, 166, 0.8)'  // Warm Gray (Netral & Modern)
+        
+        
     ];
 
     // Create the chart
@@ -1377,18 +1389,15 @@ function createWalletQR() {
     });
 }
 
-
-// Bitcoin Collateral Strategy Script
 function initializeBitcoinCollateralStrategy() {
     // Configuration and constants
     const bitcoinCollateralSats = 27630; // 27,630 satoshis collateral
     const usdtBorrowed = 10.5559018; // USDT borrowed
-    const currentLTV = 57; // Current LTV percentage
     const liquidationLTV = 91; // Liquidation LTV percentage
     const interestRate = 6.0; // Annual interest rate on USDT loan (%)
     const btcYieldRate = 0.27; // Annual yield rate on BTC collateral (%)
-    const usdtPrice = 16500; // USDT to IDR exchange rate
-    const btcPrice = 1391094786.38; // BTC to IDR price (for 1 BTC)
+    const usdtPrice = 16560; // USDT to IDR exchange rate
+    const btcPrice = 1373592083.36; // BTC to IDR price (for 1 BTC)
     const satsToBtc = 100000000; // Conversion from sats to BTC
     const liquidationPrice = 41982.96; // Liquidation price in USD
     
@@ -1396,7 +1405,9 @@ function initializeBitcoinCollateralStrategy() {
     const btcCollateralBtc = bitcoinCollateralSats / satsToBtc;
     const btcValueIdr = (btcCollateralBtc * btcPrice);
     const usdtValueIdr = usdtBorrowed * usdtPrice;
-   
+    
+    // Calculate current LTV automatically
+    const currentLTV = (usdtValueIdr / btcValueIdr) * 100;
     
     // Update DOM elements
     document.getElementById('btcCollateral').textContent = `${bitcoinCollateralSats.toLocaleString()} sats`;
@@ -1407,9 +1418,7 @@ function initializeBitcoinCollateralStrategy() {
     
     document.getElementById('interestRate').textContent = `${interestRate.toFixed(2)}%`;
     
-    
     document.getElementById('btcYieldRate').textContent = `${btcYieldRate.toFixed(2)}%`;
-    
     
     document.getElementById('liquidationPrice').textContent = `$${liquidationPrice.toLocaleString('en-US', {maximumFractionDigits: 2})}`;
     
@@ -1427,7 +1436,7 @@ function initializeBitcoinCollateralStrategy() {
     
     // Update LTV status color based on proximity to liquidation
     const ltvStatusIndicator = document.getElementById('ltvStatusIndicator');
-    const ltvRatio = currentLTV / liquidationLTV;
+    const ltvRatio = currentLTV / 100;
     
     if (ltvRatio <= 0.5) {
         progressBar.style.backgroundColor = '#28a745'; // Green - Safe
@@ -1443,7 +1452,10 @@ function initializeBitcoinCollateralStrategy() {
         ltvStatusIndicator.style.backgroundColor = '#dc3545';
         ltvStatusIndicator.textContent = 'Status: Warning';
     }
+    
 }
+
+
 
 // Add event listener to initialize the Bitcoin Collateral Strategy
 document.addEventListener('DOMContentLoaded', function() {

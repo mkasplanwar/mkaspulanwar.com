@@ -827,7 +827,7 @@ blockquote.quote footer {
                     <div class="summary-title">Bitcoin Collateral Strategy</div>
                     <div class="summary-stats">
                         <div class="stat-item">
-                            <span class="stat-label">USDT Borrowed</span>
+                            <span class="stat-label">USDC Borrowed</span>
                             <span class="stat-value negative" id="totalDebt">Rp. 0</span>
                         </div>
                         <div class="stat-item">
@@ -922,8 +922,8 @@ blockquote.quote footer {
                         </div>
                         <div class="loan-metric-details">
                             <div class="loan-metric-label">USDC Borrowed</div>
-                            <div class="loan-metric-value" id="usdtBorrowed">0 USDT</div>
-                            <div class="loan-metric-secondary" id="usdtValueIDR">Rp. 0</div>
+                            <div class="loan-metric-value" id="usdcBorrowed">0 USDC</div>
+                            <div class="loan-metric-secondary" id="usdcValueIDR">Rp. 0</div>
                         </div>
                     </div>
                 </div>
@@ -932,7 +932,7 @@ blockquote.quote footer {
             <!-- Interest and LTV Details -->
             <div class="loan-details">
                 <div class="loan-detail-row">
-                    <div class="loan-detail-label">USDT Interest Rate</div>
+                    <div class="loan-detail-label">USDC Interest Rate</div>
                     <div class="loan-detail-value negative" id="interestRate">0</div>
                 </div>
                 <div class="loan-detail-row">
@@ -1026,7 +1026,7 @@ blockquote.quote footer {
         // Constants for global use
 const EXCHANGE_RATES = {
     USD_TO_IDR: 16670,
-    USDT_TO_IDR: 16670
+    USDC_TO_IDR: 16670
 };
 
 const BTC_CONSTANTS = {
@@ -1036,9 +1036,9 @@ const BTC_CONSTANTS = {
 // Bitcoin Collateral Strategy Configuration
 const BITCOIN_STRATEGY = {
     COLLATERAL_SATS: 27337,         // 27,630 satoshis collateral
-    USDT_BORROWED: 12,              // USDT borrowed
+    USDC_BORROWED: 12,              
     LIQUIDATION_LTV: 91,            // Liquidation LTV percentage
-    INTEREST_RATE: 6.56,             // Annual interest rate on USDT loan (%)
+    INTEREST_RATE: 6.56,             
     BTC_YIELD_RATE: 0.27,           // Annual yield rate on BTC collateral (%)
     LIQUIDATION_PRICE_USD: 48237.98 // Liquidation price in USD
 };
@@ -1092,10 +1092,10 @@ const assets = [
     {
         name: "USDC",
         icon: "/myasset/usdc.png",
-        balance: "$ " + BITCOIN_STRATEGY.USDT_BORROWED,
-        invested: BITCOIN_STRATEGY.USDT_BORROWED * EXCHANGE_RATES.USDT_TO_IDR,
+        balance: "$ " + BITCOIN_STRATEGY.USDC_BORROWED,
+        invested: BITCOIN_STRATEGY.USDC_BORROWED * EXCHANGE_RATES.USDC_TO_IDR,
         avgPrice: 16560, // Harga dalam Rupiah, dikonversi dari USD
-        currentPrice: EXCHANGE_RATES.USDT_TO_IDR, // Using global constant now
+        currentPrice: EXCHANGE_RATES.USDC_TO_IDR, // Using global constant now
         currency: "IDR",
         type: "liquid",
         description: "Store of Value (Digital Asset) <br> Collateral Asset, Yield 0,27% per Tahun"
@@ -1276,8 +1276,8 @@ function updatePortfolioSummary(calculatedAssets) {
     const totalPnL = totalMarketValue - totalNonLiquidInvested - totalInvested;
     const totalPercentage = (totalPnL / totalInvested) * 100;
     
-    // Use USDT borrowed value for debt amount, converted to IDR
-    const debtAmount = BITCOIN_STRATEGY.USDT_BORROWED * EXCHANGE_RATES.USDT_TO_IDR;
+    
+    const debtAmount = BITCOIN_STRATEGY.USDC_BORROWED * EXCHANGE_RATES.USDC_TO_IDR;
     
     // Calculate DER (Debt to Equity Ratio)
     const der = debtAmount / (totalLiquidMarketValue - debtAmount) || 0;
@@ -1404,25 +1404,25 @@ function createWalletQR() {
 // Initialize Bitcoin Collateral Strategy
 function initializeBitcoinCollateralStrategy() {
     // Get values from constants
-    const { COLLATERAL_SATS, USDT_BORROWED, LIQUIDATION_LTV, INTEREST_RATE, 
+    const { COLLATERAL_SATS, USDC_BORROWED, LIQUIDATION_LTV, INTEREST_RATE, 
             BTC_YIELD_RATE, LIQUIDATION_PRICE_USD } = BITCOIN_STRATEGY;
     
     // Calculations
     const btcCollateralBtc = COLLATERAL_SATS / BTC_CONSTANTS.SATS_TO_BTC;
     const btcValueIdr = btcCollateralBtc * BTC_CONSTANTS.PRICE_IDR;
-    const usdtValueIdr = USDT_BORROWED * EXCHANGE_RATES.USDT_TO_IDR;
+    const usdcValueIdr = USDC_BORROWED * EXCHANGE_RATES.USDC_TO_IDR;
     
     // Calculate current LTV
-    const currentLTV = (usdtValueIdr / btcValueIdr) * 100;
+    const currentLTV = (usdcValueIdr / btcValueIdr) * 100;
     
-    const usdcliquidationPrice = EXCHANGE_RATES.USDT_TO_IDR * (LIQUIDATION_LTV / currentLTV );
+    const usdcliquidationPrice = EXCHANGE_RATES.USDC_TO_IDR * (LIQUIDATION_LTV / currentLTV );
 
     // Update DOM elements
     document.getElementById('btcCollateral').textContent = `${COLLATERAL_SATS.toLocaleString()} sats`;
     document.getElementById('btcValueIDR').textContent = `Rp. ${btcValueIdr.toLocaleString('id-ID', {maximumFractionDigits: 0})}`;
     
-    document.getElementById('usdtBorrowed').textContent = `${USDT_BORROWED.toFixed(2)} USDT`;
-    document.getElementById('usdtValueIDR').textContent = `Rp. ${usdtValueIdr.toLocaleString('id-ID', {maximumFractionDigits: 0})}`;
+    document.getElementById('usdcBorrowed').textContent = `${USDC_BORROWED.toFixed(2)} USDC`;
+    document.getElementById('usdcValueIDR').textContent = `Rp. ${usdcValueIdr.toLocaleString('id-ID', {maximumFractionDigits: 0})}`;
     
     document.getElementById('interestRate').textContent = `${INTEREST_RATE.toFixed(2)}%`;
     document.getElementById('btcYieldRate').textContent = `${BTC_YIELD_RATE.toFixed(2)}%`;

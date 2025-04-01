@@ -943,6 +943,10 @@ blockquote.quote footer {
                     <div class="loan-detail-label">Bitcoin Liquidation Price</div>
                     <div class="loan-detail-value negative" id="liquidationPrice">$0</div>
                 </div>
+                <div class="loan-detail-row">
+                    <div class="loan-detail-label">USDC Liquidation Price</div>
+                    <div class="loan-detail-value negative" id="usdcliquidationPrice">Rp0</div>
+                </div>
             </div>
         </div>
         
@@ -1021,8 +1025,8 @@ blockquote.quote footer {
     <script>
         // Constants for global use
 const EXCHANGE_RATES = {
-    USD_TO_IDR: 16500,
-    USDT_TO_IDR: 16560
+    USD_TO_IDR: 16670,
+    USDT_TO_IDR: 16670
 };
 
 const BTC_CONSTANTS = {
@@ -1032,7 +1036,7 @@ const BTC_CONSTANTS = {
 // Bitcoin Collateral Strategy Configuration
 const BITCOIN_STRATEGY = {
     COLLATERAL_SATS: 27337,         // 27,630 satoshis collateral
-    USDT_BORROWED: 12,      // USDT borrowed
+    USDT_BORROWED: 12,              // USDT borrowed
     LIQUIDATION_LTV: 91,            // Liquidation LTV percentage
     INTEREST_RATE: 6.56,             // Annual interest rate on USDT loan (%)
     BTC_YIELD_RATE: 0.27,           // Annual yield rate on BTC collateral (%)
@@ -1411,6 +1415,8 @@ function initializeBitcoinCollateralStrategy() {
     // Calculate current LTV
     const currentLTV = (usdtValueIdr / btcValueIdr) * 100;
     
+    const usdcliquidationPrice = EXCHANGE_RATES.USDT_TO_IDR * (LIQUIDATION_LTV / currentLTV );
+
     // Update DOM elements
     document.getElementById('btcCollateral').textContent = `${COLLATERAL_SATS.toLocaleString()} sats`;
     document.getElementById('btcValueIDR').textContent = `Rp. ${btcValueIdr.toLocaleString('id-ID', {maximumFractionDigits: 0})}`;
@@ -1421,7 +1427,8 @@ function initializeBitcoinCollateralStrategy() {
     document.getElementById('interestRate').textContent = `${INTEREST_RATE.toFixed(2)}%`;
     document.getElementById('btcYieldRate').textContent = `${BTC_YIELD_RATE.toFixed(2)}%`;
     document.getElementById('liquidationPrice').textContent = `$${LIQUIDATION_PRICE_USD.toLocaleString('en-US', {maximumFractionDigits: 2})}`;
-    
+    document.getElementById('usdcliquidationPrice').textContent = `Rp. ${usdcliquidationPrice.toLocaleString('id-ID', {maximumFractionDigits: 2})}`;
+
     // Update LTV indicators
     document.getElementById('currentLTV').textContent = `${currentLTV.toFixed(2)}%`;
     document.getElementById('liquidationLTV').textContent = `${LIQUIDATION_LTV.toFixed(2)}%`;

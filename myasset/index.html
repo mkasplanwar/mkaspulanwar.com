@@ -831,7 +831,7 @@ blockquote.quote footer {
                             <span class="stat-value negative" id="totalDebt">Rp. 0</span>
                         </div>
                         <div class="stat-item">
-                            <span class="stat-label">Loan to Equity Ratio</span>
+                            <span class="stat-label">Loan to Liquid Ratio</span>
                             <span class="stat-value" id="derRatio">0 <span class="status-indicator">Sehat</span></span>
                         </div>
                     </div>
@@ -918,10 +918,10 @@ blockquote.quote footer {
                     </div>
                     <div class="loan-metric-item">
                         <div class="loan-metric-icon">
-                            <img src="/myasset/usdt.png" alt="USDT">
+                            <img src="/myasset/usdc.png" alt="USDC">
                         </div>
                         <div class="loan-metric-details">
-                            <div class="loan-metric-label">USDT Borrowed</div>
+                            <div class="loan-metric-label">USDC Borrowed</div>
                             <div class="loan-metric-value" id="usdtBorrowed">0 USDT</div>
                             <div class="loan-metric-secondary" id="usdtValueIDR">Rp. 0</div>
                         </div>
@@ -1029,6 +1029,15 @@ const BTC_CONSTANTS = {
     PRICE_IDR: 1373592083.36,  // BTC price in IDR
     SATS_TO_BTC: 100000000     // Conversion from satoshis to BTC
 };
+// Bitcoin Collateral Strategy Configuration
+const BITCOIN_STRATEGY = {
+    COLLATERAL_SATS: 27337,         // 27,630 satoshis collateral
+    USDT_BORROWED: 12,      // USDT borrowed
+    LIQUIDATION_LTV: 91,            // Liquidation LTV percentage
+    INTEREST_RATE: 6.56,             // Annual interest rate on USDT loan (%)
+    BTC_YIELD_RATE: 0.27,           // Annual yield rate on BTC collateral (%)
+    LIQUIDATION_PRICE_USD: 48237.98 // Liquidation price in USD
+};
 
 // Asset data
 const assets = [
@@ -1045,10 +1054,10 @@ const assets = [
     },
     {
         name: "IDX: PGEO",
-        icon: "https://assets.stockbit.com/logos/companies/PGEO.png",
-        balance: "700 lembar",
-        invested: 557334.75,
-        avgPrice: 796.19,
+        icon: "/myasset/pgeo.png",
+        balance: "1.100 lembar",
+        invested: 885500,
+        avgPrice: 805,
         currentPrice: 805,
         currency: "IDR",
         type: "liquid",
@@ -1056,7 +1065,7 @@ const assets = [
     },
     {
         name: "IDX: BMRI",
-        icon: "https://assets.stockbit.com/logos/companies/BMRI.png",
+        icon: "/myasset/bmri.png",
         balance: "100 lembar",
         invested: 444666,
         avgPrice: 4446.66,
@@ -1068,7 +1077,7 @@ const assets = [
     {
         name: "Bitcoin",
         icon: "/myasset/bitcoin.png",
-        balance: "27.630 sats",
+        balance: "27.337 sats",
         invested: 414450,
         avgPrice: 1500000000, // Harga dalam Rupiah, dikonversi dari USD
         currentPrice: BTC_CONSTANTS.PRICE_IDR, // Using global constant now
@@ -1077,27 +1086,62 @@ const assets = [
         description: "Store of Value (Digital Asset) <br> Collateral Asset, Yield 0,27% per Tahun"
     },
     {
-        name: "IDX: ADRO",
-        icon: "https://assets.stockbit.com/logos/companies/ADRO.png",
-        balance: "200 lembar",
-        invested: 344516,
-        avgPrice: 1722.58,
-        currentPrice: 1845,
+        name: "USDC",
+        icon: "/myasset/usdc.png",
+        balance: "$ " + BITCOIN_STRATEGY.USDT_BORROWED,
+        invested: BITCOIN_STRATEGY.USDT_BORROWED * EXCHANGE_RATES.USDT_TO_IDR,
+        avgPrice: 16560, // Harga dalam Rupiah, dikonversi dari USD
+        currentPrice: EXCHANGE_RATES.USDT_TO_IDR, // Using global constant now
         currency: "IDR",
         type: "liquid",
-        description: "PT. Alamtri Resources Indonesia. Tbk <br >Saham Perusahan Energi Terbarukan & Batu Bara"
-    }
+        description: "Store of Value (Digital Asset) <br> Collateral Asset, Yield 0,27% per Tahun"
+    },
+    {
+        name: "IDX: ELSA",
+        icon: "/myasset/elsa.png",
+        balance: "0 lembar",
+        invested: 0,
+        avgPrice: 1,
+        currentPrice: 1,
+        currency: "IDR",
+        type: "liquid",
+        description: "PT. Bank Mandiri (persero). TBK <br> Saham Bank BUMN Terbesar di Indonesia"
+    },
+    {
+        name: "IDX: ADRO",
+        icon: "/myasset/adro.png",
+        balance: "0 lembar",
+        invested: 0,
+        avgPrice: 1,
+        currentPrice: 1,
+        currency: "IDR",
+        type: "liquid",
+        description: "PT. Alamtri Resources Indonesia. Tbk  <br> -"
+    },
+    {
+        name: "IDX: MERK",
+        icon: "/myasset/merk.png",
+        balance: "0 lembar",
+        invested: 0,
+        avgPrice: 1,
+        currentPrice: 1,
+        currency: "IDR",
+        type: "liquid",
+        description: "PT. Merck. Tbk <br> Merck & Co. memproduksi berbagai macam obat farmasi"
+    },
+    {
+        name: "IDX: TLKM",
+        icon: "/myasset/tlkm.png",
+        balance: "0 lembar",
+        invested: 0,
+        avgPrice: 1,
+        currentPrice: 1,
+        currency: "IDR",
+        type: "liquid",
+        description: "PT. Telkom Indonesia (Persero). Tbk <br>  BUMN Indonesia di bidang teknologi informasi dan komunikasi."
+    },
 ];
 
-// Bitcoin Collateral Strategy Configuration
-const BITCOIN_STRATEGY = {
-    COLLATERAL_SATS: 27630,         // 27,630 satoshis collateral
-    USDT_BORROWED: 10.5559018,      // USDT borrowed
-    LIQUIDATION_LTV: 91,            // Liquidation LTV percentage
-    INTEREST_RATE: 6.0,             // Annual interest rate on USDT loan (%)
-    BTC_YIELD_RATE: 0.27,           // Annual yield rate on BTC collateral (%)
-    LIQUIDATION_PRICE_USD: 41982.96 // Liquidation price in USD
-};
 
 // Format currency for general use
 function formatCurrency(amount) {
@@ -1232,7 +1276,7 @@ function updatePortfolioSummary(calculatedAssets) {
     const debtAmount = BITCOIN_STRATEGY.USDT_BORROWED * EXCHANGE_RATES.USDT_TO_IDR;
     
     // Calculate DER (Debt to Equity Ratio)
-    const der = debtAmount / totalLiquidMarketValue || 0;
+    const der = debtAmount / (totalLiquidMarketValue - debtAmount) || 0;
 
     // Convert total market value to USD
     const usdEquivalent = convertIDRtoUSD(totalMarketValue);
@@ -1397,7 +1441,7 @@ function initializeBitcoinCollateralStrategy() {
     const ltvStatusIndicator = document.getElementById('ltvStatusIndicator');
     const ltvRatio = currentLTV / 100;
     
-    if (ltvRatio <= 0.5) {
+    if (ltvRatio <= 0.55) {
         progressBar.style.backgroundColor = '#28a745'; // Green - Safe
         ltvStatusIndicator.style.backgroundColor = '#28a745';
         ltvStatusIndicator.textContent = 'Status: Healthy';

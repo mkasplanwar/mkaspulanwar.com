@@ -1094,7 +1094,7 @@ const assets = [
         icon: "/myasset/usdc.png",
         balance: "$ " + BITCOIN_STRATEGY.USDC_BORROWED,
         invested: BITCOIN_STRATEGY.USDC_BORROWED * EXCHANGE_RATES.USDC_TO_IDR,
-        avgPrice: 16560, // Harga dalam Rupiah, dikonversi dari USD
+        avgPrice: EXCHANGE_RATES.USDC_TO_IDR, // Harga dalam Rupiah, dikonversi dari USD
         currentPrice: EXCHANGE_RATES.USDC_TO_IDR, // Using global constant now
         currency: "IDR",
         type: "liquid",

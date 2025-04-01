@@ -1311,8 +1311,10 @@ function updatePortfolioSummary(calculatedAssets) {
 function createDonutChart(calculatedAssets) {
     const ctx = document.getElementById('donutChart').getContext('2d');
 
-    // Filter out Property Land for the chart
-    const filteredAssets = calculatedAssets.filter(asset => asset.name !== "Property: Land");
+    // Filter out Property Land and assets with 0 market value
+    const filteredAssets = calculatedAssets.filter(asset => 
+        asset.name !== "Property: Land" && asset.marketValue > 0
+    );
 
     // Calculate percentages for the chart (based on filtered assets only)
     const totalFilteredValue = filteredAssets.reduce((sum, asset) => sum + asset.marketValue, 0);
@@ -1326,7 +1328,6 @@ function createDonutChart(calculatedAssets) {
         'rgba(243, 156, 18, 0.8)',   // Muted Gold
         'rgba(142, 68, 173, 0.8)',   // Royal Purple
         'rgba(44, 62, 80, 0.8)',     // Deep Navy
-        
     ];
 
     // Create the chart
@@ -1365,11 +1366,6 @@ function createDonutChart(calculatedAssets) {
     // Create custom legend
     const legendContainer = document.getElementById('donutLegend');
     legendContainer.innerHTML = '';
-
-    // Add note about Property Land exclusion
-    const noteElement = document.createElement('div');
-    noteElement.className = 'chart-note';
-    legendContainer.appendChild(noteElement);
 
     filteredAssets.forEach((asset, index) => {
         const percentage = ((asset.marketValue / totalFilteredValue) * 100).toFixed(1);

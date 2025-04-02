@@ -773,6 +773,90 @@ blockquote.quote footer {
         padding: 15px;
     }
 }
+/* Add these styles to your existing CSS section */
+
+/* Expenses card styles */
+.expenses-container {
+    margin-top: 15px;
+    width: 100%;
+}
+
+.expenses-date-range {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    background-color: #f8f9fa;
+    padding: 12px 15px;
+    border-radius: 8px;
+    border: 1px solid #000000;
+}
+
+.date-range-label {
+    font-size: 15px;
+    font-weight: 600;
+    margin-right: 10px;
+    color: #666666;
+}
+
+.date-range-value {
+    font-size: 15px;
+    font-weight: 500;
+    color: #000000;
+}
+
+.expenses-table th, 
+.expenses-table td {
+    padding: 14px 12px;
+}
+
+.total-row {
+    background-color: #f8f9fa;
+    font-weight: 500;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.total-amount {
+    font-weight: 600;
+    color: #dc3545;
+}
+
+.expense-date {
+    white-space: nowrap;
+}
+
+.expense-product {
+    max-width: 300px;
+}
+
+.expense-amount {
+    font-weight: 500;
+    color: #dc3545;
+    text-align: right;
+}
+
+.expense-notes {
+    color: #666666;
+    max-width: 300px;
+}
+
+@media (max-width: 768px) {
+    .expenses-date-range {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .date-range-label {
+        margin-bottom: 5px;
+    }
+    
+    .expense-product, 
+    .expense-notes {
+        max-width: 150px;
+    }
+}
     </style>
 </head>
 <body>
@@ -797,13 +881,13 @@ blockquote.quote footer {
                     <div class="usd-equivalent" id="usdEquivalent">$ 0</div>
                 </div>
                 
-                <div class="last-update">Last Update: <br> 31 Maret 2025, Pukul 17.00 Wita</div>
+                <div class="last-update">Last Update: <br> 02 April 2025, Pukul 15.35 Wita</div>
                 
                 <div class="summary-card">
                     <div class="summary-title">Ringkasan Portfolio</div>
                     <div class="summary-stats">
                         <div class="stat-item">
-                            <span class="stat-label">Invested (Liquid Asset)</span>
+                            <span class="stat-label">Invested (Liquid)</span>
                             <span class="stat-value" id="totalInvested">Rp. 0</span>
                         </div>
                         <div class="stat-item">
@@ -908,7 +992,7 @@ blockquote.quote footer {
                 <div class="loan-metrics">
                     <div class="loan-metric-item">
                         <div class="loan-metric-icon">
-                            <img src="/myasset/bitcoin.png" alt="Bitcoin">
+                            <img src="/myasset/icon/bitcoin.png" alt="Bitcoin">
                         </div>
                         <div class="loan-metric-details">
                             <div class="loan-metric-label">Bitcoin Collateral</div>
@@ -918,7 +1002,7 @@ blockquote.quote footer {
                     </div>
                     <div class="loan-metric-item">
                         <div class="loan-metric-icon">
-                            <img src="/myasset/usdc.png" alt="USDC">
+                            <img src="/myasset/icon/usdc.png" alt="USDC">
                         </div>
                         <div class="loan-metric-details">
                             <div class="loan-metric-label">USDC Borrowed</div>
@@ -982,6 +1066,42 @@ blockquote.quote footer {
         </div>
     </div>
 </div>
+<!-- Add this card to your dashboard, right before the closing </div> of the main container -->
+<div class="card full-width-card">
+    <div class="card-header">
+        <i class="fa-solid fa-receipt"></i>
+        <span class="title">Riwayat Pengeluaran</span>
+    </div>
+    <div class="expenses-container">
+        <div class="expenses-date-range">
+            <div class="date-range-label">Periode:</div>
+            <div class="date-range-value" id="expensesDateRange">01 Maret 2025 - 02 April 2025</div>
+        </div>
+        
+        <div class="table-container">
+            <table class="distribution-table expenses-table">
+                <thead>
+                    <tr>
+                        <th>Tanggal</th>
+                        <th>Produk/Layanan</th>
+                        <th>Jumlah</th>
+                        <th>Keterangan</th>
+                    </tr>
+                </thead>
+                <tbody id="expensesTableBody">
+                    <!-- Expenses will be inserted here by JavaScript -->
+                </tbody>
+                <tfoot>
+                    <tr class="total-row">
+                        <td colspan="2" class="text-right"><strong>Total Pengeluaran:</strong></td>
+                        <td class="total-amount" id="totalExpensesAmount">Rp. 0</td>
+                        <td></td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>
         <!-- Wallet and Archive Section (Full Width Container) -->
 <div class="top-row">
     <!-- Quote and Archive Card -->
@@ -1025,51 +1145,96 @@ blockquote.quote footer {
     <script>
         // Constants for global use
 const EXCHANGE_RATES = {
-    USD_TO_IDR: 16670,
-    USDC_TO_IDR: 16670
+    USD_TO_IDR: 16725,
+    USDC_TO_IDR: 16725
 };
 
 const BTC_CONSTANTS = {
-    PRICE_IDR: 1373592083.36,  // BTC price in IDR
+    PRICE_IDR: 1433448957.73,  // BTC price in IDR
     SATS_TO_BTC: 100000000     // Conversion from satoshis to BTC
 };
 // Bitcoin Collateral Strategy Configuration
 const BITCOIN_STRATEGY = {
-    COLLATERAL_SATS: 27337,         // 27,630 satoshis collateral
-    USDC_BORROWED: 12,              
-    LIQUIDATION_LTV: 91,            // Liquidation LTV percentage
-    INTEREST_RATE: 6.56,             
-    BTC_YIELD_RATE: 0.27,           // Annual yield rate on BTC collateral (%)
-    LIQUIDATION_PRICE_USD: 48237.98 // Liquidation price in USD
+    COLLATERAL_SATS: 61472,         
+    USDC_BORROWED: 27,              
+    LIQUIDATION_LTV: 91,            
+    INTEREST_RATE: 6.93,             
+    BTC_YIELD_RATE: 0.27,           
+    LIQUIDATION_PRICE_USD: 48268.31 
 };
 
 // Asset data
 const assets = [
     {
+        name: "USDC: Funding", //total money 889000 - 188000 = 701000
+        icon: "/myasset/icon/usdc.png",
+        balance: "Rp. 701.000", //funding = > 120000
+        invested: 701000, // sisa 701000 
+        avgPrice: 1, // Harga dalam Rupiah, dikonversi dari USD
+        currentPrice: 1, // Using global constant now
+        currency: "IDR",
+        type: "liquid",
+        description: "Pendanaan Untuk Pembelian Asset <br> Pendanaan dari Loan Bitcon Collteral Strategy"
+    },
+    
+    {
         name: "Property: Land",
-        icon: "/icon/coin.png",
+        icon: "/myasset/icon/mantle.png",
         balance: "1.445 m²",
         invested: 20000000,
-        avgPrice: 13840.8305, // Harga per m²
-        currentPrice: 13840.8305, // Harga current per m²
+        avgPrice: 13840.8305, 
+        currentPrice: 13840.8305, 
         currency: "IDR",
         type: "non-liquid",
-        description: "Kepemilikan Property Tanah"
+        description: "Kepemilikan Property Tanah <br> APR 15% per Tahun"
     },
     {
-        name: "IDX: PGEO",
-        icon: "/myasset/pgeo.png",
-        balance: "1.100 lembar",
-        invested: 885500,
-        avgPrice: 805,
+        name: "Bitcoin",
+        icon: "/myasset/icon/bitcoin.png",
+        balance: "61.472 sats",
+        invested: 922080,
+        avgPrice: 1500000000, // Harga dalam Rupiah, dikonversi dari USD
+        currentPrice: BTC_CONSTANTS.PRICE_IDR, // Using global constant now
+        currency: "IDR",
+        type: "liquid",
+        description: "Store of Value (Digital Asset) <br> Collateral Asset, Yield 0,27% per Tahun"
+    },
+    {
+        name: "IDX: PGEO", //361000 - 322000 (4 lot) = sisa = 39000
+        icon: "/myasset/icon/pgeo.png",
+        balance: "700 lembar",
+        invested: 875000, // 7 lot = 557334.75 (796.19) + 4 lot = 322000 (805) = (805) 885500
+        avgPrice: 1250,
         currentPrice: 805,
         currency: "IDR",
         type: "liquid",
         description: "PT. Pertamina Geothermal Energy. Tbk <br> Saham perusahaan Energi Panas Bumi"
     },
     {
+        name: "Pisang Jago",
+        icon: "/myasset/icon/banana.png",
+        balance: "Bussiness", //340000 (3400)
+        invested: 30000,
+        avgPrice: 1,
+        currentPrice: 1,
+        currency: "IDR",
+        type: "liquid",
+        description: "-"
+    },
+    {
+        name: "IDX: MERK",
+        icon: "/myasset/icon/merk.png",
+        balance: "0 lembar", //340000 (3400)
+        invested: 0,
+        avgPrice: 1,
+        currentPrice: 1,
+        currency: "IDR",
+        type: "liquid",
+        description: "PT. Merck. Tbk <br> Perusahaan Farmasi"
+    },
+   /* {
         name: "IDX: BMRI",
-        icon: "/myasset/bmri.png",
+        icon: "/myasset/icon/bmri.png",
         balance: "100 lembar",
         invested: 444666,
         avgPrice: 4446.66,
@@ -1078,31 +1243,22 @@ const assets = [
         type: "liquid",
         description: "PT. Bank Mandiri (persero). TBK <br> Saham Bank BUMN Terbesar di Indonesia"
     },
+    
     {
-        name: "Bitcoin",
-        icon: "/myasset/bitcoin.png",
-        balance: "27.337 sats",
-        invested: 414450,
-        avgPrice: 1500000000, // Harga dalam Rupiah, dikonversi dari USD
-        currentPrice: BTC_CONSTANTS.PRICE_IDR, // Using global constant now
+        name: "IDX: ADRO",
+        icon: "/myasset/icon/adro.png",
+        balance: "200 lembar",
+        invested: 344516,
+        avgPrice: 1722.58,
+        currentPrice: 1845,
         currency: "IDR",
         type: "liquid",
-        description: "Store of Value (Digital Asset) <br> Collateral Asset, Yield 0,27% per Tahun"
+        description: "PT. Alamtri Resources Indonesia. Tbk <br >Saham Perusahan Energi Terbarukan & Batu Bara"
     },
-    {
-        name: "USDC",
-        icon: "/myasset/usdc.png",
-        balance: "$ " + BITCOIN_STRATEGY.USDC_BORROWED,
-        invested: BITCOIN_STRATEGY.USDC_BORROWED * EXCHANGE_RATES.USDC_TO_IDR,
-        avgPrice: EXCHANGE_RATES.USDC_TO_IDR, // Harga dalam Rupiah, dikonversi dari USD
-        currentPrice: EXCHANGE_RATES.USDC_TO_IDR, // Using global constant now
-        currency: "IDR",
-        type: "liquid",
-        description: "Store of Value (Digital Asset) <br> Collateral Asset, Yield 0,27% per Tahun"
-    },
+    
     {
         name: "IDX: ELSA",
-        icon: "/myasset/elsa.png",
+        icon: "/myasset/icon/elsa.png",
         balance: "0 lembar",
         invested: 0,
         avgPrice: 1,
@@ -1111,39 +1267,19 @@ const assets = [
         type: "liquid",
         description: "PT. Bank Mandiri (persero). TBK <br> Saham Bank BUMN Terbesar di Indonesia"
     },
-    {
-        name: "IDX: ADRO",
-        icon: "/myasset/adro.png",
-        balance: "0 lembar",
-        invested: 0,
-        avgPrice: 1,
-        currentPrice: 1,
-        currency: "IDR",
-        type: "liquid",
-        description: "PT. Alamtri Resources Indonesia. Tbk  <br> -"
-    },
-    {
-        name: "IDX: MERK",
-        icon: "/myasset/merk.png",
-        balance: "0 lembar",
-        invested: 0,
-        avgPrice: 1,
-        currentPrice: 1,
-        currency: "IDR",
-        type: "liquid",
-        description: "PT. Merck. Tbk <br> Merck & Co. memproduksi berbagai macam obat farmasi"
-    },
+        
     {
         name: "IDX: TLKM",
-        icon: "/myasset/tlkm.png",
+        icon: "/myasset/icon/tlkm.png",
         balance: "0 lembar",
         invested: 0,
         avgPrice: 1,
         currentPrice: 1,
         currency: "IDR",
         type: "liquid",
-        description: "PT. Telkom Indonesia (Persero). Tbk <br>  BUMN Indonesia di bidang teknologi informasi dan komunikasi."
+        description: "PT. Telkom Indonesia (Persero). Tbk <br>  BUMN Teknologi Informasi dan Komunikasi."
     },
+    */
 ];
 
 
@@ -1172,7 +1308,7 @@ function convertIDRtoUSD(idrAmount) {
 function calculateAssetValues() {
     return assets.map(asset => {
         // For Pisang Jago, use preset marketValue, otherwise calculate
-        const marketValue = asset.name === "Pisang Jago" ? 
+        const marketValue = asset.name === "Pisang_Jago" ? 
             asset.marketValue : 
             (asset.invested * (asset.currentPrice / asset.avgPrice));
 
@@ -1205,7 +1341,7 @@ function formatPriceDisplay(asset, isAvgPrice = false) {
     } else if (asset.name === "RDN: Rupiah") {
         // Format for Rupiah
         return `Rp. 1,00`;
-    } else if (asset.name === "Pisang Jago") {
+    } else if (asset.name === "Pisang_Jago") {
         // Format for Pisang Jago (business)
         return isAvgPrice ? `N/A` : `Valuasi saat ini`;
     } else {
@@ -1326,12 +1462,15 @@ function createDonutChart(calculatedAssets) {
     const labels = filteredAssets.map(asset => asset.name);
 
     const colors = [
-        'rgba(39, 174, 96, 0.8)',     // Soft Green
-        'rgba(41, 128, 185, 0.8)',   // Muted Blue
-        'rgba(211, 84, 0, 0.8)',    // Burnt Orange
-        'rgba(243, 156, 18, 0.8)',   // Muted Gold
-        'rgba(142, 68, 173, 0.8)',   // Royal Purple
-        'rgba(44, 62, 80, 0.8)',     // Deep Navy
+    
+    'rgba(240, 78, 66, 0.9)',    // Saham
+    'rgba(255, 200, 87, 0.9)',   // Bitcoin 
+    'rgba(22, 163, 74, 0.9)',    // Energi
+    'rgba(0, 108, 229, 0.9)',    // Bank
+    'rgba(0, 184, 212, 0.9)',    // USDC
+    'rgba(0, 108, 229, 0.9)',    // Bank
+    'rgba(155, 89, 182, 0.9)',   // farmasi 
+    'rgba(255, 140, 0, 0.9)'     // Dynamic Orange → Bisnis makanan, kreativitas 
     ];
 
     // Create the chart
@@ -1467,7 +1606,136 @@ function updateLastUpdate() {
     // Currently the timestamp is hardcoded in the HTML
 }
 
-// Initialize the dashboard
+// Add this to your existing JavaScript code
+
+// Sample expenses data
+const expensesData = [
+    {
+        date: "2025-03-02",
+        product: "Baju & Celana",
+        amount: 583000,
+        notes: "-"
+    },
+    {
+        date: "2025-03-27",
+        product: "Memperbaiki Motor",
+        amount: 555000,
+        notes: "-"
+    },
+    {
+        date: "2025-03-06",
+        product: "Course Udemy",
+        amount: 110000,
+        notes: "-"
+    },
+    {
+        date: "2025-02-20",
+        product: "Kuota IM3",
+        amount: 65160,
+        notes: "-"
+    },
+    {
+        date: "2025-02-20",
+        product: "Kuota Tri3",
+        amount: 259800,
+        notes: "-"
+    },
+    {
+        date: "2025-02-20",
+        product: "Kuota ByU",
+        amount: 20000,
+        notes: "-"
+    },
+    {
+        date: "2025-03-02",
+        product: "Jam Tangan Sanda",
+        amount: 163865,
+        notes: "-"
+    },
+    {
+        date: "2025-03-02",
+        product: "Gantungan Kunci Kucing",
+        amount: 61150,
+        notes: "-"
+    },
+];
+
+// Function to format date from YYYY-MM-DD to DD MMM YYYY in Indonesian
+function formatDate(dateString) {
+    const months = [
+        'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
+        'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
+    ];
+    
+    const date = new Date(dateString);
+    const day = date.getDate();
+    const month = months[date.getMonth()];
+    const year = date.getFullYear();
+    
+    return `${day} ${month} ${year}`;
+}
+
+// Function to update expenses date range in the UI
+function updateExpensesDateRange() {
+    // Sort expenses by date
+    const sortedExpenses = [...expensesData].sort((a, b) => new Date(a.date) - new Date(b.date));
+    
+    // Get first and last date
+    const firstDate = sortedExpenses[0] ? formatDate(sortedExpenses[0].date) : '';
+    const lastDate = sortedExpenses[sortedExpenses.length - 1] ? formatDate(sortedExpenses[sortedExpenses.length - 1].date) : '';
+    
+    // Update the date range text
+    const dateRangeElement = document.getElementById('expensesDateRange');
+    if (dateRangeElement) {
+        dateRangeElement.textContent = `${firstDate} - ${lastDate}`;
+    }
+}
+
+// Function to populate expenses table
+function populateExpensesTable() {
+    const tableBody = document.getElementById('expensesTableBody');
+    if (!tableBody) return;
+    
+    tableBody.innerHTML = '';
+    
+    // Sort expenses by date (newest first)
+    const sortedExpenses = [...expensesData].sort((a, b) => new Date(b.date) - new Date(a.date));
+    
+    let totalExpenses = 0;
+    
+    sortedExpenses.forEach(expense => {
+        const row = document.createElement('tr');
+        
+        // Format date
+        const formattedDate = formatDate(expense.date);
+        
+        // Add to total
+        totalExpenses += expense.amount;
+        
+        row.innerHTML = `
+            <td class="expense-date">${formattedDate}</td>
+            <td class="expense-product">${expense.product}</td>
+            <td class="expense-amount">${formatCurrency(expense.amount)}</td>
+            <td class="expense-notes">${expense.notes}</td>
+        `;
+        
+        tableBody.appendChild(row);
+    });
+    
+    // Update total expenses
+    const totalExpensesElement = document.getElementById('totalExpensesAmount');
+    if (totalExpensesElement) {
+        totalExpensesElement.textContent = formatCurrency(totalExpenses);
+    }
+}
+
+// Function to initialize expenses section
+function initializeExpenses() {
+    updateExpensesDateRange();
+    populateExpensesTable();
+}
+
+// Update the initializeDashboard function to include expenses initialization
 function initializeDashboard() {
     // Calculate asset values
     const calculatedAssets = populateAssetTable();
@@ -1483,6 +1751,9 @@ function initializeDashboard() {
 
     // Initialize Bitcoin collateral strategy
     initializeBitcoinCollateralStrategy();
+    
+    // Initialize expenses section
+    initializeExpenses();
 
     // Update last update timestamp
     updateLastUpdate();

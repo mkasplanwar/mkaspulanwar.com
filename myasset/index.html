@@ -773,6 +773,90 @@ blockquote.quote footer {
         padding: 15px;
     }
 }
+/* Add these styles to your existing CSS section */
+
+/* Expenses card styles */
+.expenses-container {
+    margin-top: 15px;
+    width: 100%;
+}
+
+.expenses-date-range {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    background-color: #f8f9fa;
+    padding: 12px 15px;
+    border-radius: 8px;
+    border: 1px solid #000000;
+}
+
+.date-range-label {
+    font-size: 15px;
+    font-weight: 600;
+    margin-right: 10px;
+    color: #666666;
+}
+
+.date-range-value {
+    font-size: 15px;
+    font-weight: 500;
+    color: #000000;
+}
+
+.expenses-table th, 
+.expenses-table td {
+    padding: 14px 12px;
+}
+
+.total-row {
+    background-color: #f8f9fa;
+    font-weight: 500;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.total-amount {
+    font-weight: 600;
+    color: #dc3545;
+}
+
+.expense-date {
+    white-space: nowrap;
+}
+
+.expense-product {
+    max-width: 300px;
+}
+
+.expense-amount {
+    font-weight: 500;
+    color: #dc3545;
+    text-align: right;
+}
+
+.expense-notes {
+    color: #666666;
+    max-width: 300px;
+}
+
+@media (max-width: 768px) {
+    .expenses-date-range {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .date-range-label {
+        margin-bottom: 5px;
+    }
+    
+    .expense-product, 
+    .expense-notes {
+        max-width: 150px;
+    }
+}
     </style>
 </head>
 <body>
@@ -979,6 +1063,42 @@ blockquote.quote footer {
             <div class="ltv-status">
                 <div class="status-indicator-large" id="ltvStatusIndicator">Status: Healthy</div>
             </div>
+        </div>
+    </div>
+</div>
+<!-- Add this card to your dashboard, right before the closing </div> of the main container -->
+<div class="card full-width-card">
+    <div class="card-header">
+        <i class="fa-solid fa-receipt"></i>
+        <span class="title">Riwayat Pengeluaran</span>
+    </div>
+    <div class="expenses-container">
+        <div class="expenses-date-range">
+            <div class="date-range-label">Periode:</div>
+            <div class="date-range-value" id="expensesDateRange">01 Maret 2025 - 02 April 2025</div>
+        </div>
+        
+        <div class="table-container">
+            <table class="distribution-table expenses-table">
+                <thead>
+                    <tr>
+                        <th>Tanggal</th>
+                        <th>Produk/Layanan</th>
+                        <th>Jumlah</th>
+                        <th>Keterangan</th>
+                    </tr>
+                </thead>
+                <tbody id="expensesTableBody">
+                    <!-- Expenses will be inserted here by JavaScript -->
+                </tbody>
+                <tfoot>
+                    <tr class="total-row">
+                        <td colspan="2" class="text-right"><strong>Total Pengeluaran:</strong></td>
+                        <td class="total-amount" id="totalExpensesAmount">Rp. 0</td>
+                        <td></td>
+                    </tr>
+                </tfoot>
+            </table>
         </div>
     </div>
 </div>
@@ -1486,7 +1606,136 @@ function updateLastUpdate() {
     // Currently the timestamp is hardcoded in the HTML
 }
 
-// Initialize the dashboard
+// Add this to your existing JavaScript code
+
+// Sample expenses data
+const expensesData = [
+    {
+        date: "2025-03-02",
+        product: "Baju & Celana",
+        amount: 583000,
+        notes: "-"
+    },
+    {
+        date: "2025-03-27",
+        product: "Memperbaiki Motor",
+        amount: 555000,
+        notes: "-"
+    },
+    {
+        date: "2025-03-06",
+        product: "Course Udemy",
+        amount: 110000,
+        notes: "-"
+    },
+    {
+        date: "2025-02-20",
+        product: "Kuota IM3",
+        amount: 65160,
+        notes: "-"
+    },
+    {
+        date: "2025-02-20",
+        product: "Kuota Tri3",
+        amount: 259800,
+        notes: "-"
+    },
+    {
+        date: "2025-02-20",
+        product: "Kuota ByU",
+        amount: 20000,
+        notes: "-"
+    },
+    {
+        date: "2025-03-02",
+        product: "Jam Tangan Sanda",
+        amount: 163865,
+        notes: "-"
+    },
+    {
+        date: "2025-03-02",
+        product: "Gantungan Kunci Kucing",
+        amount: 61150,
+        notes: "-"
+    },
+];
+
+// Function to format date from YYYY-MM-DD to DD MMM YYYY in Indonesian
+function formatDate(dateString) {
+    const months = [
+        'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
+        'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
+    ];
+    
+    const date = new Date(dateString);
+    const day = date.getDate();
+    const month = months[date.getMonth()];
+    const year = date.getFullYear();
+    
+    return `${day} ${month} ${year}`;
+}
+
+// Function to update expenses date range in the UI
+function updateExpensesDateRange() {
+    // Sort expenses by date
+    const sortedExpenses = [...expensesData].sort((a, b) => new Date(a.date) - new Date(b.date));
+    
+    // Get first and last date
+    const firstDate = sortedExpenses[0] ? formatDate(sortedExpenses[0].date) : '';
+    const lastDate = sortedExpenses[sortedExpenses.length - 1] ? formatDate(sortedExpenses[sortedExpenses.length - 1].date) : '';
+    
+    // Update the date range text
+    const dateRangeElement = document.getElementById('expensesDateRange');
+    if (dateRangeElement) {
+        dateRangeElement.textContent = `${firstDate} - ${lastDate}`;
+    }
+}
+
+// Function to populate expenses table
+function populateExpensesTable() {
+    const tableBody = document.getElementById('expensesTableBody');
+    if (!tableBody) return;
+    
+    tableBody.innerHTML = '';
+    
+    // Sort expenses by date (newest first)
+    const sortedExpenses = [...expensesData].sort((a, b) => new Date(b.date) - new Date(a.date));
+    
+    let totalExpenses = 0;
+    
+    sortedExpenses.forEach(expense => {
+        const row = document.createElement('tr');
+        
+        // Format date
+        const formattedDate = formatDate(expense.date);
+        
+        // Add to total
+        totalExpenses += expense.amount;
+        
+        row.innerHTML = `
+            <td class="expense-date">${formattedDate}</td>
+            <td class="expense-product">${expense.product}</td>
+            <td class="expense-amount">${formatCurrency(expense.amount)}</td>
+            <td class="expense-notes">${expense.notes}</td>
+        `;
+        
+        tableBody.appendChild(row);
+    });
+    
+    // Update total expenses
+    const totalExpensesElement = document.getElementById('totalExpensesAmount');
+    if (totalExpensesElement) {
+        totalExpensesElement.textContent = formatCurrency(totalExpenses);
+    }
+}
+
+// Function to initialize expenses section
+function initializeExpenses() {
+    updateExpensesDateRange();
+    populateExpensesTable();
+}
+
+// Update the initializeDashboard function to include expenses initialization
 function initializeDashboard() {
     // Calculate asset values
     const calculatedAssets = populateAssetTable();
@@ -1502,6 +1751,9 @@ function initializeDashboard() {
 
     // Initialize Bitcoin collateral strategy
     initializeBitcoinCollateralStrategy();
+    
+    // Initialize expenses section
+    initializeExpenses();
 
     // Update last update timestamp
     updateLastUpdate();

@@ -1046,16 +1046,17 @@ const BITCOIN_STRATEGY = {
 // Asset data
 const assets = [
     {
-        name: "Funding",
+        name: "USDC: Funding", //total money 889000 - 188000
         icon: "/myasset/icon/usdc.png",
-        balance: "Tidak Ada",
-        invested: -188000,
+        balance: "Tidak Ada", //funding = > 120000
+        invested: 39000, // sisa 701000 
         avgPrice: 1, // Harga dalam Rupiah, dikonversi dari USD
         currentPrice: 1, // Using global constant now
         currency: "IDR",
         type: "liquid",
         description: "Pendanaan Untuk Pembelian Asset <br> Pendanaan dari Loan Bitcon Collteral Strategy"
     },
+    
     {
         name: "Property: Land",
         icon: "/myasset/icon/mantle.png",
@@ -1079,17 +1080,28 @@ const assets = [
         description: "Store of Value (Digital Asset) <br> Collateral Asset, Yield 0,27% per Tahun"
     },
     {
-        name: "IDX: PGEO",
+        name: "IDX: PGEO", //361000 - 322000 (4 lot) = sisa = 39000
         icon: "/myasset/icon/pgeo.png",
-        balance: "700 lembar",
-        invested: 557334.75,
-        avgPrice: 796.19,
+        balance: "1.100 lembar",
+        invested: 885500, // 7 lot = 557334.75 (796.19) + 4 lot = 322000 (805) = (805) 885500
+        avgPrice: 805,
         currentPrice: 805,
         currency: "IDR",
         type: "liquid",
         description: "PT. Pertamina Geothermal Energy. Tbk <br> Saham perusahaan Energi Panas Bumi"
     },
     {
+        name: "IDX: MERK",
+        icon: "/myasset/icon/merk.png",
+        balance: "100 lembar", //340000 (3400)
+        invested: 340000,
+        avgPrice: 3400,
+        currentPrice: 3400,
+        currency: "IDR",
+        type: "liquid",
+        description: "PT. Merck. Tbk <br> Perusahaan Farmasi"
+    },
+   /* {
         name: "IDX: BMRI",
         icon: "/myasset/icon/bmri.png",
         balance: "100 lembar",
@@ -1124,18 +1136,7 @@ const assets = [
         type: "liquid",
         description: "PT. Bank Mandiri (persero). TBK <br> Saham Bank BUMN Terbesar di Indonesia"
     },
-    
-    {
-        name: "IDX: MERK",
-        icon: "/myasset/icon/merk.png",
-        balance: "0 lembar",
-        invested: 0,
-        avgPrice: 1,
-        currentPrice: 1,
-        currency: "IDR",
-        type: "liquid",
-        description: "PT. Merck. Tbk <br> Perusahaan Farmasi"
-    },
+        
     {
         name: "IDX: TLKM",
         icon: "/myasset/icon/tlkm.png",
@@ -1147,7 +1148,7 @@ const assets = [
         type: "liquid",
         description: "PT. Telkom Indonesia (Persero). Tbk <br>  BUMN Teknologi Informasi dan Komunikasi."
     },
-    
+    */
 ];
 
 

@@ -1046,8 +1046,19 @@ const BITCOIN_STRATEGY = {
 // Asset data
 const assets = [
     {
+        name: "Funding",
+        icon: "/myasset/icon/usdc.png",
+        balance: "Tidak Ada",
+        invested: -188000,
+        avgPrice: 1, // Harga dalam Rupiah, dikonversi dari USD
+        currentPrice: 1, // Using global constant now
+        currency: "IDR",
+        type: "liquid",
+        description: "Pendanaan Untuk Pembelian Asset <br> Pendanaan dari Loan Bitcon Collteral Strategy"
+    },
+    {
         name: "Property: Land",
-        icon: "/myasset/icon/chainlink.png",
+        icon: "/myasset/icon/mantle.png",
         balance: "1.445 m²",
         invested: 20000000,
         avgPrice: 13840.8305, 
@@ -1101,17 +1112,7 @@ const assets = [
         type: "liquid",
         description: "PT. Alamtri Resources Indonesia. Tbk <br >Saham Perusahan Energi Terbarukan & Batu Bara"
     },
-    {
-        name: "Funding",
-        icon: "/myasset/icon/usdc.png",
-        balance: "Tidak Ada",
-        invested: -188000,
-        avgPrice: 1, // Harga dalam Rupiah, dikonversi dari USD
-        currentPrice: 1, // Using global constant now
-        currency: "IDR",
-        type: "liquid",
-        description: "Pendanaan Untuk Pembelian Asset <br> Pendanaan dari Loan Bitcon Collteral Strategy"
-    },
+    
     {
         name: "IDX: ELSA",
         icon: "/myasset/icon/elsa.png",

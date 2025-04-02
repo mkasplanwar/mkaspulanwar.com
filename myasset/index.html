@@ -1072,8 +1072,8 @@ const assets = [
         name: "Bitcoin",
         icon: "/myasset/icon/bitcoin.png",
         balance: "61.472 sats",
-        invested: 922080,
-        avgPrice: 1500000000, // Harga dalam Rupiah, dikonversi dari USD
+        invested: 583984,
+        avgPrice: 950000000, // Harga dalam Rupiah, dikonversi dari USD
         currentPrice: BTC_CONSTANTS.PRICE_IDR, // Using global constant now
         currency: "IDR",
         type: "liquid",
@@ -1089,6 +1089,17 @@ const assets = [
         currency: "IDR",
         type: "liquid",
         description: "PT. Pertamina Geothermal Energy. Tbk <br> Saham perusahaan Energi Panas Bumi"
+    },
+    {
+        name: "Pisang Jago",
+        icon: "/myasset/icon/banana.png",
+        balance: "Bussiness", //340000 (3400)
+        invested: 30000,
+        avgPrice: 1,
+        currentPrice: 1,
+        currency: "IDR",
+        type: "liquid",
+        description: "-"
     },
     {
         name: "IDX: MERK",
@@ -1177,7 +1188,7 @@ function convertIDRtoUSD(idrAmount) {
 function calculateAssetValues() {
     return assets.map(asset => {
         // For Pisang Jago, use preset marketValue, otherwise calculate
-        const marketValue = asset.name === "Pisang Jago" ? 
+        const marketValue = asset.name === "Pisang_Jago" ? 
             asset.marketValue : 
             (asset.invested * (asset.currentPrice / asset.avgPrice));
 
@@ -1210,7 +1221,7 @@ function formatPriceDisplay(asset, isAvgPrice = false) {
     } else if (asset.name === "RDN: Rupiah") {
         // Format for Rupiah
         return `Rp. 1,00`;
-    } else if (asset.name === "Pisang Jago") {
+    } else if (asset.name === "Pisang_Jago") {
         // Format for Pisang Jago (business)
         return isAvgPrice ? `N/A` : `Valuasi saat ini`;
     } else {
@@ -1331,12 +1342,14 @@ function createDonutChart(calculatedAssets) {
     const labels = filteredAssets.map(asset => asset.name);
 
     const colors = [
-    'rgba(255, 200, 87, 0.9)',   // Bitcoin
+    
+    'rgba(240, 78, 66, 0.9)',    // Saham
+    'rgba(255, 200, 87, 0.9)',   // Bitcoin 
     'rgba(22, 163, 74, 0.9)',    // Energi
     'rgba(0, 108, 229, 0.9)',    // Bank
-    'rgba(240, 78, 66, 0.9)',    // Saham  
-    'rgba(155, 89, 182, 0.9)',   // farmasi 
     'rgba(0, 184, 212, 0.9)',    // USDC
+    'rgba(0, 108, 229, 0.9)',    // Bank
+    'rgba(155, 89, 182, 0.9)',   // farmasi 
     'rgba(255, 140, 0, 0.9)'     // Dynamic Orange → Bisnis makanan, kreativitas 
     ];
 

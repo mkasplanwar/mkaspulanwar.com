@@ -354,8 +354,9 @@
             font-size: 12px;
             font-weight: 600;
             margin-left: 8px;
-            background-color: #28a745;
-            color: white;
+            /*background-color: #28a745;*/
+            background-color: #ffc107;
+            color: black;
         }
 
         @media (max-width: 768px) {
@@ -905,7 +906,7 @@ blockquote.quote footer {
                         </div>
                         <div class="stat-item">
                             <span class="stat-label">Loan to Liquid Ratio</span>
-                            <span class="stat-value" id="derRatio">0 <span class="status-indicator">Sehat</span></span>
+                            <span class="stat-value" id="derRatio">0 <span class="status-indicator"></span></span>
                         </div>
                     </div>
                 </div>
@@ -1205,30 +1206,6 @@ const assets = [
         company: "Collateral Asset"
     },
     {
-        name: "AAPL",
-        icon: "/myasset/icon/apple.png",
-        balance: "0.0384 shares",
-        invested: 131428, // Precalculated value in IDR (will be recalculated in calculation function)
-        avgPrice: 204.43, // Price in USD
-        currentPrice: 204, // Price in USD
-        currency: "USD",
-        type: "liquid",
-        sector: "Technology",
-        company: "Apple Inc."
-    },
-    {
-        name: "GOOGL",
-        icon: "/myasset/icon/google.png",
-        balance: "0 shares",
-        invested: 0, // No shares owned
-        avgPrice: 147.68, // Price in USD
-        currentPrice: 159.99, // Price in USD
-        currency: "USD",
-        type: "liquid",
-        sector: "Technology",
-        company: "Alphabet Inc."
-    },
-    {
         name: "USDC: Funding",
         icon: "/myasset/icon/usdc.png",
         balance: "Rp. 701.000",
@@ -1253,16 +1230,16 @@ const assets = [
         company: "PT. Pertamina Geothermal Energy. Tbk",
     },
     {
-        name: "IDX: TLKM",
-        icon: "/myasset/icon/tlkm.png",
-        balance: "0 lembar",
-        invested: 0,
-        avgPrice: 1,
-        currentPrice: 1,
-        currency: "IDR",
+        name: "AAPL",
+        icon: "/myasset/icon/apple.png",
+        balance: "0.0384 shares",
+        invested: 131428, // Precalculated value in IDR (will be recalculated in calculation function)
+        avgPrice: 204.43, // Price in USD
+        currentPrice: 204, // Price in USD
+        currency: "USD",
         type: "liquid",
         sector: "Technology",
-        company: "PT. Telkom Indonesia (persero). Tbk",
+        company: "Apple Inc."
     },
     {
         name: "Pisang Jago",
@@ -1276,6 +1253,44 @@ const assets = [
         sector: "Business",
         company: "-",
     },
+    {
+        name: "ShortTerm Debt",
+        icon: "/myasset/icon/usdt.png",
+        balance: "0 lembar",
+        invested: -323000,
+        avgPrice: 1,
+        currentPrice: 1,
+        currency: "IDR",
+        type: "liquid",
+        sector: "Technology",
+        company: "PT. Telkom Indonesia (persero). Tbk",
+    },
+    {
+        name: "GOOGL",
+        icon: "/myasset/icon/google.png",
+        balance: "0 shares",
+        invested: 0, // No shares owned
+        avgPrice: 147.68, // Price in USD
+        currentPrice: 159.99, // Price in USD
+        currency: "USD",
+        type: "liquid",
+        sector: "Technology",
+        company: "Alphabet Inc."
+    },
+    
+    {
+        name: "IDX: TLKM",
+        icon: "/myasset/icon/tlkm.png",
+        balance: "0 lembar",
+        invested: 0,
+        avgPrice: 1,
+        currentPrice: 1,
+        currency: "IDR",
+        type: "liquid",
+        sector: "Technology",
+        company: "PT. Telkom Indonesia (persero). Tbk",
+    },
+    
     {
         name: "IDX: MERK",
         icon: "/myasset/icon/merk.png",
@@ -1438,7 +1453,7 @@ function updatePortfolioSummary(calculatedAssets) {
     document.getElementById('totalInvested').textContent = formatCurrency(totalInvested);
     document.getElementById('totalPnL').textContent = `${totalPnL >= 0 ? '+ ' : '- '}${formatCurrency(Math.abs(totalPnL))}`;
     document.getElementById('totalDebt').textContent = formatCurrency(debtAmount);
-    document.getElementById('derRatio').innerHTML = `${der.toFixed(2)} <span class="status-indicator">Sehat</span>`;
+    document.getElementById('derRatio').innerHTML = `${der.toFixed(2)} <span class="status-indicator">Caution</span>`;
     document.getElementById('nonLiquidAssets').textContent = formatCurrency(totalNonLiquidMarketValue);
     document.getElementById('nonLiquidPercentage').textContent = `${nonLiquidPercentage.toFixed(2)}%`;
 
@@ -1467,14 +1482,12 @@ function createDonutChart(calculatedAssets) {
     const labels = filteredAssets.map(asset => asset.name);
 
     const colors = [
-        'rgba(240, 78, 66, 0.9)',    // Saham
-        'rgba(255, 200, 87, 0.9)',   // Bitcoin 
-        'rgba(22, 163, 74, 0.9)',    // Energi
-        'rgba(0, 108, 229, 0.9)',    // Bank
-        'rgba(0, 184, 212, 0.9)',    // USDC
-        'rgba(0, 108, 229, 0.9)',    // Bank
-        'rgba(155, 89, 182, 0.9)',   // farmasi 
-        'rgba(255, 140, 0, 0.9)'     // Dynamic Orange → Bisnis makanan, kreativitas 
+        'rgba(240, 78, 66, 0.9)',    // merah
+        'rgba(255, 200, 87, 0.9)',   // kuning 
+        'rgba(22, 163, 74, 0.9)',    // hijau
+        'rgba(0, 108, 229, 0.9)',    // biru
+        'rgba(155, 89, 182, 0.9)',   // ungu 
+        
     ];
 
     // Create the chart

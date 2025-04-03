@@ -793,22 +793,32 @@ blockquote.quote footer {
     font-size: 14px;
     font-weight: 500;
 }
-.focus-tag.green-energy {
-    background-color: rgba(22, 163, 74, 0.1);
-    color: #16a34a;
-    border-color: #16a34a;
+.focus-tag.store-value {
+    background-color: rgba(255, 215, 0, 0.12);
+    color: #b8860b;
+    border-color: #daa520;
+    box-shadow: 0 1px 3px rgba(218, 165, 32, 0.2);
 }
 
-.focus-tag.store-value {
-    background-color: rgba(255, 200, 87, 0.1);
-    color: #d97706;
-    border-color: #d97706;
+.focus-tag.green-energy {
+    background-color: rgba(0, 128, 0, 0.08);
+    color: #009900;
+    border-color: #00b347;
+    box-shadow: 0 1px 3px rgba(0, 179, 71, 0.2);
+}
+
+.focus-tag.technology {
+    background-color: rgba(25, 25, 112, 0.08);
+    color: #4169e1;
+    border-color: #1e90ff;
+    box-shadow: 0 1px 3px rgba(30, 144, 255, 0.2);
 }
 
 .focus-tag.pharma {
-    background-color: rgba(155, 89, 182, 0.1);
-    color: #8b5cf6;
-    border-color: #8b5cf6;
+    background-color: rgba(128, 0, 128, 0.08);
+    color: #8a2be2;
+    border-color: #9400d3;
+    box-shadow: 0 1px 3px rgba(148, 0, 211, 0.2);
 }
 
 .focus-icon {
@@ -914,13 +924,17 @@ blockquote.quote footer {
 <div class="summary-card">
     <div class="summary-title">Invested Focus</div>
     <div class="focus-tags">
+        <div class="focus-tag store-value">
+            <span class="focus-icon"><i class="fa-solid fa-bitcoin-sign"></i></span>
+            <span class="focus-text">Store of Value</span>
+        </div>
         <div class="focus-tag green-energy">
             <span class="focus-icon"><i class="fa-solid fa-leaf"></i></span>
             <span class="focus-text">Green Energy</span>
         </div>
-        <div class="focus-tag store-value">
-            <span class="focus-icon"><i class="fa-solid fa-bitcoin-sign"></i></span>
-            <span class="focus-text">Store of Value</span>
+        <div class="focus-tag technology">
+            <span class="focus-icon"><i class="fa-solid fa-microchip"></i></span>
+            <span class="focus-text">Technology</span>
         </div>
         <div class="focus-tag pharma">
             <span class="focus-icon"><i class="fa-solid fa-pills"></i></span>
@@ -1162,6 +1176,28 @@ const assets = [
         name: "IDX: PGEO", //361000 - 322000 (4 lot) = sisa = 39000
         icon: "/myasset/icon/pgeo.png",
         balance: "700 lembar",
+        invested: 875000, // 7 lot = 557334.75 (796.19) + 4 lot = 322000 (805) = (805) 885500
+        avgPrice: 1250,
+        currentPrice: 805,
+        currency: "IDR",
+        type: "liquid",
+        description: "PT. Pertamina Geothermal Energy. Tbk <br> Saham perusahaan Energi Panas Bumi"
+    },
+    {
+        name: "AAPL", //361000 - 322000 (4 lot) = sisa = 39000
+        icon: "/myasset/icon/apple.png",
+        balance: "0 shares",
+        invested: 875000, // 7 lot = 557334.75 (796.19) + 4 lot = 322000 (805) = (805) 885500
+        avgPrice: 1250,
+        currentPrice: 805,
+        currency: "IDR",
+        type: "liquid",
+        description: "PT. Pertamina Geothermal Energy. Tbk <br> Saham perusahaan Energi Panas Bumi"
+    },
+    {
+        name: "GOOGL (Class A)", //361000 - 322000 (4 lot) = sisa = 39000
+        icon: "/myasset/icon/google.png",
+        balance: "0 shares",
         invested: 875000, // 7 lot = 557334.75 (796.19) + 4 lot = 322000 (805) = (805) 885500
         avgPrice: 1250,
         currentPrice: 805,

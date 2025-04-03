@@ -1175,8 +1175,8 @@ const googlValues = calculateStockValues('GOOGL', 0); // 0 shares currently
 // Asset data
 const assets = [
     {
-        name: "Property: Land",
-        icon: "/myasset/icon/tanah.png",
+        name: "Farmland",
+        icon: "/myasset/icon/coin.png",
         balance: "1.445 m²",
         invested: 20000000,
         avgPrice: 13840.8305, 
@@ -1263,7 +1263,7 @@ const assets = [
     },
     {
         name: "Pisang Jago",
-        icon: "/myasset/icon/banana.png",
+        icon: "/myasset/icon/coin.png",
         balance: "Bussiness", //340000 (3400)
         invested: 30000,
         avgPrice: 1,
@@ -1356,7 +1356,7 @@ function formatPriceDisplay(asset, isAvgPrice = false) {
             minimumFractionDigits: 2,
             maximumFractionDigits: 2
         })} jt`;
-    } else if (asset.name === "Property: Land") {
+    } else if (asset.name === "Farmland") {
         // Format for Property (price per m²)
         return `Rp. ${price.toLocaleString('id-ID', {
             minimumFractionDigits: 2,
@@ -1478,7 +1478,7 @@ function createDonutChart(calculatedAssets) {
 
     // Filter out Property Land and assets with 0 market value
     const filteredAssets = calculatedAssets.filter(asset => 
-        asset.name !== "Property: Land" && asset.marketValue > 0
+        asset.name !== "Farmland" && asset.marketValue > 0
     );
 
     // Calculate percentages for the chart (based on filtered assets only)

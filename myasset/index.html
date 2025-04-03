@@ -1139,20 +1139,8 @@ const BITCOIN_STRATEGY = {
 // Asset data
 const assets = [
     {
-        name: "USDC: Funding", //total money 889000 - 188000 = 701000
-        icon: "/myasset/icon/usdc.png",
-        balance: "Rp. 701.000", //funding = > 120000
-        invested: 701000, // sisa 701000 
-        avgPrice: 1, // Harga dalam Rupiah, dikonversi dari USD
-        currentPrice: 1, // Using global constant now
-        currency: "IDR",
-        type: "liquid",
-        description: "Pendanaan Untuk Pembelian Asset <br> Pendanaan dari Loan Bitcon Collteral Strategy"
-    },
-    
-    {
         name: "Property: Land",
-        icon: "/myasset/icon/mantle.png",
+        icon: "/myasset/icon/okb.png",
         balance: "1.445 m²",
         invested: 20000000,
         avgPrice: 13840.8305, 
@@ -1173,6 +1161,42 @@ const assets = [
         description: "Store of Value (Digital Asset) <br> Collateral Asset, Yield 0,27% per Tahun"
     },
     {
+        name: "AAPL", //361000 - 322000 (4 lot) = sisa = 39000
+        icon: "/myasset/icon/apple.png",
+        balance: "0 shares",
+        invested: 0, // 7 lot = 557334.75 (796.19) + 4 lot = 322000 (805) = (805) 885500
+        avgPrice: 1,
+        currentPrice: 1,
+        currency: "IDR",
+        type: "liquid",
+        description: "-"
+    },
+    {
+        name: "GOOGL", //361000 - 322000 (4 lot) = sisa = 39000
+        icon: "/myasset/icon/google.png",
+        balance: "0 shares",
+        invested: 0, // 7 lot = 557334.75 (796.19) + 4 lot = 322000 (805) = (805) 885500
+        avgPrice: 1,
+        currentPrice: 1,
+        currency: "IDR",
+        type: "liquid",
+        description: "-"
+    },
+    {
+        name: "USDC: Funding", //total money 889000 - 188000 = 701000
+        icon: "/myasset/icon/usdc.png",
+        balance: "Rp. 701.000", //funding = > 120000
+        invested: 701000, // sisa 701000 
+        avgPrice: 1, // Harga dalam Rupiah, dikonversi dari USD
+        currentPrice: 1, // Using global constant now
+        currency: "IDR",
+        type: "liquid",
+        description: "Pendanaan Untuk Pembelian Asset <br> Pendanaan dari Loan Bitcon Collteral Strategy"
+    },
+    
+    
+    
+    {
         name: "IDX: PGEO", //361000 - 322000 (4 lot) = sisa = 39000
         icon: "/myasset/icon/pgeo.png",
         balance: "700 lembar",
@@ -1183,28 +1207,19 @@ const assets = [
         type: "liquid",
         description: "PT. Pertamina Geothermal Energy. Tbk <br> Saham perusahaan Energi Panas Bumi"
     },
+    
     {
-        name: "AAPL", //361000 - 322000 (4 lot) = sisa = 39000
-        icon: "/myasset/icon/apple.png",
-        balance: "0 shares",
-        invested: 875000, // 7 lot = 557334.75 (796.19) + 4 lot = 322000 (805) = (805) 885500
-        avgPrice: 1250,
-        currentPrice: 805,
+        name: "IDX: TLKM", //361000 - 322000 (4 lot) = sisa = 39000
+        icon: "/myasset/icon/tlkm.png",
+        balance: "0 lembar",
+        invested: 0, // 7 lot = 557334.75 (796.19) + 4 lot = 322000 (805) = (805) 885500
+        avgPrice: 1,
+        currentPrice: 1,
         currency: "IDR",
         type: "liquid",
-        description: "PT. Pertamina Geothermal Energy. Tbk <br> Saham perusahaan Energi Panas Bumi"
+        description: "-"
     },
-    {
-        name: "GOOGL (Class A)", //361000 - 322000 (4 lot) = sisa = 39000
-        icon: "/myasset/icon/google.png",
-        balance: "0 shares",
-        invested: 875000, // 7 lot = 557334.75 (796.19) + 4 lot = 322000 (805) = (805) 885500
-        avgPrice: 1250,
-        currentPrice: 805,
-        currency: "IDR",
-        type: "liquid",
-        description: "PT. Pertamina Geothermal Energy. Tbk <br> Saham perusahaan Energi Panas Bumi"
-    },
+    
     {
         name: "Pisang Jago",
         icon: "/myasset/icon/banana.png",

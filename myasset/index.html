@@ -937,8 +937,8 @@ blockquote.quote footer {
                             <span class="focus-text">Technology</span>
                         </div>
                         <div class="focus-tag pharma">
-                            <span class="focus-icon"><i class="fa-solid fa-pills"></i></span>
-                            <span class="focus-text">Farmasi</span>
+                            <span class="focus-icon"><i class="fa-solid fa-staff-snake"></i></span>
+                            <span class="focus-text">Healthcare</span>
                         </div>
                     </div>
                 </div>
@@ -977,7 +977,8 @@ blockquote.quote footer {
                             <th>Current Price</th>
                             <th>Market Value</th>
                             <th>Return (%)</th>
-                            <th>Keterangan</th>
+                            <th>Sector</th>
+                            <th>Company Name</th>
                         </tr>
                     </thead>
                     <tbody id="assetTableBody">
@@ -1126,6 +1127,7 @@ const BTC_CONSTANTS = {
     PRICE_IDR: 1456596814.78,  // BTC price in IDR
     SATS_TO_BTC: 100000000     // Conversion from satoshis to BTC
 };
+
 // Bitcoin Collateral Strategy Configuration
 const BITCOIN_STRATEGY = {
     COLLATERAL_SATS: 61472,         
@@ -1135,15 +1137,41 @@ const BITCOIN_STRATEGY = {
     BTC_YIELD_RATE: 0.27,           
     LIQUIDATION_PRICE_USD: 48268.31 
 };
-// Function to convert USD stock values to IDR for display
-function convertStockValueToIDR(stockPriceUSD, shares) {
-    return stockPriceUSD * shares * EXCHANGE_RATES.USD_TO_IDR;
+
+// US Stock price data in USD
+const US_STOCK_PRICES = {
+    AAPL: {
+        avgPriceUSD: 188.52,
+        currentPriceUSD: 212.44
+    },
+    GOOGL: {
+        avgPriceUSD: 147.68,
+        currentPriceUSD: 159.99
+    }
+};
+
+// Function to calculate IDR values from USD for stocks
+function calculateStockValues(ticker, shares) {
+    if (!US_STOCK_PRICES[ticker]) return { avgPriceIDR: 0, currentPriceIDR: 0, investedIDR: 0, marketValueIDR: 0 };
+    
+    const stockData = US_STOCK_PRICES[ticker];
+    const avgPriceIDR = stockData.avgPriceUSD * EXCHANGE_RATES.USD_TO_IDR;
+    const currentPriceIDR = stockData.currentPriceUSD * EXCHANGE_RATES.USD_TO_IDR;
+    const investedIDR = shares * stockData.avgPriceUSD * EXCHANGE_RATES.USD_TO_IDR;
+    const marketValueIDR = shares * stockData.currentPriceUSD * EXCHANGE_RATES.USD_TO_IDR;
+    
+    return {
+        avgPriceUSD: stockData.avgPriceUSD,
+        currentPriceUSD: stockData.currentPriceUSD,
+        investedIDR: Math.round(investedIDR),
+        marketValueIDR: Math.round(marketValueIDR)
+    };
 }
 
-// Calculate initial investment in IDR from USD stock price
-function calculateInvestedIDR(avgPriceUSD, shares) {
-    return avgPriceUSD * shares * EXCHANGE_RATES.USD_TO_IDR;
-}
+// Calculate values for AAPL and GOOGL
+const aaplValues = calculateStockValues('AAPL', 0); // 0 shares currently
+const googlValues = calculateStockValues('GOOGL', 0); // 0 shares currently
+
 // Asset data
 const assets = [
     {
@@ -1155,7 +1183,8 @@ const assets = [
         currentPrice: 13840.8305, 
         currency: "IDR",
         type: "non-liquid",
-        description: "Kepemilikan Property Tanah <br> APR 15% per Tahun"
+        sector: "Real Estate",
+        company: "Private Ownership",
     },
     {
         name: "Bitcoin",
@@ -1166,29 +1195,33 @@ const assets = [
         currentPrice: BTC_CONSTANTS.PRICE_IDR, // Using global constant now
         currency: "IDR",
         type: "liquid",
-        description: "Store of Value (Digital Asset) <br> Collateral Asset, Yield 0,27% per Tahun"
+        sector: "Store of Value",
+        company: "Collateral Asset"
     },
     {
         name: "AAPL",
         icon: "/myasset/icon/apple.png",
-        balance: "0 shares", // Update with your actual shares
-        invested: calculateInvestedIDR(0), // Example: avg price $175.25 USD for 4 shares
-        avgPrice: 175.25, // Price in USD
-        currentPrice: 190.50, // Current price in USD
-        currency: "USD", // Mark as USD for proper formatting
+        balance: "0 shares",
+        invested: aaplValues.investedIDR, // Value in IDR
+        avgPrice: aaplValues.avgPriceUSD, // Keep price in USD
+        currentPrice: aaplValues.currentPriceUSD, // Keep price in USD
+        currency: "USD", // Changed to USD for price display
         type: "liquid",
-        description: "Apple Inc. "
+        sector: "Technology",
+        company: "Apple Inc."
     },
     {
         name: "GOOGL",
         icon: "/myasset/icon/google.png",
-        balance: "0 shares", // Update with your actual shares
-        invested: calculateInvestedIDR(0), // Example: avg price $142.38 USD for 2 shares
-        avgPrice: 142.38, // Price in USD
-        currentPrice: 155.75, // Current price in USD
-        currency: "USD", // Mark as USD for proper formatting
+        balance: "0 shares",
+        invested: googlValues.investedIDR, // Value in IDR
+        avgPrice: googlValues.avgPriceUSD, // Keep price in USD
+        currentPrice: googlValues.currentPriceUSD, // Keep price in USD
+        currency: "USD", // Changed to USD for price display
         type: "liquid",
-        description: "Alphabet Inc."
+        sector: "Technology",
+        company: "Alphabet Inc."
+       
     },
     {
         name: "USDC: Funding", //total money 889000 - 188000 = 701000
@@ -1199,11 +1232,10 @@ const assets = [
         currentPrice: 1, // Using global constant now
         currency: "IDR",
         type: "liquid",
-        description: "Pendanaan Untuk Pembelian Asset <br> Pendanaan dari Loan Bitcon Collteral Strategy"
+        sector: "Collateral Starategy",
+        company: " Pendanaan dari Loan Bitcon Collteral Strategy"
+        
     },
-    
-    
-    
     {
         name: "IDX: PGEO", //361000 - 322000 (4 lot) = sisa = 39000
         icon: "/myasset/icon/pgeo.png",
@@ -1213,9 +1245,10 @@ const assets = [
         currentPrice: 805,
         currency: "IDR",
         type: "liquid",
-        description: "PT. Pertamina Geothermal Energy. Tbk "
+        sector: "Green Energy",
+        company: "PT. Pertamina Geothermal Energy. Tbk",
+        
     },
-    
     {
         name: "IDX: TLKM", //361000 - 322000 (4 lot) = sisa = 39000
         icon: "/myasset/icon/tlkm.png",
@@ -1225,9 +1258,9 @@ const assets = [
         currentPrice: 1,
         currency: "IDR",
         type: "liquid",
-        description: "PT. Telkom Indonesia (Persero). Tbk"
+        sector: "Technology",
+        company: "PT. Telkom Indonesia (persero). Tbk",
     },
-    
     {
         name: "Pisang Jago",
         icon: "/myasset/icon/banana.png",
@@ -1237,7 +1270,8 @@ const assets = [
         currentPrice: 1,
         currency: "IDR",
         type: "liquid",
-        description: "-"
+        sector: "Business",
+        company: "-",
     },
     {
         name: "IDX: MERK",
@@ -1248,64 +1282,25 @@ const assets = [
         currentPrice: 1,
         currency: "IDR",
         type: "liquid",
-        description: "PT. Merck. Tbk"
-    },
-   /* {
-        name: "IDX: BMRI",
-        icon: "/myasset/icon/bmri.png",
-        balance: "100 lembar",
-        invested: 444666,
-        avgPrice: 4446.66,
-        currentPrice: 5200,
-        currency: "IDR",
-        type: "liquid",
-        description: "PT. Bank Mandiri (persero). TBK <br> Saham Bank BUMN Terbesar di Indonesia"
-    },
-    
-    {
-        name: "IDX: ADRO",
-        icon: "/myasset/icon/adro.png",
-        balance: "200 lembar",
-        invested: 344516,
-        avgPrice: 1722.58,
-        currentPrice: 1845,
-        currency: "IDR",
-        type: "liquid",
-        description: "PT. Alamtri Resources Indonesia. Tbk <br >Saham Perusahan Energi Terbarukan & Batu Bara"
-    },
-    
-    {
-        name: "IDX: ELSA",
-        icon: "/myasset/icon/elsa.png",
-        balance: "0 lembar",
-        invested: 0,
-        avgPrice: 1,
-        currentPrice: 1,
-        currency: "IDR",
-        type: "liquid",
-        description: "PT. Bank Mandiri (persero). TBK <br> Saham Bank BUMN Terbesar di Indonesia"
-    },
+        sector: "Farmasi & Riset Kesehatan",
+        company: "PT. Merck. Tbk (Induk: Merck KGaA)",
         
-    {
-        name: "IDX: TLKM",
-        icon: "/myasset/icon/tlkm.png",
-        balance: "0 lembar",
-        invested: 0,
-        avgPrice: 1,
-        currentPrice: 1,
-        currency: "IDR",
-        type: "liquid",
-        description: "PT. Telkom Indonesia (Persero). Tbk <br>  BUMN Teknologi Informasi dan Komunikasi."
-    },
-    */
+    }
 ];
-
 
 // Format currency for general use
 function formatCurrency(amount) {
     return 'Rp. ' + amount.toLocaleString('id-ID', {
         minimumFractionDigits: 0,
         maximumFractionDigits: 0
+    });
+}
+
+// Format USD price display
+function formatUSDPrice(amount) {
+    return '$ ' + amount.toLocaleString('en-US', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
     });
 }
 
@@ -1322,20 +1317,20 @@ function convertIDRtoUSD(idrAmount) {
     return idrAmount / EXCHANGE_RATES.USD_TO_IDR;
 }
 
+// Calculate market value and return for each asset
 function calculateAssetValues() {
     return assets.map(asset => {
         let marketValue;
         
-        if (asset.currency === "USD") {
-            // For USD assets, calculate market value with exchange rate
-            const valueInUSD = asset.balance.split(' ')[0] * asset.currentPrice;
-            marketValue = valueInUSD * EXCHANGE_RATES.USD_TO_IDR;
-        } else if (asset.name === "Pisang Jago") {
-            // For Pisang Jago, use preset marketValue
-            marketValue = asset.marketValue || asset.invested; // Fallback to invested if not defined
+        if (asset.name === "Pisang_Jago") {
+            marketValue = asset.marketValue; // Use preset value
+        } else if (asset.currency === "USD") {
+            // For USD assets, calculate market value in IDR
+            const shares = parseInt(asset.balance) || 0;
+            marketValue = shares * asset.currentPrice * EXCHANGE_RATES.USD_TO_IDR;
         } else {
-            // For IDR assets
-            marketValue = (asset.invested * (asset.currentPrice / asset.avgPrice));
+            // For IDR assets, use normal calculation
+            marketValue = asset.invested * (asset.currentPrice / asset.avgPrice);
         }
 
         const returnPercent = ((marketValue - asset.invested) / asset.invested) * 100;
@@ -1343,7 +1338,7 @@ function calculateAssetValues() {
         return {
             ...asset,
             marketValue: Math.round(marketValue),
-            returnPercent: returnPercent
+            returnPercent: isNaN(returnPercent) ? 0 : returnPercent
         };
     });
 }
@@ -1353,11 +1348,8 @@ function formatPriceDisplay(asset, isAvgPrice = false) {
     const price = isAvgPrice ? asset.avgPrice : asset.currentPrice;
     
     if (asset.currency === "USD") {
-        // For USD assets, show original USD price
-        return `$ ${price.toLocaleString('en-US', {
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 2
-        })}`;
+        // Format for USD assets
+        return formatUSDPrice(price);
     } else if (asset.name === "Bitcoin") {
         // Format for Bitcoin (in millions of rupiah)
         return `Rp. ${(price / 1000000).toLocaleString('id-ID', {
@@ -1373,7 +1365,7 @@ function formatPriceDisplay(asset, isAvgPrice = false) {
     } else if (asset.name === "RDN: Rupiah") {
         // Format for Rupiah
         return `Rp. 1,00`;
-    } else if (asset.name === "Pisang_Jago") {
+    } else if (asset.name === "Pisang Jago") {
         // Format for Pisang Jago (business)
         return isAvgPrice ? `N/A` : `Valuasi saat ini`;
     } else {
@@ -1383,7 +1375,6 @@ function formatPriceDisplay(asset, isAvgPrice = false) {
             maximumFractionDigits: 2
         })}`;
     }
-    
 }
 
 // Populate asset table
@@ -1417,7 +1408,8 @@ function populateAssetTable() {
             <td>${formatPriceDisplay(asset)}</td>
             <td>${formatCurrency(asset.marketValue)}</td>
             <td class="${returnClass}">${returnSign}${Math.abs(asset.returnPercent).toFixed(2)}%</td>
-            <td>${asset.description}</td>
+            <td>${asset.sector}</td>
+            <td>${asset.company}</td>
         `;
 
         tableBody.appendChild(row);

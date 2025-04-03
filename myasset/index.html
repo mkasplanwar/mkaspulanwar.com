@@ -921,27 +921,27 @@ blockquote.quote footer {
                     <!-- Legend items will be inserted here by JavaScript -->
                 </div>
                 <!-- Add this right after the donut-legend div with id="donutLegend" -->
-<div class="summary-card">
-    <div class="summary-title">Invested Focus</div>
-    <div class="focus-tags">
-        <div class="focus-tag store-value">
-            <span class="focus-icon"><i class="fa-solid fa-bitcoin-sign"></i></span>
-            <span class="focus-text">Store of Value</span>
-        </div>
-        <div class="focus-tag green-energy">
-            <span class="focus-icon"><i class="fa-solid fa-leaf"></i></span>
-            <span class="focus-text">Green Energy</span>
-        </div>
-        <div class="focus-tag technology">
-            <span class="focus-icon"><i class="fa-solid fa-microchip"></i></span>
-            <span class="focus-text">Technology</span>
-        </div>
-        <div class="focus-tag pharma">
-            <span class="focus-icon"><i class="fa-solid fa-pills"></i></span>
-            <span class="focus-text">Pharmaceuticals </span>
-        </div>
-    </div>
-</div>
+                <div class="summary-card">
+                    <div class="summary-title">Invested Focus</div>
+                    <div class="focus-tags">
+                        <div class="focus-tag store-value">
+                            <span class="focus-icon"><i class="fa-solid fa-bitcoin-sign"></i></span>
+                            <span class="focus-text">Store of Value</span>
+                        </div>
+                        <div class="focus-tag green-energy">
+                            <span class="focus-icon"><i class="fa-solid fa-leaf"></i></span>
+                            <span class="focus-text">Green Energy</span>
+                        </div>
+                        <div class="focus-tag technology">
+                            <span class="focus-icon"><i class="fa-solid fa-microchip"></i></span>
+                            <span class="focus-text">Technology</span>
+                        </div>
+                        <div class="focus-tag pharma">
+                            <span class="focus-icon"><i class="fa-solid fa-pills"></i></span>
+                            <span class="focus-text">Farmasi</span>
+                        </div>
+                    </div>
+                </div>
                 
                 <!-- Non-Liquid Assets Section (Moved here) -->
                 <div class="summary-card">
@@ -1135,12 +1135,20 @@ const BITCOIN_STRATEGY = {
     BTC_YIELD_RATE: 0.27,           
     LIQUIDATION_PRICE_USD: 48268.31 
 };
+// Function to convert USD stock values to IDR for display
+function convertStockValueToIDR(stockPriceUSD, shares) {
+    return stockPriceUSD * shares * EXCHANGE_RATES.USD_TO_IDR;
+}
 
+// Calculate initial investment in IDR from USD stock price
+function calculateInvestedIDR(avgPriceUSD, shares) {
+    return avgPriceUSD * shares * EXCHANGE_RATES.USD_TO_IDR;
+}
 // Asset data
 const assets = [
     {
         name: "Property: Land",
-        icon: "/myasset/icon/okb.png",
+        icon: "/myasset/icon/tanah.png",
         balance: "1.445 m²",
         invested: 20000000,
         avgPrice: 13840.8305, 
@@ -1161,26 +1169,26 @@ const assets = [
         description: "Store of Value (Digital Asset) <br> Collateral Asset, Yield 0,27% per Tahun"
     },
     {
-        name: "AAPL", //361000 - 322000 (4 lot) = sisa = 39000
+        name: "AAPL",
         icon: "/myasset/icon/apple.png",
-        balance: "0 shares",
-        invested: 0, // 7 lot = 557334.75 (796.19) + 4 lot = 322000 (805) = (805) 885500
-        avgPrice: 1,
-        currentPrice: 1,
-        currency: "IDR",
+        balance: "0 shares", // Update with your actual shares
+        invested: calculateInvestedIDR(0), // Example: avg price $175.25 USD for 4 shares
+        avgPrice: 175.25, // Price in USD
+        currentPrice: 190.50, // Current price in USD
+        currency: "USD", // Mark as USD for proper formatting
         type: "liquid",
-        description: "-"
+        description: "Apple Inc. "
     },
     {
-        name: "GOOGL", //361000 - 322000 (4 lot) = sisa = 39000
+        name: "GOOGL",
         icon: "/myasset/icon/google.png",
-        balance: "0 shares",
-        invested: 0, // 7 lot = 557334.75 (796.19) + 4 lot = 322000 (805) = (805) 885500
-        avgPrice: 1,
-        currentPrice: 1,
-        currency: "IDR",
+        balance: "0 shares", // Update with your actual shares
+        invested: calculateInvestedIDR(0), // Example: avg price $142.38 USD for 2 shares
+        avgPrice: 142.38, // Price in USD
+        currentPrice: 155.75, // Current price in USD
+        currency: "USD", // Mark as USD for proper formatting
         type: "liquid",
-        description: "-"
+        description: "Alphabet Inc."
     },
     {
         name: "USDC: Funding", //total money 889000 - 188000 = 701000
@@ -1205,7 +1213,7 @@ const assets = [
         currentPrice: 805,
         currency: "IDR",
         type: "liquid",
-        description: "PT. Pertamina Geothermal Energy. Tbk <br> Saham perusahaan Energi Panas Bumi"
+        description: "PT. Pertamina Geothermal Energy. Tbk "
     },
     
     {
@@ -1217,7 +1225,7 @@ const assets = [
         currentPrice: 1,
         currency: "IDR",
         type: "liquid",
-        description: "-"
+        description: "PT. Telkom Indonesia (Persero). Tbk"
     },
     
     {
@@ -1240,7 +1248,7 @@ const assets = [
         currentPrice: 1,
         currency: "IDR",
         type: "liquid",
-        description: "PT. Merck. Tbk <br> Perusahaan Farmasi"
+        description: "PT. Merck. Tbk"
     },
    /* {
         name: "IDX: BMRI",
@@ -1314,13 +1322,21 @@ function convertIDRtoUSD(idrAmount) {
     return idrAmount / EXCHANGE_RATES.USD_TO_IDR;
 }
 
-// Calculate market value and return for each asset
 function calculateAssetValues() {
     return assets.map(asset => {
-        // For Pisang Jago, use preset marketValue, otherwise calculate
-        const marketValue = asset.name === "Pisang_Jago" ? 
-            asset.marketValue : 
-            (asset.invested * (asset.currentPrice / asset.avgPrice));
+        let marketValue;
+        
+        if (asset.currency === "USD") {
+            // For USD assets, calculate market value with exchange rate
+            const valueInUSD = asset.balance.split(' ')[0] * asset.currentPrice;
+            marketValue = valueInUSD * EXCHANGE_RATES.USD_TO_IDR;
+        } else if (asset.name === "Pisang Jago") {
+            // For Pisang Jago, use preset marketValue
+            marketValue = asset.marketValue || asset.invested; // Fallback to invested if not defined
+        } else {
+            // For IDR assets
+            marketValue = (asset.invested * (asset.currentPrice / asset.avgPrice));
+        }
 
         const returnPercent = ((marketValue - asset.invested) / asset.invested) * 100;
 
@@ -1336,7 +1352,13 @@ function calculateAssetValues() {
 function formatPriceDisplay(asset, isAvgPrice = false) {
     const price = isAvgPrice ? asset.avgPrice : asset.currentPrice;
     
-    if (asset.name === "Bitcoin") {
+    if (asset.currency === "USD") {
+        // For USD assets, show original USD price
+        return `$ ${price.toLocaleString('en-US', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        })}`;
+    } else if (asset.name === "Bitcoin") {
         // Format for Bitcoin (in millions of rupiah)
         return `Rp. ${(price / 1000000).toLocaleString('id-ID', {
             minimumFractionDigits: 2,
@@ -1361,6 +1383,7 @@ function formatPriceDisplay(asset, isAvgPrice = false) {
             maximumFractionDigits: 2
         })}`;
     }
+    
 }
 
 // Populate asset table

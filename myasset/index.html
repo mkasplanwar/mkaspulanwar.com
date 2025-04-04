@@ -1217,7 +1217,7 @@ const assets = [
         company: "Collateral Asset"
     },
     {
-        name: "USDC: Funding",
+        name: "Funding",
         icon: "/myasset/icon/usdc.png",
         balance: "Rp. 565.602",
         invested: 565602,
@@ -1229,7 +1229,19 @@ const assets = [
         company: "Pendanaan dari Loan Bitcon Collteral Strategy"
     },
     {
-        name: "PGEO",
+        name: "Euro",
+        icon: "/myasset/icon/euro.png",
+        balance: "Rp. 565.602",
+        invested: 565602,
+        avgPrice: 1,
+        currentPrice: 1,
+        currency: "IDR",
+        type: "liquid",
+        sector: "Collateral Starategy",
+        company: "Pendanaan dari Loan Bitcon Collteral Strategy"
+    },
+    {
+        name: "IDX: PGEO",
         icon: "/myasset/icon/pgeo.png",
         balance: "700 shares",
         invested: 875000,
@@ -1237,11 +1249,11 @@ const assets = [
         currentPrice: 805,
         currency: "IDR",
         type: "liquid",
-        sector: "Green Energy",
+        sector: "Geothermal Energy",
         company: "PT. Pertamina Geothermal Energy. Tbk",
     },
     {
-        name: "AAPL",
+        name: "NASDAQ: AAPL",
         icon: "/myasset/icon/apple.png",
         balance: "0.0384 shares",
         invested: 131428, // Precalculated value in IDR (will be recalculated in calculation function)
@@ -1252,22 +1264,21 @@ const assets = [
         sector: "Technology",
         company: "Apple Inc."
     },
-    /*
     {
-        name: "Pisang Jago",
-        icon: "/myasset/icon/banana.png",
-        balance: "Bussiness",
-        invested: 30000,
-        avgPrice: 1,
-        currentPrice: 1,
-        currency: "IDR",
+        name: "NASDAQ: NVDA",
+        icon: "/myasset/icon/nvidia.png",
+        balance: "0 shares",
+        invested: 0, // No shares owned
+        avgPrice: 147.68, // Price in USD
+        currentPrice: 159.99, // Price in USD
+        currency: "USD",
         type: "liquid",
-        sector: "Business",
-        company: "-",
+        sector: "Technology",
+        company: "Nvidia Corporation"
     },
     {
-        name: "SHEL",
-        icon: "/myasset/icon/shell.png",
+        name: "NASDAQ: GOOGL",
+        icon: "/myasset/icon/google.png",
         balance: "0 shares",
         invested: 0, // No shares owned
         avgPrice: 147.68, // Price in USD
@@ -1276,6 +1287,30 @@ const assets = [
         type: "liquid",
         sector: "Technology",
         company: "Alphabet Inc."
+    },
+    {
+        name: "NYSE: SHEL",
+        icon: "/myasset/icon/shell.png",
+        balance: "0 shares",
+        invested: 0, // No shares owned
+        avgPrice: 147.68, // Price in USD
+        currentPrice: 159.99, // Price in USD
+        currency: "USD",
+        type: "liquid",
+        sector: "Energy",
+        company: "Shell PLC"
+    },
+    {
+        name: "NYSE: CVX",
+        icon: "/myasset/icon/chevron.png",
+        balance: "0 shares",
+        invested: 0, // No shares owned
+        avgPrice: 147.68, // Price in USD
+        currentPrice: 159.99, // Price in USD
+        currency: "USD",
+        type: "liquid",
+        sector: "Energy",
+        company: "Chevron Corporation"
     },
     {
         name: "IDX: TLKM",
@@ -1301,8 +1336,19 @@ const assets = [
         type: "liquid",
         sector: "Farmasi & Riset Kesehatan",
         company: "PT. Merck. Tbk (Induk: Merck KGaA)",
-    }
-    */
+    },
+    /*{
+        name: "Pisang Jago",
+        icon: "/myasset/icon/banana.png",
+        balance: "Bussiness",
+        invested: 30000,
+        avgPrice: 1,
+        currentPrice: 1,
+        currency: "IDR",
+        type: "liquid",
+        sector: "Business",
+        company: "-",
+    },*/
 ];
 
 // Calculate market value and return for each asset

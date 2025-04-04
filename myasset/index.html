@@ -9,7 +9,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="src/index.css">
     
     <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="M. Kaspul Anwar - ML Engineer">
@@ -24,7 +23,842 @@
     <link rel="icon" type="image/png" sizes="16x16" href="../src/favicon/favicon-16x16.png">
     <link rel="manifest" href="../src/favicon/site.webmanifest">
     
-    <script src="src/index.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #ffffff;
+            color: #000000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .container {
+            max-width: 1000px;
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            position: relative;
+            margin-top: 10px;
+        }
+
+        .top-row {
+            display: flex;
+            gap: 20px;
+            width: 100%;
+        }
+
+        .header-section {
+            text-align: center;
+            margin-bottom: 20px;
+            width: 100%;
+            border: 1px solid #000000;
+            border-radius: 12px;
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+        }
+
+        .author-name {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        .dashboard-title {
+            font-size: 16px;
+            color: #666666;
+            letter-spacing: 1px;
+        }
+
+        .last-update {
+            font-size: 14px;
+            color: #666666;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .page-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 40px;
+            text-align: center;
+            letter-spacing: 1px;
+        }
+
+        .card {
+            background-color: #ffffff;
+            border: 1px solid #000000;
+            border-radius: 12px;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+            margin-bottom: 20px;
+        }
+
+        .top-card {
+            width: calc(50% - 10px);
+        }
+
+        .full-width-card {
+            width: 100%;
+        }
+
+        .card-header {
+            display: flex;
+        align-items: center;
+        position: relative; /* Add relative positioning */
+        margin-bottom: 20px;
+        gap: 15px;
+        }
+
+        .card-header i {
+            font-size: 24px;
+            color: #000000;
+        }
+
+        .card-header .title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #000000;
+            letter-spacing: 0.5px;
+        }
+
+        .total-assets-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 30px 0;
+        }
+
+        .total-assets {
+            font-size: 44px;
+            font-weight: bold;
+            color: #000000;
+            text-align: center;
+            line-height: 1.2;
+        }
+        .usd-equivalent {
+            font-size: 18px;
+            color: #666666;
+            text-align: center;
+            margin-top: 5px;
+        }
+
+        .table-container {
+            width: 100%;
+            overflow-x: auto;
+            margin-top: 10px;
+        }
+
+        .distribution-table {
+            width: 100%;
+            min-width: 750px;
+            border-collapse: collapse;
+        }
+
+        .distribution-table th {
+            text-align: left;
+            padding: 12px 10px;
+            border-bottom: 1px solid #000000;
+            color: #000000;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .distribution-table td {
+            padding: 16px 10px;
+            color: #000000;
+            border-bottom: 1px solid #e0e0e0;
+            vertical-align: middle;
+            white-space: nowrap;
+        }
+
+        .asset-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 15px;
+            background-color: #ffffff;
+            vertical-align: middle;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+            overflow: hidden; /* Ensure the image is contained within the circle */
+        }
+
+        .asset-icon img {
+            width: 32px;
+            height: 32px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .asset-name {
+            display: inline-block;
+            vertical-align: middle;
+            font-weight: 500;
+        }
+
+        .summary-card {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border: 1px solid #000000;
+            border-radius: 8px;
+        }
+        .invested-focus {
+            margin-bottom: -15px;
+        }
+
+        .summary-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #000000;
+        }
+
+        .summary-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: #666666;
+        }
+
+        .stat-value {
+            font-size: 16px;
+            font-weight: 600;
+            color: #000000;
+        }
+        
+        .positive {
+            color: #28a745 !important;
+        }
+        
+        .negative {
+            color: #dc3545 !important;
+        }
+
+        .chart-container {
+            width: 100%;
+            height: 220px;
+            display: flex;
+            justify-content: center;
+            position: relative;
+            margin: 0 auto;
+            max-width: 300px;
+        }
+
+        .wallet-info {
+            margin-top: 10px;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #f8f9fa;
+            border: 1px solid #000000;
+        }
+
+        .wallet-address {
+            font-family: monospace;
+            font-size: 14px;
+            word-break: break-all;
+            padding: 10px;
+            background: #f0f0f0;
+            border-radius: 4px;
+            margin-top: 10px;
+            border: 1px solid #000000;
+        }
+
+        .wallet-type {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #666666;
+        }
+
+        .donut-legend {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .legend-color {
+            width: 12px;
+            height: 12px;
+            border-radius: 2px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .legend-text {
+            font-size: 12px;
+        }
+
+        .qr-code-container {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .wallet-qr {
+            background-color: white;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #000000;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Horizontal divider for summary sections */
+        .divider {
+            height: 1px;
+            background-color: #e0e0e0;
+            margin: 15px 0;
+            width: 100%;
+        }
+
+        /* DER Status Indicator Styles */
+.status-indicator {
+    display: inline-block;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-left: 4px;
+    color: white;
+}
+
+.status-healthy {
+    background-color: #28a745; /* Green for healthy */
+}
+
+.status-warning {
+    background-color: #ffc107; /* Yellow for warning */
+    color: #000; /* Black text for better visibility on yellow */
+}
+
+.status-danger {
+    background-color: #dc3545; /* Red for danger */
+}
+
+        @media (max-width: 768px) {
+            .container,
+            .top-row {
+                flex-direction: column;
+            }
+
+            .top-card {
+                width: 100%;
+            }
+
+            .total-assets {
+                font-size: 38px;
+            }
+            .usd-equivalent {
+                font-size: 16px;
+            }
+            
+            .container {
+                gap: 15px;
+                padding: 0 5px;
+            }
+            
+            .card {
+                margin-bottom: 15px;
+                padding: 20px;
+            }
+            
+            .header-section {
+                margin-bottom: 15px;
+                padding: 20px;
+            }
+            
+            body {
+                padding: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .distribution-table {
+                font-size: 14px;
+            }
+
+            .total-assets {
+                font-size: 36px;
+            }
+            .usd-equivalent {
+                font-size: 14px;
+            }
+
+            .card-header .title {
+                font-size: 18px;
+            }
+            
+            .asset-icon {
+                width: 36px;
+                height: 36px;
+            }
+            
+            .asset-icon img {
+                width: 28px;
+                height: 28px;
+            }
+            
+            body {
+                padding: 15px;
+            }
+            
+            .card {
+                padding: 18px;
+                margin-bottom: 15px;
+            }
+            
+            .card-header {
+                margin-bottom: 15px;
+            }
+            
+            .container {
+                padding: 0 5px;
+            }
+            
+            .summary-card {
+                padding: 15px;
+            }
+            
+            .wallet-info {
+                padding: 15px;
+            }
+            
+            .table-container {
+                margin-left: -5px;
+                margin-right: -5px;
+                width: calc(100% + 10px);
+            }
+        }
+        /* New styles for the wallet and archive cards */
+.wallet-content {
+    padding: 20px 0;
+}
+
+.wallet-label {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #000000;
+}
+
+.wallet-address {
+    font-family: monospace;
+    font-size: 14px;
+    word-break: break-all;
+    padding: 12px;
+    background: #f8f9fa;
+    border-radius: 6px;
+    border: 1px solid #000000;
+    margin-bottom: 8px;
+}
+
+.wallet-type {
+    font-size: 14px;
+    color: #666666;
+    margin-bottom: 20px;
+}
+
+.quote-content {
+    padding: 20px 0;
+}
+
+blockquote.quote {
+    font-size: 18px;
+    font-style: italic;
+    color: #333;
+    margin: 0 0 25px 0;
+    padding: 0 20px;
+    border-left: 3px solid #000000;
+}
+
+blockquote.quote footer {
+    font-size: 14px;
+    color: #666;
+    margin-top: 8px;
+}
+
+.archive-section {
+    margin-top: 20px;
+}
+
+.archive-label {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #000000;
+}
+
+.archive-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-decoration: none;
+}
+
+.archive-btn {
+    padding: 10px 15px;
+    background-color: #f8f9fa;
+    border: 1px solid #000000;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #000000;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.archive-btn:hover {
+    background-color: #000000;
+    color: #ffffff;
+}
+
+@media (max-width: 768px) {
+    .wallet-content,
+    .quote-content {
+        padding: 15px 0;
+    }
+    
+    blockquote.quote {
+        font-size: 16px;
+        padding: 0 15px;
+    }
+    
+    .archive-buttons {
+        gap: 8px;
+    }
+    
+    .archive-btn {
+        padding: 8px 12px;
+    }
+}
+/* Bitcoin Collateral Strategy Styles */
+.collateral-strategy-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.collateral-info-container {
+    flex: 1;
+    min-width: 300px;
+}
+
+.loan-summary {
+    margin-bottom: 25px;
+}
+
+.loan-metrics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.loan-metric-item {
+    flex: 1;
+    min-width: 200px;
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #f8f9fa;
+    border: 1px solid #000000;
+}
+
+.loan-metric-icon {
+    background-color: white;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.loan-metric-icon img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+}
+
+.loan-metric-details {
+    flex: 1;
+}
+
+.loan-metric-label {
+    font-size: 14px;
+    color: #666666;
+    margin-bottom: 4px;
+}
+
+.loan-metric-value {
+    font-size: 18px;
+    font-weight: 600;
+    color: #000000;
+}
+
+.loan-metric-secondary {
+    font-size: 14px;
+    color: #666666;
+    margin-top: 2px;
+}
+
+.loan-details {
+    background-color: #f8f9fa;
+    border: 1px solid #000000;
+    border-radius: 8px;
+    padding: 15px;
+}
+
+.loan-detail-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.loan-detail-row:last-child {
+    border-bottom: none;
+}
+
+.loan-detail-label {
+    font-size: 14px;
+    color: #666666;
+}
+
+.loan-detail-value {
+    font-size: 14px;
+    font-weight: 600;
+    color: #000000;
+}
+
+/* LTV Chart Styles */
+.ltv-chart-container {
+    flex: 1;
+    min-width: 300px;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border: 1px solid #000000;
+    border-radius: 8px;
+}
+
+.ltv-chart-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.ltv-current, .ltv-max {
+    display: flex;
+    flex-direction: column;
+}
+
+.ltv-label {
+    font-size: 14px;
+    color: #666666;
+    margin-bottom: 5px;
+}
+
+.ltv-value {
+    font-size: 18px;
+    font-weight: 600;
+    color: #000000;
+}
+
+.ltv-bar-container {
+    margin: 25px 0;
+}
+
+.ltv-bar-wrapper {
+    position: relative;
+    height: 24px;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.ltv-bar-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #e0e0e0;
+    border-radius: 12px;
+}
+
+.ltv-bar-progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0%; /* Will be set by JS */
+    background-color: #28a745;
+    border-radius: 12px;
+    transition: width 0.5s ease-in-out;
+}
+
+.ltv-danger-zone {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 9%; /* 100% - liquidation LTV */
+    background-color: rgba(220, 53, 69, 0.3);
+    border-radius: 0 12px 12px 0;
+}
+
+.ltv-markers {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    height: 20px;
+}
+
+.ltv-marker {
+    position: absolute;
+    font-size: 12px;
+    color: #666666;
+    transform: translateX(-50%);
+}
+
+.ltv-status {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.status-indicator-large {
+    display: inline-block;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 600;
+    background-color: #28a745;
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .collateral-strategy-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .loan-metrics {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .ltv-chart-container {
+        padding: 15px;
+    }
+}
+/* Add this in your existing style section */
+.focus-tags {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.focus-tag {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    background-color: #f8f9fa;
+    border: 1px solid #000000;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+}
+.focus-tag.store-value {
+    background-color: rgba(255, 215, 0, 0.12);
+    color: #b8860b;
+    border-color: #daa520;
+    box-shadow: 0 1px 3px rgba(218, 165, 32, 0.2);
+}
+
+.focus-tag.green-energy {
+    background-color: rgba(0, 128, 0, 0.08);
+    color: #009900;
+    border-color: #00b347;
+    box-shadow: 0 1px 3px rgba(0, 179, 71, 0.2);
+}
+
+.focus-tag.technology {
+    background-color: rgba(25, 25, 112, 0.08);
+    color: #4169e1;
+    border-color: #1e90ff;
+    box-shadow: 0 1px 3px rgba(30, 144, 255, 0.2);
+}
+
+.focus-tag.pharma {
+    background-color: rgba(128, 0, 128, 0.08);
+    color: #8a2be2;
+    border-color: #9400d3;
+    box-shadow: 0 1px 3px rgba(148, 0, 211, 0.2);
+}
+
+.focus-icon {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+
+.focus-text {
+    color: inherit;
+}
+
+@media (max-width: 768px) {
+    .focus-tags {
+        gap: 8px;
+    }
+    
+    .focus-tag {
+        padding: 6px 12px;
+        font-size: 13px;
+    }
+}
+    </style>
 </head>
 <body>
     <div class="container">
@@ -294,6 +1128,547 @@
         </div>
     </div>
 </div>
+        
     </div>
+
+    <script>
+        // Constants for global use
+const EXCHANGE_RATES = {
+    USD_TO_IDR: 16725,
+    USDC_TO_IDR: 16725
+};
+
+const BTC_CONSTANTS = {
+    PRICE_IDR: 1365182222.68,  // BTC price in IDR
+    SATS_TO_BTC: 100000000     // Conversion from satoshis to BTC
+};
+
+// Bitcoin Collateral Strategy Configuration
+const BITCOIN_STRATEGY = {
+    COLLATERAL_SATS: 61472,         
+    USDC_BORROWED: 27,              
+    LIQUIDATION_LTV: 91,            
+    INTEREST_RATE: 6.93,             
+    BTC_YIELD_RATE: 0.27,           
+    LIQUIDATION_PRICE_USD: 48268.31 
+};
+
+// Format currency for general use
+function formatCurrency(amount) {
+    return 'Rp. ' + amount.toLocaleString('id-ID', {
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0
+    });
+}
+
+// Format USD price display
+function formatUSDPrice(amount) {
+    return '$ ' + amount.toLocaleString('en-US', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    });
+}
+
+// Format currency for total equity
+function formatTotalEquity(amount) {
+    return 'Rp. ' + amount.toLocaleString('id-ID', {
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0
+    });
+}
+
+// Convert IDR to USD
+function convertIDRtoUSD(idrAmount) {
+    return idrAmount / EXCHANGE_RATES.USD_TO_IDR;
+}
+
+// Function to parse share quantity from string format
+function parseShareQuantity(shareStr) {
+    if (!shareStr) return 0;
+    // Extract numeric part from strings like "0.0384 shares"
+    const match = shareStr.match(/(\d+\.?\d*)/);
+    return match ? parseFloat(match[1]) : 0;
+}
+
+// Asset data with integrated US stock prices
+const assets = [
+    {
+        name: "Farmland",
+        icon: "/myasset/icon/coin.png",
+        balance: "1.445 m²",
+        invested: 20000000,
+        avgPrice: 13840.8305, 
+        currentPrice: 13840.8305, 
+        currency: "IDR",
+        type: "non-liquid",
+        sector: "Real Estate",
+        company: "Private Ownership",
+    },
+    {
+        name: "Bitcoin",
+        icon: "/myasset/icon/bitcoin.png",
+        balance: "61.472 sats",
+        invested: 922080,
+        avgPrice: 1500000000, // Harga dalam Rupiah, dikonversi dari USD
+        currentPrice: BTC_CONSTANTS.PRICE_IDR, // Using global constant now
+        currency: "IDR",
+        type: "liquid",
+        sector: "Store of Value",
+        company: "Collateral Asset"
+    },
+    {
+        name: "USDC: Funding",
+        icon: "/myasset/icon/usdc.png",
+        balance: "Rp. 565.602",
+        invested: 565602,
+        avgPrice: 1,
+        currentPrice: 1,
+        currency: "IDR",
+        type: "liquid",
+        sector: "Collateral Starategy",
+        company: "Pendanaan dari Loan Bitcon Collteral Strategy"
+    },
+    {
+        name: "IDX: PGEO",
+        icon: "/myasset/icon/pgeo4.png",
+        balance: "700 lembar",
+        invested: 875000,
+        avgPrice: 1250,
+        currentPrice: 805,
+        currency: "IDR",
+        type: "liquid",
+        sector: "Green Energy",
+        company: "PT. Pertamina Geothermal Energy. Tbk",
+    },
+    {
+        name: "AAPL",
+        icon: "/myasset/icon/apple.png",
+        balance: "0.0384 shares",
+        invested: 131428, // Precalculated value in IDR (will be recalculated in calculation function)
+        avgPrice: 204.43, // Price in USD
+        currentPrice: 204, // Price in USD
+        currency: "USD",
+        type: "liquid",
+        sector: "Technology",
+        company: "Apple Inc."
+    },
+    {
+        name: "Pisang Jago",
+        icon: "/myasset/icon/banana.png",
+        balance: "Bussiness",
+        invested: 30000,
+        avgPrice: 1,
+        currentPrice: 1,
+        currency: "IDR",
+        type: "liquid",
+        sector: "Business",
+        company: "-",
+    },
+    
+    /*
+    {
+        name: "GOOGL",
+        icon: "/myasset/icon/google.png",
+        balance: "0 shares",
+        invested: 0, // No shares owned
+        avgPrice: 147.68, // Price in USD
+        currentPrice: 159.99, // Price in USD
+        currency: "USD",
+        type: "liquid",
+        sector: "Technology",
+        company: "Alphabet Inc."
+    },
+    
+    {
+        name: "IDX: TLKM",
+        icon: "/myasset/icon/tlkm.png",
+        balance: "0 lembar",
+        invested: 0,
+        avgPrice: 1,
+        currentPrice: 1,
+        currency: "IDR",
+        type: "liquid",
+        sector: "Technology",
+        company: "PT. Telkom Indonesia (persero). Tbk",
+    },
+    
+    {
+        name: "IDX: MERK",
+        icon: "/myasset/icon/merk.png",
+        balance: "0 lembar",
+        invested: 0,
+        avgPrice: 1,
+        currentPrice: 1,
+        currency: "IDR",
+        type: "liquid",
+        sector: "Farmasi & Riset Kesehatan",
+        company: "PT. Merck. Tbk (Induk: Merck KGaA)",
+    }
+    */
+];
+
+// Calculate market value and return for each asset
+function calculateAssetValues() {
+    return assets.map(asset => {
+        let marketValue;
+
+        if (asset.name === "Pisang Jago") {
+            // For business assets, use the invested amount as market value
+            marketValue = asset.invested;
+        } else if (asset.currency === "USD") {
+            // For USD assets (US stocks), calculate market value in IDR
+            const shares = parseShareQuantity(asset.balance);
+            const investedIDR = shares * asset.avgPrice * EXCHANGE_RATES.USD_TO_IDR;
+            const marketValueIDR = shares * asset.currentPrice * EXCHANGE_RATES.USD_TO_IDR;
+            
+            // Update the invested amount with the actual calculation
+            asset.invested = Math.round(investedIDR);
+            marketValue = Math.round(marketValueIDR);
+        } else {
+            // For IDR assets, calculate market value based on price change
+            marketValue = asset.invested * (asset.currentPrice / asset.avgPrice);
+        }
+
+        // Calculate return percentage
+        const returnPercent = asset.invested > 0 ? 
+            ((marketValue - asset.invested) / asset.invested) * 100 : 0;
+
+        return {
+            ...asset,
+            marketValue: Math.round(marketValue),
+            returnPercent: isNaN(returnPercent) ? 0 : returnPercent
+        };
+    });
+}
+
+// Format price display based on asset type
+function formatPriceDisplay(asset, isAvgPrice = false) {
+    const price = isAvgPrice ? asset.avgPrice : asset.currentPrice;
+    
+    if (asset.currency === "USD") {
+        // Format for USD assets
+        return formatUSDPrice(price);
+    } else if (asset.name === "Bitcoin") {
+        // Format for Bitcoin (in millions of rupiah)
+        return `Rp. ${(price / 1000000).toLocaleString('id-ID', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        })} jt`;
+    } else if (asset.name === "Farmland") {
+        // Format for Property (price per m²)
+        return `Rp. ${price.toLocaleString('id-ID', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        })}/m²`;
+    } else if (asset.name === "RDN: Rupiah") {
+        // Format for Rupiah
+        return `Rp. 1,00`;
+    } else if (asset.name === "Pisang Jago") {
+        // Format for Pisang Jago (business)
+        return isAvgPrice ? `N/A` : `Valuasi saat ini`;
+    } else {
+        // Format for other assets (in normal rupiah)
+        return `Rp. ${price.toLocaleString('id-ID', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        })}`;
+    }
+}
+
+// Populate asset table
+function populateAssetTable() {
+    const tableBody = document.getElementById('assetTableBody');
+    tableBody.innerHTML = '';
+
+    const calculatedAssets = calculateAssetValues();
+
+    calculatedAssets.forEach(asset => {
+        const row = document.createElement('tr');
+
+        // Format return class
+        const returnClass = asset.returnPercent > 0 ? 'positive' : 
+                            asset.returnPercent < 0 ? 'negative' : '';
+                            
+        // Format return sign
+        const returnSign = asset.returnPercent > 0 ? '+ ' : 
+                          asset.returnPercent < 0 ? '- ' : '';
+
+        row.innerHTML = `
+            <td>
+                <span class="asset-icon">
+                    <img src="${asset.icon}" alt="${asset.name}">
+                </span>
+                <span class="asset-name">${asset.name}</span>
+            </td>
+            <td>${asset.balance}</td>
+            <td>${formatCurrency(asset.invested)}</td>
+            <td>${formatPriceDisplay(asset, true)}</td>
+            <td>${formatPriceDisplay(asset)}</td>
+            <td>${formatCurrency(asset.marketValue)}</td>
+            <td class="${returnClass}">${returnSign}${Math.abs(asset.returnPercent).toFixed(2)}%</td>
+            <td>${asset.sector}</td>
+            <td>${asset.company}</td>
+        `;
+
+        tableBody.appendChild(row);
+    });
+
+    return calculatedAssets;
+}
+
+// Calculate and display portfolio summary
+function updatePortfolioSummary(calculatedAssets) {
+    // Separate liquid and non-liquid assets
+    const liquidAssets = calculatedAssets.filter(asset => asset.type === "liquid");
+    const nonLiquidAssets = calculatedAssets.filter(asset => asset.type === "non-liquid");
+
+    // Calculate totals
+    const totalLiquidInvested = liquidAssets.reduce((sum, asset) => sum + asset.invested, 0);
+    const totalLiquidMarketValue = liquidAssets.reduce((sum, asset) => sum + asset.marketValue, 0);
+
+    const totalNonLiquidInvested = nonLiquidAssets.reduce((sum, asset) => sum + asset.invested, 0);
+    const totalNonLiquidMarketValue = nonLiquidAssets.reduce((sum, asset) => sum + asset.marketValue, 0);
+
+    const totalInvested = totalLiquidInvested;
+    const totalMarketValue = totalLiquidMarketValue + totalNonLiquidMarketValue;
+
+    const totalPnL = totalMarketValue - totalNonLiquidInvested - totalInvested;
+    const totalPercentage = (totalPnL / totalInvested) * 100;
+    
+    const debtAmount = BITCOIN_STRATEGY.USDC_BORROWED * EXCHANGE_RATES.USDC_TO_IDR;
+    
+    // In your updatePortfolioSummary function, modify the DER part with this code
+
+// Calculate DER (Debt to Equity Ratio)
+const der = debtAmount / (totalLiquidMarketValue - debtAmount) || 0;
+
+// Determine DER status and color based on the ratio
+let derStatus, derStatusClass;
+if (der <= 0.2) {
+    derStatus = "Sehat";
+    derStatusClass = "status-healthy";
+} else if (der <= 0.5) {
+    derStatus = "Peringatan";
+    derStatusClass = "status-warning";
+} else {
+    derStatus = "Bahaya";
+    derStatusClass = "status-danger";
+}
+
+// Update the DER ratio display with status
+document.getElementById('derRatio').innerHTML = `${der.toFixed(2)} <span class="status-indicator ${derStatusClass}">${derStatus}</span>`;
+
+// Now add these CSS classes to your style section
+
+    // Convert total market value to USD
+    const usdEquivalent = convertIDRtoUSD(totalMarketValue);
+
+    // Calculate non-liquid assets percentage of total
+    const nonLiquidPercentage = (totalNonLiquidMarketValue / totalMarketValue) * 100;
+
+    // Update summary values
+    document.getElementById('totalEquity').textContent = formatTotalEquity(totalMarketValue);
+    document.getElementById('usdEquivalent').textContent = `≈ $ ${usdEquivalent.toLocaleString('en-US', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    })}`;
+    document.getElementById('totalInvested').textContent = formatCurrency(totalInvested);
+    document.getElementById('totalPnL').textContent = `${totalPnL >= 0 ? '+ ' : '- '}${formatCurrency(Math.abs(totalPnL))}`;
+    document.getElementById('totalDebt').textContent = formatCurrency(debtAmount);
+    // Update the DER ratio display with status
+document.getElementById('derRatio').innerHTML = `${der.toFixed(2)} <span class="status-indicator ${derStatusClass}">${derStatus}</span>`;
+    document.getElementById('nonLiquidAssets').textContent = formatCurrency(totalNonLiquidMarketValue);
+    document.getElementById('nonLiquidPercentage').textContent = `${nonLiquidPercentage.toFixed(2)}%`;
+
+    const percentageElement = document.getElementById('totalPercentage');
+    percentageElement.textContent = `${totalPercentage >= 0 ? '+ ' : '- '}${Math.abs(totalPercentage).toFixed(2)}%`;
+    percentageElement.className = 'stat-value ' + (totalPercentage >= 0 ? 'positive' : 'negative');
+
+    const pnlElement = document.getElementById('totalPnL');
+    pnlElement.className = 'stat-value ' + (totalPnL >= 0 ? 'positive' : 'negative');
+
+    return { totalMarketValue, totalInvested, totalLiquidMarketValue, totalNonLiquidMarketValue };
+}
+
+// Create donut chart with enhanced color palette
+function createDonutChart(calculatedAssets) {
+    const ctx = document.getElementById('donutChart').getContext('2d');
+
+    // Filter out Property Land and assets with 0 market value
+    const filteredAssets = calculatedAssets.filter(asset => 
+        asset.name !== "Farmland" && asset.marketValue > 0
+    );
+
+    // Calculate percentages for the chart (based on filtered assets only)
+    const totalFilteredValue = filteredAssets.reduce((sum, asset) => sum + asset.marketValue, 0);
+    const data = filteredAssets.map(asset => asset.marketValue);
+    const labels = filteredAssets.map(asset => asset.name);
+
+    const colors = [
+        'rgba(240, 78, 66, 0.9)',    // merah
+        'rgba(255, 200, 87, 0.9)',   // kuning 
+        'rgba(22, 163, 74, 0.9)',    // hijau
+        'rgba(0, 108, 229, 0.9)',    // biru
+        'rgba(155, 89, 182, 0.9)',   // ungu 
+        
+    ];
+
+    // Create the chart
+    const donutChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: labels,
+            datasets: [{
+                data: data,
+                backgroundColor: colors,
+                borderColor: '#ffffff',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            cutout: '70%',
+            plugins: {
+                legend: {
+                    display: false
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            const value = context.raw;
+                            const percentage = ((value / totalFilteredValue) * 100).toFixed(1);
+                            return `${context.label}: ${formatCurrency(value)} (${percentage}%)`;
+                        }
+                    }
+                }
+            }
+        }
+    });
+
+    // Create custom legend
+    const legendContainer = document.getElementById('donutLegend');
+    legendContainer.innerHTML = '';
+
+    filteredAssets.forEach((asset, index) => {
+        const percentage = ((asset.marketValue / totalFilteredValue) * 100).toFixed(1);
+        const legendItem = document.createElement('div');
+        legendItem.className = 'legend-item';
+        
+        legendItem.innerHTML = `
+            <div class="legend-color" style="background-color: ${colors[index % colors.length]}"></div>
+            <div class="legend-text">${asset.name} (${percentage}%)</div>
+        `;
+        
+        legendContainer.appendChild(legendItem);
+    });
+}
+
+// Create wallet QR code
+function createWalletQR() {
+    const walletAddress = 'bc1qn9fn2z22rdtuy66ta3p2he2pdhtvvkucunljgh';
+    const qrCodeContainer = document.getElementById('walletQR');
+
+    // Generate QR code
+    new QRCode(qrCodeContainer, {
+        text: walletAddress,
+        width: 180,
+        height: 180,
+        colorDark: "#000000",
+        colorLight: "#ffffff",
+        correctLevel: QRCode.CorrectLevel.H
+    });
+}
+
+// Initialize Bitcoin Collateral Strategy
+function initializeBitcoinCollateralStrategy() {
+    // Get values from constants
+    const { COLLATERAL_SATS, USDC_BORROWED, LIQUIDATION_LTV, INTEREST_RATE, 
+            BTC_YIELD_RATE, LIQUIDATION_PRICE_USD } = BITCOIN_STRATEGY;
+    
+    // Calculations
+    const btcCollateralBtc = COLLATERAL_SATS / BTC_CONSTANTS.SATS_TO_BTC;
+    const btcValueIdr = btcCollateralBtc * BTC_CONSTANTS.PRICE_IDR;
+    const usdcValueIdr = USDC_BORROWED * EXCHANGE_RATES.USDC_TO_IDR;
+    
+    // Calculate current LTV
+    const currentLTV = (usdcValueIdr / btcValueIdr) * 100;
+    
+    const usdcliquidationPrice = EXCHANGE_RATES.USDC_TO_IDR * (LIQUIDATION_LTV / currentLTV);
+
+    // Update DOM elements
+    document.getElementById('btcCollateral').textContent = `${COLLATERAL_SATS.toLocaleString()} sats`;
+    document.getElementById('btcValueIDR').textContent = `Rp. ${btcValueIdr.toLocaleString('id-ID', {maximumFractionDigits: 0})}`;
+    
+    document.getElementById('usdcBorrowed').textContent = `${USDC_BORROWED.toFixed(2)} USDC`;
+    document.getElementById('usdcValueIDR').textContent = `Rp. ${usdcValueIdr.toLocaleString('id-ID', {maximumFractionDigits: 0})}`;
+    
+    document.getElementById('interestRate').textContent = `${INTEREST_RATE.toFixed(2)}%`;
+    document.getElementById('btcYieldRate').textContent = `${BTC_YIELD_RATE.toFixed(2)}%`;
+    document.getElementById('liquidationPrice').textContent = `$${LIQUIDATION_PRICE_USD.toLocaleString('en-US', {maximumFractionDigits: 2})}`;
+    document.getElementById('usdcliquidationPrice').textContent = `Rp. ${usdcliquidationPrice.toLocaleString('id-ID', {maximumFractionDigits: 2})}`;
+
+    // Update LTV indicators
+    document.getElementById('currentLTV').textContent = `${currentLTV.toFixed(2)}%`;
+    document.getElementById('liquidationLTV').textContent = `${LIQUIDATION_LTV.toFixed(2)}%`;
+    
+    // Set the progress bar width to match current LTV
+    const progressBar = document.getElementById('ltvProgressBar');
+    progressBar.style.width = `${currentLTV}%`;
+    
+    // Set the danger zone width
+    const dangerZone = document.querySelector('.ltv-danger-zone');
+    dangerZone.style.width = `${100 - LIQUIDATION_LTV}%`;
+    
+    // Update LTV status color based on proximity to liquidation
+    const ltvStatusIndicator = document.getElementById('ltvStatusIndicator');
+    const ltvRatio = currentLTV / 100;
+    
+    if (ltvRatio <= 0.55) {
+        progressBar.style.backgroundColor = '#28a745'; // Green - Safe
+        ltvStatusIndicator.style.backgroundColor = '#28a745';
+        ltvStatusIndicator.textContent = 'Status: Healthy';
+    } else if (ltvRatio <= 0.7) {
+        progressBar.style.backgroundColor = '#ffc107'; // Yellow - Caution
+        ltvStatusIndicator.style.backgroundColor = '#ffc107';
+        ltvStatusIndicator.style.color = '#000000';
+        ltvStatusIndicator.textContent = 'Status: Caution';
+    } else {
+        progressBar.style.backgroundColor = '#dc3545'; // Red - Warning
+        ltvStatusIndicator.style.backgroundColor = '#dc3545';
+        ltvStatusIndicator.textContent = 'Status: Warning';
+    }
+}
+
+// Update last update timestamp
+function updateLastUpdate() {
+    // If you need to dynamically update the timestamp, implement this function
+    // Currently the timestamp is hardcoded in the HTML
+}
+
+// Initialize the dashboard
+function initializeDashboard() {
+    // Calculate asset values
+    const calculatedAssets = populateAssetTable();
+
+    // Update portfolio summary
+    const summaryData = updatePortfolioSummary(calculatedAssets);
+
+    // Create donut chart
+    createDonutChart(calculatedAssets);
+
+    // Create wallet QR code
+    createWalletQR();
+
+    // Initialize Bitcoin collateral strategy
+    initializeBitcoinCollateralStrategy();
+
+    // Update last update timestamp
+    updateLastUpdate();
+}
+
+// Initialize dashboard when page loads
+document.addEventListener('DOMContentLoaded', initializeDashboard);
+    </script>
 </body>
 </html>

@@ -222,9 +222,7 @@
             border: 1px solid #000000;
             border-radius: 8px;
         }
-        .invested-focus {
-            margin-bottom: -15px;
-        }
+        
 
         .summary-title {
             font-size: 16px;
@@ -892,6 +890,10 @@ blockquote.quote footer {
                             <span class="stat-value" id="totalInvested">Rp. 0</span>
                         </div>
                         <div class="stat-item">
+                            <span class="stat-label">Realized (Since 2021)</span>
+                            <span class="stat-value positive" id="realizedPnL">Rp. 6.294.306</span>
+                        </div>
+                        <div class="stat-item">
                             <span class="stat-label">Percentage</span>
                             <span class="stat-value" id="totalPercentage">0%</span>
                         </div>
@@ -899,12 +901,23 @@ blockquote.quote footer {
                             <span class="stat-label">Unrealized P&L</span>
                             <span class="stat-value" id="totalPnL">Rp. 0</span>
                         </div>
+                        
+                    </div>
+                    <!-- Divider for debt section -->
+                    <div class="divider"></div>
+                    
+                    <!-- Debt Section -->
+                    <div class="summary-title">Aset Non-Liquid</div>
+                    <div class="summary-stats">
                         <div class="stat-item">
-                            <span class="stat-label">Realized (Since 2021)</span>
-                            <span class="stat-value positive" id="realizedPnL">Rp. 6.294.306</span>
+                            <span class="stat-label">Total Nilai</span>
+                            <span class="stat-value" id="nonLiquidAssets">Rp. 0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">% dari Total</span>
+                            <span class="stat-value" id="nonLiquidPercentage">0%</span>
                         </div>
                     </div>
-
                     <!-- Divider for debt section -->
                     <div class="divider"></div>
                     
@@ -936,7 +949,7 @@ blockquote.quote footer {
                     <!-- Legend items will be inserted here by JavaScript -->
                 </div>
                 <!-- Add this right after the donut-legend div with id="donutLegend" -->
-                <div class="summary-card invested-focus">
+                <div class="summary-card">
                     <div class="summary-title">Sector Focus</div>
                     <div class="focus-tags">
                         <!-- <div class="focus-tag store-value">
@@ -955,21 +968,6 @@ blockquote.quote footer {
                             <span class="focus-icon"><i class="fa-solid fa-staff-snake"></i></span>
                             <span class="focus-text">Pharmacy</span>
                         </div> -->
-                    </div>
-                </div>
-                
-                <!-- Non-Liquid Assets Section (Moved here) -->
-                <div class="summary-card">
-                    <div class="summary-title">Aset Non-Liquid</div>
-                    <div class="summary-stats">
-                        <div class="stat-item">
-                            <span class="stat-label">Total Nilai</span>
-                            <span class="stat-value" id="nonLiquidAssets">Rp. 0</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-label">% dari Total</span>
-                            <span class="stat-value" id="nonLiquidPercentage">0%</span>
-                        </div>
                     </div>
                 </div>
             </div>

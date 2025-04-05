@@ -545,6 +545,18 @@ blockquote.quote footer {
     gap: 20px;
 }
 
+.loan-metric-item {
+    flex: 1;
+    min-width: 200px;
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #1a1a1a;
+    border: 1px solid #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
 /* Bitcoin Collateral Strategy Icon Updates */
 .loan-metric-icon {
     background: rgba(30, 30, 30, 0.7);
@@ -606,8 +618,8 @@ blockquote.quote footer {
 }
 
 .loan-metric-icon img {
-    width: 28px;
-    height: 28px;
+    width: 36px;
+    height: 36px;
     object-fit: contain;
     filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.2));
     z-index: 1;
@@ -616,27 +628,6 @@ blockquote.quote footer {
 
 .loan-metric-icon:hover img {
     transform: scale(1.1);
-}
-
-/* Loan Metric Item Enhancements */
-.loan-metric-item {
-    flex: 1;
-    min-width: 200px;
-    display: flex;
-    align-items: center;
-    padding: 15px;
-    border-radius: 12px;
-    background: rgba(30, 30, 30, 0.7);
-    backdrop-filter: blur(5px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-}
-
-.loan-metric-item:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
-    border-color: rgba(255, 255, 255, 0.15);
 }
 
 .loan-metric-details {

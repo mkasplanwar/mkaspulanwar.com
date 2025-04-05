@@ -1195,18 +1195,6 @@ function parseShareQuantity(shareStr) {
 // Asset data with integrated US stock prices
 const assets = [
     {
-        name: "Farmland",
-        icon: "/myasset/icon/tanah.png",
-        balance: "1.445 m²",
-        invested: 20000000,
-        avgPrice: 13840.8305, 
-        currentPrice: 13840.8305, 
-        currency: "IDR",
-        type: "non-liquid",
-        sector: "Real Estate",
-        company: "Private Ownership",
-    },
-    {
         name: "Bitcoin",
         icon: "/myasset/icon/bitcoin.png",
         balance: "61.472 sats",
@@ -1218,6 +1206,19 @@ const assets = [
         sector: "Store of Value",
         company: "Collateral Asset"
     },
+    {
+        name: "Farmland",
+        icon: "/myasset/icon/indonesia.png",
+        balance: "1.445 m²",
+        invested: 20000000,
+        avgPrice: 13840.8305, 
+        currentPrice: 13840.8305, 
+        currency: "IDR",
+        type: "non-liquid",
+        sector: "Real Estate",
+        company: "Private Ownership",
+    },
+    
     {
         name: "IDX: PGEO",
         icon: "/myasset/icon/pgeo.png",
@@ -1327,18 +1328,7 @@ const assets = [
         sector: "Agrobisnis",
         company: "PT. Salim Ivomas Pratama Tbk",
     },
-    {
-        name: "IDX: DCII",
-        icon: "icon/dcii.png",
-        balance: "0 shares",
-        invested: 0,
-        avgPrice: 1,
-        currentPrice: 1,
-        currency: "IDR",
-        type: "liquid",
-        sector: "Data Center",
-        company: "PT. DCI Indonesia Tbk",
-    },
+    
     /*{
         name: "Pisang Jago",
         icon: "/myasset/icon/banana.png",
@@ -1551,11 +1541,13 @@ function createDonutChart(calculatedAssets) {
     const labels = filteredAssets.map(asset => asset.name);
 
     const colors = [
-        'rgba(240, 78, 66, 0.9)',    // merah
-        'rgba(255, 200, 87, 0.9)',   // kuning 
-        'rgba(22, 163, 74, 0.9)',    // hijau
-        'rgba(0, 108, 229, 0.9)',    // biru
-        'rgba(155, 89, 182, 0.9)',   // ungu 
+        
+        'rgba(247,147,26)',     //Bitcoin
+        'rgba(240, 78, 66)',    //Pertamina
+        'rgba(0,136,204)',      //AAPLE
+        'rgba(22, 163, 74)',    // hijau
+        'rgba(0, 108, 229)',    // biru
+        'rgba(155, 89, 182)',   // ungu 
         
     ];
 

@@ -33,10 +33,10 @@
     box-sizing: border-box;
 }
 
-/* Body and Container Styles - Dark Theme */
+/* Body and Container Styles */
 body {
     background: #121212;
-    color: #e0e0e0;
+    color: #ffffff;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -74,12 +74,12 @@ body {
 /* Card Styles */
 .card {
     background-color: #1e1e1e;
-    border: 1px solid #333333;
+    border: 1px solid #ffffff;
     border-radius: 12px;
     padding: 25px;
     display: flex;
     flex-direction: column;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     margin-bottom: 20px;
 }
 
@@ -96,11 +96,11 @@ body {
     text-align: center;
     margin-bottom: 20px;
     width: 100%;
-    border: 1px solid #333333;
+    border: 1px solid #ffffff;
     border-radius: 12px;
     padding: 20px;
     background-color: #1e1e1e;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .author-name {
@@ -113,13 +113,13 @@ body {
 
 .dashboard-title {
     font-size: 16px;
-    color: #a0a0a0;
+    color: #bbbbbb;
     letter-spacing: 1px;
 }
 
 .last-update {
     font-size: 14px;
-    color: #a0a0a0;
+    color: #bbbbbb;
     margin-top: 20px;
     text-align: center;
 }
@@ -172,7 +172,7 @@ body {
 
 .usd-equivalent {
     font-size: 18px;
-    color: #a0a0a0;
+    color: #bbbbbb;
     text-align: center;
     margin-top: 5px;
 }
@@ -193,7 +193,7 @@ body {
 .distribution-table th {
     text-align: left;
     padding: 12px 10px;
-    border-bottom: 1px solid #333333;
+    border-bottom: 1px solid #ffffff;
     color: #ffffff;
     font-weight: 600;
     white-space: nowrap;
@@ -201,13 +201,13 @@ body {
 
 .distribution-table td {
     padding: 16px 10px;
-    color: #e0e0e0;
+    color: #ffffff;
     border-bottom: 1px solid #333333;
     vertical-align: middle;
     white-space: nowrap;
 }
 
-/* Asset Icons and Names - Enhanced for Dark Mode */
+/* Asset Icons and Names */
 .asset-icon {
     display: inline-flex;
     align-items: center;
@@ -216,24 +216,11 @@ body {
     height: 42px;
     border-radius: 50%;
     margin-right: 15px;
-    background-color: #252525;
+    background-color: #2a2a2a;
     vertical-align: middle;
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
     overflow: hidden;
-    border: 2px solid #333333;
-    position: relative;
-    z-index: 1;
-}
-
-.asset-icon::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: radial-gradient(circle at center, rgba(255,255,255,0.1) 0%, rgba(0,0,0,0) 70%);
-    z-index: -1;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .asset-icon img {
@@ -241,7 +228,6 @@ body {
     height: 34px;
     object-fit: cover;
     border-radius: 50%;
-    filter: drop-shadow(0 1px 2px rgba(0,0,0,0.3));
 }
 
 .asset-name {
@@ -255,10 +241,10 @@ body {
 .summary-card {
     margin-top: 30px;
     padding: 20px;
-    background: #252525;
-    border: 1px solid #333333;
+    background: #2a2a2a;
+    border: 1px solid #ffffff;
     border-radius: 8px;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .summary-title {
@@ -282,7 +268,7 @@ body {
 
 .stat-label {
     font-size: 12px;
-    color: #a0a0a0;
+    color: #bbbbbb;
 }
 
 .stat-value {
@@ -293,11 +279,11 @@ body {
 
 /* Status Colors */
 .positive {
-    color: #4CAF50 !important;
+    color: #4ade80 !important;
 }
 
 .negative {
-    color: #F44336 !important;
+    color: #ef4444 !important;
 }
 
 /* Chart Styles */
@@ -329,12 +315,12 @@ body {
     width: 12px;
     height: 12px;
     border-radius: 2px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .legend-text {
     font-size: 12px;
-    color: #d0d0d0;
+    color: #dddddd;
 }
 
 /* Wallet Styles */
@@ -342,9 +328,9 @@ body {
     margin-top: 10px;
     padding: 20px;
     border-radius: 8px;
-    background-color: #252525;
-    border: 1px solid #333333;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+    background-color: #2a2a2a;
+    border: 1px solid #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .wallet-address {
@@ -355,14 +341,14 @@ body {
     background: #1a1a1a;
     border-radius: 4px;
     margin-top: 10px;
-    border: 1px solid #333333;
-    color: #00ccff;
+    border: 1px solid #ffffff;
+    color: #dddddd;
 }
 
 .wallet-type {
     margin-top: 10px;
     font-size: 14px;
-    color: #a0a0a0;
+    color: #bbbbbb;
 }
 
 .qr-code-container {
@@ -375,8 +361,8 @@ body {
     background-color: #ffffff;
     padding: 10px;
     border-radius: 8px;
-    border: 1px solid #333333;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+    border: 1px solid #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 /* Extended Wallet Styles */
@@ -403,16 +389,16 @@ body {
 }
 
 .status-healthy {
-    background-color: #4CAF50;
+    background-color: #4ade80;
 }
 
 .status-warning {
-    background-color: #FF9800;
+    background-color: #fbbf24;
     color: #000;
 }
 
 .status-danger {
-    background-color: #F44336;
+    background-color: #ef4444;
 }
 
 .status-indicator-large {
@@ -421,7 +407,7 @@ body {
     border-radius: 4px;
     font-size: 14px;
     font-weight: 600;
-    background-color: #4CAF50;
+    background-color: #4ade80;
     color: white;
 }
 
@@ -433,15 +419,15 @@ body {
 blockquote.quote {
     font-size: 18px;
     font-style: italic;
-    color: #c0c0c0;
+    color: #dddddd;
     margin: 0 0 25px 0;
     padding: 0 20px;
-    border-left: 3px solid #444444;
+    border-left: 3px solid #ffffff;
 }
 
 blockquote.quote footer {
     font-size: 14px;
-    color: #a0a0a0;
+    color: #bbbbbb;
     margin-top: 8px;
 }
 
@@ -466,20 +452,20 @@ blockquote.quote footer {
 
 .archive-btn {
     padding: 10px 15px;
-    background-color: #252525;
-    border: 1px solid #333333;
+    background-color: #2a2a2a;
+    border: 1px solid #ffffff;
     border-radius: 6px;
     font-size: 14px;
     font-weight: 500;
-    color: #e0e0e0;
+    color: #ffffff;
     cursor: pointer;
     transition: all 0.2s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .archive-btn:hover {
-    background-color: #333333;
-    color: #ffffff;
-    border-color: #4d4d4d;
+    background-color: #ffffff;
+    color: #000000;
 }
 
 /* Bitcoin Collateral Strategy Styles */
@@ -512,9 +498,9 @@ blockquote.quote footer {
     align-items: center;
     padding: 15px;
     border-radius: 8px;
-    background-color: #252525;
-    border: 1px solid #333333;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+    background-color: #2a2a2a;
+    border: 1px solid #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .loan-metric-icon {
@@ -526,15 +512,14 @@ blockquote.quote footer {
     align-items: center;
     justify-content: center;
     margin-right: 15px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-    border: 1px solid #333333;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .loan-metric-icon img {
     width: 32px;
     height: 32px;
     object-fit: contain;
-    filter: brightness(1.2);
 }
 
 .loan-metric-details {
@@ -543,7 +528,7 @@ blockquote.quote footer {
 
 .loan-metric-label {
     font-size: 14px;
-    color: #a0a0a0;
+    color: #bbbbbb;
     margin-bottom: 4px;
 }
 
@@ -555,16 +540,16 @@ blockquote.quote footer {
 
 .loan-metric-secondary {
     font-size: 14px;
-    color: #a0a0a0;
+    color: #bbbbbb;
     margin-top: 2px;
 }
 
 .loan-details {
-    background-color: #252525;
-    border: 1px solid #333333;
+    background-color: #2a2a2a;
+    border: 1px solid #ffffff;
     border-radius: 8px;
     padding: 15px;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .loan-detail-row {
@@ -580,7 +565,7 @@ blockquote.quote footer {
 
 .loan-detail-label {
     font-size: 14px;
-    color: #a0a0a0;
+    color: #bbbbbb;
 }
 
 .loan-detail-value {
@@ -594,10 +579,10 @@ blockquote.quote footer {
     flex: 1;
     min-width: 300px;
     padding: 20px;
-    background-color: #252525;
-    border: 1px solid #333333;
+    background-color: #2a2a2a;
+    border: 1px solid #ffffff;
     border-radius: 8px;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .ltv-chart-header {
@@ -613,7 +598,7 @@ blockquote.quote footer {
 
 .ltv-label {
     font-size: 14px;
-    color: #a0a0a0;
+    color: #bbbbbb;
     margin-bottom: 5px;
 }
 
@@ -642,6 +627,7 @@ blockquote.quote footer {
     width: 100%;
     background-color: #333333;
     border-radius: 12px;
+    border: 1px solid #ffffff;
 }
 
 .ltv-bar-progress {
@@ -650,10 +636,10 @@ blockquote.quote footer {
     left: 0;
     height: 100%;
     width: 0%; /* Will be set by JS */
-    background-color: #4CAF50;
-    border-radius: 12px;
+    background-color: #4ade80;
+    border-radius: 12px 0 0 12px;
     transition: width 0.5s ease-in-out;
-    box-shadow: 0 0 10px rgba(76, 175, 80, 0.3);
+    border: 1px solid #ffffff;
 }
 
 .ltv-danger-zone {
@@ -662,8 +648,9 @@ blockquote.quote footer {
     right: 0;
     height: 100%;
     width: 9%; /* 100% - liquidation LTV */
-    background-color: rgba(244, 67, 54, 0.4);
+    background-color: rgba(239, 68, 68, 0.5);
     border-radius: 0 12px 12px 0;
+    border: 1px solid #ffffff;
 }
 
 .ltv-markers {
@@ -676,7 +663,7 @@ blockquote.quote footer {
 .ltv-marker {
     position: absolute;
     font-size: 12px;
-    color: #a0a0a0;
+    color: #bbbbbb;
     transform: translateX(-50%);
 }
 
@@ -699,40 +686,40 @@ blockquote.quote footer {
     align-items: center;
     gap: 8px;
     padding: 6px 12px;
-    background-color: #252525;
-    border: 1px solid #333333;
+    background-color: #2a2a2a;
+    border: 1px solid #ffffff;
     border-radius: 20px;
     font-size: 14px;
     font-weight: 500;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .focus-tag.store-value {
-    background-color: rgba(255, 215, 0, 0.08);
-    color: #FFD700;
-    border-color: #B8860B;
-    box-shadow: 0 2px 5px rgba(184, 134, 11, 0.25);
+    background-color: rgba(218, 165, 32, 0.2);
+    color: #ffd700;
+    border-color: #daa520;
+    box-shadow: 0 4px 8px rgba(218, 165, 32, 0.2);
 }
 
 .focus-tag.green-energy {
-    background-color: rgba(0, 128, 0, 0.06);
-    color: #32CD32;
-    border-color: #2E8B57;
-    box-shadow: 0 2px 5px rgba(46, 139, 87, 0.25);
+    background-color: rgba(0, 179, 71, 0.15);
+    color: #00ff7f;
+    border-color: #00b347;
+    box-shadow: 0 4px 8px rgba(0, 179, 71, 0.2);
 }
 
 .focus-tag.technology {
-    background-color: rgba(25, 25, 112, 0.06);
-    color: #6495ED;
-    border-color: #4169E1;
-    box-shadow: 0 2px 5px rgba(65, 105, 225, 0.25);
+    background-color: rgba(30, 144, 255, 0.15);
+    color: #1e90ff;
+    border-color: #1e90ff;
+    box-shadow: 0 4px 8px rgba(30, 144, 255, 0.2);
 }
 
 .focus-tag.pharma {
-    background-color: rgba(128, 0, 128, 0.06);
-    color: #DA70D6;
-    border-color: #9370DB;
-    box-shadow: 0 2px 5px rgba(147, 112, 219, 0.25);
+    background-color: rgba(148, 0, 211, 0.15);
+    color: #da70d6;
+    border-color: #9400d3;
+    box-shadow: 0 4px 8px rgba(148, 0, 211, 0.2);
 }
 
 .focus-icon {
@@ -812,7 +799,7 @@ blockquote.quote footer {
     }
     
     .ltv-chart-container {
-        padding: 15px;
+        padding: 25px;
     }
     
     .focus-tags {

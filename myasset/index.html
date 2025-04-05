@@ -192,8 +192,8 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 40px;
-            height: 40px;
+            width: 42px;
+            height: 42px;
             border-radius: 50%;
             margin-right: 15px;
             background-color: #ffffff;
@@ -203,8 +203,8 @@
         }
 
         .asset-icon img {
-            width: 32px;
-            height: 32px;
+            width: 34px;
+            height: 34px;
             object-fit: cover;
             border-radius: 50%;
         }
@@ -1194,7 +1194,7 @@ function parseShareQuantity(shareStr) {
 const assets = [
     {
         name: "Farmland",
-        icon: "/myasset/icon/coin.png",
+        icon: "/myasset/icon/tanah.png",
         balance: "1.445 m²",
         invested: 20000000,
         avgPrice: 13840.8305, 
@@ -1217,7 +1217,7 @@ const assets = [
         company: "Collateral Asset"
     },
     {
-        name: "PGEO",
+        name: "IDX: PGEO",
         icon: "/myasset/icon/pgeo.png",
         balance: "700 shares",
         invested: 875000,
@@ -1230,7 +1230,7 @@ const assets = [
     },
     
     {
-        name: "AAPL",
+        name: "NASDAQ: AAPL",
         icon: "/myasset/icon/apple.png",
         balance: "0.0384 shares",
         invested: 131428, // Precalculated value in IDR (will be recalculated in calculation function)
@@ -1242,8 +1242,20 @@ const assets = [
         company: "Apple Inc."
     },
     {
+        name: "NASDAQ: AMD",
+        icon: "/myasset/icon/amd.png",
+        balance: "0 shares",
+        invested: 0, // No shares owned
+        avgPrice: 147.68, // Price in USD
+        currentPrice: 159.99, // Price in USD
+        currency: "USD",
+        type: "liquid",
+        sector: "Technology",
+        company: "Advanced Micro Devices, Inc."
+    },
+    {
         name: "Funding",
-        icon: "/myasset/icon/euro.png",
+        icon: "/myasset/icon/usdc.png",
         balance: "Rp. 565.602",
         invested: 565602,
         avgPrice: 1,
@@ -1254,19 +1266,6 @@ const assets = [
         company: "Pendanaan dari Loan BCS"
     },
     
-    {
-        name: "AMD",
-        icon: "/myasset/icon/amd1.png",
-        balance: "0 shares",
-        invested: 0, // No shares owned
-        avgPrice: 147.68, // Price in USD
-        currentPrice: 159.99, // Price in USD
-        currency: "USD",
-        type: "liquid",
-        sector: "Technology",
-        company: "Advanced Micro Devices, Inc."
-    },
-   
     /*{
         name: "Pisang Jago",
         icon: "/myasset/icon/banana.png",

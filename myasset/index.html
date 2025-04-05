@@ -1595,10 +1595,10 @@ const der = debtAmount / (totalLiquidMarketValue - debtAmount) || 0;
 // Determine DER status and color based on the ratio
 let derStatus, derStatusClass;
 if (der <= 0.2) {
-    derStatus = "Sehat";
+    derStatus = "Aman";
     derStatusClass = "status-healthy";
 } else if (der <= 0.5) {
-    derStatus = "Peringatan";
+    derStatus = "Waspada";
     derStatusClass = "status-warning";
 } else {
     derStatus = "Bahaya";
@@ -1779,16 +1779,16 @@ function initializeBitcoinCollateralStrategy() {
     if (ltvRatio <= 0.55) {
         progressBar.style.backgroundColor = '#28a745'; // Green - Safe
         ltvStatusIndicator.style.backgroundColor = '#28a745';
-        ltvStatusIndicator.textContent = 'Status: Healthy';
+        ltvStatusIndicator.textContent = 'Status: Aman';
     } else if (ltvRatio <= 0.7) {
         progressBar.style.backgroundColor = '#ffc107'; // Yellow - Caution
         ltvStatusIndicator.style.backgroundColor = '#ffc107';
         ltvStatusIndicator.style.color = '#000000';
-        ltvStatusIndicator.textContent = 'Status: Caution';
+        ltvStatusIndicator.textContent = 'Status: Waspada';
     } else {
         progressBar.style.backgroundColor = '#dc3545'; // Red - Warning
         ltvStatusIndicator.style.backgroundColor = '#dc3545';
-        ltvStatusIndicator.textContent = 'Status: Warning';
+        ltvStatusIndicator.textContent = 'Status: Bahaya';
     }
 }
 

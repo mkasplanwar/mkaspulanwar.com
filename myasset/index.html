@@ -207,7 +207,7 @@ body {
     white-space: nowrap;
 }
 
-/* Asset Icons and Names */
+/* Enhanced Asset Icons with Elegant 3D Effect */
 .asset-icon {
     display: inline-flex;
     align-items: center;
@@ -218,16 +218,55 @@ body {
     margin-right: 15px;
     background-color: #2a2a2a;
     vertical-align: middle;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+    position: relative;
     overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    
+    /* Enhanced 3D effect */
+    box-shadow: 
+        0 4px 8px rgba(0, 0, 0, 0.5),
+        0 1px 3px rgba(255, 255, 255, 0.1) inset,
+        0 -1px 3px rgba(0, 0, 0, 0.2) inset;
+    
+    /* Subtle gradient to enhance depth */
+    background: linear-gradient(135deg, #323232, #252525);
+    
+    /* Refined border */
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    
+    /* Smooth transition for hover effects */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.asset-icon:hover {
+    transform: translateY(-2px);
+    box-shadow: 
+        0 6px 12px rgba(0, 0, 0, 0.5),
+        0 1px 3px rgba(255, 255, 255, 0.15) inset,
+        0 -1px 3px rgba(0, 0, 0, 0.3) inset;
+}
+
+.asset-icon::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 40%;
+    background: linear-gradient(to bottom, 
+        rgba(255, 255, 255, 0.1), 
+        rgba(255, 255, 255, 0));
+    border-radius: 50% 50% 0 0;
+    pointer-events: none;
 }
 
 .asset-icon img {
-    width: 34px;
-    height: 34px;
+    width: 32px;
+    height: 32px;
     object-fit: cover;
     border-radius: 50%;
+    /* Subtle reflection effect */
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+    z-index: 1;
 }
 
 .asset-name {
@@ -648,7 +687,7 @@ blockquote.quote footer {
     right: 0;
     height: 100%;
     width: 9%; /* 100% - liquidation LTV */
-    background-color: rgba(239, 68, 68, 0.5);
+    background-color: rgba(239, 68, 68);
     border-radius: 0 12px 12px 0;
     border: 1px solid #ffffff;
 }
@@ -830,13 +869,13 @@ blockquote.quote footer {
     }
     
     .asset-icon {
-        width: 36px;
-        height: 36px;
+        width: 38px;
+        height: 38px;
     }
     
     .asset-icon img {
-        width: 28px;
-        height: 28px;
+        width: 30px;
+        height: 30px;
     }
     
     body {

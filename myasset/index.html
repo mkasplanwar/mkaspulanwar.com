@@ -207,7 +207,7 @@ body {
     white-space: nowrap;
 }
 
-/* Modern Asset Icons with Elegant 3D Effect */
+/* Enhanced Glassmorphism Asset Icon Styles */
 .asset-icon {
     display: inline-flex;
     align-items: center;
@@ -220,18 +220,19 @@ body {
     position: relative;
     overflow: hidden;
     
-    /* Subtle glass morphism effect */
-    background: rgba(30, 30, 30, 0.7);
-    backdrop-filter: blur(5px);
+    /* Lighter glassmorphism effect with white tint */
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(8px);
     
-    /* Enhanced 3D effect with softer shadows */
+    /* Enhanced 3D effect with softer white glow */
     box-shadow: 
         0 4px 8px rgba(0, 0, 0, 0.4),
-        0 1px 2px rgba(255, 255, 255, 0.05) inset,
-        0 -1px 2px rgba(0, 0, 0, 0.15) inset;
+        0 1px 3px rgba(255, 255, 255, 0.2) inset,
+        0 -1px 2px rgba(0, 0, 0, 0.15) inset,
+        0 0 10px rgba(255, 255, 255, 0.05);
     
-    /* Refined border with subtle glow */
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    /* Refined border with enhanced white glow */
+    border: 1px solid rgba(255, 255, 255, 0.25);
     
     /* Smooth transition */
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -239,18 +240,19 @@ body {
 
 .asset-icon:hover {
     transform: translateY(-2px) scale(1.05);
+    background: rgba(255, 255, 255, 0.2);
     box-shadow: 
         0 6px 12px rgba(0, 0, 0, 0.4),
-        0 1px 3px rgba(255, 255, 255, 0.08) inset,
-        0 0 8px rgba(255, 255, 255, 0.05);
+        0 1px 3px rgba(255, 255, 255, 0.3) inset,
+        0 0 12px rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.35);
 }
 
-/* Subtle shine effect on hover */
-
+/* Enhanced shine effect on hover */
 .asset-icon::after {
     content: "";
     position: absolute;
-    top: -50%;
+    top: -150%;
     left: -50%;
     width: 200%;
     height: 200%;
@@ -258,23 +260,44 @@ body {
         135deg, 
         rgba(255, 255, 255, 0) 0%,
         rgba(255, 255, 255, 0.03) 40%, 
-        rgba(255, 255, 255, 0.1) 50%, 
+        rgba(255, 255, 255, 0.2) 50%, 
         rgba(255, 255, 255, 0.03) 60%, 
         rgba(255, 255, 255, 0) 100%
     );
     transform: rotate(45deg);
-    opacity: 0.05;
-    transition: opacity 0.3s ease;
+    opacity: 0.1;
+    transition: opacity 0.3s ease, top 0.5s ease;
     pointer-events: none;
+}
+
+.asset-icon:hover::after {
+    top: -90%;
+    opacity: 0.3;
+    animation: shine 1.5s ease forwards;
 }
 
 .asset-icon img {
     width: 32px;
     height: 32px;
     object-fit: contain;
-    filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.2));
+    filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.3));
     z-index: 1;
     transition: transform 0.2s ease;
+}
+
+.asset-icon:hover img {
+    transform: scale(1.08);
+}
+
+@keyframes shine {
+    0% {
+        top: -150%;
+        opacity: 0.1;
+    }
+    100% {
+        top: 150%;
+        opacity: 0.3;
+    }
 }
 
 .asset-name {
@@ -550,28 +573,31 @@ blockquote.quote footer {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
-/* Bitcoin Collateral Strategy Icon Updates */
+/* Enhanced Glassmorphism Loan Metric Icon Styles */
 .loan-metric-icon {
-    background: rgba(30, 30, 30, 0.7);
-    backdrop-filter: blur(5px);
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
     margin-right: 15px;
     position: relative;
     overflow: hidden;
     
-    /* Enhanced 3D effect with softer shadows */
+    /* Lighter glassmorphism effect with white tint */
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(8px);
+    
+    /* Enhanced 3D effect with softer white glow */
     box-shadow: 
         0 4px 10px rgba(0, 0, 0, 0.4),
-        0 1px 3px rgba(255, 255, 255, 0.05) inset,
-        0 -1px 2px rgba(0, 0, 0, 0.15) inset;
+        0 1px 3px rgba(255, 255, 255, 0.2) inset,
+        0 -1px 2px rgba(0, 0, 0, 0.15) inset,
+        0 0 10px rgba(255, 255, 255, 0.05);
     
-    /* Refined border */
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    /* Refined border with enhanced white glow */
+    border: 1px solid rgba(255, 255, 255, 0.25);
     
     /* Smooth transition */
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -579,16 +605,19 @@ blockquote.quote footer {
 
 .loan-metric-icon:hover {
     transform: translateY(-2px) scale(1.03);
+    background: rgba(255, 255, 255, 0.2);
     box-shadow: 
         0 6px 14px rgba(0, 0, 0, 0.4),
-        0 1px 3px rgba(255, 255, 255, 0.08) inset,
-        0 0 8px rgba(255, 255, 255, 0.05);
+        0 1px 3px rgba(255, 255, 255, 0.3) inset,
+        0 0 12px rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.35);
 }
 
+/* Enhanced shine effect on hover */
 .loan-metric-icon::after {
     content: "";
     position: absolute;
-    top: -50%;
+    top: -150%;
     left: -50%;
     width: 200%;
     height: 200%;
@@ -596,23 +625,44 @@ blockquote.quote footer {
         135deg, 
         rgba(255, 255, 255, 0) 0%,
         rgba(255, 255, 255, 0.03) 40%, 
-        rgba(255, 255, 255, 0.1) 50%, 
+        rgba(255, 255, 255, 0.2) 50%, 
         rgba(255, 255, 255, 0.03) 60%, 
         rgba(255, 255, 255, 0) 100%
     );
     transform: rotate(45deg);
-    opacity: 0.05;
-    transition: opacity 0.3s ease;
+    opacity: 0.1;
+    transition: opacity 0.3s ease, top 0.5s ease;
     pointer-events: none;
+}
+
+.loan-metric-icon:hover::after {
+    top: -90%;
+    opacity: 0.3;
+    animation: shine-loan 1.5s ease forwards;
 }
 
 .loan-metric-icon img {
     width: 36px;
     height: 36px;
     object-fit: contain;
-    filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.2));
+    filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.3));
     z-index: 1;
     transition: transform 0.2s ease;
+}
+
+.loan-metric-icon:hover img {
+    transform: scale(1.08);
+}
+
+@keyframes shine-loan {
+    0% {
+        top: -150%;
+        opacity: 0.1;
+    }
+    100% {
+        top: 150%;
+        opacity: 0.3;
+    }
 }
 
 .loan-metric-details {

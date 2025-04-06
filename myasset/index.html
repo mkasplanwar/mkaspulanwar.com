@@ -1297,26 +1297,74 @@ blockquote.quote footer {
 
     <script>
         // Constants for global use
-const EXCHANGE_RATES = {
-    USD_TO_IDR: 16725,
-    USDC_TO_IDR: 16725
-};
+        const EXCHANGE_RATES = {
+            USD_TO_IDR: 16785,
+            USDC_TO_IDR: 16785
+        };
 
-const BTC_CONSTANTS = {
-    PRICE_IDR: 1350000000,  // BTC price in IDR
-    SATS_TO_BTC: 100000000     // Conversion from satoshis to BTC
-};
+        // Modified BTC_CONSTANTS to handle dynamic pricing
+        const BTC_CONSTANTS = {
+            PRICE_IDR: 1500000000,  // Initial/fallback price in IDR
+            AVG_BTCPRICE: 1500000000, // Average BTC price in IDR
+            SATS_TO_BTC: 100000000  // Conversion from satoshis to BTC
+        };
 
-// Bitcoin Collateral Strategy Configuration
+        // Bitcoin Collateral Strategy Configuration
 const BITCOIN_STRATEGY = {
     FREE_SATS: 0,
-    COLLATERAL_SATS: 67020,         
+    COLLATERAL_SATS: 68373,         
     USDC_BORROWED: 30.5,              
     LIQUIDATION_LTV: 91,            
     INTEREST_RATE: 6.93,             
-    BTC_YIELD_RATE: 0.27,           
-    LIQUIDATION_PRICE_USD: 49954.025
+    BTC_YIELD_RATE: 0.27
 };
+
+// Calculate LIQUIDATION_PRICE_USD automatically
+// Formula: LIQUIDATION_PRICE_USD = (USDC_BORROWED * 100) / (COLLATERAL_SATS / SATS_TO_BTC * LIQUIDATION_LTV / 100)
+const btcAmount = BITCOIN_STRATEGY.COLLATERAL_SATS / BTC_CONSTANTS.SATS_TO_BTC;
+const loanValue = BITCOIN_STRATEGY.USDC_BORROWED;
+const maxLoanToValueRatio = BITCOIN_STRATEGY.LIQUIDATION_LTV / 100;
+BITCOIN_STRATEGY.LIQUIDATION_PRICE_USD = parseFloat((loanValue / (btcAmount * maxLoanToValueRatio)).toFixed(2));
+
+// Log the calculated liquidation price for verification
+console.log(`Calculated Liquidation Price: $${BITCOIN_STRATEGY.LIQUIDATION_PRICE_USD.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`);
+
+// Function to fetch Bitcoin price from CoinGecko API
+async function fetchBitcoinPrice() {
+    try {
+        // Fetch BTC price in USD from CoinGecko
+        const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd,idr');
+        const data = await response.json();
+        
+        if (data && data.bitcoin) {
+            // Update the BTC price constants
+            BTC_CONSTANTS.PRICE_IDR = data.bitcoin.idr;
+            
+            // Update the exchange rate if needed
+            if (data.bitcoin.usd) {
+                const usdToIdrRate = data.bitcoin.idr / data.bitcoin.usd;
+                EXCHANGE_RATES.USD_TO_IDR = usdToIdrRate;
+                EXCHANGE_RATES.USDC_TO_IDR = usdToIdrRate; // Assuming 1 USDC = 1 USD
+            }
+            
+            console.log(`Bitcoin price updated: ${BTC_CONSTANTS.PRICE_IDR} IDR`);
+            
+            // Update the dashboard with new prices
+            initializeDashboard();
+            
+            // Update last refresh time
+            updateLastUpdate();
+            
+            return true;
+        } else {
+            throw new Error("Invalid response from CoinGecko API");
+        }
+    } catch (error) {
+        console.error("Error fetching Bitcoin price:", error);
+        // Continue with the last known price
+        return false;
+    }
+}
 
 // Format currency for general use
 function formatCurrency(amount) {
@@ -1357,6 +1405,8 @@ function parseShareQuantity(shareStr) {
 
 // Define total satoshis by combining free and collateral satoshis
 const TOTAL_SATS = BITCOIN_STRATEGY.FREE_SATS + BITCOIN_STRATEGY.COLLATERAL_SATS;
+const INVESTED_BTCIDR = TOTAL_SATS * BTC_CONSTANTS.AVG_BTCPRICE / BTC_CONSTANTS.SATS_TO_BTC; // Total invested in IDR
+
 
 // Format the satoshis with a dot as thousands separator
 const formattedSats = TOTAL_SATS.toLocaleString('id-ID', {
@@ -1370,8 +1420,8 @@ const assets = [
         name: "Bitcoin",
         icon: "/myasset/icon/bitcoin.png",
         balance: formattedSats + " sats",
-        invested: 1005300,
-        avgPrice: 1500000000, // Harga dalam Rupiah, dikonversi dari USD
+        invested: INVESTED_BTCIDR,
+        avgPrice: BTC_CONSTANTS.AVG_BTCPRICE, // Harga dalam Rupiah, dikonversi dari USD
         currentPrice: BTC_CONSTANTS.PRICE_IDR, // Using global constant now
         currency: "IDR",
         type: "liquid",
@@ -1500,23 +1550,13 @@ const assets = [
         sector: "Agrobisnis",
         company: "PT. Salim Ivomas Pratama Tbk",
     },
-    
-    /*{
-        name: "Pisang Jago",
-        icon: "/myasset/icon/banana.png",
-        balance: "Bussiness",
-        invested: 30000,
-        avgPrice: 1,
-        currentPrice: 1,
-        currency: "IDR",
-        type: "liquid",
-        sector: "Business",
-        company: "-",
-    },*/
 ];
 
 // Calculate market value and return for each asset
 function calculateAssetValues() {
+    // Make sure Bitcoin price is updated in assets array before calculations
+    assets.find(asset => asset.name === "Bitcoin").currentPrice = BTC_CONSTANTS.PRICE_IDR;
+    
     return assets.map(asset => {
         let marketValue;
 
@@ -1645,28 +1685,21 @@ function updatePortfolioSummary(calculatedAssets) {
     
     const debtAmount = BITCOIN_STRATEGY.USDC_BORROWED * EXCHANGE_RATES.USDC_TO_IDR;
     
-    // In your updatePortfolioSummary function, modify the DER part with this code
+    // Calculate DER (Debt to Equity Ratio)
+    const der = debtAmount / (totalLiquidMarketValue - debtAmount) || 0;
 
-// Calculate DER (Debt to Equity Ratio)
-const der = debtAmount / (totalLiquidMarketValue - debtAmount) || 0;
-
-// Determine DER status and color based on the ratio
-let derStatus, derStatusClass;
-if (der <= 0.2) {
-    derStatus = "Aman";
-    derStatusClass = "status-healthy";
-} else if (der <= 0.5) {
-    derStatus = "Waspada";
-    derStatusClass = "status-warning";
-} else {
-    derStatus = "Bahaya";
-    derStatusClass = "status-danger";
-}
-
-// Update the DER ratio display with status
-document.getElementById('derRatio').innerHTML = `${der.toFixed(2)} <span class="status-indicator ${derStatusClass}">${derStatus}</span>`;
-
-// Now add these CSS classes to your style section
+    // Determine DER status and color based on the ratio
+    let derStatus, derStatusClass;
+    if (der <= 0.2) {
+        derStatus = "Aman";
+        derStatusClass = "status-healthy";
+    } else if (der <= 0.5) {
+        derStatus = "Waspada";
+        derStatusClass = "status-warning";
+    } else {
+        derStatus = "Bahaya";
+        derStatusClass = "status-danger";
+    }
 
     // Convert total market value to USD
     const usdEquivalent = convertIDRtoUSD(totalMarketValue);
@@ -1683,8 +1716,7 @@ document.getElementById('derRatio').innerHTML = `${der.toFixed(2)} <span class="
     document.getElementById('totalInvested').textContent = formatCurrency(totalInvested);
     document.getElementById('totalPnL').textContent = `${totalPnL >= 0 ? '+ ' : '- '}${formatCurrency(Math.abs(totalPnL))}`;
     document.getElementById('totalDebt').textContent = formatCurrency(debtAmount);
-    // Update the DER ratio display with status
-document.getElementById('derRatio').innerHTML = `${der.toFixed(2)} <span class="status-indicator ${derStatusClass}">${derStatus}</span>`;
+    document.getElementById('derRatio').innerHTML = `${der.toFixed(2)} <span class="status-indicator ${derStatusClass}">${derStatus}</span>`;
     document.getElementById('nonLiquidAssets').textContent = formatCurrency(totalNonLiquidMarketValue);
     document.getElementById('nonLiquidPercentage').textContent = `${nonLiquidPercentage.toFixed(2)}%`;
 
@@ -1713,18 +1745,21 @@ function createDonutChart(calculatedAssets) {
     const labels = filteredAssets.map(asset => asset.name);
 
     const colors = [
-        
         'rgba(247,147,26)',     //Bitcoin
         'rgba(240, 78, 66)',    //Pertamina
         'rgba(0,136,204)',      //AAPLE
         'rgba(22, 163, 74)',    // hijau
         'rgba(0, 108, 229)',    // biru
         'rgba(155, 89, 182)',   // ungu 
-        
     ];
 
+    // Check if chart already exists and destroy it
+    if (window.donutChartInstance) {
+        window.donutChartInstance.destroy();
+    }
+
     // Create the chart
-    const donutChart = new Chart(ctx, {
+    window.donutChartInstance = new Chart(ctx, {
         type: 'doughnut',
         data: {
             labels: labels,
@@ -1778,6 +1813,9 @@ function createDonutChart(calculatedAssets) {
 function createWalletQR() {
     const walletAddress = 'bc1qn9fn2z22rdtuy66ta3p2he2pdhtvvkucunljgh';
     const qrCodeContainer = document.getElementById('walletQR');
+    
+    // Clear previous QR code if it exists
+    qrCodeContainer.innerHTML = '';
 
     // Generate QR code
     new QRCode(qrCodeContainer, {
@@ -1815,7 +1853,7 @@ function initializeBitcoinCollateralStrategy() {
     
     document.getElementById('interestRate').textContent = `${INTEREST_RATE.toFixed(2)}%`;
     document.getElementById('btcYieldRate').textContent = `${BTC_YIELD_RATE.toFixed(2)}%`;
-    document.getElementById('liquidationPrice').textContent = `$${LIQUIDATION_PRICE_USD.toLocaleString('en-US', {maximumFractionDigits: 2})}`;
+    document.getElementById('liquidationPrice').textContent = `$ ${LIQUIDATION_PRICE_USD.toLocaleString('en-US', {maximumFractionDigits: 2})}`;
     document.getElementById('usdcliquidationPrice').textContent = `Rp. ${usdcliquidationPrice.toLocaleString('id-ID', {maximumFractionDigits: 2})}`;
 
     // Update LTV indicators
@@ -1852,8 +1890,23 @@ function initializeBitcoinCollateralStrategy() {
 
 // Update last update timestamp
 function updateLastUpdate() {
-    // If you need to dynamically update the timestamp, implement this function
-    // Currently the timestamp is hardcoded in the HTML
+    const now = new Date();
+    const formattedDate = now.toLocaleDateString('id-ID', { 
+        day: '2-digit', 
+        month: 'long', 
+        year: 'numeric' 
+    });
+    const formattedTime = now.toLocaleTimeString('id-ID', { 
+        hour: '2-digit', 
+        minute: '2-digit',
+        second: '2-digit'
+    });
+    
+    // Update the timestamp in the UI
+    const lastUpdateElement = document.getElementById('lastUpdate');
+    if (lastUpdateElement) {
+        lastUpdateElement.textContent = `${formattedDate} ${formattedTime}`;
+    }
 }
 
 // Initialize the dashboard
@@ -1877,8 +1930,23 @@ function initializeDashboard() {
     updateLastUpdate();
 }
 
+// Set up the auto-refresh interval (1 minute = 60000 milliseconds)
+function setupAutoRefresh() {
+    // Initial fetch
+    fetchBitcoinPrice();
+    
+    // Set interval for regular updates (every 1 minute)
+    setInterval(fetchBitcoinPrice, 60000);
+}
+
 // Initialize dashboard when page loads
-document.addEventListener('DOMContentLoaded', initializeDashboard);
+document.addEventListener('DOMContentLoaded', () => {
+    // Initial dashboard setup with fallback values
+    initializeDashboard();
+    
+    // Set up automatic price updates every minute
+    setupAutoRefresh();
+});
     </script>
 </body>
 </html>

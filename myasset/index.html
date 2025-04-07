@@ -1539,6 +1539,7 @@ const assets = [
         sector: "Renewable Energy",
         company: "PT. Alamtri Resource Indonesia Tbk",
     },
+    
     {
         name: "AAPL",
         icon: "/myasset/icon/apple.png",
@@ -1588,7 +1589,18 @@ const assets = [
         sector: " Semiconductors <br> Data Center",
         company: "Advanced Micro Devices, Inc."
     },
-    
+    {
+        name: "GOOGL",
+        icon: "/myasset/icon/google.png",
+        balance: "Waitlist",
+        invested: 0, 
+        avgPrice: 147.68, 
+        currentPrice: 159.99, 
+        currency: "USD",
+        type: "liquid",
+        sector: " Semiconductors <br> Data Center",
+        company: "Advanced Micro Devices, Inc."
+    },
     {
         name: "SHEL",
         icon: "/myasset/icon/shell.png",
@@ -1821,18 +1833,12 @@ function createDonutChart(calculatedAssets) {
     const labels = filteredAssets.map(asset => asset.name);
 
     const colors = [
-    
-    'rgba(255, 205, 86, 0.9)',   // kuning pop
-    'rgba(255, 99, 132, 0.9)',   // pink cerah
-    'rgba(75, 192, 192, 0.9)',   // turquoise
-    'rgba(54, 162, 235, 0.9)',   // biru langit
-    'rgba(153, 102, 255, 0.9)',  // ungu ceria
-    'rgba(255, 159, 64, 0.9)',   // oranye lembut
-    'rgba(0, 200, 83, 0.9)',     // hijau neon
-    'rgba(255, 112, 67, 0.9)',   // oranye coral
-    'rgba(0, 172, 193, 0.9)',    // cyan muda
-    'rgba(233, 30, 99, 0.9)'     // fuchsia
-];
+    "rgba(255, 205, 86, 0.9)",     // Bitcoin
+    "rgba(120, 220, 140, 0.9)",    // Farmland
+    "rgba(255, 145, 125, 0.9)",    // PGEO
+    "rgba(103, 185, 245, 0.9)",    // BMRI
+    "rgba(189, 140, 255, 0.9)",    // BBCA
+    ];
 
 
     // Check if chart already exists and destroy it

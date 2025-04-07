@@ -822,82 +822,84 @@ blockquote.quote footer {
     text-align: center;
     margin-top: 20px;
 }
-
-/* Focus Tags Styles */
+/* Focus Tags Styles - Diperbarui dengan layout kolom */
 .focus-tags {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 10px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 3 kolom untuk desktop */
+    gap: 12px;
+    margin-top: 15px;
+    width: 100%;
 }
 
 .focus-tag {
     display: flex;
     align-items: center;
     gap: 8px;
-    padding: 6px 12px;
+    padding: 8px 12px;
     background-color: #2a2a2a;
     border: 1px solid #ffffff;
     border-radius: 20px;
     font-size: 14px;
     font-weight: 500;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    justify-content: center;
 }
+
 .focus-tag.digital-asset {
     background-color: rgba(255, 165, 0, 0.2);
     color: #FFA500;
     border-color: #FFA500;
     box-shadow: 0 4px 12px rgba(255, 165, 0, 0.15);
-  }
+}
   
-  .focus-tag.renewable-energy {
+.focus-tag.renewable-energy {
     background-color: rgba(0, 255, 127, 0.2);
     color: #00FF7F;
     border-color: #00FF7F;
     box-shadow: 0 4px 12px rgba(0, 255, 127, 0.15);
-  }
+}
   
-  .focus-tag.technology {
+.focus-tag.technology {
     background-color: rgba(0, 191, 255, 0.2);
     color: #00BFFF;
     border-color: #00BFFF;
     box-shadow: 0 4px 12px rgba(0, 191, 255, 0.15);
-  }
+}
   
-  .focus-tag.semiconductors {
+.focus-tag.semiconductors {
     background-color: rgba(191, 0, 255, 0.2);
     color: #BF00FF;
     border-color: #BF00FF;
     box-shadow: 0 4px 12px rgba(191, 0, 255, 0.15);
-  }
+}
   
-  .focus-tag.oil-gas {
+.focus-tag.oil-gas {
     background-color: rgba(255, 65, 54, 0.2);
     color: #FF4136;
     border-color: #FF4136;
     box-shadow: 0 4px 12px rgba(255, 65, 54, 0.15);
-  }
+}
   
-  .focus-tag.pharma {
+.focus-tag.pharma {
     background-color: rgba(0, 255, 255, 0.2);
     color: #00FFFF;
     border-color: #00FFFF;
     box-shadow: 0 4px 12px rgba(0, 255, 255, 0.15);
-  }
+}
   
-  .focus-tag.real-estate {
+.focus-tag.real-estate {
     background-color: rgba(255, 215, 0, 0.2);
     color: #FFD700;
     border-color: #FFD700;
     box-shadow: 0 4px 12px rgba(255, 215, 0, 0.15);
-  }
-  .focus-tag.banking {
+}
+
+.focus-tag.banking {
     background-color: rgba(192, 192, 192, 0.15);
     color: #C0C0C0;
     border-color: #C0C0C0;
     box-shadow: 0 4px 12px rgba(192, 192, 192, 0.3);
-  }
+}
   
 .focus-icon {
     display: inline-flex;
@@ -908,6 +910,8 @@ blockquote.quote footer {
 .focus-text {
     color: inherit;
 }
+
+
 
 /* Media Queries - Keep at the bottom for proper cascade */
 @media (max-width: 768px) {
@@ -980,11 +984,12 @@ blockquote.quote footer {
     }
     
     .focus-tags {
-        gap: 8px;
+        grid-template-columns: 1fr; /* 1 kolom untuk mobile */
+        gap: 10px;
     }
     
     .focus-tag {
-        padding: 6px 12px;
+        padding: 6px 10px;
         font-size: 13px;
     }
 }
@@ -1156,7 +1161,7 @@ blockquote.quote footer {
         <span class="focus-icon"><i class="fa-solid fa-leaf"></i></span>
         <span class="focus-text">Renewable Energy</span>
       </div>
-      
+<!--       
       <div class="focus-tag semiconductors">
         <span class="focus-icon"><i class="fa-solid fa-microchip"></i></span>
         <span class="focus-text">Semiconductors</span>
@@ -1164,7 +1169,8 @@ blockquote.quote footer {
       <div class="focus-tag oil-gas">
         <span class="focus-icon"><i class="fa-solid fa-fire-flame-simple"></i></span>
         <span class="focus-text">Oil & Gas</span>
-      </div><div class="focus-tag real-estate">
+      </div> -->
+      <div class="focus-tag real-estate">
         <span class="focus-icon"><i class="fa-solid fa-house"></i></span>
         <span class="focus-text">Real Estate</span>
       </div>
@@ -1173,10 +1179,10 @@ blockquote.quote footer {
         <span class="focus-text">Banking</span>
       </div>
       
-      <div class="focus-tag pharma">
+      <!-- <div class="focus-tag pharma">
         <span class="focus-icon"><i class="fa-solid fa-staff-snake"></i></span>
-        <span class="focus-text">Pharmaceutical & Research</span>
-      </div>
+        <span class="focus-text">Pharmaceutical</span>
+      </div> -->
     </div>
   </div>
             </div>

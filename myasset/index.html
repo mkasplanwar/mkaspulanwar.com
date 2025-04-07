@@ -1492,7 +1492,7 @@ const assets = [
     },
     
     {
-        name: "IDX: PGEO",
+        name: "PGEO",
         icon: "/myasset/icon/pgeo.png",
         balance: "700 shares",
         invested: 875000,
@@ -1503,9 +1503,32 @@ const assets = [
         sector: "Geothermal Energy <br> Renewable Energy",
         company: "PT. Pertamina Geothermal Energy. Tbk",
     },
-    
     {
-        name: "NASDAQ: AAPL",
+        name: "BMRI",
+        icon: "/myasset/icon/bmri.png",
+        balance: "100 lembar",
+        invested: 444666,
+        avgPrice: 4446.66,
+        currentPrice: 5200,
+        currency: "IDR",
+        type: "liquid",
+        sector: "Banking",
+        company: "PT. Bank Mandiri (Persero) Tbk",
+    },
+    {
+        name: "ADRO",
+        icon: "/myasset/icon/adro.png",
+        balance: "200 lembar",
+        invested: 344516,
+        avgPrice: 1722.58,
+        currentPrice: 1845,
+        currency: "IDR",
+        type: "liquid",
+        sector: "Renewable Energy",
+        company: "PT. Alamtri Resource Indonesia Tbk",
+    },
+    {
+        name: "AAPL",
         icon: "/myasset/icon/apple.png",
         balance: "0.0384 shares",
         invested: 131428, 
@@ -1517,7 +1540,32 @@ const assets = [
         company: "Apple Inc."
     },
     {
-        name: "NASDAQ: AMD",
+        name: " Purchase Fund",
+        icon: "/myasset/icon/usdc.png",
+        balance: "- Rp. 323.000",
+        invested: -323000,
+        avgPrice: 1,
+        currentPrice: 1,
+        currency: "IDR",
+        type: "liquid",
+        sector: "Collateral Starategy",
+        company: "Pendanaan dari Loan BCS"
+    },
+    {
+        name: "Ethereum",
+        icon: "/myasset/icon/eth2.png",
+        balance: "0 ETH",
+        invested: 0,
+        avgPrice: 1,
+        currentPrice: 1,
+        currency: "IDR",
+        type: "liquid",
+        sector: "Smart Contracts Platform",
+        company: "Decentralized Network"
+    },
+    
+    {
+        name: "AMD",
         icon: "/myasset/icon/amd.png",
         balance: "0 shares",
         invested: 0, 
@@ -1528,20 +1576,9 @@ const assets = [
         sector: " Semiconductors <br> Data Center",
         company: "Advanced Micro Devices, Inc."
     },
+    
     {
-        name: "Funding",
-        icon: "/myasset/icon/usdc.png",
-        balance: "Rp. 565.602",
-        invested: 565602,
-        avgPrice: 1,
-        currentPrice: 1,
-        currency: "IDR",
-        type: "liquid",
-        sector: "Collateral Starategy",
-        company: "Pendanaan dari Loan BCS"
-    },
-    {
-        name: "NYSE: SHEL",
+        name: "SHEL",
         icon: "/myasset/icon/shell.png",
         balance: "0 shares",
         invested: 0, 
@@ -1552,20 +1589,9 @@ const assets = [
         sector: "Renewable Energy <br> Oil & Gas",
         company: "Shell PLC"
     },
+    
     {
-        name: "IDX: ADRO",
-        icon: "/myasset/icon/adro.png",
-        balance: "0 shares",
-        invested: 0,
-        avgPrice: 1,
-        currentPrice: 1,
-        currency: "IDR",
-        type: "liquid",
-        sector: "Renewable Energy",
-        company: "PT. Alamtri Resource Indonesia Tbk",
-    },
-    {
-        name: "IDX: BBRI",
+        name: "BBRI",
         icon: "/myasset/icon/bbri.png",
         balance: "0 shares",
         invested: 0,
@@ -1576,20 +1602,9 @@ const assets = [
         sector: "Banking",
         company: "PT. Bank Rakyat Indonesia (Persero) Tbk",
     },
+    
     {
-        name: "IDX: BMRI",
-        icon: "/myasset/icon/bmri.png",
-        balance: "0 shares",
-        invested: 0,
-        avgPrice: 1,
-        currentPrice: 1,
-        currency: "IDR",
-        type: "liquid",
-        sector: "Banking",
-        company: "PT. Bank Mandiri (Persero) Tbk",
-    },
-    {
-        name: "IDX: SIMP",
+        name: "SIMP",
         icon: "/myasset/icon/simp.png",
         balance: "0 shares",
         invested: 0,
@@ -1795,13 +1810,19 @@ function createDonutChart(calculatedAssets) {
     const labels = filteredAssets.map(asset => asset.name);
 
     const colors = [
-        'rgba(247,147,26)',     //Bitcoin
-        'rgba(240, 78, 66)',    //Pertamina
-        'rgba(0,136,204)',      //AAPLE
-        'rgba(22, 163, 74)',    // hijau
-        'rgba(0, 108, 229)',    // biru
-        'rgba(155, 89, 182)',   // ungu 
-    ];
+    
+    'rgba(255, 205, 86, 0.9)',   // kuning pop
+    'rgba(255, 99, 132, 0.9)',   // pink cerah
+    'rgba(75, 192, 192, 0.9)',   // turquoise
+    'rgba(54, 162, 235, 0.9)',   // biru langit
+    'rgba(153, 102, 255, 0.9)',  // ungu ceria
+    'rgba(255, 159, 64, 0.9)',   // oranye lembut
+    'rgba(0, 200, 83, 0.9)',     // hijau neon
+    'rgba(255, 112, 67, 0.9)',   // oranye coral
+    'rgba(0, 172, 193, 0.9)',    // cyan muda
+    'rgba(233, 30, 99, 0.9)'     // fuchsia
+];
+
 
     // Check if chart already exists and destroy it
     if (window.donutChartInstance) {

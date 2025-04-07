@@ -1362,10 +1362,10 @@ blockquote.quote footer {
         // Bitcoin Collateral Strategy Configuration
 const BITCOIN_STRATEGY = {
     FREE_SATS: 0,
-    COLLATERAL_SATS: 68373,         
+    COLLATERAL_SATS: 68876,         
     USDC_BORROWED: 30.5,              
     LIQUIDATION_LTV: 91,            
-    INTEREST_RATE: 6.93,             
+    INTEREST_RATE: 7.12,             
     BTC_YIELD_RATE: 0.27
 };
 
@@ -1540,58 +1540,10 @@ const assets = [
         company: "PT. Bank Mandiri (Persero) Tbk",
     },
     {
-        name: "AMD",
-        icon: "/myasset/icon/amd.png",
-        balance: "0.0247 shares",
-        invested: 34713, 
-        avgPrice: 82.75, 
-        currentPrice: 83.60, 
-        currency: "USD",
-        type: "liquid",
-        sector: " Semiconductors <br> Data Center",
-        company: "Advanced Micro Devices, Inc."
-    },
-    {
-        name: "GOOGL",
-        icon: "/myasset/icon/google.png",
-        balance: "0.01 shares",
-        invested: 24097, 
-        avgPrice: 141.73, 
-        currentPrice: 143.21, 
-        currency: "USD",
-        type: "liquid",
-        sector: " Semiconductors <br> Data Center",
-        company: "Advanced Micro Devices, Inc."
-    },
-    {
-        name: "SHEL",
-        icon: "/myasset/icon/shell.png",
-        balance: "0.025 shares",
-        invested: 25603, 
-        avgPrice: 60.52, 
-        currentPrice: 60.92, 
-        currency: "USD",
-        type: "liquid",
-        sector: "Renewable Energy <br> Oil & Gas",
-        company: "Shell PLC"
-    },
-    {
-        name: "AAPL",
-        icon: "/myasset/icon/apple.png",
-        balance: "Waitlist",
-        invested: 131428, 
-        avgPrice: 204.43, 
-        currentPrice: 188, 
-        currency: "USD",
-        type: "liquid",
-        sector: "Technology",
-        company: "Apple Inc."
-    },
-    {
         name: " Purchase Fund",
         icon: "/myasset/icon/usdc.png",
-        balance: "- Rp. 323.000",
-        invested: -323000,
+        balance: "- Rp. 188.000",
+        invested: -188000,
         avgPrice: 1,
         currentPrice: 1,
         currency: "IDR",
@@ -1599,6 +1551,19 @@ const assets = [
         sector: "Collateral Starategy",
         company: "Pendanaan dari Loan BCS"
     },
+    {
+        name: "AAPL",
+        icon: "/myasset/icon/apple.png",
+        balance: "Waitlist",
+        invested: 0, 
+        avgPrice: 1, 
+        currentPrice: 1, 
+        currency: "USD",
+        type: "liquid",
+        sector: "Technology",
+        company: "Apple Inc."
+    },
+    
     {
         name: "Ethereum",
         icon: "/myasset/icon/eth2.png",
@@ -1611,9 +1576,42 @@ const assets = [
         sector: "Smart Contracts Platform",
         company: "Decentralized Network"
     },
-    
-    
-    
+    {
+        name: "AMD",
+        icon: "/myasset/icon/amd.png",
+        balance: "Waitlist",
+        invested: 0, 
+        avgPrice: 1, 
+        currentPrice: 1, 
+        currency: "USD",
+        type: "liquid",
+        sector: " Semiconductors <br> Data Center",
+        company: "Advanced Micro Devices, Inc."
+    },
+    {
+        name: "GOOGL",
+        icon: "/myasset/icon/google.png",
+        balance: "Waitlist",
+        invested: 0, 
+        avgPrice: 1, 
+        currentPrice: 1, 
+        currency: "USD",
+        type: "liquid",
+        sector: " Semiconductors <br> Data Center",
+        company: "Advanced Micro Devices, Inc."
+    },
+    {
+        name: "SHEL",
+        icon: "/myasset/icon/shell.png",
+        balance: "Waitlist",
+        invested: 0, 
+        avgPrice: 1, 
+        currentPrice: 1, 
+        currency: "USD",
+        type: "liquid",
+        sector: "Renewable Energy <br> Oil & Gas",
+        company: "Shell PLC"
+    },
     {
         name: "BBRI",
         icon: "/myasset/icon/bbri.png",
@@ -1833,12 +1831,23 @@ function createDonutChart(calculatedAssets) {
     const labels = filteredAssets.map(asset => asset.name);
 
     const colors = [
-    "rgba(255, 205, 86, 0.9)",     // Bitcoin
-    "rgba(120, 220, 140, 0.9)",    // Farmland
-    "rgba(255, 145, 125, 0.9)",    // PGEO
-    "rgba(103, 185, 245, 0.9)",    // BMRI
-    "rgba(189, 140, 255, 0.9)",    // BBCA
-    ];
+  "rgba(247,147,26)", //Bitcoin
+  "rgba( 186,49,59)", //Pertamina
+  "rgba(32, 175, 36)", //ADRO
+  "rgba(0 102 174)", //BBCA
+  "rgba(72, 219, 251, 0.85)",   // Sky Cyan — segar & tenang untuk saham bluechip
+  "rgba(255, 107, 129, 0.85)",  // Coral Red — cocok untuk aset volatile
+  "rgba(29, 209, 161, 0.85)",   // Emerald Green — stabil & growth asset
+  "rgba(156, 136, 255, 0.85)",  // Soft Purple — buat aset teknologi
+  "rgba(255, 234, 167, 0.85)",  // Light Yellow — cocok untuk aset properti
+  "rgba(85, 239, 196, 0.85)",   // Mint — aset baru yang lagi naik
+  "rgba(129, 236, 236, 0.85)",  // Cool Aqua — aset luar negeri (forex, crypto)
+  "rgba(250, 177, 160, 0.85)",  // Soft Peach — aset pendukung/pelengkap
+  "rgba(200, 200, 255, 0.85)",  // Light Lavender — yang low risk
+];
+
+
+  
 
 
     // Check if chart already exists and destroy it

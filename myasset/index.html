@@ -1539,6 +1539,7 @@ const assets = [
         sector: "Banking",
         company: "PT. Bank Mandiri (Persero) Tbk",
     },
+    
     {
         name: " Purchase Fund",
         icon: "/myasset/icon/usdc.png",
@@ -1831,25 +1832,34 @@ function createDonutChart(calculatedAssets) {
     const labels = filteredAssets.map(asset => asset.name);
 
     const colors = [
-  "rgba(247,147,26)", //Bitcoin
-  "rgba( 186,49,59)", //Pertamina
-  "rgba(32, 175, 36)", //ADRO
-  "rgba(0 102 174)", //BBCA
-  "rgba(72, 219, 251, 0.85)",   // Sky Cyan — segar & tenang untuk saham bluechip
-  "rgba(255, 107, 129, 0.85)",  // Coral Red — cocok untuk aset volatile
-  "rgba(29, 209, 161, 0.85)",   // Emerald Green — stabil & growth asset
-  "rgba(156, 136, 255, 0.85)",  // Soft Purple — buat aset teknologi
-  "rgba(255, 234, 167, 0.85)",  // Light Yellow — cocok untuk aset properti
-  "rgba(85, 239, 196, 0.85)",   // Mint — aset baru yang lagi naik
-  "rgba(129, 236, 236, 0.85)",  // Cool Aqua — aset luar negeri (forex, crypto)
-  "rgba(250, 177, 160, 0.85)",  // Soft Peach — aset pendukung/pelengkap
-  "rgba(200, 200, 255, 0.85)",  // Light Lavender — yang low risk
-];
+    
 
 
+    "rgba(255, 152, 0, 0.9)",     // Bitcoin
+    "rgba(96, 125, 255, 0.9)",    // Vivid Blue (dominant di donut)
+    "rgba(0, 191, 165, 0.9)",     // Teal (USDT-like)
+    "rgba(255, 193, 7, 0.9)",     // Amber (BUSD/BNB-like)
+    "rgba(156, 39, 176, 0.9)",    // Vivid Purple
+    "rgba(233, 30, 99, 0.9)",     // Pink Red (elegan & kontras)
+    "rgba(76, 175, 80, 0.9)",     // Emerald Green (fresh tapi gak pastel)
+    "rgba(66, 133, 244, 0.9)",    // Blue (ETH-like)
+    "rgba(244, 67, 54, 0.9)",     // Bright Red
+    "rgba(255, 193, 7, 0.9)",     // Bright Amber
+  "rgba(255, 152, 0, 0.9)",     // Vivid Orange
+  "rgba(96, 125, 255, 0.9)",    // Soft Blue
+  "rgba(158, 158, 158, 0.9)",   // Soft Gray
   
-
-
+  
+  "rgba(3, 169, 244, 0.9)",     // Cyan Blue (buat variasi ke biru muda)
+  "rgba(156, 39, 176, 0.9)",    // Purple Vivid (deep & rich, bagus di dark)
+  
+  
+  "rgba(255, 87, 34, 0.9)",     // Deep Orange (BTC-like)
+  
+  
+  "rgba(158, 158, 158, 0.9)",   // Soft Gray (Others)
+  "rgba(3, 169, 244, 0.9)",     // Cyan Blue (variation from ETH blue)
+];
     // Check if chart already exists and destroy it
     if (window.donutChartInstance) {
         window.donutChartInstance.destroy();

@@ -1068,8 +1068,8 @@ blockquote.quote footer {
             <!-- Total Asset Card -->
             <div class="card top-card">
                 <div class="card-header">
-                    <i class="fas fa-chart-pie"></i>
-                    <span class="title">Total Equity</span>
+                    <i class="fa-solid fa-droplet"></i>
+                    <span class="title">My Liquid Balance</span>
                 </div>
                 
                 <div class="total-assets-container">
@@ -1153,8 +1153,8 @@ blockquote.quote footer {
         <span class="focus-icon"><i class="fa-solid fa-bitcoin-sign"></i></span>
         <span class="focus-text">Digital Asset</span>
       </div>
-<div class="focus-tag technology">
-        <span class="focus-icon"><i class="fa-solid fa-mobile-screen"></i></span>
+    <div class="focus-tag technology">
+        <span class="focus-icon"><i class="fa-solid fa-microchip" ></i></span>
         <span class="focus-text">Technology</span>
       </div>
       <div class="focus-tag renewable-energy">
@@ -1170,14 +1170,14 @@ blockquote.quote footer {
         <span class="focus-icon"><i class="fa-solid fa-fire-flame-simple"></i></span>
         <span class="focus-text">Oil & Gas</span>
       </div> -->
-      <div class="focus-tag real-estate">
+      <!-- <div class="focus-tag real-estate">
         <span class="focus-icon"><i class="fa-solid fa-house"></i></span>
         <span class="focus-text">Real Estate</span>
       </div>
       <div class="focus-tag banking">
         <span class="focus-icon"><i class="fa-solid fa-landmark"></i></span>
         <span class="focus-text">Banking</span>
-      </div>
+      </div> -->
       
       <!-- <div class="focus-tag pharma">
         <span class="focus-icon"><i class="fa-solid fa-staff-snake"></i></span>
@@ -1496,18 +1496,7 @@ const assets = [
         sector: "Real Estate",
         company: "Private Ownership",
     },
-    {
-        name: "BBCA",
-        icon: "/myasset/icon/bbca.png",
-        balance: "Waitlist",
-        invested: 0,
-        avgPrice: 1,
-        currentPrice: 1,
-        currency: "IDR",
-        type: "liquid",
-        sector: "Agrobisnis",
-        company: "PT. Salim Ivomas Pratama Tbk",
-    },
+    
     {
         name: "PGEO",
         icon: "/myasset/icon/pgeo.png",
@@ -1519,6 +1508,30 @@ const assets = [
         type: "liquid",
         sector: "Geothermal Energy <br> Renewable Energy",
         company: "PT. Pertamina Geothermal Energy. Tbk",
+    },
+    {
+        name: " Purchase Fund",
+        icon: "/myasset/icon/usdc.png",
+        balance: "Rp. 218.667",
+        invested: 218667,
+        avgPrice: 1,
+        currentPrice: 1,
+        currency: "IDR",
+        type: "liquid",
+        sector: "Collateral Starategy",
+        company: "Pendanaan dari Loan BCS"
+    },
+    {
+        name: "BBCA",
+        icon: "/myasset/icon/bbca.png",
+        balance: "Waitlist",
+        invested: 0,
+        avgPrice: 1,
+        currentPrice: 1,
+        currency: "IDR",
+        type: "liquid",
+        sector: "Agrobisnis",
+        company: "PT. Salim Ivomas Pratama Tbk",
     },
     {
         name: "ADRO",
@@ -1545,18 +1558,7 @@ const assets = [
         company: "PT. Bank Mandiri (Persero) Tbk",
     },
     
-    {
-        name: " Purchase Fund",
-        icon: "/myasset/icon/usdc.png",
-        balance: "Rp. 500.000",
-        invested: 500000,
-        avgPrice: 1,
-        currentPrice: 1,
-        currency: "IDR",
-        type: "liquid",
-        sector: "Collateral Starategy",
-        company: "Pendanaan dari Loan BCS"
-    },
+    
     {
         name: "AAPL",
         icon: "/myasset/icon/apple.png",
@@ -1782,9 +1784,9 @@ function updatePortfolioSummary(calculatedAssets) {
     const totalNonLiquidMarketValue = nonLiquidAssets.reduce((sum, asset) => sum + asset.marketValue, 0);
 
     const totalInvested = totalLiquidInvested;
-    const totalMarketValue = totalLiquidMarketValue + totalNonLiquidMarketValue;
+    const totalMarketValue = totalLiquidMarketValue //+ totalNonLiquidMarketValue;
 
-    const totalPnL = totalMarketValue - totalNonLiquidInvested - totalInvested;
+    const totalPnL = totalMarketValue - totalInvested // - totalNonLiquidInvested ;
     const totalPercentage = (totalPnL / totalInvested) * 100;
     
     const debtAmount = BITCOIN_STRATEGY.USDC_BORROWED * EXCHANGE_RATES.USDC_TO_IDR;
@@ -1809,7 +1811,7 @@ function updatePortfolioSummary(calculatedAssets) {
     const usdEquivalent = convertIDRtoUSD(totalMarketValue);
 
     // Calculate non-liquid assets percentage of total
-    const nonLiquidPercentage = (totalNonLiquidMarketValue / totalMarketValue) * 100;
+    const nonLiquidPercentage = (totalNonLiquidMarketValue / (totalMarketValue + totalNonLiquidMarketValue)) * 100;
 
     // Update summary values
     document.getElementById('totalEquity').textContent = formatTotalEquity(totalMarketValue);

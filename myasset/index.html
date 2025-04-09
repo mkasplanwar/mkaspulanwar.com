@@ -1101,18 +1101,6 @@ blockquote.quote footer {
                         
                     </div>
                     
-                    <div class="divider"></div>
-                    <div class="summary-title">Aset Non-Liquid</div>
-                    <div class="summary-stats">
-                        <div class="stat-item">
-                            <span class="stat-label">Total Nilai</span>
-                            <span class="stat-value" id="nonLiquidAssets">Rp. 0</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-label">% dari Total</span>
-                            <span class="stat-value" id="nonLiquidPercentage">0%</span>
-                        </div>
-                    </div>
                     <!-- Divider for debt section -->
                     <div class="divider"></div>
                     
@@ -1352,19 +1340,19 @@ blockquote.quote footer {
 
     <script>
         // Constants for global use
-        const EXCHANGE_RATES = {
-            USD_TO_IDR: 16785,
-            USDC_TO_IDR: 16785
-        };
+const EXCHANGE_RATES = {
+    USD_TO_IDR: 16785,
+    USDC_TO_IDR: 16785
+};
 
-        // Modified BTC_CONSTANTS to handle dynamic pricing
-        const BTC_CONSTANTS = {
-            PRICE_IDR: 1400000000,  // Default Bitcoin Market Value
-            AVG_BTCPRICE: 1500000000, // Average BTC price in IDR
-            SATS_TO_BTC: 100000000  // Conversion from satoshis to BTC
-        };
+// Modified BTC_CONSTANTS to handle dynamic pricing
+const BTC_CONSTANTS = {
+    PRICE_IDR: 1400000000,  // Default Bitcoin Market Value
+    AVG_BTCPRICE: 1500000000, // Average BTC price in IDR
+    SATS_TO_BTC: 100000000  // Conversion from satoshis to BTC
+};
 
-        // Bitcoin Collateral Strategy Configuration
+// Bitcoin Collateral Strategy Configuration
 const BITCOIN_STRATEGY = {
     FREE_SATS: 0,
     COLLATERAL_SATS: 68876,         
@@ -1462,14 +1450,13 @@ function parseShareQuantity(shareStr) {
 const TOTAL_SATS = BITCOIN_STRATEGY.FREE_SATS + BITCOIN_STRATEGY.COLLATERAL_SATS;
 const INVESTED_BTCIDR = TOTAL_SATS * BTC_CONSTANTS.AVG_BTCPRICE / BTC_CONSTANTS.SATS_TO_BTC; // Total invested in IDR
 
-
 // Format the satoshis with a dot as thousands separator
 const formattedSats = TOTAL_SATS.toLocaleString('id-ID', {
     minimumFractionDigits: 0,
     maximumFractionDigits: 0
 });
 
-// Asset data with integrated US stock prices
+// Asset data with only liquid assets
 const assets = [
     {
         name: "Free Cash",
@@ -1482,18 +1469,6 @@ const assets = [
         type: "liquid",
         sector: "Pendanaan",
         company: "Pendanaan Untuk Investasi"
-    },
-    {
-        name: "Farmland",
-        icon: "/myasset/icon/earth.png",
-        balance: "1.445 m²",
-        invested: 20000000,
-        avgPrice: 13840.8305, 
-        currentPrice: 13840.8305, 
-        currency: "IDR",
-        type: "non-liquid",
-        sector: "Real Estate",
-        company: "Private Ownership",
     },
     {
         name: "Bitcoin",
@@ -1513,7 +1488,7 @@ const assets = [
         balance: "1.200 shares",
         invested: 1313500,
         avgPrice:  1094.58,
-        currentPrice: 780,
+        currentPrice: 770,
         currency: "IDR",
         type: "liquid",
         sector: "Geothermal Energy <br> Renewable Energy",
@@ -1525,7 +1500,7 @@ const assets = [
         balance: "500 shares",
         invested: 175262.5,
         avgPrice: 350,
-        currentPrice: 380,
+        currentPrice: 360,
         currency: "IDR",
         type: "liquid",
         sector: "Data Center",
@@ -1543,6 +1518,54 @@ const assets = [
         sector: "Technology",
         company: "Apple Inc."
     },
+    {
+        name: "Ethereum",
+        icon: "/myasset/icon/eth2.png",
+        balance: "Waitlist",
+        invested: 0,
+        avgPrice: 1,
+        currentPrice: 1,
+        currency: "IDR",
+        type: "liquid",
+        sector: "Smart Contracts Platform",
+        company: "Decentralized Network"
+    },
+    {
+        name: "BBCA",
+        icon: "/myasset/icon/bbca.png",
+        balance: "Waitlist",
+        invested: 0,
+        avgPrice: 1,
+        currentPrice: 1,
+        currency: "IDR",
+        type: "liquid",
+        sector: "Banking",
+        company: "PT. Bank Central Asia. Tbk",
+    },
+    {
+        name: "ADRO",
+        icon: "/myasset/icon/adro.png",
+        balance: "Waitlist",
+        invested: 0,
+        avgPrice: 1,
+        currentPrice: 1,
+        currency: "IDR",
+        type: "liquid",
+        sector: "Renewable Energy",
+        company: "PT. Alamtri Resource Indonesia Tbk",
+    },
+    {
+        name: "Emas",
+        icon: "/myasset/icon/gold.png",
+        balance: "Waitlist",
+        invested: 0,
+        avgPrice: 1,
+        currentPrice: 1,
+        currency: "IDR",
+        type: "liquid",
+        sector: "Agrobisnis",
+        company: "PT. Salim Ivomas Pratama Tbk",
+    },
 ];
 
 // Calculate market value and return for each asset
@@ -1553,10 +1576,7 @@ function calculateAssetValues() {
     return assets.map(asset => {
         let marketValue;
 
-        if (asset.name === "Pisang Jago") {
-            // For business assets, use the invested amount as market value
-            marketValue = asset.invested;
-        } else if (asset.currency === "USD") {
+        if (asset.currency === "USD") {
             // For USD assets (US stocks), calculate market value in IDR
             const shares = parseShareQuantity(asset.balance);
             const investedIDR = shares * asset.avgPrice * EXCHANGE_RATES.USD_TO_IDR;
@@ -1595,18 +1615,9 @@ function formatPriceDisplay(asset, isAvgPrice = false) {
             minimumFractionDigits: 2,
             maximumFractionDigits: 2
         })} jt`;
-    } else if (asset.name === "Farmland") {
-        // Format for Property (price per m²)
-        return `Rp. ${price.toLocaleString('id-ID', {
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 2
-        })}/m²`;
     } else if (asset.name === "RDN: Rupiah") {
         // Format for Rupiah
         return `Rp. 1,00`;
-    } else if (asset.name === "Pisang Jago") {
-        // Format for Pisang Jago (business)
-        return isAvgPrice ? `N/A` : `Valuasi saat ini`;
     } else {
         // Format for other assets (in normal rupiah)
         return `Rp. ${price.toLocaleString('id-ID', {
@@ -1663,21 +1674,17 @@ function populateAssetTable() {
 
 // Calculate and display portfolio summary
 function updatePortfolioSummary(calculatedAssets) {
-    // Separate liquid and non-liquid assets
+    // Only include liquid assets
     const liquidAssets = calculatedAssets.filter(asset => asset.type === "liquid");
-    const nonLiquidAssets = calculatedAssets.filter(asset => asset.type === "non-liquid");
 
     // Calculate totals
     const totalLiquidInvested = liquidAssets.reduce((sum, asset) => sum + asset.invested, 0);
     const totalLiquidMarketValue = liquidAssets.reduce((sum, asset) => sum + asset.marketValue, 0);
 
-    const totalNonLiquidInvested = nonLiquidAssets.reduce((sum, asset) => sum + asset.invested, 0);
-    const totalNonLiquidMarketValue = nonLiquidAssets.reduce((sum, asset) => sum + asset.marketValue, 0);
-
     const totalInvested = totalLiquidInvested;
-    const totalMarketValue = totalLiquidMarketValue //+ totalNonLiquidMarketValue;
+    const totalMarketValue = totalLiquidMarketValue;
 
-    const totalPnL = totalMarketValue - totalInvested // - totalNonLiquidInvested ;
+    const totalPnL = totalMarketValue - totalInvested;
     const totalPercentage = (totalPnL / totalInvested) * 100;
     
     const debtAmount = BITCOIN_STRATEGY.USDC_BORROWED * EXCHANGE_RATES.USDC_TO_IDR;
@@ -1701,9 +1708,6 @@ function updatePortfolioSummary(calculatedAssets) {
     // Convert total market value to USD
     const usdEquivalent = convertIDRtoUSD(totalMarketValue);
 
-    // Calculate non-liquid assets percentage of total
-    const nonLiquidPercentage = (totalNonLiquidMarketValue / (totalMarketValue + totalNonLiquidMarketValue)) * 100;
-
     // Update summary values
     document.getElementById('totalEquity').textContent = formatTotalEquity(totalMarketValue);
     document.getElementById('usdEquivalent').textContent = `≈ $ ${usdEquivalent.toLocaleString('en-US', {
@@ -1714,8 +1718,17 @@ function updatePortfolioSummary(calculatedAssets) {
     document.getElementById('totalPnL').textContent = `${totalPnL >= 0 ? '+ ' : '- '}${formatCurrency(Math.abs(totalPnL))}`;
     document.getElementById('totalDebt').textContent = formatCurrency(debtAmount);
     document.getElementById('derRatio').innerHTML = `${der.toFixed(2)} <span class="status-indicator ${derStatusClass}">${derStatus}</span>`;
-    document.getElementById('nonLiquidAssets').textContent = formatCurrency(totalNonLiquidMarketValue);
-    document.getElementById('nonLiquidPercentage').textContent = `${nonLiquidPercentage.toFixed(2)}%`;
+    
+    // Remove or hide non-liquid asset elements if they exist in your HTML
+    const nonLiquidElements = document.getElementById('nonLiquidAssets');
+    if (nonLiquidElements) {
+        nonLiquidElements.parentElement.style.display = 'none';
+    }
+    
+    const nonLiquidPercentageElement = document.getElementById('nonLiquidPercentage');
+    if (nonLiquidPercentageElement) {
+        nonLiquidPercentageElement.parentElement.style.display = 'none';
+    }
 
     const percentageElement = document.getElementById('totalPercentage');
     percentageElement.textContent = `${totalPercentage >= 0 ? '+ ' : '- '}${Math.abs(totalPercentage).toFixed(2)}%`;
@@ -1724,16 +1737,16 @@ function updatePortfolioSummary(calculatedAssets) {
     const pnlElement = document.getElementById('totalPnL');
     pnlElement.className = 'stat-value ' + (totalPnL >= 0 ? 'positive' : 'negative');
 
-    return { totalMarketValue, totalInvested, totalLiquidMarketValue, totalNonLiquidMarketValue };
+    return { totalMarketValue, totalInvested, totalLiquidMarketValue };
 }
 
 // Create donut chart with enhanced color palette
 function createDonutChart(calculatedAssets) {
     const ctx = document.getElementById('donutChart').getContext('2d');
 
-    // Filter out Property Land and assets with 0 market value
+    // Filter out assets with 0 market value (only include liquid assets)
     const filteredAssets = calculatedAssets.filter(asset => 
-        asset.name !== "Farmland" && asset.marketValue > 0
+        asset.type === "liquid" && asset.marketValue > 0
     );
     
     // Sort assets by market value (descending)

@@ -1202,9 +1202,10 @@ blockquote.quote footer {
                             <th>Avg Price</th>
                             <th>Current Price</th>
                             <th>Market Value</th>
+                            <th>P&L (Rp)</th>
                             <th>Return (%)</th>
-                            <th>Sector</th>
-                            <th>Company Name</th>
+                            <th>Sektor</th>
+                            <th>Perusahaan</th>
                         </tr>
                     </thead>
                     <tbody id="assetTableBody">
@@ -1471,6 +1472,30 @@ const formattedSats = TOTAL_SATS.toLocaleString('id-ID', {
 // Asset data with integrated US stock prices
 const assets = [
     {
+        name: "Free Cash",
+        icon: "/myasset/icon/idrt.png",
+        balance: "Rp. 15.000",
+        invested: 15000,
+        avgPrice: 1,
+        currentPrice: 1,
+        currency: "IDR",
+        type: "liquid",
+        sector: "Pendanaan",
+        company: "Pendanaan Untuk Investasi"
+    },
+    {
+        name: "Farmland",
+        icon: "/myasset/icon/earth.png",
+        balance: "1.445 m²",
+        invested: 20000000,
+        avgPrice: 13840.8305, 
+        currentPrice: 13840.8305, 
+        currency: "IDR",
+        type: "non-liquid",
+        sector: "Real Estate",
+        company: "Private Ownership",
+    },
+    {
         name: "Bitcoin",
         icon: "/myasset/icon/bitcoin.png",
         balance: formattedSats + " sats",
@@ -1506,71 +1531,6 @@ const assets = [
         sector: "Data Center",
         company: "PT. Dunia Virtua Online. Tbk",
     },
-
-    /*
-    {
-        name: "Farmland",
-        icon: "/myasset/icon/indonesia.png",
-        balance: "1.445 m²",
-        invested: 20000000,
-        avgPrice: 13840.8305, 
-        currentPrice: 13840.8305, 
-        currency: "IDR",
-        type: "non-liquid",
-        sector: "Real Estate",
-        company: "Private Ownership",
-    },
-    
-    {
-        name: " Purchase Fund",
-        icon: "/myasset/icon/usdc.png",
-        balance: "Rp. 218.667",
-        invested: 218667,
-        avgPrice: 1,
-        currentPrice: 1,
-        currency: "IDR",
-        type: "liquid",
-        sector: "Collateral Starategy",
-        company: "Pendanaan dari Loan BCS"
-    },
-    {
-        name: "BBCA",
-        icon: "/myasset/icon/bbca.png",
-        balance: "Waitlist",
-        invested: 0,
-        avgPrice: 1,
-        currentPrice: 1,
-        currency: "IDR",
-        type: "liquid",
-        sector: "Agrobisnis",
-        company: "PT. Salim Ivomas Pratama Tbk",
-    },
-    {
-        name: "ADRO",
-        icon: "/myasset/icon/adro.png",
-        balance: "Waitlist",
-        invested: 0,
-        avgPrice: 1,
-        currentPrice: 1,
-        currency: "IDR",
-        type: "liquid",
-        sector: "Renewable Energy",
-        company: "PT. Alamtri Resource Indonesia Tbk",
-    },
-    {
-        name: "BMRI",
-        icon: "/myasset/icon/bmri.png",
-        balance: "Waitlist",
-        invested: 0,
-        avgPrice: 1,
-        currentPrice: 1,
-        currency: "IDR",
-        type: "liquid",
-        sector: "Banking",
-        company: "PT. Bank Mandiri (Persero) Tbk",
-    },
-    
-    
     {
         name: "AAPL",
         icon: "/myasset/icon/apple.png",
@@ -1583,92 +1543,6 @@ const assets = [
         sector: "Technology",
         company: "Apple Inc."
     },
-    
-    {
-        name: "Ethereum",
-        icon: "/myasset/icon/eth2.png",
-        balance: "Waitlist",
-        invested: 0,
-        avgPrice: 1,
-        currentPrice: 1,
-        currency: "IDR",
-        type: "liquid",
-        sector: "Smart Contracts Platform",
-        company: "Decentralized Network"
-    },
-    {
-        name: "AMD",
-        icon: "/myasset/icon/amd.png",
-        balance: "Waitlist",
-        invested: 0, 
-        avgPrice: 1, 
-        currentPrice: 1, 
-        currency: "USD",
-        type: "liquid",
-        sector: " Semiconductors <br> Data Center",
-        company: "Advanced Micro Devices, Inc."
-    },
-    {
-        name: "GOOGL",
-        icon: "/myasset/icon/google.png",
-        balance: "Waitlist",
-        invested: 0, 
-        avgPrice: 1, 
-        currentPrice: 1, 
-        currency: "USD",
-        type: "liquid",
-        sector: " Semiconductors <br> Data Center",
-        company: "Advanced Micro Devices, Inc."
-    },
-    {
-        name: "SHEL",
-        icon: "/myasset/icon/shell.png",
-        balance: "Waitlist",
-        invested: 0, 
-        avgPrice: 1, 
-        currentPrice: 1, 
-        currency: "USD",
-        type: "liquid",
-        sector: "Renewable Energy <br> Oil & Gas",
-        company: "Shell PLC"
-    },
-    {
-        name: "BBRI",
-        icon: "/myasset/icon/bbri.png",
-        balance: "Waitlist",
-        invested: 0,
-        avgPrice: 1,
-        currentPrice: 1,
-        currency: "IDR",
-        type: "liquid",
-        sector: "Banking",
-        company: "PT. Bank Rakyat Indonesia (Persero) Tbk",
-    },
-    {
-        name: "SIMP",
-        icon: "/myasset/icon/simp.png",
-        balance: "Waitlist",
-        invested: 0,
-        avgPrice: 1,
-        currentPrice: 1,
-        currency: "IDR",
-        type: "liquid",
-        sector: "Agrobisnis",
-        company: "PT. Salim Ivomas Pratama Tbk",
-    },
-    {
-        name: "Emas",
-        icon: "/myasset/icon/gold.png",
-        balance: "Waitlist",
-        invested: 0,
-        avgPrice: 1,
-        currentPrice: 1,
-        currency: "IDR",
-        type: "liquid",
-        sector: "Agrobisnis",
-        company: "PT. Salim Ivomas Pratama Tbk",
-    },
-    */
 ];
 
 // Calculate market value and return for each asset
@@ -1751,7 +1625,10 @@ function populateAssetTable() {
 
     calculatedAssets.forEach(asset => {
         const row = document.createElement('tr');
-
+        
+        // Calculate P&L value
+        const pnlValue = asset.marketValue - asset.invested;
+        
         // Format return class
         const returnClass = asset.returnPercent > 0 ? 'positive' : 
                             asset.returnPercent < 0 ? 'negative' : '';
@@ -1772,6 +1649,7 @@ function populateAssetTable() {
             <td>${formatPriceDisplay(asset, true)}</td>
             <td>${formatPriceDisplay(asset)}</td>
             <td>${formatCurrency(asset.marketValue)}</td>
+            <td class="${returnClass}">${formatCurrency(pnlValue)}</td>
             <td class="${returnClass}">${returnSign}${Math.abs(asset.returnPercent).toFixed(2)}%</td>
             <td>${asset.sector}</td>
             <td>${asset.company}</td>
@@ -1857,6 +1735,9 @@ function createDonutChart(calculatedAssets) {
     const filteredAssets = calculatedAssets.filter(asset => 
         asset.name !== "Farmland" && asset.marketValue > 0
     );
+    
+    // Sort assets by market value (descending)
+    filteredAssets.sort((a, b) => b.marketValue - a.marketValue);
 
     // Calculate percentages for the chart (based on filtered assets only)
     const totalFilteredValue = filteredAssets.reduce((sum, asset) => sum + asset.marketValue, 0);
@@ -1864,34 +1745,26 @@ function createDonutChart(calculatedAssets) {
     const labels = filteredAssets.map(asset => asset.name);
 
     const colors = [
+        "rgba(255, 152, 0, 0.9)",     // Bitcoin
+        "rgba(96, 125, 255, 0.9)",    // Vivid Blue
+        "rgba(0, 191, 165, 0.9)",     // Teal
+        "rgba(255, 193, 7, 0.9)",     // Amber
+        "rgba(156, 39, 176, 0.9)",    // Vivid Purple
+        "rgba(233, 30, 99, 0.9)",     // Pink Red
+        "rgba(76, 175, 80, 0.9)",     // Emerald Green
+        "rgba(66, 133, 244, 0.9)",    // Blue
+        "rgba(244, 67, 54, 0.9)",     // Bright Red
+        "rgba(255, 193, 7, 0.9)",     // Bright Amber
+        "rgba(255, 152, 0, 0.9)",     // Vivid Orange
+        "rgba(96, 125, 255, 0.9)",    // Soft Blue
+        "rgba(158, 158, 158, 0.9)",   // Soft Gray
+        "rgba(3, 169, 244, 0.9)",     // Cyan Blue
+        "rgba(156, 39, 176, 0.9)",    // Purple Vivid
+        "rgba(255, 87, 34, 0.9)",     // Deep Orange
+        "rgba(158, 158, 158, 0.9)",   // Soft Gray
+        "rgba(3, 169, 244, 0.9)",     // Cyan Blue
+    ];
     
-
-
-    "rgba(255, 152, 0, 0.9)",     // Bitcoin
-    "rgba(96, 125, 255, 0.9)",    // Vivid Blue (dominant di donut)
-    "rgba(0, 191, 165, 0.9)",     // Teal (USDT-like)
-    "rgba(255, 193, 7, 0.9)",     // Amber (BUSD/BNB-like)
-    "rgba(156, 39, 176, 0.9)",    // Vivid Purple
-    "rgba(233, 30, 99, 0.9)",     // Pink Red (elegan & kontras)
-    "rgba(76, 175, 80, 0.9)",     // Emerald Green (fresh tapi gak pastel)
-    "rgba(66, 133, 244, 0.9)",    // Blue (ETH-like)
-    "rgba(244, 67, 54, 0.9)",     // Bright Red
-    "rgba(255, 193, 7, 0.9)",     // Bright Amber
-  "rgba(255, 152, 0, 0.9)",     // Vivid Orange
-  "rgba(96, 125, 255, 0.9)",    // Soft Blue
-  "rgba(158, 158, 158, 0.9)",   // Soft Gray
-  
-  
-  "rgba(3, 169, 244, 0.9)",     // Cyan Blue (buat variasi ke biru muda)
-  "rgba(156, 39, 176, 0.9)",    // Purple Vivid (deep & rich, bagus di dark)
-  
-  
-  "rgba(255, 87, 34, 0.9)",     // Deep Orange (BTC-like)
-  
-  
-  "rgba(158, 158, 158, 0.9)",   // Soft Gray (Others)
-  "rgba(3, 169, 244, 0.9)",     // Cyan Blue (variation from ETH blue)
-];
     // Check if chart already exists and destroy it
     if (window.donutChartInstance) {
         window.donutChartInstance.destroy();
@@ -1930,7 +1803,7 @@ function createDonutChart(calculatedAssets) {
         }
     });
 
-    // Create custom legend
+    // Create custom legend (also sorted by market value)
     const legendContainer = document.getElementById('donutLegend');
     legendContainer.innerHTML = '';
 

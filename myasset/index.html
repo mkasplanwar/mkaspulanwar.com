@@ -1135,10 +1135,10 @@ blockquote.quote footer {
 <div class="summary-card">
     <div class="summary-title">Key Investment Sectors</div>
     <div class="focus-tags">
-      <div class="focus-tag digital-asset">
+      <!-- <div class="focus-tag digital-asset">
         <span class="focus-icon"><i class="fa-solid fa-bitcoin-sign"></i></span>
         <span class="focus-text">Digital Asset</span>
-      </div>
+      </div> -->
     <div class="focus-tag technology">
         <span class="focus-icon"><i class="fa-solid fa-microchip" ></i></span>
         <span class="focus-text">Technology</span>
@@ -1458,18 +1458,7 @@ const formattedSats = TOTAL_SATS.toLocaleString('id-ID', {
 
 // Asset data with only liquid assets
 const assets = [
-    {
-        name: "Free Cash",
-        icon: "/myasset/icon/idrt.png",
-        balance: "Rp. 0",
-        invested: 0,
-        avgPrice: 1,
-        currentPrice: 1,
-        currency: "IDR",
-        type: "liquid",
-        sector: "Pendanaan",
-        company: "Pendanaan Untuk Investasi"
-    },
+    
     {
         name: "Bitcoin",
         icon: "/myasset/icon/bitcoin.png",
@@ -1493,6 +1482,18 @@ const assets = [
         type: "liquid",
         sector: "Geothermal Energy <br> Renewable Energy",
         company: "PT. Pertamina Geothermal Energy. Tbk",
+    },
+    {
+        name: "Free Cash",
+        icon: "/myasset/icon/idrt.png",
+        balance: "Rp. 0",
+        invested: 0,
+        avgPrice: 1,
+        currentPrice: 1,
+        currency: "IDR",
+        type: "liquid",
+        sector: "Pendanaan",
+        company: "Pendanaan Untuk Investasi"
     },
     /*
     {

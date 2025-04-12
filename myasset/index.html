@@ -1075,17 +1075,18 @@ body {
 <div class="footer-card">
     <div class="footer-content">
         <div class="footer-reporting-info">
-            <h3 class="footer-title">Informasi Pelaporan</h3>
-            <p class="footer-text">Laporan ini diterbitkan secara rutin pada hari kerja, tidak termasuk hari libur nasional. Semua data yang disajikan telah diverifikasi untuk memastikan keakuratan dan integritas informasi.</p>
+            <h3 class="footer-title">Pernyataan Pelaporan</h3>
+            <p class="footer-text">Laporan ini disajikan setiap hari kerja, tidak termasuk hari libur nasional. Seluruh data yang dipresentasikan merupakan informasi faktual tanpa modifikasi, menjamin transparansi dan integritas data.</p>
+            <p class="footer-citation">Untuk mengutip atau menggunakan data dari laporan ini, mohon menghubungi penyusun melalui <a href="mailto:mkaspulanwar2002@gmail.com">mkaspulanwar2002@gmail.com</a> atau Instagram <a href="https://instagram.com/mkasplanwar" target="_blank">@mkasplanwar</a>.</p>
         </div>
         <div class="footer-divider"></div>
         <div class="footer-signature">
-            <p class="footer-text">Disusun & Dilaporkan oleh:</p>
+            <p class="footer-text">Disusun & Dilaporkan Oleh:</p>
             <p class="footer-author">M. Kaspul Anwar</p>
         </div>
     </div>
     <div class="footer-disclaimer">
-        <p>© 2025 Semua Hak Dilindungi</p>
+        <p>© 2025 | Dokumen Rahasia dan Terbatas</p>
     </div>
 </div>
 
@@ -1100,7 +1101,8 @@ body {
     flex-direction: column;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     width: 100%;
-    margin-bottom: 20px;
+    margin-top: 20px;
+    margin-bottom: 0;
 }
 
 .footer-content {
@@ -1128,6 +1130,26 @@ body {
     color: #555555;
     line-height: 1.5;
     margin-bottom: 5px;
+}
+
+.footer-citation {
+    font-size: 14px;
+    color: #555555;
+    line-height: 1.5;
+    margin-top: 12px;
+    padding-top: 8px;
+    border-top: 1px dashed #e0e0e0;
+}
+
+.footer-citation a {
+    color: #0066cc;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.footer-citation a:hover {
+    color: #004080;
+    text-decoration: underline;
 }
 
 .footer-divider {
@@ -1191,14 +1213,14 @@ body {
 
 @media (max-width: 480px) {
     .footer-card {
-        padding: 15px;
+        padding: a15px;
     }
     
     .footer-title {
         font-size: 16px;
     }
     
-    .footer-text, .footer-author {
+    .footer-text, .footer-author, .footer-citation {
         font-size: 13px;
     }
     
@@ -1208,6 +1230,7 @@ body {
         padding-top: 12px;
     }
 }
+</style>
 </style>
     </div>
     

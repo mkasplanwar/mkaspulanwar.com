@@ -1618,115 +1618,263 @@ document.addEventListener('DOMContentLoaded', () => {
     // Set up automatic price updates every minute
     setupAutoRefresh();
 });
-// Add this script to your existing page
+// Add this to the HEAD section of your HTML
 document.addEventListener('DOMContentLoaded', () => {
-    // Prevent text selection/copying
-    document.body.style.userSelect = 'none';
-    document.body.style.webkitUserSelect = 'none';
-    document.body.style.msUserSelect = 'none';
-    document.body.style.mozUserSelect = 'none';
+    // 1. Implement a canvas-based content rendering approach
+    // This replaces text with canvas elements that are harder to copy
+    function convertTextToCanvas() {
+        const textElements = document.querySelectorAll('.total-assets, .stat-value, .dashboard-title, .asset-name');
+        
+        textElements.forEach(el => {
+            const text = el.textContent;
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            
+            // Get computed style
+            const style = window.getComputedStyle(el);
+            const font = `${style.fontWeight} ${style.fontSize} ${style.fontFamily}`;
+            
+            // Set canvas properties
+            ctx.font = font;
+            const metrics = ctx.measureText(text);
+            const width = metrics.width;
+            const height = parseInt(style.fontSize, 10) * 1.5;
+            
+            canvas.width = width;
+            canvas.height = height;
+            
+            // Style the canvas to match text
+            canvas.style.display = 'inline-block';
+            canvas.style.verticalAlign = 'middle';
+            
+            // Draw text onto canvas
+            ctx.font = font;
+            ctx.fillStyle = style.color;
+            ctx.textBaseline = 'middle';
+            ctx.fillText(text, 0, height / 2);
+            
+            // Replace the original element with canvas
+            el.innerHTML = '';
+            el.appendChild(canvas);
+            el.dataset.originalText = text; // Store original text in data attribute
+        });
+    }
     
-    // Disable right-click context menu
-    document.addEventListener('contextmenu', e => {
-        e.preventDefault();
-        return false;
-    });
+    // 2. Implement advanced screenshot detection and countermeasures
+    function implementScreenshotProtection() {
+        // Add transparent overlay with dynamic noise pattern
+        const overlay = document.createElement('div');
+        overlay.id = 'security-overlay';
+        overlay.style.cssText = `
+            position: fixed;
+            pointer-events: none;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1000;
+            opacity: 0.02;
+            background-image: url("data:image/svg+xml,%3Csvg width='6' height='6' xmlns='http://www.w3.org/2000/svg'%3E%3Ctext x='0' y='5' font-size='5'%3E$%3C/text%3E%3C/svg%3E");
+        `;
+        document.body.appendChild(overlay);
+        
+        // Randomize overlay pattern every 100ms to defeat screen recording
+        setInterval(() => {
+            const randomChar = String.fromCharCode(33 + Math.floor(Math.random() * 94));
+            overlay.style.backgroundImage = `url("data:image/svg+xml,%3Csvg width='6' height='6' xmlns='http://www.w3.org/2000/svg'%3E%3Ctext x='0' y='5' font-size='5'%3E${randomChar}%3C/text%3E%3C/svg%3E")`;
+        }, 100);
+    }
     
-    // Disable copy, cut, paste keyboard shortcuts
-    document.addEventListener('keydown', e => {
-        if ((e.ctrlKey || e.metaKey) && 
-            (e.key === 'c' || e.key === 'x' || e.key === 'v' || 
-             e.key === 'C' || e.key === 'X' || e.key === 'V' ||
-             e.key === 'p' || e.key === 'P' || e.key === 's' || e.key === 'S')) {
+    // 3. More aggressive copy prevention
+    function preventCopying() {
+        // Disable selection
+        document.body.style.userSelect = 'none';
+        document.body.style.webkitUserSelect = 'none';
+        document.body.style.msUserSelect = 'none';
+        document.body.style.webkitTouchCallout = 'none';
+        
+        // Intercept clipboard operations
+        document.addEventListener('copy', e => {
+            e.preventDefault();
+            e.clipboardData.setData('text/plain', 'Copying from this dashboard is not permitted.');
+            return false;
+        });
+        
+        // Disable right-click
+        document.addEventListener('contextmenu', e => {
             e.preventDefault();
             return false;
-        }
-    });
+        });
+        
+        // Block keyboard shortcuts (more comprehensive)
+        document.addEventListener('keydown', e => {
+            // Block print screen
+            if (e.key === 'PrintScreen') {
+                e.preventDefault();
+                return false;
+            }
+            
+            // Block ctrl/cmd combinations
+            if (e.ctrlKey || e.metaKey) {
+                const blockedKeys = ['c', 'x', 'v', 'p', 's', 'u', 'a', 'i', 'j'];
+                if (blockedKeys.includes(e.key.toLowerCase())) {
+                    e.preventDefault();
+                    return false;
+                }
+            }
+            
+            // Block F12 key (opens dev tools)
+            if (e.key === 'F12') {
+                e.preventDefault();
+                return false;
+            }
+        });
+    }
     
-    // Add screenshot prevention
-    // This uses CSS to make screenshots show a blank/distorted image in many scenarios
-    const style = document.createElement('style');
-    style.textContent = `
-        body {
-            /* Screenshot protection */
-            -webkit-touch-callout: none;
-        }
-        
-        .container {
+    // 4. Apply CSS tricks that interfere with screenshots
+    function applyCSSProtection() {
+        const style = document.createElement('style');
+        style.textContent = `
+            /* Basic protection */
+            body * {
+                -webkit-user-select: none !important;
+                -moz-user-select: none !important;
+                -ms-user-select: none !important;
+                user-select: none !important;
+            }
+            
             /* Advanced screenshot protection */
-            background-blend-mode: difference;
-            backdrop-filter: brightness(1);
-            content-visibility: auto;
-        }
-        
-        /* Additional protection for canvas and important elements */
-        #donutChart {
-            mix-blend-mode: difference;
-        }
-        
-        /* Show warning when print or screenshot attempted */
-        @media print {
-            body::before {
-                content: "Printing and screenshots are not allowed";
-                position: fixed;
+            @media print {
+                body {
+                    display: none !important;
+                }
+            }
+            
+            /* Create artifacts in screenshots */
+            .card, .total-assets-container, .chart-container {
+                position: relative;
+            }
+            
+            .card::before, .total-assets-container::before, .chart-container::before {
+                content: "";
+                position: absolute;
                 top: 0;
                 left: 0;
                 width: 100%;
                 height: 100%;
-                background: white;
-                z-index: 10000;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                font-size: 48px;
-                color: red;
+                pointer-events: none;
+                background-image: repeating-linear-gradient(
+                    45deg,
+                    transparent,
+                    transparent 10px,
+                    rgba(255,255,255,0.03) 10px,
+                    rgba(255,255,255,0.03) 20px
+                );
+                z-index: 10;
             }
-            body * {
-                visibility: hidden;
+            
+            /* Make canvas-based chart harder to capture */
+            canvas {
+                filter: contrast(1.01) brightness(0.99);
+                mix-blend-mode: normal;
             }
+        `;
+        document.head.appendChild(style);
+    }
+    
+    // 5. Advanced screenshot detection
+    function detectScreenCapture() {
+        // Use the Screen Capture API detection
+        if (navigator.mediaDevices && typeof navigator.mediaDevices.getDisplayMedia === 'function') {
+            navigator.mediaDevices.addEventListener('devicechange', () => {
+                console.log('Media device change detected - possible screen recording');
+                // You could blur content here
+            });
         }
-    `;
-    document.head.appendChild(style);
-    
-    // Advanced screenshot detection
-    document.addEventListener('visibilitychange', () => {
-        if (document.visibilityState === 'hidden') {
-            // This can detect some screenshot attempts
-            console.log('Possible screenshot attempt detected');
-            // You could optionally trigger an alert or logging here
-        }
-    });
-    
-    // Additional check for browser dev tools (optional)
-    let devtoolsOpen = false;
-    const threshold = 160;
-    
-    // Function to check for dev tools
-    const checkDevTools = () => {
-        const widthThreshold = window.outerWidth - window.innerWidth > threshold;
-        const heightThreshold = window.outerHeight - window.innerHeight > threshold;
         
-        if (widthThreshold || heightThreshold) {
-            if (!devtoolsOpen) {
-                console.log('Dev tools may be open');
-                // Optionally add code to blur content when dev tools are open
-                document.body.style.filter = 'blur(5px)';
-                devtoolsOpen = true;
+        // Monitor for screen size changes (can indicate screenshot)
+        let lastWidth = window.innerWidth;
+        let lastHeight = window.innerHeight;
+        
+        window.addEventListener('resize', () => {
+            // Some screenshot tools briefly change window dimensions
+            if (Math.abs(window.innerWidth - lastWidth) > 100 || 
+                Math.abs(window.innerHeight - lastHeight) > 100) {
+                console.log('Significant size change detected - possible screenshot attempt');
+                // Apply temporary blur
+                document.body.style.filter = 'blur(10px)';
+                setTimeout(() => {
+                    document.body.style.filter = 'none';
+                }, 500);
             }
-        } else {
-            if (devtoolsOpen) {
-                console.log('Dev tools closed');
-                document.body.style.filter = 'none';
-                devtoolsOpen = false;
+            
+            lastWidth = window.innerWidth;
+            lastHeight = window.innerHeight;
+        });
+    }
+    
+    // 6. Server-side session checking (conceptual)
+    function implementSessionSecurity() {
+        // This is conceptual - implement on server too
+        let lastActivity = Date.now();
+        
+        // Update activity timestamp
+        ['mousemove', 'keydown', 'scroll', 'click'].forEach(eventType => {
+            document.addEventListener(eventType, () => {
+                lastActivity = Date.now();
+            });
+        });
+        
+        // Check for suspicious timing gaps
+        setInterval(() => {
+            const now = Date.now();
+            if (now - lastActivity > 2000) {
+                // Long inactivity could indicate screenshot prep
+                document.body.classList.add('secure-blur');
+            } else {
+                document.body.classList.remove('secure-blur');
             }
-        }
-    };
+        }, 500);
+    }
     
-    // Set interval to check for dev tools
-    setInterval(checkDevTools, 1000);
-    
-    console.log('Copy and screenshot protection enabled');
+    // Apply all protections
+    setTimeout(() => {
+        convertTextToCanvas();
+        implementScreenshotProtection();
+        preventCopying();
+        applyCSSProtection();
+        detectScreenCapture();
+        implementSessionSecurity();
+        
+        console.log('Enhanced security measures applied');
+    }, 1000); // Slight delay to ensure page is fully loaded
 });
+
+// Add this CSS to your stylesheet
+const securityStyles = document.createElement('style');
+securityStyles.textContent = `
+    .secure-blur {
+        filter: blur(5px);
+    }
+    
+    /* Override common styles that might allow selection */
+    * {
+        -webkit-touch-callout: none !important;
+        -webkit-user-select: none !important;
+        -khtml-user-select: none !important;
+        -moz-user-select: none !important;
+        -ms-user-select: none !important;
+        user-select: none !important;
+    }
+    
+    /* Force hardware acceleration for better canvas rendering */
+    body {
+        transform: translateZ(0);
+        backface-visibility: hidden;
+        perspective: 1000px;
+    }
+`;
+document.head.appendChild(securityStyles);
     </script>
 </body>
 </html>

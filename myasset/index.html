@@ -1241,8 +1241,8 @@ const assets = [
     {
         name: "Free Cash",
         icon: "/myasset/icon/idrt.png",
-        balance: "Rp. 6.000",
-        invested: 	6000,
+        balance: "Cash Habis",
+        invested: 	0,
         avgPrice:  1,
         currentPrice: 1,
         currency: "IDR",
@@ -1618,166 +1618,115 @@ document.addEventListener('DOMContentLoaded', () => {
     // Set up automatic price updates every minute
     setupAutoRefresh();
 });
-// Protection script - Add this at the end of your HTML just before </body>
-(function() {
-    // Disable text selection
-    document.addEventListener('selectstart', function(e) {
+// Add this script to your existing page
+document.addEventListener('DOMContentLoaded', () => {
+    // Prevent text selection/copying
+    document.body.style.userSelect = 'none';
+    document.body.style.webkitUserSelect = 'none';
+    document.body.style.msUserSelect = 'none';
+    document.body.style.mozUserSelect = 'none';
+    
+    // Disable right-click context menu
+    document.addEventListener('contextmenu', e => {
         e.preventDefault();
         return false;
     });
-
-    // Disable context menu (right-click)
-    document.addEventListener('contextmenu', function(e) {
-        e.preventDefault();
-        return false;
-    });
-
-    // Disable copy
-    document.addEventListener('copy', function(e) {
-        e.preventDefault();
-        return false;
-    });
-
-    // Disable keyboard shortcuts for copying and screenshots
-    document.addEventListener('keydown', function(e) {
-        // Prevent Ctrl+C, Ctrl+U, Ctrl+S, F12, and PrintScreen
-        if ((e.ctrlKey && (e.keyCode === 67 || e.keyCode === 85 || e.keyCode === 83)) || 
-            e.keyCode === 123 || e.keyCode === 44) {
+    
+    // Disable copy, cut, paste keyboard shortcuts
+    document.addEventListener('keydown', e => {
+        if ((e.ctrlKey || e.metaKey) && 
+            (e.key === 'c' || e.key === 'x' || e.key === 'v' || 
+             e.key === 'C' || e.key === 'X' || e.key === 'V' ||
+             e.key === 'p' || e.key === 'P' || e.key === 's' || e.key === 'S')) {
             e.preventDefault();
             return false;
         }
     });
-
-    // Detect possible screenshot attempts
-    document.addEventListener('visibilitychange', function() {
-        if (document.visibilityState === 'hidden') {
-            console.log('Possible screenshot attempt detected');
-            // You could log this event or take other actions
-        }
-    });
-
-    // Create watermark function
-    function createWatermark() {
-        // Remove any existing watermarks first
-        const existingWatermark = document.querySelector('.watermark-container');
-        if (existingWatermark) {
-            existingWatermark.remove();
-        }
-        
-        const watermarkContainer = document.createElement('div');
-        watermarkContainer.className = 'watermark-container';
-        
-        // Get the current time for the watermark
-        const now = new Date();
-        const timeString = now.toLocaleTimeString();
-        const dateString = now.toLocaleDateString();
-        
-        // Create watermark text
-        watermarkContainer.innerHTML = `
-            <div class="watermark">
-                CONFIDENTIAL - M. Kaspul Anwar's Dashboard
-                ${dateString} ${timeString}
-                Unauthorized access prohibited
-            </div>
-        `;
-        
-        document.body.appendChild(watermarkContainer);
-    }
-
-    // Add watermark CSS
-    const watermarkStyle = document.createElement('style');
-    watermarkStyle.textContent = `
-        /* Prevent text selection */
+    
+    // Add screenshot prevention
+    // This uses CSS to make screenshots show a blank/distorted image in many scenarios
+    const style = document.createElement('style');
+    style.textContent = `
         body {
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
+            /* Screenshot protection */
+            -webkit-touch-callout: none;
         }
         
-        /* Create overlay for screenshot protection */
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            pointer-events: none;
-            background: transparent;
+        .container {
+            /* Advanced screenshot protection */
+            background-blend-mode: difference;
+            backdrop-filter: brightness(1);
+            content-visibility: auto;
         }
         
-        .watermark-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1000;
-            overflow: hidden;
+        /* Additional protection for canvas and important elements */
+        #donutChart {
+            mix-blend-mode: difference;
         }
         
-        .watermark {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) rotate(-45deg);
-            font-size: 24px;
-            font-family: Arial, sans-serif;
-            color: rgba(255, 0, 0, 0.15);
-            white-space: nowrap;
-            pointer-events: none;
-            user-select: none;
-            width: 100%;
-            text-align: center;
+        /* Show warning when print or screenshot attempted */
+        @media print {
+            body::before {
+                content: "Printing and screenshots are not allowed";
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: white;
+                z-index: 10000;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 48px;
+                color: red;
+            }
+            body * {
+                visibility: hidden;
+            }
         }
     `;
-
-    document.head.appendChild(watermarkStyle);
+    document.head.appendChild(style);
     
-    // Create initial watermark
-    createWatermark();
-
-    // Recreate watermark every minute to update the time
-    setInterval(createWatermark, 60000);
-
-    // Show warning on page load
-    setTimeout(function() {
-        alert('WARNING: This financial dashboard contains confidential information. Unauthorized copying, distribution, or screenshot capture is strictly prohibited.');
-    }, 1000);
-    
-    // Additional protection: prevent drag and drop
-    document.addEventListener('dragstart', function(e) {
-        e.preventDefault();
-        return false;
-    });
-    
-    // Prevent saving page with Ctrl+S
-    window.addEventListener('beforeunload', function(e) {
-        if (e.ctrlKey && e.keyCode === 83) {
-            e.preventDefault();
-            return false;
+    // Advanced screenshot detection
+    document.addEventListener('visibilitychange', () => {
+        if (document.visibilityState === 'hidden') {
+            // This can detect some screenshot attempts
+            console.log('Possible screenshot attempt detected');
+            // You could optionally trigger an alert or logging here
         }
     });
     
-    // Disable browser developer tools (F12 key)
-    document.onkeydown = function(e) {
-        if (e.keyCode === 123) {
-            return false;
+    // Additional check for browser dev tools (optional)
+    let devtoolsOpen = false;
+    const threshold = 160;
+    
+    // Function to check for dev tools
+    const checkDevTools = () => {
+        const widthThreshold = window.outerWidth - window.innerWidth > threshold;
+        const heightThreshold = window.outerHeight - window.innerHeight > threshold;
+        
+        if (widthThreshold || heightThreshold) {
+            if (!devtoolsOpen) {
+                console.log('Dev tools may be open');
+                // Optionally add code to blur content when dev tools are open
+                document.body.style.filter = 'blur(5px)';
+                devtoolsOpen = true;
+            }
+        } else {
+            if (devtoolsOpen) {
+                console.log('Dev tools closed');
+                document.body.style.filter = 'none';
+                devtoolsOpen = false;
+            }
         }
     };
     
-    // Disable print functionality
-    window.addEventListener('beforeprint', function(e) {
-        e.preventDefault();
-        alert('Printing this dashboard is not allowed.');
-        return false;
-    });
+    // Set interval to check for dev tools
+    setInterval(checkDevTools, 1000);
     
-    console.log('Protection measures activated');
-})();
+    console.log('Copy and screenshot protection enabled');
+});
     </script>
 </body>
 </html>

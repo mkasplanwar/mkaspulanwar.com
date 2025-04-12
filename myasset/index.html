@@ -1118,7 +1118,7 @@ blockquote.quote footer {
                     </div>
                 </div>
             </div>
-
+    
             <!-- Donut Chart Card -->
             <div class="card top-card">
                 <div class="card-header">
@@ -1132,45 +1132,23 @@ blockquote.quote footer {
                     <!-- Legend items will be inserted here by JavaScript -->
                 </div>
                 <!-- HTML Structure -->
-<div class="summary-card">
-    <div class="summary-title">Key Investment Sectors</div>
-    <div class="focus-tags">
-      <!-- <div class="focus-tag digital-asset">
-        <span class="focus-icon"><i class="fa-solid fa-bitcoin-sign"></i></span>
-        <span class="focus-text">Digital Asset</span>
-      </div> -->
-    <div class="focus-tag technology">
-        <span class="focus-icon"><i class="fa-solid fa-microchip" ></i></span>
-        <span class="focus-text">Technology</span>
-      </div>
-      <div class="focus-tag renewable-energy">
-        <span class="focus-icon"><i class="fa-solid fa-leaf"></i></span>
-        <span class="focus-text">Renewable Energy</span>
-      </div>
-<!--       
-      <div class="focus-tag semiconductors">
-        <span class="focus-icon"><i class="fa-solid fa-microchip"></i></span>
-        <span class="focus-text">Semiconductors</span>
-      </div>
-      <div class="focus-tag oil-gas">
-        <span class="focus-icon"><i class="fa-solid fa-fire-flame-simple"></i></span>
-        <span class="focus-text">Oil & Gas</span>
-      </div> -->
-      <!-- <div class="focus-tag real-estate">
-        <span class="focus-icon"><i class="fa-solid fa-house"></i></span>
-        <span class="focus-text">Real Estate</span>
-      </div>
-      <div class="focus-tag banking">
-        <span class="focus-icon"><i class="fa-solid fa-landmark"></i></span>
-        <span class="focus-text">Banking</span>
-      </div> -->
-      
-      <!-- <div class="focus-tag pharma">
-        <span class="focus-icon"><i class="fa-solid fa-staff-snake"></i></span>
-        <span class="focus-text">Pharmaceutical</span>
-      </div> -->
-    </div>
-  </div>
+                <div class="summary-card">
+                    <div class="summary-title">Key Investment Sectors</div>
+                    <div class="focus-tags">
+                      <!-- <div class="focus-tag digital-asset">
+                        <span class="focus-icon"><i class="fa-solid fa-bitcoin-sign"></i></span>
+                        <span class="focus-text">Digital Asset</span>
+                      </div> -->
+                    <div class="focus-tag technology">
+                        <span class="focus-icon"><i class="fa-solid fa-microchip" ></i></span>
+                        <span class="focus-text">Technology</span>
+                      </div>
+                      <div class="focus-tag renewable-energy">
+                        <span class="focus-icon"><i class="fa-solid fa-leaf"></i></span>
+                        <span class="focus-text">Renewable Energy</span>
+                      </div>
+                    </div>
+                  </div>
             </div>
         </div>
         
@@ -1203,141 +1181,95 @@ blockquote.quote footer {
             </div>
         </div>
         <!-- Bitcoin Collateral Strategy Card (Full Width) -->
-<div class="card full-width-card">
-    <div class="card-header">
-        <i class="fa-solid fa-landmark"></i>
-        <span class="title">Collateral Strategy</span>
-    </div>
-    <div class="collateral-strategy-container">
-        <!-- Two-column layout for desktop -->
-        <div class="collateral-info-container">
-            <!-- Loan Summary Section -->
-            <div class="loan-summary">
-                <div class="loan-metrics">
-                    <div class="loan-metric-item">
-                        <div class="loan-metric-icon">
-                            <img src="/myasset/icon/bitcoin.png" alt="Bitcoin">
-                        </div>
-                        <div class="loan-metric-details">
-                            <div class="loan-metric-label">Bitcoin Collateral</div>
-                            <div class="loan-metric-value" id="btcCollateral">0 sats</div>
-                            <div class="loan-metric-secondary" id="btcValueIDR">Rp. 0</div>
+        <div class="card full-width-card">
+            <div class="card-header">
+                <i class="fa-solid fa-landmark"></i>
+                <span class="title">Collateral Strategy</span>
+            </div>
+            <div class="collateral-strategy-container">
+                <!-- Two-column layout for desktop -->
+                <div class="collateral-info-container">
+                    <!-- Loan Summary Section -->
+                    <div class="loan-summary">
+                        <div class="loan-metrics">
+                            <div class="loan-metric-item">
+                                <div class="loan-metric-icon">
+                                    <img src="/myasset/icon/bitcoin.png" alt="Bitcoin">
+                                </div>
+                                <div class="loan-metric-details">
+                                    <div class="loan-metric-label">Bitcoin Collateral</div>
+                                    <div class="loan-metric-value" id="btcCollateral">0 sats</div>
+                                    <div class="loan-metric-secondary" id="btcValueIDR">Rp. 0</div>
+                                </div>
+                            </div>
+                            <div class="loan-metric-item">
+                                <div class="loan-metric-icon">
+                                    <img src="/myasset/icon/usdc.png" alt="USDC">
+                                </div>
+                                <div class="loan-metric-details">
+                                    <div class="loan-metric-label">USDC Borrowed</div>
+                                    <div class="loan-metric-value" id="usdcBorrowed">0 USDC</div>
+                                    <div class="loan-metric-secondary" id="usdcValueIDR">Rp. 0</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="loan-metric-item">
-                        <div class="loan-metric-icon">
-                            <img src="/myasset/icon/usdc.png" alt="USDC">
+                    
+                    <!-- Interest and LTV Details -->
+                    <div class="loan-details">
+                        <div class="loan-detail-row">
+                            <div class="loan-detail-label">USDC Interest Rate</div>
+                            <div class="loan-detail-value negative" id="interestRate">0</div>
                         </div>
-                        <div class="loan-metric-details">
-                            <div class="loan-metric-label">USDC Borrowed</div>
-                            <div class="loan-metric-value" id="usdcBorrowed">0 USDC</div>
-                            <div class="loan-metric-secondary" id="usdcValueIDR">Rp. 0</div>
+                        <div class="loan-detail-row">
+                            <div class="loan-detail-label">Bitcoin Yield Rate</div>
+                            <div class="loan-detail-value positive" id="btcYieldRate">0</div>
+                        </div>
+                        <div class="loan-detail-row">
+                            <div class="loan-detail-label">Bitcoin Liquidation Price</div>
+                            <div class="loan-detail-value negative" id="liquidationPrice">$0</div>
+                        </div>
+                        <div class="loan-detail-row">
+                            <div class="loan-detail-label">USDC Liquidation Price</div>
+                            <div class="loan-detail-value negative" id="usdcliquidationPrice">Rp0</div>
                         </div>
                     </div>
                 </div>
-            </div>
-            
-            <!-- Interest and LTV Details -->
-            <div class="loan-details">
-                <div class="loan-detail-row">
-                    <div class="loan-detail-label">USDC Interest Rate</div>
-                    <div class="loan-detail-value negative" id="interestRate">0</div>
+                
+                <!-- LTV Bar Chart Section -->
+                <div class="ltv-chart-container">
+                    <div class="ltv-chart-header">
+                        <div class="ltv-current">
+                            <span class="ltv-label">Current LTV</span>
+                            <span class="ltv-value" id="currentLTV">0%</span>
+                        </div>
+                        <div class="ltv-max">
+                            <span class="ltv-label">Liquidation LTV</span>
+                            <span class="ltv-value" id="liquidationLTV">0%</span>
+                        </div>
+                    </div>
+                    <div class="ltv-bar-container">
+                        <div class="ltv-bar-wrapper">
+                            <div class="ltv-bar-background"></div>
+                            <div class="ltv-bar-progress" id="ltvProgressBar"></div>
+                            <div class="ltv-danger-zone"></div>
+                        </div>
+                        <div class="ltv-markers">
+                            <div class="ltv-marker" style="left: 0%">0%</div>
+                            <div class="ltv-marker" style="left: 25%">25%</div>
+                            <div class="ltv-marker" style="left: 50%">50%</div>
+                            <div class="ltv-marker" style="left: 75%">75%</div>
+                            <div class="ltv-marker" style="left: 100%">100%</div>
+                        </div>
+                    </div>
+                    <div class="ltv-status">
+                        <div class="status-indicator-large" id="ltvStatusIndicator">Status: Healthy</div>
+                    </div>
                 </div>
-                <div class="loan-detail-row">
-                    <div class="loan-detail-label">Bitcoin Yield Rate</div>
-                    <div class="loan-detail-value positive" id="btcYieldRate">0</div>
-                </div>
-                <div class="loan-detail-row">
-                    <div class="loan-detail-label">Bitcoin Liquidation Price</div>
-                    <div class="loan-detail-value negative" id="liquidationPrice">$0</div>
-                </div>
-                <div class="loan-detail-row">
-                    <div class="loan-detail-label">USDC Liquidation Price</div>
-                    <div class="loan-detail-value negative" id="usdcliquidationPrice">Rp0</div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- LTV Bar Chart Section -->
-        <div class="ltv-chart-container">
-            <div class="ltv-chart-header">
-                <div class="ltv-current">
-                    <span class="ltv-label">Current LTV</span>
-                    <span class="ltv-value" id="currentLTV">0%</span>
-                </div>
-                <div class="ltv-max">
-                    <span class="ltv-label">Liquidation LTV</span>
-                    <span class="ltv-value" id="liquidationLTV">0%</span>
-                </div>
-            </div>
-            <div class="ltv-bar-container">
-                <div class="ltv-bar-wrapper">
-                    <div class="ltv-bar-background"></div>
-                    <div class="ltv-bar-progress" id="ltvProgressBar"></div>
-                    <div class="ltv-danger-zone"></div>
-                </div>
-                <div class="ltv-markers">
-                    <div class="ltv-marker" style="left: 0%">0%</div>
-                    <div class="ltv-marker" style="left: 25%">25%</div>
-                    <div class="ltv-marker" style="left: 50%">50%</div>
-                    <div class="ltv-marker" style="left: 75%">75%</div>
-                    <div class="ltv-marker" style="left: 100%">100%</div>
-                </div>
-            </div>
-            <div class="ltv-status">
-                <div class="status-indicator-large" id="ltvStatusIndicator">Status: Healthy</div>
             </div>
         </div>
     </div>
-</div>
-
-        <!-- Wallet and Archive Section (Full Width Container) -->
-<div class="top-row">
-    <!-- Quote and Archive Card -->
-    <div class="card top-card">
-        <div class="card-header">
-            <i class="fa-solid fa-folder-open"></i>
-            <span class="title">Archived</span>
-        </div>
-        <div class="quote-content">
-            <blockquote class="quote">
-                "I was born poor, but I will make sure I die as a billionaire."
-                <footer>— M. Kaspul Anwar</footer>
-            </blockquote>
-            <div class="archive-section">
-                <div class="archive-label">Laporan Tahun 2025</div>
-                <a class="archive-buttons" href="https://drive.google.com/drive/folders/1pV1eG29lHhlzHQBefhcE7oQTUdHLyu-n?usp=drive_link">
-                    <button class="archive-btn">Google Drive</button>
-                </a>
-            </div>
-            <div class="archive-section">
-                <div class="archive-label">Arsip Laporan 2021 - 2024</div>
-                <a class="archive-buttons" href="https://drive.google.com/drive/folders/1pV1eG29lHhlzHQBefhcE7oQTUdHLyu-n?usp=drive_link">
-                    <button class="archive-btn">Google Drive</button>
-                </a>
-            </div>
-            
-        </div>
-    </div>
-    <!-- Bitcoin Wallet Card -->
-    <div class="card top-card">
-        <div class="card-header">
-            <i class="fa-solid fa-cube"></i>
-            <span class="title">Bitcoin Address</span>
-        </div>
-        <div class="wallet-content">
-            <div class="wallet-label">Alamat Wallet</div>
-            <div class="wallet-address">bc1qn9fn2z22rdtuy66ta3p2he2pdhtvvkucunljgh</div>
-            <div class="wallet-type">Native SegWit (bech32)</div>
-            <div class="qr-code-container">
-                <div id="walletQR" class="wallet-qr"></div>
-            </div>
-        </div>
-    </div>
-</div>
-        
-    </div>
-
+    
     <script>
         // Constants for global use
 const EXCHANGE_RATES = {
@@ -1483,18 +1415,7 @@ const assets = [
         sector: "Geothermal Energy <br> Renewable Energy",
         company: "PT. Pertamina Geothermal Energy. Tbk",
     },
-    {
-        name: "Free Cash",
-        icon: "/myasset/icon/euro.png",
-        balance: "Rp. 0",
-        invested: 0,
-        avgPrice: 1,
-        currentPrice: 1,
-        currency: "IDR",
-        type: "liquid",
-        sector: "Pendanaan",
-        company: "Pendanaan Untuk Investasi"
-    },
+    
     /*
     {
         name: "AAPL",
@@ -1709,17 +1630,6 @@ function updatePortfolioSummary(calculatedAssets) {
     document.getElementById('totalPnL').textContent = `${totalPnL >= 0 ? '+ ' : '- '}${formatCurrency(Math.abs(totalPnL))}`;
     document.getElementById('totalDebt').textContent = formatCurrency(debtAmount);
     document.getElementById('derRatio').innerHTML = `${der.toFixed(2)} <span class="status-indicator ${derStatusClass}">${derStatus}</span>`;
-    
-    // Remove or hide non-liquid asset elements if they exist in your HTML
-    const nonLiquidElements = document.getElementById('nonLiquidAssets');
-    if (nonLiquidElements) {
-        nonLiquidElements.parentElement.style.display = 'none';
-    }
-    
-    const nonLiquidPercentageElement = document.getElementById('nonLiquidPercentage');
-    if (nonLiquidPercentageElement) {
-        nonLiquidPercentageElement.parentElement.style.display = 'none';
-    }
 
     const percentageElement = document.getElementById('totalPercentage');
     percentageElement.textContent = `${totalPercentage >= 0 ? '+ ' : '- '}${Math.abs(totalPercentage).toFixed(2)}%`;
@@ -1825,25 +1735,6 @@ function createDonutChart(calculatedAssets) {
     });
 }
 
-// Create wallet QR code
-function createWalletQR() {
-    const walletAddress = 'bc1qn9fn2z22rdtuy66ta3p2he2pdhtvvkucunljgh';
-    const qrCodeContainer = document.getElementById('walletQR');
-    
-    // Clear previous QR code if it exists
-    qrCodeContainer.innerHTML = '';
-
-    // Generate QR code
-    new QRCode(qrCodeContainer, {
-        text: walletAddress,
-        width: 180,
-        height: 180,
-        colorDark: "#000000",
-        colorLight: "#ffffff",
-        correctLevel: QRCode.CorrectLevel.H
-    });
-}
-
 // Initialize Bitcoin Collateral Strategy
 function initializeBitcoinCollateralStrategy() {
     // Get values from constants
@@ -1914,14 +1805,13 @@ function updateLastUpdate() {
     });
     const formattedTime = now.toLocaleTimeString('id-ID', { 
         hour: '2-digit', 
-        minute: '2-digit',
-        second: '2-digit'
+        minute: '2-digit'
     });
     
     // Update the timestamp in the UI
-    const lastUpdateElement = document.getElementById('lastUpdate');
+    const lastUpdateElement = document.querySelector('.last-update');
     if (lastUpdateElement) {
-        lastUpdateElement.textContent = `${formattedDate} ${formattedTime}`;
+        lastUpdateElement.innerHTML = `Last Update: <br> ${formattedDate}, Pukul ${formattedTime} Wita`;
     }
 }
 
@@ -1935,9 +1825,6 @@ function initializeDashboard() {
 
     // Create donut chart
     createDonutChart(calculatedAssets);
-
-    // Create wallet QR code
-    createWalletQR();
 
     // Initialize Bitcoin collateral strategy
     initializeBitcoinCollateralStrategy();

@@ -198,8 +198,8 @@ body {
     white-space: nowrap;
 }
 
-/* Ultra Premium Asset Icon Styles - Circular Glass with 3D Embossed Effect */
-.asset-icon {
+ /* Asset Icon Styles */
+ .asset-icon {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -210,54 +210,27 @@ body {
     vertical-align: middle;
     position: relative;
     overflow: hidden;
-    
-    /* Enhanced circular glass effect */
-    background: linear-gradient(145deg, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.2));
-    backdrop-filter: blur(15px);
-    
-    /* Pronounced 3D circular effect */
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(8px);
     box-shadow: 
-        /* Outer glow */
-        0 10px 20px rgba(0, 0, 0, 0.15),
-        /* Main shadow */
-        0 6px 10px rgba(0, 0, 0, 0.12),
-        /* Thin outer rim highlight */
-        0 0 0 1px rgba(255, 255, 255, 0.7),
-        /* Inner highlight at top */
-        inset 0 2px 3px rgba(255, 255, 255, 0.8),
-        /* Inner shadow at bottom */
-        inset 0 -2px 3px rgba(0, 0, 0, 0.1);
-    
-    /* Subtle circular border */
-    border: 1px solid rgba(255, 255, 255, 0.8);
-    
-    transition: all 0.3s ease;
+        0 4px 8px rgba(0, 0, 0, 0.4),
+        0 1px 3px rgba(255, 255, 255, 0.2) inset,
+        0 -1px 2px rgba(0, 0, 0, 0.15) inset,
+        0 0 10px rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 .asset-icon:hover {
-    transform: translateY(-2px);
+    transform: translateY(-2px) scale(1.05);
+    background: rgba(255, 255, 255, 0.2);
     box-shadow: 
-        0 12px 24px rgba(0, 0, 0, 0.18),
-        0 8px 12px rgba(0, 0, 0, 0.15),
-        0 0 0 1px rgba(255, 255, 255, 0.8),
-        inset 0 2px 5px rgba(255, 255, 255, 0.9),
-        inset 0 -2px 5px rgba(0, 0, 0, 0.1);
+        0 6px 12px rgba(0, 0, 0, 0.4),
+        0 1px 3px rgba(255, 255, 255, 0.3) inset,
+        0 0 12px rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.35);
 }
 
-/* Circular light reflection */
-.asset-icon::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.8), transparent 70%);
-    opacity: 0.6;
-    z-index: 1;
-}
-
-/* Shine effect */
 .asset-icon::after {
     content: "";
     position: absolute;
@@ -268,47 +241,47 @@ body {
     background: linear-gradient(
         135deg, 
         rgba(255, 255, 255, 0) 0%,
-        rgba(255, 255, 255, 0.4) 40%, 
-        rgba(255, 255, 255, 0.8) 50%, 
-        rgba(255, 255, 255, 0.4) 60%, 
+        rgba(255, 255, 255, 0.03) 40%, 
+        rgba(255, 255, 255, 0.2) 50%, 
+        rgba(255, 255, 255, 0.03) 60%, 
         rgba(255, 255, 255, 0) 100%
     );
     transform: rotate(45deg);
-    opacity: 0.5;
-    z-index: 1;
-    animation: circular-shine 3s infinite ease-in-out;
+    opacity: 0.1;
+    transition: opacity 0.3s ease, top 0.5s ease;
+    pointer-events: none;
+}
+
+.asset-icon:hover::after {
+    top: -90%;
+    opacity: 0.3;
+    animation: shine 1.5s ease forwards;
 }
 
 .asset-icon img {
     width: 32px;
     height: 32px;
     object-fit: contain;
-    position: relative;
-    z-index: 2;
-    filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.1));
+    filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.3));
+    z-index: 1;
+    transition: transform 0.2s ease;
 }
 
-@keyframes circular-shine {
+.asset-icon:hover img {
+    transform: scale(1.08);
+}
+
+@keyframes shine {
     0% {
         top: -150%;
-        opacity: 0;
-    }
-    25% {
-        opacity: 0.5;
-    }
-    50% {
-        opacity: 0.7;
-    }
-    75% {
-        opacity: 0.5;
+        opacity: 0.1;
     }
     100% {
         top: 150%;
-        opacity: 0;
+        opacity: 0.3;
     }
 }
-
-/* Ultra Premium Loan Metric Icon - Luxury Circular Glass */
+/* Loan Metric Icon Styles */
 .loan-metric-icon {
     display: flex;
     align-items: center;
@@ -319,54 +292,27 @@ body {
     margin-right: 15px;
     position: relative;
     overflow: hidden;
-    
-    /* Premium circular glass effect */
-    background: linear-gradient(145deg, rgba(255, 255, 255, 0.7), rgba(245, 245, 245, 0.3));
-    backdrop-filter: blur(18px);
-    
-    /* Enhanced 3D circular effect */
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(8px);
     box-shadow: 
-        /* Outer glow */
-        0 12px 25px rgba(0, 0, 0, 0.18),
-        /* Main shadow */
-        0 8px 15px rgba(0, 0, 0, 0.12),
-        /* Outer rim highlight */
-        0 0 0 1px rgba(255, 255, 255, 0.85),
-        /* Inner highlight at top */
-        inset 0 3px 5px rgba(255, 255, 255, 0.9),
-        /* Inner shadow at bottom */
-        inset 0 -3px 5px rgba(0, 0, 0, 0.1);
-    
-    /* Refined circular border */
-    border: 1.5px solid rgba(255, 255, 255, 0.9);
-    
-    transition: all 0.3s ease;
+        0 4px 10px rgba(0, 0, 0, 0.4),
+        0 1px 3px rgba(255, 255, 255, 0.2) inset,
+        0 -1px 2px rgba(0, 0, 0, 0.15) inset,
+        0 0 10px rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 .loan-metric-icon:hover {
-    transform: translateY(-3px);
+    transform: translateY(-2px) scale(1.03);
+    background: rgba(255, 255, 255, 0.2);
     box-shadow: 
-        0 15px 30px rgba(0, 0, 0, 0.2),
-        0 10px 20px rgba(0, 0, 0, 0.15),
-        0 0 0 1px rgba(255, 255, 255, 0.9),
-        inset 0 3px 6px rgba(255, 255, 255, 1),
-        inset 0 -3px 6px rgba(0, 0, 0, 0.1);
+        0 6px 14px rgba(0, 0, 0, 0.4),
+        0 1px 3px rgba(255, 255, 255, 0.3) inset,
+        0 0 12px rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.35);
 }
 
-/* Circular premium light reflection */
-.loan-metric-icon::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.9), transparent 70%);
-    opacity: 0.7;
-    z-index: 1;
-}
-
-/* Premium shine effect */
 .loan-metric-icon::after {
     content: "";
     position: absolute;
@@ -377,43 +323,44 @@ body {
     background: linear-gradient(
         135deg, 
         rgba(255, 255, 255, 0) 0%,
-        rgba(255, 255, 255, 0.4) 40%, 
-        rgba(255, 255, 255, 0.9) 50%, 
-        rgba(255, 255, 255, 0.4) 60%, 
+        rgba(255, 255, 255, 0.03) 40%, 
+        rgba(255, 255, 255, 0.2) 50%, 
+        rgba(255, 255, 255, 0.03) 60%, 
         rgba(255, 255, 255, 0) 100%
     );
     transform: rotate(45deg);
-    opacity: 0.6;
-    z-index: 1;
-    animation: premium-circular-shine 4s infinite ease-in-out;
+    opacity: 0.1;
+    transition: opacity 0.3s ease, top 0.5s ease;
+    pointer-events: none;
+}
+
+.loan-metric-icon:hover::after {
+    top: -90%;
+    opacity: 0.3;
+    animation: shine-loan 1.5s ease forwards;
 }
 
 .loan-metric-icon img {
-    width: 32px;
-    height: 32px;
+    width: 36px;
+    height: 36px;
     object-fit: contain;
-    position: relative;
-    z-index: 2;
-    filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.15));
+    filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.3));
+    z-index: 1;
+    transition: transform 0.2s ease;
 }
 
-@keyframes premium-circular-shine {
+.loan-metric-icon:hover img {
+    transform: scale(1.08);
+}
+
+@keyframes shine-loan {
     0% {
         top: -150%;
-        opacity: 0;
-    }
-    25% {
-        opacity: 0.6;
-    }
-    50% {
-        opacity: 0.8;
-    }
-    75% {
-        opacity: 0.6;
+        opacity: 0.1;
     }
     100% {
         top: 150%;
-        opacity: 0;
+        opacity: 0.3;
     }
 }
 
@@ -1268,7 +1215,7 @@ const assets = [
     },
     {
         name: "IDX: PGEO",
-        icon: "/myasset/icon/pgeo.png",
+        icon: "/myasset/icon/pertamina.png",
         balance: "1.300 shares",
         invested: 	1394500,
         avgPrice:  1072.69,

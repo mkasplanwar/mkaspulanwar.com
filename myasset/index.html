@@ -1201,6 +1201,19 @@ const formattedSats = TOTAL_SATS.toLocaleString('id-ID', {
 
 // Asset data including both liquid and non-liquid assets
 const assets = [
+    
+    {
+        name: "Farmland",
+        icon: "/myasset/icon/earth.png",
+        balance: "Redacted Asset Value",
+        invested: 0,
+        avgPrice: 1,
+        currentPrice: 1,
+        currency: "IDR",
+        type: "nonliquid",
+        sector: "Real Estate",
+        company: "Personal Property"
+    },
     {
         name: "Bitcoin",
         icon: "/myasset/icon/bitcoin.png",
@@ -1215,7 +1228,7 @@ const assets = [
     },
     {
         name: "IDX: PGEO",
-        icon: "/myasset/icon/pertamina.png",
+        icon: "/myasset/icon/pgeo.png",
         balance: "1.300 shares",
         invested: 	1394500,
         avgPrice:  1072.69,
@@ -1237,23 +1250,46 @@ const assets = [
         sector: "Tokenize Gold <br> 1 Troy = 31,1 Grams",
         company: "Paxos Gold By Paxos Trust Company LLC",
     },
-    // New farmland asset added as a non-liquid asset
-    {
-        name: "Farmland",
-        icon: "/myasset/icon/earth.png",
-        balance: "1.445 m²",
-        invested: 20000000,
-        avgPrice: 1,
-        currentPrice: 1,
-        currency: "IDR",
-        type: "nonliquid",
-        sector: "Real Estate",
-        company: "Personal Property"
-    },
     
     {
         name: "AAPL",
         icon: "/myasset/icon/apple.png",
+        balance: "Waitlist",
+        invested: 0, 
+        avgPrice: 1, 
+        currentPrice: 1, 
+        currency: "USD",
+        type: "liquid",
+        sector: "Technology",
+        company: "Apple Inc."
+    },
+    {
+        name: "AMD",
+        icon: "/myasset/icon/amd.png",
+        balance: "Waitlist",
+        invested: 0, 
+        avgPrice: 1, 
+        currentPrice: 1, 
+        currency: "USD",
+        type: "liquid",
+        sector: "Technology",
+        company: "Apple Inc."
+    },
+    {
+        name: "GOOGL",
+        icon: "/myasset/icon/google.png",
+        balance: "Waitlist",
+        invested: 0, 
+        avgPrice: 1, 
+        currentPrice: 1, 
+        currency: "USD",
+        type: "liquid",
+        sector: "Technology",
+        company: "Apple Inc."
+    },
+    {
+        name: "SHEL",
+        icon: "/myasset/icon/shell.png",
         balance: "Waitlist",
         invested: 0, 
         avgPrice: 1, 
@@ -1288,6 +1324,42 @@ const assets = [
         company: "PT. Bank Central Asia. Tbk",
     },
     {
+        name: "ELSA",
+        icon: "/myasset/icon/elsa.png",
+        balance: "Waitlist",
+        invested: 0,
+        avgPrice: 1,
+        currentPrice: 1,
+        currency: "IDR",
+        type: "liquid",
+        sector: "Banking",
+        company: "PT. Bank Central Asia. Tbk",
+    },
+    {
+        name: "SIMP",
+        icon: "/myasset/icon/simp.png",
+        balance: "Waitlist",
+        invested: 0,
+        avgPrice: 1,
+        currentPrice: 1,
+        currency: "IDR",
+        type: "liquid",
+        sector: "Banking",
+        company: "PT. Bank Central Asia. Tbk",
+    },
+    {
+        name: "NISP",
+        icon: "/myasset/icon/nisp.png",
+        balance: "Waitlist",
+        invested: 0,
+        avgPrice: 1,
+        currentPrice: 1,
+        currency: "IDR",
+        type: "liquid",
+        sector: "Banking",
+        company: "PT. Bank Central Asia. Tbk",
+    },
+    {
         name: "ADRO",
         icon: "/myasset/icon/adro.png",
         balance: "Waitlist",
@@ -1300,8 +1372,8 @@ const assets = [
         company: "PT. Alamtri Resource Indonesia Tbk",
     },
     {
-        name: "Emas",
-        icon: "/myasset/icon/gold.png",
+        name: "BBRI",
+        icon: "/myasset/icon/bbri.png",
         balance: "Waitlist",
         invested: 0,
         avgPrice: 1,

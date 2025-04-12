@@ -35,7 +35,7 @@
 
 /* Body and Container Styles */
 body {
-    background: #0a0a0a; /* Darker than the original #121212 */
+    background: #0a0a0a;
     color: #ffffff;
     display: flex;
     flex-direction: column;
@@ -73,7 +73,7 @@ body {
 
 /* Card Styles */
 .card {
-    background-color: #141414; /* Darker than the original #1e1e1e */
+    background-color: #141414;
     border: 1px solid #ffffff;
     border-radius: 12px;
     padding: 25px;
@@ -99,7 +99,7 @@ body {
     border: 1px solid #ffffff;
     border-radius: 12px;
     padding: 20px;
-    background-color: #141414; /* Darker than the original #1e1e1e */
+    background-color: #141414;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
@@ -122,15 +122,6 @@ body {
     color: #bbbbbb;
     margin-top: 20px;
     text-align: center;
-}
-
-.page-title {
-    font-size: 24px;
-    font-weight: 600;
-    margin-bottom: 40px;
-    text-align: center;
-    letter-spacing: 1px;
-    color: #ffffff;
 }
 
 .card-header {
@@ -207,7 +198,7 @@ body {
     white-space: nowrap;
 }
 
-/* Enhanced Glassmorphism Asset Icon Styles */
+/* Asset Icon Styles */
 .asset-icon {
     display: inline-flex;
     align-items: center;
@@ -219,22 +210,14 @@ body {
     vertical-align: middle;
     position: relative;
     overflow: hidden;
-    
-    /* Lighter glassmorphism effect with white tint */
     background: rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(8px);
-    
-    /* Enhanced 3D effect with softer white glow */
     box-shadow: 
         0 4px 8px rgba(0, 0, 0, 0.4),
         0 1px 3px rgba(255, 255, 255, 0.2) inset,
         0 -1px 2px rgba(0, 0, 0, 0.15) inset,
         0 0 10px rgba(255, 255, 255, 0.05);
-    
-    /* Refined border with enhanced white glow */
     border: 1px solid rgba(255, 255, 255, 0.25);
-    
-    /* Smooth transition */
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
@@ -248,7 +231,6 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.35);
 }
 
-/* Enhanced shine effect on hover */
 .asset-icon::after {
     content: "";
     position: absolute;
@@ -393,58 +375,51 @@ body {
     color: #dddddd;
 }
 
-/* Wallet Styles */
-.wallet-info {
-    margin-top: 10px;
-    padding: 20px;
-    border-radius: 8px;
-    background-color: #1a1a1a;
-    border: 1px solid #ffffff;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+/* Focus Tags Styles */
+.focus-tags {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-top: 15px;
+    width: 100%;
 }
 
-.wallet-address {
-    font-family: monospace;
-    font-size: 14px;
-    word-break: break-all;
-    padding: 10px;
-    background: #121212;
-    border-radius: 4px;
-    margin-top: 10px;
-    border: 1px solid #ffffff;
-    color: #dddddd;
-}
-
-.wallet-type {
-    margin-top: 10px;
-    font-size: 14px;
-    color: #bbbbbb;
-}
-
-.qr-code-container {
+.focus-tag {
     display: flex;
-    justify-content: center;
-    margin: 20px 0;
-}
-
-.wallet-qr {
-    background-color: #ffffff;
-    padding: 10px;
-    border-radius: 8px;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    background-color: #2a2a2a;
     border: 1px solid #ffffff;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    justify-content: center;
 }
 
-/* Extended Wallet Styles */
-.wallet-content {
-    padding: 20px 0;
+.focus-tag.technology {
+    background-color: rgba(0, 191, 255, 0.2);
+    color: #00BFFF;
+    border-color: #00BFFF;
+    box-shadow: 0 4px 12px rgba(0, 191, 255, 0.15);
 }
 
-.wallet-label {
-    font-size: 16px;
-    font-weight: 600;
-    margin-bottom: 10px;
-    color: #ffffff;
+.focus-tag.renewable-energy {
+    background-color: rgba(0, 255, 127, 0.2);
+    color: #00FF7F;
+    border-color: #00FF7F;
+    box-shadow: 0 4px 12px rgba(0, 255, 127, 0.15);
+}
+
+.focus-icon {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.focus-text {
+    color: inherit;
 }
 
 /* Status Indicators */
@@ -479,63 +454,6 @@ body {
     font-weight: 600;
     background-color: #4ade80;
     color: white;
-}
-
-/* Quote Styles */
-.quote-content {
-    padding: 20px 0;
-}
-
-blockquote.quote {
-    font-size: 18px;
-    font-style: italic;
-    color: #dddddd;
-    margin: 0 0 25px 0;
-    padding: 0 20px;
-    border-left: 3px solid #ffffff;
-}
-
-blockquote.quote footer {
-    font-size: 14px;
-    color: #bbbbbb;
-    margin-top: 8px;
-}
-
-/* Archive Styles */
-.archive-section {
-    margin-top: 20px;
-}
-
-.archive-label {
-    font-size: 16px;
-    font-weight: 600;
-    margin-bottom: 15px;
-    color: #ffffff;
-}
-
-.archive-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    text-decoration: none;
-}
-
-.archive-btn {
-    padding: 10px 15px;
-    background-color: #2a2a2a;
-    border: 1px solid #ffffff;
-    border-radius: 6px;
-    font-size: 14px;
-    font-weight: 500;
-    color: #ffffff;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-}
-
-.archive-btn:hover {
-    background-color: #ffffff;
-    color: #000000;
 }
 
 /* Bitcoin Collateral Strategy Styles */
@@ -573,7 +491,7 @@ blockquote.quote footer {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
-/* Enhanced Glassmorphism Loan Metric Icon Styles */
+/* Loan Metric Icon Styles */
 .loan-metric-icon {
     display: flex;
     align-items: center;
@@ -584,22 +502,14 @@ blockquote.quote footer {
     margin-right: 15px;
     position: relative;
     overflow: hidden;
-    
-    /* Lighter glassmorphism effect with white tint */
     background: rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(8px);
-    
-    /* Enhanced 3D effect with softer white glow */
     box-shadow: 
         0 4px 10px rgba(0, 0, 0, 0.4),
         0 1px 3px rgba(255, 255, 255, 0.2) inset,
         0 -1px 2px rgba(0, 0, 0, 0.15) inset,
         0 0 10px rgba(255, 255, 255, 0.05);
-    
-    /* Refined border with enhanced white glow */
     border: 1px solid rgba(255, 255, 255, 0.25);
-    
-    /* Smooth transition */
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
@@ -613,7 +523,6 @@ blockquote.quote footer {
     border: 1px solid rgba(255, 255, 255, 0.35);
 }
 
-/* Enhanced shine effect on hover */
 .loan-metric-icon::after {
     content: "";
     position: absolute;
@@ -822,98 +731,8 @@ blockquote.quote footer {
     text-align: center;
     margin-top: 20px;
 }
-/* Focus Tags Styles - Diperbarui dengan layout kolom */
-.focus-tags {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 3 kolom untuk desktop */
-    gap: 12px;
-    margin-top: 15px;
-    width: 100%;
-}
 
-.focus-tag {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 8px 12px;
-    background-color: #2a2a2a;
-    border: 1px solid #ffffff;
-    border-radius: 20px;
-    font-size: 14px;
-    font-weight: 500;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    justify-content: center;
-}
-
-.focus-tag.digital-asset {
-    background-color: rgba(255, 165, 0, 0.2);
-    color: #FFA500;
-    border-color: #FFA500;
-    box-shadow: 0 4px 12px rgba(255, 165, 0, 0.15);
-}
-  
-.focus-tag.renewable-energy {
-    background-color: rgba(0, 255, 127, 0.2);
-    color: #00FF7F;
-    border-color: #00FF7F;
-    box-shadow: 0 4px 12px rgba(0, 255, 127, 0.15);
-}
-  
-.focus-tag.technology {
-    background-color: rgba(0, 191, 255, 0.2);
-    color: #00BFFF;
-    border-color: #00BFFF;
-    box-shadow: 0 4px 12px rgba(0, 191, 255, 0.15);
-}
-  
-.focus-tag.semiconductors {
-    background-color: rgba(191, 0, 255, 0.2);
-    color: #BF00FF;
-    border-color: #BF00FF;
-    box-shadow: 0 4px 12px rgba(191, 0, 255, 0.15);
-}
-  
-.focus-tag.oil-gas {
-    background-color: rgba(255, 65, 54, 0.2);
-    color: #FF4136;
-    border-color: #FF4136;
-    box-shadow: 0 4px 12px rgba(255, 65, 54, 0.15);
-}
-  
-.focus-tag.pharma {
-    background-color: rgba(0, 255, 255, 0.2);
-    color: #00FFFF;
-    border-color: #00FFFF;
-    box-shadow: 0 4px 12px rgba(0, 255, 255, 0.15);
-}
-  
-.focus-tag.real-estate {
-    background-color: rgba(255, 215, 0, 0.2);
-    color: #FFD700;
-    border-color: #FFD700;
-    box-shadow: 0 4px 12px rgba(255, 215, 0, 0.15);
-}
-
-.focus-tag.banking {
-    background-color: rgba(192, 192, 192, 0.15);
-    color: #C0C0C0;
-    border-color: #C0C0C0;
-    box-shadow: 0 4px 12px rgba(192, 192, 192, 0.3);
-}
-  
-.focus-icon {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.focus-text {
-    color: inherit;
-}
-
-
-
-/* Media Queries - Keep at the bottom for proper cascade */
+/* Media Queries */
 @media (max-width: 768px) {
     .container,
     .top-row {
@@ -951,24 +770,6 @@ blockquote.quote footer {
         padding: 15px;
     }
     
-    .wallet-content,
-    .quote-content {
-        padding: 15px 0;
-    }
-    
-    blockquote.quote {
-        font-size: 16px;
-        padding: 0 15px;
-    }
-    
-    .archive-buttons {
-        gap: 8px;
-    }
-    
-    .archive-btn {
-        padding: 8px 12px;
-    }
-    
     .collateral-strategy-container {
         flex-direction: column;
         gap: 20px;
@@ -984,7 +785,7 @@ blockquote.quote footer {
     }
     
     .focus-tags {
-        grid-template-columns: 1fr; /* 1 kolom untuk mobile */
+        grid-template-columns: 1fr; /* 1 column for mobile */
         gap: 10px;
     }
     
@@ -1039,10 +840,6 @@ blockquote.quote footer {
     }
     
     .summary-card {
-        padding: 15px;
-    }
-    
-    .wallet-info {
         padding: 15px;
     }
     

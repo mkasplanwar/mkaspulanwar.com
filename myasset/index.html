@@ -905,7 +905,7 @@ body {
                     <div class="usd-equivalent" id="usdEquivalent">$ 0</div>
                 </div>
                 
-                <div class="last-update">Last Update: <br> 11 April 2025, Pukul 17.00 Wita</div>
+                <div class="last-update">Last Update: <br></div>
                 
                 <div class="summary-card">
                     <div class="summary-title">Ringkasan Portfolio</div>
@@ -1122,6 +1122,14 @@ const BITCOIN_STRATEGY = {
     BTC_YIELD_RATE: 0.27
 };
 
+// Last update timestamp - change this manually when committing code changes
+const LAST_UPDATE = {
+    DATE: "12 April",
+    YEAR: "2025",
+    TIME: "14:30",
+    TIMEZONE: "Wita"
+};
+
 // Calculate LIQUIDATION_PRICE_USD automatically
 // Formula: LIQUIDATION_PRICE_USD = (USDC_BORROWED * 100) / (COLLATERAL_SATS / SATS_TO_BTC * LIQUIDATION_LTV / 100)
 const btcAmount = BITCOIN_STRATEGY.COLLATERAL_SATS / BTC_CONSTANTS.SATS_TO_BTC;
@@ -1155,8 +1163,8 @@ async function fetchBitcoinPrice() {
             // Update the dashboard with new prices
             initializeDashboard();
             
-            // Update last refresh time
-            updateLastUpdate();
+            // Update last refresh time - we're keeping the fixed timestamp now
+            displayLastUpdate();
             
             return true;
         } else {
@@ -1216,9 +1224,8 @@ const formattedSats = TOTAL_SATS.toLocaleString('id-ID', {
     maximumFractionDigits: 0
 });
 
-// Asset data with only liquid assets
+// Asset data including both liquid and non-liquid assets
 const assets = [
-    
     {
         name: "Bitcoin",
         icon: "/myasset/icon/bitcoin.png",
@@ -1254,6 +1261,19 @@ const assets = [
         type: "liquid",
         sector: "Tokenize Gold <br> 1 Troy = 31,1 Grams",
         company: "Paxos Gold By Paxos Trust Company LLC",
+    },
+    // New farmland asset added as a non-liquid asset
+    {
+        name: "Farmland",
+        icon: "/myasset/icon/earth.png",
+        balance: "1.445 m²",
+        invested: 20000000,
+        avgPrice: 1,
+        currentPrice: 1,
+        currency: "IDR",
+        type: "nonliquid",
+        sector: "Real Estate",
+        company: "Personal Property"
     },
     /*
     {
@@ -1425,10 +1445,13 @@ function populateAssetTable() {
 
 // Calculate and display portfolio summary
 function updatePortfolioSummary(calculatedAssets) {
-    // Only include liquid assets
+    // Only include liquid assets for total calculation
     const liquidAssets = calculatedAssets.filter(asset => asset.type === "liquid");
+    
+    // Get all non-liquid assets for separate tracking if needed
+    const nonLiquidAssets = calculatedAssets.filter(asset => asset.type === "nonliquid");
 
-    // Calculate totals
+    // Calculate totals for liquid assets only
     const totalLiquidInvested = liquidAssets.reduce((sum, asset) => sum + asset.invested, 0);
     const totalLiquidMarketValue = liquidAssets.reduce((sum, asset) => sum + asset.marketValue, 0);
 
@@ -1634,23 +1657,15 @@ function initializeBitcoinCollateralStrategy() {
     }
 }
 
-// Update last update timestamp
-function updateLastUpdate() {
-    const now = new Date();
-    const formattedDate = now.toLocaleDateString('id-ID', { 
-        day: '2-digit', 
-        month: 'long', 
-        year: 'numeric' 
-    });
-    const formattedTime = now.toLocaleTimeString('id-ID', { 
-        hour: '2-digit', 
-        minute: '2-digit'
-    });
+// Display the fixed last update timestamp
+function displayLastUpdate() {
+    // Use the fixed timestamp from LAST_UPDATE constant
+    const formattedLastUpdate = `${LAST_UPDATE.DATE} ${LAST_UPDATE.YEAR}, Pukul ${LAST_UPDATE.TIME} ${LAST_UPDATE.TIMEZONE}`;
     
     // Update the timestamp in the UI
     const lastUpdateElement = document.querySelector('.last-update');
     if (lastUpdateElement) {
-        lastUpdateElement.innerHTML = `Last Update: <br> ${formattedDate}, Pukul ${formattedTime} Wita`;
+        lastUpdateElement.innerHTML = `Last Update: <br> ${formattedLastUpdate}`;
     }
 }
 
@@ -1668,8 +1683,8 @@ function initializeDashboard() {
     // Initialize Bitcoin collateral strategy
     initializeBitcoinCollateralStrategy();
 
-    // Update last update timestamp
-    updateLastUpdate();
+    // Display the fixed last update time
+    displayLastUpdate();
 }
 
 // Set up the auto-refresh interval (1 minute = 60000 milliseconds)

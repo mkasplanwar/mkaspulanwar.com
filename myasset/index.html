@@ -198,7 +198,7 @@ body {
     white-space: nowrap;
 }
 
-/* Asset Icon Styles - Premium Glassmorphism + Embossed Effect */
+/* Ultra Premium Asset Icon Styles - Circular Glass with 3D Embossed Effect */
 .asset-icon {
     display: inline-flex;
     align-items: center;
@@ -211,38 +211,53 @@ body {
     position: relative;
     overflow: hidden;
     
-    /* Glassmorphism base */
-    background: rgba(255, 255, 255, 0.75);
-    backdrop-filter: blur(10px);
+    /* Enhanced circular glass effect */
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.2));
+    backdrop-filter: blur(15px);
     
-    /* Embossed effect */
+    /* Pronounced 3D circular effect */
     box-shadow: 
-        0 4px 10px rgba(0, 0, 0, 0.15),
-        0 1px 3px rgba(0, 0, 0, 0.2),
-        inset 0 1px 3px rgba(255, 255, 255, 0.9),
+        /* Outer glow */
+        0 10px 20px rgba(0, 0, 0, 0.15),
+        /* Main shadow */
+        0 6px 10px rgba(0, 0, 0, 0.12),
+        /* Thin outer rim highlight */
+        0 0 0 1px rgba(255, 255, 255, 0.7),
+        /* Inner highlight at top */
+        inset 0 2px 3px rgba(255, 255, 255, 0.8),
+        /* Inner shadow at bottom */
         inset 0 -2px 3px rgba(0, 0, 0, 0.1);
     
-    border: 1px solid rgba(255, 255, 255, 0.7);
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    /* Subtle circular border */
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    
+    transition: all 0.3s ease;
 }
 
 .asset-icon:hover {
-    transform: translateY(-2px) scale(1.05);
-    
-    /* Enhanced glassmorphism on hover */
-    background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(12px);
-    
-    /* Enhanced embossed effect on hover */
+    transform: translateY(-2px);
     box-shadow: 
-        0 8px 15px rgba(0, 0, 0, 0.1),
-        0 2px 5px rgba(0, 0, 0, 0.15),
-        inset 0 1px 3px rgba(255, 255, 255, 1),
-        inset 0 -2px 3px rgba(0, 0, 0, 0.05);
-    
-    border: 1px solid rgba(255, 255, 255, 0.9);
+        0 12px 24px rgba(0, 0, 0, 0.18),
+        0 8px 12px rgba(0, 0, 0, 0.15),
+        0 0 0 1px rgba(255, 255, 255, 0.8),
+        inset 0 2px 5px rgba(255, 255, 255, 0.9),
+        inset 0 -2px 5px rgba(0, 0, 0, 0.1);
 }
 
+/* Circular light reflection */
+.asset-icon::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.8), transparent 70%);
+    opacity: 0.6;
+    z-index: 1;
+}
+
+/* Shine effect */
 .asset-icon::after {
     content: "";
     position: absolute;
@@ -253,44 +268,152 @@ body {
     background: linear-gradient(
         135deg, 
         rgba(255, 255, 255, 0) 0%,
-        rgba(255, 255, 255, 0.5) 40%, 
+        rgba(255, 255, 255, 0.4) 40%, 
         rgba(255, 255, 255, 0.8) 50%, 
-        rgba(255, 255, 255, 0.5) 60%, 
+        rgba(255, 255, 255, 0.4) 60%, 
+        rgba(255, 255, 255, 0) 100%
+    );
+    transform: rotate(45deg);
+    opacity: 0.5;
+    z-index: 1;
+    animation: circular-shine 3s infinite ease-in-out;
+}
+
+.asset-icon img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    position: relative;
+    z-index: 2;
+    filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.1));
+}
+
+@keyframes circular-shine {
+    0% {
+        top: -150%;
+        opacity: 0;
+    }
+    25% {
+        opacity: 0.5;
+    }
+    50% {
+        opacity: 0.7;
+    }
+    75% {
+        opacity: 0.5;
+    }
+    100% {
+        top: 150%;
+        opacity: 0;
+    }
+}
+
+/* Ultra Premium Loan Metric Icon - Luxury Circular Glass */
+.loan-metric-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    margin-right: 15px;
+    position: relative;
+    overflow: hidden;
+    
+    /* Premium circular glass effect */
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.7), rgba(245, 245, 245, 0.3));
+    backdrop-filter: blur(18px);
+    
+    /* Enhanced 3D circular effect */
+    box-shadow: 
+        /* Outer glow */
+        0 12px 25px rgba(0, 0, 0, 0.18),
+        /* Main shadow */
+        0 8px 15px rgba(0, 0, 0, 0.12),
+        /* Outer rim highlight */
+        0 0 0 1px rgba(255, 255, 255, 0.85),
+        /* Inner highlight at top */
+        inset 0 3px 5px rgba(255, 255, 255, 0.9),
+        /* Inner shadow at bottom */
+        inset 0 -3px 5px rgba(0, 0, 0, 0.1);
+    
+    /* Refined circular border */
+    border: 1.5px solid rgba(255, 255, 255, 0.9);
+    
+    transition: all 0.3s ease;
+}
+
+.loan-metric-icon:hover {
+    transform: translateY(-3px);
+    box-shadow: 
+        0 15px 30px rgba(0, 0, 0, 0.2),
+        0 10px 20px rgba(0, 0, 0, 0.15),
+        0 0 0 1px rgba(255, 255, 255, 0.9),
+        inset 0 3px 6px rgba(255, 255, 255, 1),
+        inset 0 -3px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Circular premium light reflection */
+.loan-metric-icon::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.9), transparent 70%);
+    opacity: 0.7;
+    z-index: 1;
+}
+
+/* Premium shine effect */
+.loan-metric-icon::after {
+    content: "";
+    position: absolute;
+    top: -150%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        135deg, 
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.4) 40%, 
+        rgba(255, 255, 255, 0.9) 50%, 
+        rgba(255, 255, 255, 0.4) 60%, 
         rgba(255, 255, 255, 0) 100%
     );
     transform: rotate(45deg);
     opacity: 0.6;
-    transition: opacity 0.3s ease, top 0.5s ease;
-    pointer-events: none;
-}
-
-.asset-icon:hover::after {
-    top: -90%;
-    opacity: 0.8;
-    animation: shine 1.5s ease forwards;
-}
-
-.asset-icon img {
-    width: 28px; /* Slightly smaller for better balance */
-    height: 28px;
-    object-fit: contain;
-    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.08));
     z-index: 1;
-    transition: transform 0.2s ease;
+    animation: premium-circular-shine 4s infinite ease-in-out;
 }
 
-.asset-icon:hover img {
-    transform: scale(1.08);
+.loan-metric-icon img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    position: relative;
+    z-index: 2;
+    filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.15));
 }
 
-@keyframes shine {
+@keyframes premium-circular-shine {
     0% {
         top: -150%;
+        opacity: 0;
+    }
+    25% {
+        opacity: 0.6;
+    }
+    50% {
+        opacity: 0.8;
+    }
+    75% {
         opacity: 0.6;
     }
     100% {
         top: 150%;
-        opacity: 0.8;
+        opacity: 0;
     }
 }
 
@@ -508,101 +631,6 @@ body {
     background-color: #ffffff;
     border: 1px solid #000000;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-}
-
-/* Loan Metric Icon Styles - Premium Glassmorphism + Embossed Effect */
-.loan-metric-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    margin-right: 15px;
-    position: relative;
-    overflow: hidden;
-    
-    /* Glassmorphism base */
-    background: rgba(255, 255, 255, 0.75);
-    backdrop-filter: blur(10px);
-    
-    /* Embossed effect */
-    box-shadow: 
-        0 4px 10px rgba(0, 0, 0, 0.15),
-        0 1px 3px rgba(0, 0, 0, 0.2),
-        inset 0 1px 3px rgba(255, 255, 255, 0.9),
-        inset 0 -2px 3px rgba(0, 0, 0, 0.1);
-    
-    border: 1px solid rgba(255, 255, 255, 0.7);
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-}
-
-.loan-metric-icon:hover {
-    transform: translateY(-2px) scale(1.03);
-    
-    /* Enhanced glassmorphism on hover */
-    background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(12px);
-    
-    /* Enhanced embossed effect on hover */
-    box-shadow: 
-        0 8px 15px rgba(0, 0, 0, 0.1),
-        0 2px 5px rgba(0, 0, 0, 0.15),
-        inset 0 1px 3px rgba(255, 255, 255, 1),
-        inset 0 -2px 3px rgba(0, 0, 0, 0.05);
-    
-    border: 1px solid rgba(255, 255, 255, 0.9);
-}
-
-.loan-metric-icon::after {
-    content: "";
-    position: absolute;
-    top: -150%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(
-        135deg, 
-        rgba(255, 255, 255, 0) 0%,
-        rgba(255, 255, 255, 0.5) 40%, 
-        rgba(255, 255, 255, 0.8) 50%, 
-        rgba(255, 255, 255, 0.5) 60%, 
-        rgba(255, 255, 255, 0) 100%
-    );
-    transform: rotate(45deg);
-    opacity: 0.6;
-    transition: opacity 0.3s ease, top 0.5s ease;
-    pointer-events: none;
-}
-
-.loan-metric-icon:hover::after {
-    top: -90%;
-    opacity: 0.8;
-    animation: shine-loan 1.5s ease forwards;
-}
-
-.loan-metric-icon img {
-    width: 32px; /* Slightly smaller for better balance */
-    height: 32px;
-    object-fit: contain;
-    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.08));
-    z-index: 1;
-    transition: transform 0.2s ease;
-}
-
-.loan-metric-icon:hover img {
-    transform: scale(1.08);
-}
-
-@keyframes shine-loan {
-    0% {
-        top: -150%;
-        opacity: 0.6;
-    }
-    100% {
-        top: 150%;
-        opacity: 0.8;
-    }
 }
 
 .loan-metric-details {
@@ -844,13 +872,13 @@ body {
     }
     
     .asset-icon {
-        width: 38px; /* Slightly reduced for mobile */
-        height: 38px;
+        width: 42px; /* Slightly reduced for mobile */
+        height: 42px;
     }
     
     .asset-icon img {
-        width: 28px; /* Slightly reduced for mobile */
-        height: 28px;
+        width: 32px; /* Slightly reduced for mobile */
+        height: 32px;
     }
     
     body {
@@ -1253,7 +1281,7 @@ const assets = [
     {
         name: "PAXG",
         icon: "/myasset/icon/paxg.svg",
-        balance: "0 grams",
+        balance: "waitlist",
         invested: 	0,
         avgPrice:  1,
         currentPrice: 1,
@@ -1275,7 +1303,7 @@ const assets = [
         sector: "Real Estate",
         company: "Personal Property"
     },
-    /*
+    
     {
         name: "AAPL",
         icon: "/myasset/icon/apple.png",
@@ -1335,8 +1363,8 @@ const assets = [
         type: "liquid",
         sector: "Agrobisnis",
         company: "PT. Salim Ivomas Pratama Tbk",
-    },
-    */
+    }
+    
 ];
 
 // Calculate market value and return for each asset

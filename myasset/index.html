@@ -1071,6 +1071,166 @@ body {
                 </div>
             </div>
         </div>
+        <!-- Footer Section -->
+<div class="footer-card">
+    <div class="footer-content">
+        <div class="footer-reporting-info">
+            <h3 class="footer-title">Pernyataan Pelaporan</h3>
+            <p class="footer-text">Laporan ini disajikan setiap hari kerja, tidak termasuk hari libur nasional. Seluruh data yang dipresentasikan merupakan informasi faktual tanpa modifikasi, menjamin transparansi dan integritas data.</p>
+            <p class="footer-citation">Untuk mengutip atau menggunakan data dari laporan ini, mohon menghubungi penyusun melalui <a href="mailto:mkaspulanwar2002@gmail.com">mkaspulanwar2002@gmail.com</a> atau Instagram <a href="https://instagram.com/mkasplanwar" target="_blank">@mkasplanwar</a>.</p>
+        </div>
+        <div class="footer-divider"></div>
+        <div class="footer-signature">
+            <p class="footer-text">Disusun & Dilaporkan Oleh:</p>
+            <p class="footer-author">M. Kaspul Anwar</p>
+        </div>
+    </div>
+    <div class="footer-disclaimer">
+        <p>© 2025 | Dokumen Rahasia dan Terbatas</p>
+    </div>
+</div>
+
+<style>
+/* Footer Styles */
+.footer-card {
+    background-color: #ffffff;
+    border: 1px solid #000000;
+    border-radius: 12px;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 25px;
+}
+
+.footer-reporting-info {
+    flex: 2;
+}
+
+.footer-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #000000;
+    margin-bottom: 10px;
+    letter-spacing: 0.5px;
+}
+
+.footer-text {
+    font-size: 14px;
+    color: #555555;
+    line-height: 1.5;
+    margin-bottom: 5px;
+}
+
+.footer-citation {
+    font-size: 14px;
+    color: #555555;
+    line-height: 1.5;
+    margin-top: 12px;
+    padding-top: 8px;
+    border-top: 1px dashed #e0e0e0;
+}
+
+.footer-citation a {
+    color: #0066cc;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.footer-citation a:hover {
+    color: #004080;
+    text-decoration: underline;
+}
+
+.footer-divider {
+    width: 1px;
+    align-self: stretch;
+    background-color: #e0e0e0;
+    display: none;
+}
+
+.footer-signature {
+    flex: 1;
+    text-align: right;
+}
+
+.footer-author {
+    font-size: 16px;
+    font-weight: 600;
+    color: #000000;
+    margin-top: 5px;
+}
+
+.footer-disclaimer {
+    font-size: 12px;
+    color: #777777;
+    text-align: center;
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #e0e0e0;
+}
+
+/* Media Queries */
+@media (min-width: 768px) {
+    .footer-divider {
+        display: block;
+    }
+    
+    .footer-content {
+        flex-wrap: nowrap;
+    }
+}
+
+@media (max-width: 767px) {
+    .footer-card {
+        padding: 20px;
+    }
+    
+    .footer-content {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .footer-signature {
+        text-align: left;
+        width: 100%;
+    }
+    
+    .footer-reporting-info {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-card {
+        padding: a15px;
+    }
+    
+    .footer-title {
+        font-size: 16px;
+    }
+    
+    .footer-text, .footer-author, .footer-citation {
+        font-size: 13px;
+    }
+    
+    .footer-disclaimer {
+        font-size: 11px;
+        margin-top: 15px;
+        padding-top: 12px;
+    }
+}
+</style>
+</style>
     </div>
     
     <script>
@@ -1250,7 +1410,163 @@ const assets = [
         sector: "Fiat Rupiah",
         company: "Pendanaan Untuk Pembelian Asset",
     },
+    {
+        name: "Paxos Gold",
+        icon: "/myasset/icon/paxg.svg",
+        balance: "Waitlist",
+        invested: 	0,
+        avgPrice:  1,
+        currentPrice: 1,
+        currency: "IDR",
+        type: "liquid",
+        sector: "Tokenize Gold <br> 1 Troy = 31,1 Grams",
+        company: "Paxos Gold By Paxos Trust Company LLC",
+    },
     
+    {
+        name: "NDX: AAPL",
+        icon: "/myasset/icon/apple.png",
+        balance: "Waitlist",
+        invested: 0, 
+        avgPrice: 1, 
+        currentPrice: 1, 
+        currency: "USD",
+        type: "liquid",
+        sector: "Technology",
+        company: "Apple Inc."
+    },
+    {
+        name: "NDX: AMD",
+        icon: "/myasset/icon/amd.png",
+        balance: "Waitlist",
+        invested: 0, 
+        avgPrice: 1, 
+        currentPrice: 1, 
+        currency: "USD",
+        type: "liquid",
+        sector: "Technology <br> Semiconductor <br> Data Center",
+        company: "Advanced Micro Devices Inc."
+    },
+    {
+        name: "NDX: GOOGL",
+        icon: "/myasset/icon/google.png",
+        balance: "Waitlist",
+        invested: 0, 
+        avgPrice: 1, 
+        currentPrice: 1, 
+        currency: "USD",
+        type: "liquid",
+        sector: "Technology",
+        company: "Alphabet Inc Class A"
+    },
+    {
+        name: "NDX: SHEL",
+        icon: "/myasset/icon/shell.png",
+        balance: "Waitlist",
+        invested: 0, 
+        avgPrice: 1, 
+        currentPrice: 1, 
+        currency: "USD",
+        type: "liquid",
+        sector: "Oil & Gas",
+        company: "Shell PLC"
+    },
+    {
+        name: "Ethereum",
+        icon: "/myasset/icon/eth2.png",
+        balance: "Waitlist",
+        invested: 0,
+        avgPrice: 1,
+        currentPrice: 1,
+        currency: "IDR",
+        type: "liquid",
+        sector: "Smart Contracts Platform",
+        company: "Decentralized Network"
+    },
+    {
+        name: "IDX: BBCA",
+        icon: "/myasset/icon/bbca.png",
+        balance: "Waitlist",
+        invested: 0,
+        avgPrice: 1,
+        currentPrice: 1,
+        currency: "IDR",
+        type: "liquid",
+        sector: "Banking",
+        company: "PT. Bank Central Asia. Tbk",
+    },
+    {
+        name: "IDX: ELSA",
+        icon: "/myasset/icon/elsa.png",
+        balance: "Waitlist",
+        invested: 0,
+        avgPrice: 1,
+        currentPrice: 1,
+        currency: "IDR",
+        type: "liquid",
+        sector: "Minyak, Gas & Batubara",
+        company: "PT. Elnusa Tbk",
+    },
+    {
+        name: "IDX: SIMP",
+        icon: "/myasset/icon/simp.png",
+        balance: "Waitlist",
+        invested: 0,
+        avgPrice: 1,
+        currentPrice: 1,
+        currency: "IDR",
+        type: "liquid",
+        sector: "Agrobisnis",
+        company: "PT. Salim Ivomas Pratama Tbk",
+    },
+    {
+        name: "IDX: NISP",
+        icon: "/myasset/icon/nisp.png",
+        balance: "Waitlist",
+        invested: 0,
+        avgPrice: 1,
+        currentPrice: 1,
+        currency: "IDR",
+        type: "liquid",
+        sector: "Bank",
+        company: "PT. Bank OCBC NISP Tbk",
+    },
+    {
+        name: "IDX: ADRO",
+        icon: "/myasset/icon/adro.png",
+        balance: "Waitlist",
+        invested: 0,
+        avgPrice: 1,
+        currentPrice: 1,
+        currency: "IDR",
+        type: "liquid",
+        sector: "Renewable Energy <br> Minyak, Gas & Batubara",
+        company: "PT. Alamtri Resource Indonesia Tbk",
+    },
+    {
+        name: "IDX: BBRI",
+        icon: "/myasset/icon/bbri.png",
+        balance: "Waitlist",
+        invested: 0,
+        avgPrice: 1,
+        currentPrice: 1,
+        currency: "IDR",
+        type: "liquid",
+        sector: "Bank",
+        company: "PT. Bank Rakyat Indonesia (Persero) Tbk",
+    },
+    {
+        name: "IDX: GJTL",
+        icon: "/myasset/icon/gjtl.png",
+        balance: "Waitlist",
+        invested: 0,
+        avgPrice: 1,
+        currentPrice: 1,
+        currency: "IDR",
+        type: "liquid",
+        sector: "Barang Baku <br> Komponen Otomotif",
+        company: "PT. Gajah Tunggal Tbk",
+    }
 ];
 
 // Calculate market value and return for each asset
@@ -1617,43 +1933,6 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Set up automatic price updates every minute
     setupAutoRefresh();
-});
-// Simple, effective copy/screenshot protection
-document.addEventListener('DOMContentLoaded', () => {
-    // 1. Basic copy prevention 
-    document.body.addEventListener('copy', (e) => {
-        e.preventDefault();
-        return false;
-    });
-    
-    // 2. Disable right-click
-    document.addEventListener('contextmenu', (e) => {
-        e.preventDefault();
-        return false;
-    });
-    
-    // 3. Disable keyboard shortcuts
-    document.addEventListener('keydown', (e) => {
-        if ((e.ctrlKey || e.metaKey) && 
-            (e.key === 'c' || e.key === 'x' || e.key === 's' || 
-             e.key === 'C' || e.key === 'X' || e.key === 'S' || 
-             e.key === 'p' || e.key === 'P')) {
-            e.preventDefault();
-            return false;
-        }
-    });
-    
-    // 4. Prevent text selection
-    const style = document.createElement('style');
-    style.textContent = `
-        * {
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-        }
-    `;
-    document.head.appendChild(style);
 });
     </script>
 </body>

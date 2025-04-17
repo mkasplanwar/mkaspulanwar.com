@@ -485,20 +485,6 @@ body {
     justify-content: center;
 }
 
-.focus-tag.technology {
-    background-color: rgba(0, 191, 255, 0.1);
-    color: #007399;
-    border-color: #000000;
-    box-shadow: 0 2px 6px rgba(0, 191, 255, 0.1);
-}
-
-.focus-tag.renewable-energy {
-    background-color: rgba(0, 255, 127, 0.1);
-    color: #009959;
-    border-color: #000000;
-    box-shadow: 0 2px 6px rgba(0, 255, 127, 0.1);
-}
-
 .focus-icon {
     display: inline-flex;
     justify-content: center;
@@ -938,17 +924,18 @@ body {
                 <div class="summary-card">
                     <div class="summary-title">Key Investment Sectors</div>
                     <div class="focus-tags">
-                      <!-- <div class="focus-tag digital-asset">
-                        <span class="focus-icon"><i class="fa-solid fa-bitcoin-sign"></i></span>
-                        <span class="focus-text">Digital Asset</span>
-                      </div> -->
-                    <div class="focus-tag technology">
-                        <span class="focus-icon"><i class="fa-solid fa-microchip" ></i></span>
-                        <span class="focus-text">Technology</span>
-                      </div>
                       <div class="focus-tag renewable-energy">
                         <span class="focus-icon"><i class="fa-solid fa-leaf"></i></span>
                         <span class="focus-text">Renewable Energy</span>
+                      </div>
+                    <div class="focus-tag technology">
+                        <span class="focus-icon"><i class="fa-solid fa-microchip" ></i></span>
+                        <span class="focus-text">Digital & Technology</span>
+                      </div>
+                      
+                      <div class="focus-tag renewable-energy">
+                        <span class="focus-icon"><i class="fa-solid fa-seedling"></i></span>
+                        <span class="focus-text">Agribisnis</span>
                       </div>
                     </div>
                   </div>
@@ -1007,12 +994,12 @@ body {
                             </div>
                             <div class="loan-metric-item">
                                 <div class="loan-metric-icon">
-                                    <img src="/myasset/icon/usdt.png" alt="USDC">
+                                    <img src="/myasset/icon/usdt.png" alt="USDT">
                                 </div>
                                 <div class="loan-metric-details">
                                     <div class="loan-metric-label">Tether USD</div>
-                                    <div class="loan-metric-value" id="usdcBorrowed">0 USDT</div>
-                                    <div class="loan-metric-secondary" id="usdcValueIDR">Rp. 0</div>
+                                    <div class="loan-metric-value" id="usdtBorrowed">0 USDT</div>
+                                    <div class="loan-metric-secondary" id="usdtValueIDR">Rp. 0</div>
                                 </div>
                             </div>
                         </div>
@@ -1021,7 +1008,7 @@ body {
                     <!-- Interest and LTV Details -->
                     <div class="loan-details">
                         <div class="loan-detail-row">
-                            <div class="loan-detail-label">USDC Interest Rate</div>
+                            <div class="loan-detail-label">USDT Interest Rate</div>
                             <div class="loan-detail-value negative" id="interestRate">0</div>
                         </div>
                         <div class="loan-detail-row">
@@ -1033,8 +1020,8 @@ body {
                             <div class="loan-detail-value negative" id="liquidationPrice">$0</div>
                         </div>
                         <div class="loan-detail-row">
-                            <div class="loan-detail-label">USDC Liquidation Price</div>
-                            <div class="loan-detail-value negative" id="usdcliquidationPrice">Rp0</div>
+                            <div class="loan-detail-label">USDT Liquidation Price</div>
+                            <div class="loan-detail-value negative" id="usdtliquidationPrice">Rp0</div>
                         </div>
                     </div>
                 </div>
@@ -1237,7 +1224,7 @@ body {
         // Constants for global use
 const EXCHANGE_RATES = {
     USD_TO_IDR: 16800,
-    USDC_TO_IDR: 16800
+    USDT_TO_IDR: 16800
 };
 
 // Modified BTC_CONSTANTS to handle dynamic pricing
@@ -1251,7 +1238,7 @@ const BTC_CONSTANTS = {
 const BITCOIN_STRATEGY = {
     FREE_SATS: 0,
     COLLATERAL_SATS: 81823,         
-    USDC_BORROWED: 37.88,              
+    USDT_BORROWED: 37.88,              
     LIQUIDATION_LTV: 91,            
     INTEREST_RATE: 5.57,             
     BTC_YIELD_RATE: 0.27
@@ -1266,9 +1253,9 @@ const LAST_UPDATE = {
 };
 
 // Calculate LIQUIDATION_PRICE_USD automatically
-// Formula: LIQUIDATION_PRICE_USD = (USDC_BORROWED * 100) / (COLLATERAL_SATS / SATS_TO_BTC * LIQUIDATION_LTV / 100)
+// Formula: LIQUIDATION_PRICE_USD = (USDT_BORROWED * 100) / (COLLATERAL_SATS / SATS_TO_BTC * LIQUIDATION_LTV / 100)
 const btcAmount = BITCOIN_STRATEGY.COLLATERAL_SATS / BTC_CONSTANTS.SATS_TO_BTC;
-const loanValue = BITCOIN_STRATEGY.USDC_BORROWED;
+const loanValue = BITCOIN_STRATEGY.USDT_BORROWED;
 const maxLoanToValueRatio = BITCOIN_STRATEGY.LIQUIDATION_LTV / 100;
 BITCOIN_STRATEGY.LIQUIDATION_PRICE_USD = parseFloat((loanValue / (btcAmount * maxLoanToValueRatio)).toFixed(2));
 
@@ -1290,7 +1277,7 @@ async function fetchBitcoinPrice() {
             if (data.bitcoin.usd) {
                 const usdToIdrRate = data.bitcoin.idr / data.bitcoin.usd;
                 EXCHANGE_RATES.USD_TO_IDR = usdToIdrRate;
-                EXCHANGE_RATES.USDC_TO_IDR = usdToIdrRate; // Assuming 1 USDC = 1 USD
+                EXCHANGE_RATES.USDT_TO_IDR = usdToIdrRate; // Assuming 1 USDT = 1 USD
             }
             
             console.log(`Bitcoin price updated: ${BTC_CONSTANTS.PRICE_IDR} IDR`);
@@ -1388,11 +1375,11 @@ const assets = [
     },
     {
         name: "IDX: PGEO",
-        icon: "/myasset/icon/pertamina.png",
+        icon: "/myasset/icon/pgeo.png",
         balance: "1.000 shares",
-        invested: 	1160000,
-        avgPrice:  1160,
-        currentPrice: 830,
+        invested: 	768913,
+        avgPrice:  768.91,
+        currentPrice: 840,
         currency: "IDR",
         type: "liquid",
         sector: "Geothermal Energy <br> Renewable Energy",
@@ -1404,7 +1391,7 @@ const assets = [
         balance: "800 shares",
         invested: 308462,
         avgPrice: 385.58,
-        currentPrice: 388,
+        currentPrice: 386,
         currency: "IDR",
         type: "liquid",
         sector: "Agrobisnis",
@@ -1721,7 +1708,7 @@ function updatePortfolioSummary(calculatedAssets) {
     const totalPnL = totalMarketValue - totalInvested;
     const totalPercentage = (totalPnL / totalInvested) * 100;
     
-    const debtAmount = BITCOIN_STRATEGY.USDC_BORROWED * EXCHANGE_RATES.USDC_TO_IDR;
+    const debtAmount = BITCOIN_STRATEGY.USDT_BORROWED * EXCHANGE_RATES.USDT_TO_IDR;
     
     // Calculate DER (Debt to Equity Ratio)
     const der = debtAmount / (totalLiquidMarketValue - debtAmount) || 0;
@@ -1860,30 +1847,30 @@ function createDonutChart(calculatedAssets) {
 // Initialize Bitcoin Collateral Strategy
 function initializeBitcoinCollateralStrategy() {
     // Get values from constants
-    const { COLLATERAL_SATS, USDC_BORROWED, LIQUIDATION_LTV, INTEREST_RATE, 
+    const { COLLATERAL_SATS, USDT_BORROWED, LIQUIDATION_LTV, INTEREST_RATE, 
             BTC_YIELD_RATE, LIQUIDATION_PRICE_USD } = BITCOIN_STRATEGY;
     
     // Calculations
     const btcCollateralBtc = COLLATERAL_SATS / BTC_CONSTANTS.SATS_TO_BTC;
     const btcValueIdr = btcCollateralBtc * BTC_CONSTANTS.PRICE_IDR;
-    const usdcValueIdr = USDC_BORROWED * EXCHANGE_RATES.USDC_TO_IDR;
+    const usdtValueIdr = USDT_BORROWED * EXCHANGE_RATES.USDT_TO_IDR;
     
     // Calculate current LTV
-    const currentLTV = (usdcValueIdr / btcValueIdr) * 100;
+    const currentLTV = (usdtValueIdr / btcValueIdr) * 100;
     
-    const usdcliquidationPrice = EXCHANGE_RATES.USDC_TO_IDR * (LIQUIDATION_LTV / currentLTV);
+    const usdtliquidationPrice = EXCHANGE_RATES.USDT_TO_IDR * (LIQUIDATION_LTV / currentLTV);
 
     // Update DOM elements
     document.getElementById('btcCollateral').textContent = `${COLLATERAL_SATS.toLocaleString()} sats`;
     document.getElementById('btcValueIDR').textContent = `Rp. ${btcValueIdr.toLocaleString('id-ID', {maximumFractionDigits: 0})}`;
     
-    document.getElementById('usdcBorrowed').textContent = `${USDC_BORROWED.toFixed(2)} USDC`;
-    document.getElementById('usdcValueIDR').textContent = `Rp. ${usdcValueIdr.toLocaleString('id-ID', {maximumFractionDigits: 0})}`;
+    document.getElementById('usdtBorrowed').textContent = `${USDT_BORROWED.toFixed(2)} USDT`;
+    document.getElementById('usdtValueIDR').textContent = `Rp. ${usdtValueIdr.toLocaleString('id-ID', {maximumFractionDigits: 0})}`;
     
     document.getElementById('interestRate').textContent = `${INTEREST_RATE.toFixed(2)}%`;
     document.getElementById('btcYieldRate').textContent = `${BTC_YIELD_RATE.toFixed(2)}%`;
     document.getElementById('liquidationPrice').textContent = `$ ${LIQUIDATION_PRICE_USD.toLocaleString('en-US', {maximumFractionDigits: 2})}`;
-    document.getElementById('usdcliquidationPrice').textContent = `Rp. ${usdcliquidationPrice.toLocaleString('id-ID', {maximumFractionDigits: 2})}`;
+    document.getElementById('usdtliquidationPrice').textContent = `Rp. ${usdtliquidationPrice.toLocaleString('id-ID', {maximumFractionDigits: 2})}`;
 
     // Update LTV indicators
     document.getElementById('currentLTV').textContent = `${currentLTV.toFixed(2)}%`;

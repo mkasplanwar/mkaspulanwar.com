@@ -26,7 +26,7 @@
     <link rel="manifest" href="../src/favicon/site.webmanifest">
     
     <style>
-                /* Base/Reset Styles */
+    /* Base/Reset Styles */
 * {
     margin: 0;
     padding: 0;
@@ -35,12 +35,12 @@
 
 /* Body and Container Styles */
 body {
-    background: #0a0a0a;
-    color: #ffffff;
+    background: #f5f5f5;
+    color: #000000;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 15px;
+    padding: 20px;
     min-height: 100vh;
     margin: 0;
     font-family: 'Montserrat', sans-serif;
@@ -51,40 +51,40 @@ body {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-    gap: 10px; /* Reduced from 20px */
+    gap: 12px; /* Reduced from 20px */
     justify-content: center;
     position: relative;
-    margin-top: 8px; /* Reduced from 10px */
+    margin-top: 10px;
 }
 
 /* Layout Elements */
 .top-row {
     display: flex;
-    gap: 10px; /* Reduced from 20px */
+    gap: 12px; /* Reduced from 20px */
     width: 100%;
 }
 
 .divider {
     height: 1px;
-    background-color: #333333;
-    margin: 12px 0; /* Reduced from 15px 0 */
+    background-color: #e0e0e0;
+    margin: 12px 0; /* Reduced from 15px */
     width: 100%;
 }
 
 /* Card Styles */
 .card {
-    background-color: #141414;
-    border: 1px solid #ffffff;
+    background-color: #ffffff;
+    border: 1px solid #000000;
     border-radius: 12px;
-    padding: 20px; /* Reduced from 25px */
+    padding: 25px;
     display: flex;
     flex-direction: column;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    margin-bottom: 10px; /* Reduced from 20px */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-bottom: 12px; /* Reduced from 20px */
 }
 
 .top-card {
-    width: calc(50% - 5px); /* Adjusted for smaller gap */
+    width: calc(50% - 6px); /* Adjusted for smaller gap */
 }
 
 .full-width-card {
@@ -94,33 +94,33 @@ body {
 /* Header Styles */
 .header-section {
     text-align: center;
-    margin-bottom: 10px; /* Reduced from 20px */
+    margin-bottom: 12px; /* Reduced from 20px */
     width: 100%;
-    border: 1px solid #ffffff;
+    border: 1px solid #000000;
     border-radius: 12px;
-    padding: 15px; /* Reduced from 20px */
-    background-color: #141414;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .author-name {
     font-size: 22px;
     font-weight: 700;
-    margin-bottom: 6px; /* Reduced from 8px */
+    margin-bottom: 8px;
     letter-spacing: 0.5px;
-    color: #ffffff;
+    color: #000000;
 }
 
 .dashboard-title {
     font-size: 16px;
-    color: #bbbbbb;
+    color: #555555;
     letter-spacing: 1px;
 }
 
 .last-update {
     font-size: 14px;
-    color: #bbbbbb;
-    margin-top: 15px; /* Reduced from 20px */
+    color: #555555;
+    margin-top: 20px;
     text-align: center;
 }
 
@@ -128,19 +128,19 @@ body {
     display: flex;
     align-items: center;
     position: relative;
-    margin-bottom: 15px; /* Reduced from 20px */
-    gap: 10px; /* Reduced from 15px */
+    margin-bottom: 18px; /* Slightly reduced */
+    gap: 15px;
 }
 
 .card-header i {
     font-size: 24px;
-    color: #ffffff;
+    color: #000000;
 }
 
 .card-header .title {
     font-size: 20px;
     font-weight: 600;
-    color: #ffffff;
+    color: #000000;
     letter-spacing: 0.5px;
 }
 
@@ -150,29 +150,29 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 20px 0; /* Reduced from 30px 0 */
+    margin: 25px 0; /* Slightly reduced */
 }
 
 .total-assets {
     font-size: 44px;
     font-weight: bold;
-    color: #ffffff;
+    color: #000000;
     text-align: center;
     line-height: 1.2;
 }
 
 .usd-equivalent {
     font-size: 18px;
-    color: #bbbbbb;
+    color: #555555;
     text-align: center;
-    margin-top: 4px; /* Reduced from 5px */
+    margin-top: 5px;
 }
 
 /* Table Styles */
 .table-container {
     width: 100%;
     overflow-x: auto;
-    margin-top: 8px; /* Reduced from 10px */
+    margin-top: 10px;
 }
 
 .distribution-table {
@@ -183,30 +183,30 @@ body {
 
 .distribution-table th {
     text-align: left;
-    padding: 10px 8px; /* Reduced from 12px 10px */
-    border-bottom: 1px solid #ffffff;
-    color: #ffffff;
+    padding: 12px 10px;
+    border-bottom: 1px solid #000000;
+    color: #000000;
     font-weight: 600;
     white-space: nowrap;
 }
 
 .distribution-table td {
-    padding: 14px 8px; /* Reduced from 16px 10px */
-    color: #ffffff;
-    border-bottom: 1px solid #333333;
+    padding: 16px 10px;
+    color: #000000;
+    border-bottom: 1px solid #e0e0e0;
     vertical-align: middle;
     white-space: nowrap;
 }
 
-/* Asset Icon Styles */
-.asset-icon {
+ /* Asset Icon Styles */
+ .asset-icon {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 40px; /* Reduced from 42px */
-    height: 40px; /* Reduced from 42px */
+    width: 42px;
+    height: 42px;
     border-radius: 50%;
-    margin-right: 12px; /* Reduced from 15px */
+    margin-right: 15px;
     vertical-align: middle;
     position: relative;
     overflow: hidden;
@@ -259,8 +259,8 @@ body {
 }
 
 .asset-icon img {
-    width: 30px; /* Reduced from 32px */
-    height: 30px; /* Reduced from 32px */
+    width: 32px;
+    height: 32px;
     object-fit: contain;
     filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.3));
     z-index: 1;
@@ -281,213 +281,15 @@ body {
         opacity: 0.3;
     }
 }
-
-.asset-name {
-    display: inline-block;
-    vertical-align: middle;
-    font-weight: 500;
-    color: #ffffff;
-}
-
-/* Summary Styles */
-.summary-card {
-    margin-top: 20px; /* Reduced from 30px */
-    padding: 15px; /* Reduced from 20px */
-    background: #1a1a1a;
-    border: 1px solid #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-}
-
-.summary-title {
-    font-size: 16px;
-    font-weight: 600;
-    margin-bottom: 12px; /* Reduced from 15px */
-    color: #ffffff;
-}
-
-.summary-stats {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px; /* Reduced from 20px */
-}
-
-.stat-item {
-    display: flex;
-    flex-direction: column;
-    gap: 4px; /* Reduced from 5px */
-}
-
-.stat-label {
-    font-size: 12px;
-    color: #bbbbbb;
-}
-
-.stat-value {
-    font-size: 16px;
-    font-weight: 600;
-    color: #ffffff;
-}
-
-/* Status Colors */
-.positive {
-    color: #4ade80 !important;
-}
-
-.negative {
-    color: #ef4444 !important;
-}
-
-/* Chart Styles */
-.chart-container {
-    width: 100%;
-    height: 200px; /* Reduced from 220px */
-    display: flex;
-    justify-content: center;
-    position: relative;
-    margin: 0 auto;
-    max-width: 300px;
-}
-
-.donut-legend {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 12px; /* Reduced from 15px */
-    margin-top: 15px; /* Reduced from 20px */
-}
-
-.legend-item {
-    display: flex;
-    align-items: center;
-    gap: 4px; /* Reduced from 5px */
-}
-
-.legend-color {
-    width: 12px;
-    height: 12px;
-    border-radius: 2px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-.legend-text {
-    font-size: 12px;
-    color: #dddddd;
-}
-
-/* Focus Tags Styles */
-.focus-tags {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px; /* Reduced from 12px */
-    margin-top: 12px; /* Reduced from 15px */
-    width: 100%;
-}
-
-.focus-tag {
-    display: flex;
-    align-items: center;
-    gap: 6px; /* Reduced from 8px */
-    padding: 7px 10px; /* Reduced from 8px 12px */
-    background-color: #2a2a2a;
-    border: 1px solid #ffffff;
-    border-radius: 20px;
-    font-size: 14px;
-    font-weight: 500;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    justify-content: center;
-}
-
-
-
-.focus-icon {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.focus-text {
-    color: inherit;
-}
-
-/* Status Indicators */
-.status-indicator {
-    display: inline-block;
-    padding: 2px 6px;
-    border-radius: 4px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    margin-left: 4px;
-    color: white;
-}
-
-.status-healthy {
-    background-color: #4ade80;
-}
-
-.status-warning {
-    background-color: #fbbf24;
-    color: #000;
-}
-
-.status-danger {
-    background-color: #ef4444;
-}
-
-.status-indicator-large {
-    display: inline-block;
-    padding: 6px 14px; /* Reduced from 8px 16px */
-    border-radius: 4px;
-    font-size: 14px;
-    font-weight: 600;
-    background-color: #4ade80;
-    color: white;
-}
-
-/* Bitcoin Collateral Strategy Styles */
-.collateral-strategy-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px; /* Reduced from 30px */
-    margin-top: 15px; /* Reduced from 20px */
-}
-
-.collateral-info-container {
-    flex: 1;
-    min-width: 300px;
-}
-
-.loan-summary {
-    margin-bottom: 20px; /* Reduced from 25px */
-}
-
-.loan-metrics {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px; /* Reduced from 20px */
-}
-
-.loan-metric-item {
-    flex: 1;
-    min-width: 200px;
-    display: flex;
-    align-items: center;
-    padding: 12px; /* Reduced from 15px */
-    border-radius: 8px;
-    background-color: #1a1a1a;
-    border: 1px solid #ffffff;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-}
-
 /* Loan Metric Icon Styles */
 .loan-metric-icon {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 45px; /* Reduced from 48px */
-    height: 45px; /* Reduced from 48px */
+    width: 48px;
+    height: 48px;
     border-radius: 50%;
-    margin-right: 12px; /* Reduced from 15px */
+    margin-right: 15px;
     position: relative;
     overflow: hidden;
     background: rgba(255, 255, 255, 0.15);
@@ -539,8 +341,8 @@ body {
 }
 
 .loan-metric-icon img {
-    width: 34px; /* Reduced from 36px */
-    height: 34px; /* Reduced from 36px */
+    width: 36px;
+    height: 36px;
     object-fit: contain;
     filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.3));
     z-index: 1;
@@ -562,41 +364,243 @@ body {
     }
 }
 
+.asset-name {
+    display: inline-block;
+    vertical-align: middle;
+    font-weight: 500;
+    color: #000000;
+}
+
+/* Summary Styles */
+.summary-card {
+    margin-top: 25px; /* Slightly reduced */
+    padding: 20px;
+    background: #ffffff;
+    border: 1px solid #000000;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.summary-title {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #000000;
+}
+
+.summary-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.stat-label {
+    font-size: 12px;
+    color: #555555;
+}
+
+.stat-value {
+    font-size: 16px;
+    font-weight: 600;
+    color: #000000;
+}
+
+/* Status Colors */
+.positive {
+    color: #22c55e !important;
+}
+
+.negative {
+    color: #ef4444 !important;
+}
+
+/* Chart Styles */
+.chart-container {
+    width: 100%;
+    height: 220px;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    margin: 0 auto;
+    max-width: 300px;
+    /* Border removed per request */
+    border-radius: 50%;
+    padding: 5px;
+    background: #ffffff;
+}
+
+.donut-legend {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.legend-color {
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
+    border: 1px solid #000000;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.legend-text {
+    font-size: 12px;
+    color: #333333;
+}
+
+/* Focus Tags Styles */
+.focus-tags {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px; /* Reduced from 12px */
+    margin-top: 15px;
+    width: 100%;
+}
+
+.focus-tag {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    background-color: #f5f5f5;
+    border: 1px solid #000000;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    justify-content: center;
+}
+
+.focus-icon {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.focus-text {
+    color: inherit;
+}
+
+/* Status Indicators */
+.status-indicator {
+    display: inline-block;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-left: 4px;
+    color: white;
+    border: 1px solid #000000;
+}
+
+.status-healthy {
+    background-color: #22c55e;
+}
+
+.status-warning {
+    background-color: #fbbf24;
+    color: #000;
+}
+
+.status-danger {
+    background-color: #ef4444;
+}
+
+.status-indicator-large {
+    display: inline-block;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 600;
+    background-color: #22c55e;
+    color: white;
+    border: 1px solid #000000;
+}
+
+/* Bitcoin Collateral Strategy Styles */
+.collateral-strategy-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Reduced from 30px */
+    margin-top: 20px;
+}
+
+.collateral-info-container {
+    flex: 1;
+    min-width: 300px;
+}
+
+.loan-summary {
+    margin-bottom: 20px; /* Reduced from 25px */
+}
+
+.loan-metrics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px; /* Reduced from 20px */
+}
+
+.loan-metric-item {
+    flex: 1;
+    min-width: 200px;
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #ffffff;
+    border: 1px solid #000000;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
 .loan-metric-details {
     flex: 1;
 }
 
 .loan-metric-label {
     font-size: 14px;
-    color: #bbbbbb;
-    margin-bottom: 3px; /* Reduced from 4px */
+    color: #555555;
+    margin-bottom: 4px;
 }
 
 .loan-metric-value {
     font-size: 18px;
     font-weight: 600;
-    color: #ffffff;
+    color: #000000;
 }
 
 .loan-metric-secondary {
     font-size: 14px;
-    color: #bbbbbb;
+    color: #555555;
     margin-top: 2px;
 }
 
 .loan-details {
-    background-color: #1a1a1a;
-    border: 1px solid #ffffff;
+    background-color: #ffffff;
+    border: 1px solid #000000;
     border-radius: 8px;
-    padding: 12px; /* Reduced from 15px */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    padding: 15px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 .loan-detail-row {
     display: flex;
     justify-content: space-between;
-    padding: 8px 0; /* Reduced from 10px 0 */
-    border-bottom: 1px solid #333333;
+    padding: 10px 0;
+    border-bottom: 1px solid #e0e0e0;
 }
 
 .loan-detail-row:last-child {
@@ -605,30 +609,30 @@ body {
 
 .loan-detail-label {
     font-size: 14px;
-    color: #bbbbbb;
+    color: #555555;
 }
 
 .loan-detail-value {
     font-size: 14px;
     font-weight: 600;
-    color: #ffffff;
+    color: #000000;
 }
 
 /* LTV Chart Styles */
 .ltv-chart-container {
     flex: 1;
     min-width: 300px;
-    padding: 18px; /* Reduced from 20px */
-    background-color: #1a1a1a;
-    border: 1px solid #ffffff;
+    padding: 20px;
+    background-color: #ffffff;
+    border: 1px solid #000000;
     border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 .ltv-chart-header {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 12px; /* Reduced from 15px */
+    margin-bottom: 15px;
     width: 100%;
 }
 
@@ -646,25 +650,25 @@ body {
 
 .ltv-label {
     font-size: 14px;
-    color: #bbbbbb;
-    margin-bottom: 4px; /* Reduced from 5px */
+    color: #555555;
+    margin-bottom: 5px;
 }
 
 .ltv-value {
     font-size: 18px;
     font-weight: 600;
-    color: #ffffff;
+    color: #000000;
 }
 
 .ltv-bar-container {
-    margin: 20px 0; /* Reduced from 25px 0 */
+    margin: 25px 0;
 }
 
 .ltv-bar-wrapper {
     position: relative;
     height: 24px;
     width: 100%;
-    margin-bottom: 12px; /* Reduced from 15px */
+    margin-bottom: 15px;
 }
 
 .ltv-bar-background {
@@ -673,9 +677,9 @@ body {
     left: 0;
     height: 100%;
     width: 100%;
-    background-color: #333333;
+    background-color: #f0f0f0;
     border-radius: 12px;
-    border: 1px solid #ffffff;
+    border: 1px solid #000000;
 }
 
 .ltv-bar-progress {
@@ -684,10 +688,10 @@ body {
     left: 0;
     height: 100%;
     width: 0%; /* Will be set by JS */
-    background-color: #4ade80;
+    background-color: #22c55e;
     border-radius: 12px 0 0 12px;
     transition: width 0.5s ease-in-out;
-    border: 1px solid #ffffff;
+    border: 1px solid #000000;
 }
 
 .ltv-danger-zone {
@@ -698,7 +702,7 @@ body {
     width: 9%; /* 100% - liquidation LTV */
     background-color: rgba(239, 68, 68);
     border-radius: 0 12px 12px 0;
-    border: 1px solid #ffffff;
+    border: 1px solid #000000;
 }
 
 .ltv-markers {
@@ -711,13 +715,13 @@ body {
 .ltv-marker {
     position: absolute;
     font-size: 12px;
-    color: #bbbbbb;
+    color: #555555;
     transform: translateX(-50%);
 }
 
 .ltv-status {
     text-align: center;
-    margin-top: 18px; /* Reduced from 20px */
+    margin-top: 20px;
 }
 
 /* Media Queries */
@@ -732,7 +736,7 @@ body {
     }
 
     .total-assets {
-        font-size: 36px; /* Reduced from 38px */
+        font-size: 38px;
     }
     
     .usd-equivalent {
@@ -740,45 +744,45 @@ body {
     }
     
     .container {
-        gap: 10px; /* Reduced from 15px */
+        gap: 10px; /* Further reduced for mobile */
         padding: 0 5px;
     }
     
     .card {
-        margin-bottom: 10px; /* Reduced from 15px */
-        padding: 15px; /* Reduced from 20px */
+        margin-bottom: 10px; /* Further reduced for mobile */
+        padding: 20px;
     }
     
     .header-section {
-        margin-bottom: 10px; /* Reduced from 15px */
-        padding: 15px; /* Reduced from 20px */
+        margin-bottom: 10px; /* Further reduced for mobile */
+        padding: 20px;
     }
     
     body {
-        padding: 12px; /* Reduced from 15px */
+        padding: 15px;
     }
     
     .collateral-strategy-container {
         flex-direction: column;
-        gap: 15px; /* Reduced from 20px */
+        gap: 15px; /* Further reduced for mobile */
     }
     
     .loan-metrics {
         flex-direction: column;
-        gap: 12px; /* Reduced from 15px */
+        gap: 12px; /* Further reduced for mobile */
     }
     
     .ltv-chart-container {
-        padding: 20px; /* Reduced from 25px */
+        padding: 25px;
     }
     
     .focus-tags {
         grid-template-columns: 1fr; /* 1 column for mobile */
-        gap: 8px; /* Reduced from 10px */
+        gap: 8px; /* Further reduced for mobile */
     }
     
     .focus-tag {
-        padding: 5px 8px; /* Reduced from 6px 10px */
+        padding: 6px 10px;
         font-size: 13px;
     }
 }
@@ -789,7 +793,7 @@ body {
     }
 
     .total-assets {
-        font-size: 34px; /* Reduced from 36px */
+        font-size: 36px;
     }
     
     .usd-equivalent {
@@ -801,26 +805,26 @@ body {
     }
     
     .asset-icon {
-        width: 40px; /* Reduced from 42px */
-        height: 40px; /* Reduced from 42px */
+        width: 42px; /* Slightly reduced for mobile */
+        height: 42px;
     }
     
     .asset-icon img {
-        width: 30px; /* Reduced from 32px */
-        height: 30px; /* Reduced from 32px */
+        width: 32px; /* Slightly reduced for mobile */
+        height: 32px;
     }
     
     body {
-        padding: 10px; /* Reduced from 15px */
+        padding: 12px; /* Slightly reduced for mobile */
     }
     
     .card {
-        padding: 15px; /* Reduced from 18px */
-        margin-bottom: 10px; /* Reduced from 15px */
+        padding: 16px; /* Slightly reduced for mobile */
+        margin-bottom: 10px;
     }
     
     .card-header {
-        margin-bottom: 12px; /* Reduced from 15px */
+        margin-bottom: 12px; /* Slightly reduced for mobile */
     }
     
     .container {
@@ -828,7 +832,7 @@ body {
     }
     
     .summary-card {
-        padding: 12px; /* Reduced from 15px */
+        padding: 15px;
     }
     
     .table-container {
@@ -837,6 +841,7 @@ body {
         width: calc(100% + 10px);
     }
 }
+
     </style>
     
 </head>
@@ -1192,6 +1197,18 @@ const assets = [
         company: "Personal Property"
     },*/
     {
+        name: "RDN: Cash",
+        icon: "/myasset/icon/idrt.png",
+        balance: "Rp. 25.000",
+        invested: 25000,
+        avgPrice:  1,
+        currentPrice: 1,
+        currency: "IDR",
+        type: "liquid",
+        sector: "Fiat Rupiah",
+        company: "Pendanaan Untuk Pembelian Asset",
+    },
+    {
         name: "Bitcoin",
         icon: "/myasset/icon/bitcoin.png",
         balance: formattedSats + " sats",
@@ -1239,18 +1256,7 @@ const assets = [
         sector: "Technology <br> Sosial Media",
         company: "Pinterest, Inc. Class A"
     },
-    {
-        name: "Free Cash",
-        icon: "/myasset/icon/usdc.png",
-        balance: "Rp. 25.000",
-        invested: 25000,
-        avgPrice:  1,
-        currentPrice: 1,
-        currency: "IDR",
-        type: "liquid",
-        sector: "Fiat Rupiah",
-        company: "Pendanaan Untuk Pembelian Asset",
-    },
+    
     {
         name: "NDX: AAPL",
         icon: "/myasset/icon/apple.png",
@@ -1275,18 +1281,7 @@ const assets = [
         sector: "Banking",
         company: "PT. Bank Central Asia. Tbk",
     },
-    {
-        name: "IDX: ELSA",
-        icon: "/myasset/icon/elsa.png",
-        balance: "Waitlist",
-        invested: 0,
-        avgPrice: 1,
-        currentPrice: 1,
-        currency: "IDR",
-        type: "liquid",
-        sector: "Minyak, Gas & Batubara",
-        company: "PT. Elnusa Tbk",
-    },
+    
     {
         name: "IDX: ADRO",
         icon: "/myasset/icon/adro.png",
@@ -1311,7 +1306,30 @@ const assets = [
         sector: "Bank",
         company: "PT. Bank Rakyat Indonesia (Persero) Tbk",
     },
-    
+    {
+        name: "IDX: ASII",
+        icon: "/myasset/icon/asii.png",
+        balance: "Waitlist",
+        invested: 0,
+        avgPrice: 1,
+        currentPrice: 1,
+        currency: "IDR",
+        type: "liquid",
+        sector: "Holding",
+        company: "-",
+    },
+    {
+        name: "IDX: GOTO",
+        icon: "/myasset/icon/goto.png",
+        balance: "Waitlist",
+        invested: 0,
+        avgPrice: 1,
+        currentPrice: 1,
+        currency: "IDR",
+        type: "liquid",
+        sector: "Bank",
+        company: "-",
+    },
 ];
 
 // Calculate market value and return for each asset
@@ -1502,18 +1520,7 @@ function createDonutChart(calculatedAssets) {
         "rgba(255, 193, 7, 0.9)",     // Amber
         "rgba(156, 39, 176, 0.9)",    // Vivid Purple
         "rgba(233, 30, 99, 0.9)",     // Pink Red
-        "rgba(76, 175, 80, 0.9)",     // Emerald Green
-        "rgba(66, 133, 244, 0.9)",    // Blue
-        "rgba(244, 67, 54, 0.9)",     // Bright Red
-        "rgba(255, 193, 7, 0.9)",     // Bright Amber
-        "rgba(255, 152, 0, 0.9)",     // Vivid Orange
-        "rgba(96, 125, 255, 0.9)",    // Soft Blue
-        "rgba(158, 158, 158, 0.9)",   // Soft Gray
-        "rgba(3, 169, 244, 0.9)",     // Cyan Blue
-        "rgba(156, 39, 176, 0.9)",    // Purple Vivid
-        "rgba(255, 87, 34, 0.9)",     // Deep Orange
-        "rgba(158, 158, 158, 0.9)",   // Soft Gray
-        "rgba(3, 169, 244, 0.9)",     // Cyan Blue
+        
     ];
     
     // Check if chart already exists and destroy it
@@ -1529,7 +1536,7 @@ function createDonutChart(calculatedAssets) {
             datasets: [{
                 data: data,
                 backgroundColor: colors,
-                borderColor: '#ffffff',
+                borderColor: '#000000',
                 borderWidth: 1
             }]
         },

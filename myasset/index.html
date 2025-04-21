@@ -1098,8 +1098,8 @@ body {
     <script>
         // Constants for global use
 const EXCHANGE_RATES = {
-    USD_TO_IDR: 16820,
-    USDT_TO_IDR: 16820
+    USD_TO_IDR: 16800,
+    USDT_TO_IDR: 16800
 };
 
 // Modified BTC_CONSTANTS to handle dynamic pricing
@@ -1112,16 +1112,16 @@ const BTC_CONSTANTS = {
 // Bitcoin Collateral Strategy Configuration
 const BITCOIN_STRATEGY = {
     FREE_SATS: 0,
-    COLLATERAL_SATS: 91834,         
-    USDT_BORROWED: 37.897,              
+    COLLATERAL_SATS: 86073,         
+    USDT_BORROWED: 37.9,              
     LIQUIDATION_LTV: 91,            
-    INTEREST_RATE: 5.57,             
+    INTEREST_RATE: 5.6,             
     BTC_YIELD_RATE: 0.27
 };
 
 // Last update timestamp - change this manually when committing code changes
 const LAST_UPDATE = {
-    DATE: "18 April",
+    DATE: "21 April",
     YEAR: "2025",
     TIME: "17:00",
     TIMEZONE: "Wita"
@@ -1239,8 +1239,8 @@ const assets = [
     {
         name: "RDN: Cash",
         icon: "/myasset/icon/idrt.png",
-        balance: "Rp. 311.000",
-        invested: 311000,
+        balance: "Rp. 245.000",
+        invested: 245000,
         avgPrice:  1,
         currentPrice: 1,
         currency: "IDR",
@@ -1260,6 +1260,7 @@ const assets = [
         sector: "Store of Value",
         company: "Created By Satoshi Nakamoto"
     },
+/*
     {
         name: "IDX: PGEO",
         icon: "/myasset/icon/pgeo.png",
@@ -1359,6 +1360,7 @@ const assets = [
         sector: "Bank",
         company: "-",
     },
+*/
 ];
 
 // Calculate market value and return for each asset

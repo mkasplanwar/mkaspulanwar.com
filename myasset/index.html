@@ -331,11 +331,11 @@ body {
 
 /* Status Colors */
 .positive {
-    color: #26a69a !important;
+    color: #1ED760 !important;
 }
 
 .negative {
-    color: #ef5350 !important;
+    color: #FF3E30 !important;
 }
 
 /* Chart Styles */
@@ -429,7 +429,7 @@ body {
 }
 
 .status-healthy {
-    background-color: #26a69a;
+    background-color: #1ED760;
 }
 
 .status-warning {
@@ -438,7 +438,7 @@ body {
 }
 
 .status-danger {
-    background-color: #ef5350;
+    background-color: #FF3E30;
 }
 
 .status-indicator-large {
@@ -729,7 +729,7 @@ body {
     left: 0;
     height: 100%;
     width: 0%; /* Will be set by JS */
-    background-color: #4ade80;
+    background-color: #00FF73;
     border-radius: 12px 0 0 12px;
     transition: width 0.5s ease-in-out;
     border: 1px solid #ffffff;
@@ -1121,7 +1121,7 @@ const BITCOIN_STRATEGY = {
 
 // Last update timestamp - change this manually when committing code changes
 const LAST_UPDATE = {
-    DATE: "22 April",
+    DATE: "23 April",
     YEAR: "2025",
     TIME: "17:00",
     TIMEZONE: "Wita"
@@ -1266,7 +1266,7 @@ const assets = [
         balance: "500 shares",
         invested: 900000,
         avgPrice: 1800,
-        currentPrice: 1880,
+        currentPrice: 1850,
         currency: "IDR",
         type: "liquid",
         sector: "Renewable Energy <br> Minyak, Gas & Batubara",
@@ -1660,17 +1660,17 @@ function initializeBitcoinCollateralStrategy() {
     const ltvRatio = currentLTV / 100;
     
     if (ltvRatio <= 0.55) {
-        progressBar.style.backgroundColor = '#28a745'; // Green - Safe
-        ltvStatusIndicator.style.backgroundColor = '#28a745';
+        progressBar.style.backgroundColor = '#1ED760'; // Green - Safe
+        ltvStatusIndicator.style.backgroundColor = '#1ED760';
         ltvStatusIndicator.textContent = 'Status: Aman';
     } else if (ltvRatio <= 0.7) {
-        progressBar.style.backgroundColor = '#ffc107'; // Yellow - Caution
-        ltvStatusIndicator.style.backgroundColor = '#ffc107';
+        progressBar.style.backgroundColor = '#f0b90b'; // Yellow - Caution
+        ltvStatusIndicator.style.backgroundColor = '#f0b90b';
         ltvStatusIndicator.style.color = '#000000';
         ltvStatusIndicator.textContent = 'Status: Waspada';
     } else {
-        progressBar.style.backgroundColor = '#dc3545'; // Red - Warning
-        ltvStatusIndicator.style.backgroundColor = '#dc3545';
+        progressBar.style.backgroundColor = '#FF3E30'; // Red - Warning
+        ltvStatusIndicator.style.backgroundColor = '#FF3E30';
         ltvStatusIndicator.textContent = 'Status: Bahaya';
     }
 }

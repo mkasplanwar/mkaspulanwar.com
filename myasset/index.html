@@ -430,6 +430,7 @@ body {
 
 .status-healthy {
     background-color: #1ED760;
+    color: #0c0e12;
 }
 
 .status-warning {
@@ -439,6 +440,7 @@ body {
 
 .status-danger {
     background-color: #FF3E30;
+    color: #0c0e12;
 }
 
 .status-indicator-large {
@@ -889,7 +891,7 @@ body {
     <div class="container">
         <!-- Header Section -->
         <div class="header-section">
-            <div class="author-name">M. Kaspul Anwar</div>
+            <div class="author-name">M. KASPUL ANWAR</div>
             <div class="dashboard-title">Billionaire: Built by Habit, Not Luck</div>
         </div>
         
@@ -1673,6 +1675,7 @@ function initializeBitcoinCollateralStrategy() {
     if (ltvRatio <= 0.55) {
         progressBar.style.backgroundColor = '#1ED760'; // Green - Safe
         ltvStatusIndicator.style.backgroundColor = '#1ED760';
+        ltvStatusIndicator.style.color = '#000000';
         ltvStatusIndicator.textContent = 'Status: Aman';
     } else if (ltvRatio <= 0.7) {
         progressBar.style.backgroundColor = '#f0b90b'; // Yellow - Caution

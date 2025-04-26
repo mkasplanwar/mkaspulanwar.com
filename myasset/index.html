@@ -1100,24 +1100,26 @@ body {
     <script>
         // Constants for global use
 const EXCHANGE_RATES = {
-    USD_TO_IDR: 16850,
-    USDT_TO_IDR: 16850
+    USD_TO_IDR: 16825,
+    USDT_TO_IDR: 16825
 };
+
+const bitcoin_avgprice = EXCHANGE_RATES.USD_TO_IDR * 100000; // $100.000
 
 // Modified BTC_CONSTANTS to handle dynamic pricing
 const BTC_CONSTANTS = {
     PRICE_IDR: 1500000000,  // Default Bitcoin Market Value
-    AVG_BTCPRICE: 1500000000, // Average BTC price in IDR
+    AVG_BTCPRICE: bitcoin_avgprice, // selama di bawah $100.000 maka terus melakukan pembelian
     SATS_TO_BTC: 100000000  // Conversion from satoshis to BTC
 };
 
 // Bitcoin Collateral Strategy Configuration
 const BITCOIN_STRATEGY = {
     FREE_SATS: 0,
-    COLLATERAL_SATS: 86073,         
-    USDT_BORROWED: 37.9,              
+    COLLATERAL_SATS: 102003,         
+    USDT_BORROWED: 37.93,              
     LIQUIDATION_LTV: 91,            
-    INTEREST_RATE: 5.6,             
+    INTEREST_RATE: 6.02,             
     BTC_YIELD_RATE: 0.27
 };
 
@@ -1239,10 +1241,10 @@ const assets = [
         company: "Personal Property"
     },*/
     {
-        name: "RDN: Cash",
+        name: "Cash On Hand",
         icon: "/myasset/icon/idrt.png",
-        balance: "Rp. 148.000",
-        invested: 148000,
+        balance: "Habis",
+        invested: 0,
         avgPrice:  1,
         currentPrice: 1,
         currency: "IDR",
@@ -1274,18 +1276,7 @@ const assets = [
         sector: "Renewable Energy <br> Minyak, Gas & Batubara",
         company: "PT. Alamtri Resource Indonesia Tbk",
     },
-    {
-        name: "NDX: GPRO",
-        icon: "/myasset/icon/gopro1.png",
-        balance: "10 shares",
-        invested: 0, 
-        avgPrice: 0.68, 
-        currentPrice: 0.68, 
-        currency: "USD",
-        type: "liquid",
-        sector: "Technology",
-        company: "GoPro, Inc."
-    },
+    
     {
         name: "IDX: PGEO",
         icon: "/myasset/icon/pgeo.png",

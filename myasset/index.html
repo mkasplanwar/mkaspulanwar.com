@@ -1529,8 +1529,8 @@ function updatePortfolioSummary(calculatedAssets) {
 
     // Determine DER status and color based on the ratio
     let derStatus, derStatusClass;
-    if (der <= 0.2) {
-        derStatus = "Aman";
+    if (der <= 0.3) {
+        derStatus = "Aman"; // loan leverage microstrategy 10 - 30%
         derStatusClass = "status-healthy";
     } else if (der <= 0.5) {
         derStatus = "Waspada";

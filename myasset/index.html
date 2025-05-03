@@ -1568,7 +1568,7 @@ function setupAutoRefresh() {
         fetchBitcoinPrice().catch(error => {
             console.error("Auto-refresh Bitcoin price fetch failed:", error);
         });
-    }, 300000);
+    }, 60000);
 }
 
 // Initialize dashboard when page loads

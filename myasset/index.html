@@ -892,7 +892,7 @@ body {
         <!-- Header Section -->
         <div class="header-section">
             <div class="author-name">M. Kaspul Anwar</div>
-            <div class="dashboard-title">Billionaire: Built by Habit, Not Luck</div>
+            <div class="dashboard-title">Billionaire: Built by Habit, Not futures</div>
         </div>
         
         <!-- Top Row with Total Asset Card and Distribution Chart -->
@@ -915,20 +915,20 @@ body {
                     <div class="summary-title">Ringkasan Portfolio</div>
                     <div class="summary-stats">
                         <div class="stat-item">
-                            <span class="stat-label">Invested</span>
+                            <span class="stat-label">Total Invested</span>
                             <span class="stat-value" id="totalInvested">Rp. 0</span>
                         </div>
                         <div class="stat-item">
-                            <span class="stat-label">Realized (Saham)</span>
-                            <span class="stat-value positive" id="realizedPnL">Rp. 4.525.645</span>
+                            <span class="stat-label">Unrealized P&L</span>
+                            <span class="stat-value" id="totalPnL">Rp. 0</span>
                         </div>
                         <div class="stat-item">
                             <span class="stat-label">Percentage</span>
                             <span class="stat-value" id="totalPercentage">0%</span>
                         </div>
                         <div class="stat-item">
-                            <span class="stat-label">Unrealized P&L</span>
-                            <span class="stat-value" id="totalPnL">Rp. 0</span>
+                            <span class="stat-label">Liquid Ratio</span>
+                            <span class="stat-value" id="derRatio">0 <span class="status-indicator"></span></span>
                         </div>
                         
                     </div>
@@ -944,8 +944,8 @@ body {
                             <span class="stat-value" id="totalDebt">Rp. 0</span>
                         </div>
                         <div class="stat-item">
-                            <span class="stat-label">Liquid Ratio</span>
-                            <span class="stat-value" id="derRatio">0 <span class="status-indicator"></span></span>
+                            <span class="stat-label">Current LTV</span>
+                            <span class="stat-value" id="currentLTV">0%</span>
                         </div>
                     </div>
                 </div>
@@ -967,10 +967,6 @@ body {
                 <div class="summary-card">
                     <div class="summary-title">Key Investment Sectors</div>
                     <div class="focus-tags">
-                      <div class="focus-tag renewable-energy">
-                        <span class="focus-icon"><i class="fa-solid fa-leaf"></i></span>
-                        <span class="focus-text">Renewable Energy</span>
-                      </div>
                     <div class="focus-tag technology">
                         <span class="focus-icon"><i class="fa-solid fa-microchip" ></i></span>
                         <span class="focus-text">Digital & Technology</span>
@@ -1012,8 +1008,8 @@ body {
     <script>
         // Constants for global use
 const EXCHANGE_RATES = {
-    USD_TO_IDR: 16456,
-    USDT_TO_IDR: 16456
+    USD_TO_IDR: 16616,
+    USDT_TO_IDR: 16616
 };
 
 const bitcoin_avgprice = EXCHANGE_RATES.USD_TO_IDR * 100000; // $100.000
@@ -1037,58 +1033,17 @@ const BITCOIN_STRATEGY = {
 
 // Last update timestamp - change this manually when committing code changes
 const LAST_UPDATE = {
-    DATE: "30 April",
+    DATE: "04 Mei",
     YEAR: "2025",
     TIME: "17:00",
     TIMEZONE: "Wita"
 };
 
 // Calculate LIQUIDATION_PRICE_USD automatically
-// Formula: LIQUIDATION_PRICE_USD = (USDT_BORROWED * 100) / (COLLATERAL_SATS / SATS_TO_BTC * LIQUIDATION_LTV / 100)
 const btcAmount = BITCOIN_STRATEGY.COLLATERAL_SATS / BTC_CONSTANTS.SATS_TO_BTC;
 const loanValue = BITCOIN_STRATEGY.USDT_BORROWED;
 const maxLoanToValueRatio = BITCOIN_STRATEGY.LIQUIDATION_LTV / 100;
 BITCOIN_STRATEGY.LIQUIDATION_PRICE_USD = parseFloat((loanValue / (btcAmount * maxLoanToValueRatio)).toFixed(2));
-
-// Log the calculated liquidation price for verification
-console.log(`Calculated Liquidation Price: $${BITCOIN_STRATEGY.LIQUIDATION_PRICE_USD.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`);
-
-// Function to fetch Bitcoin price from CoinGecko API
-async function fetchBitcoinPrice() {
-    try {
-        // Fetch BTC price in USD from CoinGecko
-        const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd,idr');
-        const data = await response.json();
-        
-        if (data && data.bitcoin) {
-            // Update the BTC price constants
-            BTC_CONSTANTS.PRICE_IDR = data.bitcoin.idr;
-            
-            // Update the exchange rate if needed
-            if (data.bitcoin.usd) {
-                const usdToIdrRate = data.bitcoin.idr / data.bitcoin.usd;
-                EXCHANGE_RATES.USD_TO_IDR = usdToIdrRate;
-                EXCHANGE_RATES.USDT_TO_IDR = usdToIdrRate; // Assuming 1 USDT = 1 USD
-            }
-            
-            console.log(`Bitcoin price updated: ${BTC_CONSTANTS.PRICE_IDR} IDR`);
-            
-            // Update the dashboard with new prices
-            initializeDashboard();
-            
-            // Update last refresh time - we're keeping the fixed timestamp now
-            displayLastUpdate();
-            
-            return true;
-        } else {
-            throw new Error("Invalid response from CoinGecko API");
-        }
-    } catch (error) {
-        console.error("Error fetching Bitcoin price:", error);
-        // Continue with the last known price
-        return false;
-    }
-}
 
 // Format currency for general use
 function formatCurrency(amount) {
@@ -1139,12 +1094,11 @@ const formattedSats = TOTAL_SATS.toLocaleString('id-ID', {
 
 // Asset data including both liquid and non-liquid assets
 const assets = [
-    
     {
-        name: "Cash On Hand",
+        name: "Cash: Rupiah",
         icon: "/myasset/icon/idrt.png",
-        balance: "Habis",
-        invested: 0,
+        balance: "Rp. 100.000",
+        invested: 100000,
         avgPrice:  1,
         currentPrice: 1,
         currency: "IDR",
@@ -1164,7 +1118,7 @@ const assets = [
         sector: "Store of Value",
         company: "Decentralized <br> Created By Satoshi Nakamoto"
     },
-{
+    {
         name: "IDX: ADRO",
         icon: "/myasset/icon/adro.png",
         balance: "Waitlist",
@@ -1179,27 +1133,16 @@ const assets = [
     {
         name: "Fund: Business",
         icon: "/myasset/icon/usdc.png",
-        balance: "Rp. 230.000",
-        invested: 230000,
+        balance: "Rp. 130.000",
+        invested: 130000,
         avgPrice:  1,
-        currentPrice: 0.5435,
+        currentPrice: 0.1925,
         currency: "IDR",
         type: "liquid",
         sector: "Fiat Rupiah",
         company: "Pendanaan Untuk Bisnis Pribadi",
     },
-    {
-        name: "PAXG: Emas",
-        icon: "/myasset/icon/paxg.svg",
-        balance: "Waitlist",
-        invested: 0,
-        avgPrice:  1,
-        currentPrice: 0.3,
-        currency: "IDR",
-        type: "liquid",
-        sector: "Fiat Rupiah",
-        company: "Pendanaan Untuk Pembelian Asset",
-    },
+    
     {
         name: "NDX: AAPL",
         icon: "/myasset/icon/apple.png",
@@ -1224,89 +1167,27 @@ const assets = [
         sector: "Banking",
         company: "PT. Bank Central Asia. Tbk",
     },
-   /*
     {
-        name: "Farmland",
-        icon: "/myasset/icon/earth.png",
-        balance: "Redacted Value",
-        invested: 0,
-        avgPrice: 1,
-        currentPrice: 1,
-        currency: "IDR",
-        type: "nonliquid",
-        sector: "Real Estate",
-        company: "Personal Property"
-    },
-     
-    {
-        name: "IDX: PGEO",
-        icon: "/myasset/icon/pgeo.png",
-        balance: "Waitlist",
-        invested: 	0,
-        avgPrice:  1,
-        currentPrice: 1,
-        currency: "IDR",
-        type: "liquid",
-        sector: "Geothermal Energy <br> Renewable Energy",
-        company: "PT. Pertamina Geothermal Energy. Tbk",
-    },
-    
-    {
-        name: "NYSE: PINS",
-        icon: "/myasset/icon/pinterest3.png",
+        name: "NDX: MSTR",
+        icon: "/myasset/icon/mstr.png",
         balance: "Waitlist",
         invested: 0, 
         avgPrice: 25.70, 
         currentPrice: 25.7, 
         currency: "USD",
         type: "liquid",
-        sector: "Technology <br> Sosial Media",
-        company: "Pinterest, Inc. Class A"
+        sector: "Technology",
+        company: "Microstrategy Inc."
     },
-    {
-        name: "IDX: BBRI",
-        icon: "/myasset/icon/bbri.png",
-        balance: "Waitlist",
-        invested: 0,
-        avgPrice: 1,
-        currentPrice: 1,
-        currency: "IDR",
-        type: "liquid",
-        sector: "Bank",
-        company: "PT. Bank Rakyat Indonesia (Persero) Tbk",
-    },
-    {
-        name: "IDX: ASII",
-        icon: "/myasset/icon/asii.png",
-        balance: "Waitlist",
-        invested: 0,
-        avgPrice: 1,
-        currentPrice: 1,
-        currency: "IDR",
-        type: "liquid",
-        sector: "Holding",
-        company: "-",
-    },
-    {
-        name: "IDX: GOTO",
-        icon: "/myasset/icon/goto.png",
-        balance: "Waitlist",
-        invested: 0,
-        avgPrice: 1,
-        currentPrice: 1,
-        currency: "IDR",
-        type: "liquid",
-        sector: "Bank",
-        company: "-",
-    },
-    */
-
 ];
 
 // Calculate market value and return for each asset
 function calculateAssetValues() {
     // Make sure Bitcoin price is updated in assets array before calculations
-    assets.find(asset => asset.name === "Bitcoin").currentPrice = BTC_CONSTANTS.PRICE_IDR;
+    const bitcoinAsset = assets.find(asset => asset.name === "Bitcoin");
+    if (bitcoinAsset) {
+        bitcoinAsset.currentPrice = BTC_CONSTANTS.PRICE_IDR;
+    }
     
     return assets.map(asset => {
         let marketValue;
@@ -1350,9 +1231,6 @@ function formatPriceDisplay(asset, isAvgPrice = false) {
             minimumFractionDigits: 2,
             maximumFractionDigits: 2
         })} jt`;
-    } else if (asset.name === "RDN: Rupiah") {
-        // Format for Rupiah
-        return `Rp. 1,00`;
     } else {
         // Format for other assets (in normal rupiah)
         return `Rp. ${price.toLocaleString('id-ID', {
@@ -1365,6 +1243,11 @@ function formatPriceDisplay(asset, isAvgPrice = false) {
 // Populate asset table
 function populateAssetTable() {
     const tableBody = document.getElementById('assetTableBody');
+    if (!tableBody) {
+        console.error("Element 'assetTableBody' not found");
+        return [];
+    }
+    
     tableBody.innerHTML = '';
 
     // Calculate values for all assets
@@ -1427,12 +1310,12 @@ function updatePortfolioSummary(calculatedAssets) {
     const totalMarketValue = totalLiquidMarketValue;
 
     const totalPnL = totalMarketValue - totalInvested;
-    const totalPercentage = (totalPnL / totalInvested) * 100;
+    const totalPercentage = totalInvested > 0 ? (totalPnL / totalInvested) * 100 : 0;
     
     const debtAmount = BITCOIN_STRATEGY.USDT_BORROWED * EXCHANGE_RATES.USDT_TO_IDR;
     
     // Calculate DER (Debt to Equity Ratio)
-    const der = debtAmount / (totalLiquidMarketValue) || 0;
+    const der = debtAmount / totalLiquidMarketValue || 0;
 
     // Determine DER status and color based on the ratio
     let derStatus, derStatusClass;
@@ -1450,30 +1333,64 @@ function updatePortfolioSummary(calculatedAssets) {
     // Convert total market value to USD
     const usdEquivalent = convertIDRtoUSD(totalMarketValue);
 
-    // Update summary values
-    document.getElementById('totalEquity').textContent = formatTotalEquity(totalMarketValue);
-    document.getElementById('usdEquivalent').textContent = `≈ $ ${usdEquivalent.toLocaleString('en-US', {
+    // Update summary values - check if elements exist first
+    const totalEquityEl = document.getElementById('totalEquity');
+    if (totalEquityEl) totalEquityEl.textContent = formatTotalEquity(totalMarketValue);
+    
+    const usdEquivalentEl = document.getElementById('usdEquivalent');
+    if (usdEquivalentEl) usdEquivalentEl.textContent = `≈ $ ${usdEquivalent.toLocaleString('en-US', {
         minimumFractionDigits: 2,
         maximumFractionDigits: 2
     })}`;
-    document.getElementById('totalInvested').textContent = formatCurrency(totalInvested);
-    document.getElementById('totalPnL').textContent = `${totalPnL >= 0 ? '+ ' : '- '}${formatCurrency(Math.abs(totalPnL))}`;
-    document.getElementById('totalDebt').textContent = formatCurrency(debtAmount);
-    document.getElementById('derRatio').innerHTML = `${der.toFixed(2)} <span class="status-indicator ${derStatusClass}">${derStatus}</span>`;
+    
+    const totalInvestedEl = document.getElementById('totalInvested');
+    if (totalInvestedEl) totalInvestedEl.textContent = formatCurrency(totalInvested);
+    
+    const totalPnLEl = document.getElementById('totalPnL');
+    if (totalPnLEl) {
+        totalPnLEl.textContent = `${totalPnL >= 0 ? '+ ' : '- '}${formatCurrency(Math.abs(totalPnL))}`;
+        totalPnLEl.className = 'stat-value ' + (totalPnL >= 0 ? 'positive' : 'negative');
+    }
+    
+    const totalDebtEl = document.getElementById('totalDebt');
+    if (totalDebtEl) totalDebtEl.textContent = formatCurrency(debtAmount);
+    
+    const derRatioEl = document.getElementById('derRatio');
+    if (derRatioEl) derRatioEl.innerHTML = `${der.toFixed(2)} <span class="status-indicator ${derStatusClass}">${derStatus}</span>`;
 
     const percentageElement = document.getElementById('totalPercentage');
-    percentageElement.textContent = `${totalPercentage >= 0 ? '+ ' : '- '}${Math.abs(totalPercentage).toFixed(2)}%`;
-    percentageElement.className = 'stat-value ' + (totalPercentage >= 0 ? 'positive' : 'negative');
+    if (percentageElement) {
+        percentageElement.textContent = `${totalPercentage >= 0 ? '+ ' : '- '}${Math.abs(totalPercentage).toFixed(2)}%`;
+        percentageElement.className = 'stat-value ' + (totalPercentage >= 0 ? 'positive' : 'negative');
+    }
 
-    const pnlElement = document.getElementById('totalPnL');
-    pnlElement.className = 'stat-value ' + (totalPnL >= 0 ? 'positive' : 'negative');
+    const currentLTVEl = document.getElementById('currentLTV');
+    if (currentLTVEl) {
+        // Calculate current LTV for Bitcoin collateral
+        const btcCollateralBtc = BITCOIN_STRATEGY.COLLATERAL_SATS / BTC_CONSTANTS.SATS_TO_BTC;
+        const btcValueIdr = btcCollateralBtc * BTC_CONSTANTS.PRICE_IDR;
+        const usdtValueIdr = BITCOIN_STRATEGY.USDT_BORROWED * EXCHANGE_RATES.USDT_TO_IDR;
+        const currentLTV = (usdtValueIdr / btcValueIdr) * 100;
+        
+        currentLTVEl.textContent = `${currentLTV.toFixed(2)}%`;
+    }
 
     return { totalMarketValue, totalInvested, totalLiquidMarketValue };
 }
 
 // Create donut chart with enhanced color palette
 function createDonutChart(calculatedAssets) {
-    const ctx = document.getElementById('donutChart').getContext('2d');
+    const canvas = document.getElementById('donutChart');
+    if (!canvas) {
+        console.error("Element 'donutChart' not found");
+        return;
+    }
+    
+    const ctx = canvas.getContext('2d');
+    if (!ctx) {
+        console.error("Could not get 2D context from canvas");
+        return;
+    }
 
     // Filter out assets with 0 market value (only include liquid assets)
     const filteredAssets = calculatedAssets.filter(asset => 
@@ -1495,8 +1412,13 @@ function createDonutChart(calculatedAssets) {
         "rgba(255, 193, 7, 0.9)",     // Amber
         "rgba(156, 39, 176, 0.9)",    // Vivid Purple
         "rgba(233, 30, 99, 0.9)",     // Pink Red
-        
     ];
+    
+    // Check if Chart is defined before creating chart
+    if (typeof Chart === 'undefined') {
+        console.error("Chart.js is not loaded");
+        return;
+    }
     
     // Check if chart already exists and destroy it
     if (window.donutChartInstance) {
@@ -1504,114 +1426,59 @@ function createDonutChart(calculatedAssets) {
     }
 
     // Create the chart
-    window.donutChartInstance = new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-            labels: labels,
-            datasets: [{
-                data: data,
-                backgroundColor: colors,
-                borderColor: '#ffffff ',
-                borderWidth: 1
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            cutout: '70%',
-            plugins: {
-                legend: {
-                    display: false
-                },
-                tooltip: {
-                    callbacks: {
-                        label: function(context) {
-                            const value = context.raw;
-                            const percentage = ((value / totalFilteredValue) * 100).toFixed(1);
-                            return `${context.label}: ${formatCurrency(value)} (${percentage}%)`;
+    try {
+        window.donutChartInstance = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: labels,
+                datasets: [{
+                    data: data,
+                    backgroundColor: colors,
+                    borderColor: '#ffffff',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '70%',
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                const value = context.raw;
+                                const percentage = ((value / totalFilteredValue) * 100).toFixed(1);
+                                return `${context.label}: ${formatCurrency(value)} (${percentage}%)`;
+                            }
                         }
                     }
                 }
             }
-        }
-    });
+        });
+    } catch (error) {
+        console.error("Error creating chart:", error);
+    }
 
     // Create custom legend (also sorted by market value)
     const legendContainer = document.getElementById('donutLegend');
-    legendContainer.innerHTML = '';
+    if (legendContainer) {
+        legendContainer.innerHTML = '';
 
-    filteredAssets.forEach((asset, index) => {
-        const percentage = ((asset.marketValue / totalFilteredValue) * 100).toFixed(1);
-        const legendItem = document.createElement('div');
-        legendItem.className = 'legend-item';
-        
-        legendItem.innerHTML = `
-            <div class="legend-color" style="background-color: ${colors[index % colors.length]}"></div>
-            <div class="legend-text">${asset.name} (${percentage}%)</div>
-        `;
-        
-        legendContainer.appendChild(legendItem);
-    });
-}
-
-// Initialize Bitcoin Collateral Strategy
-function initializeBitcoinCollateralStrategy() {
-    // Get values from constants
-    const { COLLATERAL_SATS, USDT_BORROWED, LIQUIDATION_LTV, INTEREST_RATE, 
-            BTC_YIELD_RATE, LIQUIDATION_PRICE_USD } = BITCOIN_STRATEGY;
-    
-    // Calculations
-    const btcCollateralBtc = COLLATERAL_SATS / BTC_CONSTANTS.SATS_TO_BTC;
-    const btcValueIdr = btcCollateralBtc * BTC_CONSTANTS.PRICE_IDR;
-    const usdtValueIdr = USDT_BORROWED * EXCHANGE_RATES.USDT_TO_IDR;
-    
-    // Calculate current LTV
-    const currentLTV = (usdtValueIdr / btcValueIdr) * 100;
-    
-    const usdtliquidationPrice = EXCHANGE_RATES.USDT_TO_IDR * (LIQUIDATION_LTV / currentLTV);
-
-    // Update DOM elements
-    document.getElementById('btcCollateral').textContent = `${COLLATERAL_SATS.toLocaleString()} sats`;
-    document.getElementById('btcValueIDR').textContent = `Rp. ${btcValueIdr.toLocaleString('id-ID', {maximumFractionDigits: 0})}`;
-    
-    document.getElementById('usdtBorrowed').textContent = `${USDT_BORROWED.toFixed(2)} USDT`;
-    document.getElementById('usdtValueIDR').textContent = `Rp. ${usdtValueIdr.toLocaleString('id-ID', {maximumFractionDigits: 0})}`;
-    
-    document.getElementById('interestRate').textContent = `${INTEREST_RATE.toFixed(2)}%`;
-    document.getElementById('btcYieldRate').textContent = `${BTC_YIELD_RATE.toFixed(2)}%`;
-    document.getElementById('liquidationPrice').textContent = `$ ${LIQUIDATION_PRICE_USD.toLocaleString('en-US', {maximumFractionDigits: 2})}`;
-    document.getElementById('usdtliquidationPrice').textContent = `Rp. ${usdtliquidationPrice.toLocaleString('id-ID', {maximumFractionDigits: 2})}`;
-
-    // Update LTV indicators
-    document.getElementById('currentLTV').textContent = `${currentLTV.toFixed(2)}%`;
-    document.getElementById('liquidationLTV').textContent = `${LIQUIDATION_LTV.toFixed(2)}%`;
-    
-    // Set the progress bar width to match current LTV
-    const progressBar = document.getElementById('ltvProgressBar');
-    progressBar.style.width = `${currentLTV}%`;
-    
-    // Set the danger zone width
-    const dangerZone = document.querySelector('.ltv-danger-zone');
-    dangerZone.style.width = `${100 - LIQUIDATION_LTV}%`;
-    
-    // Update LTV status color based on proximity to liquidation
-    const ltvStatusIndicator = document.getElementById('ltvStatusIndicator');
-    const ltvRatio = currentLTV / 100;
-    
-    if (ltvRatio <= 0.55) {
-        progressBar.style.backgroundColor = '#1ED760'; // Green - Safe
-        ltvStatusIndicator.style.backgroundColor = '#1ED760';
-        ltvStatusIndicator.style.color = '#000000';
-        ltvStatusIndicator.textContent = 'Status: Aman';
-    } else if (ltvRatio <= 0.7) {
-        progressBar.style.backgroundColor = '#f0b90b'; // Yellow - Caution
-        ltvStatusIndicator.style.backgroundColor = '#f0b90b';
-        ltvStatusIndicator.style.color = '#000000';
-        ltvStatusIndicator.textContent = 'Status: Waspada';
-    } else {
-        progressBar.style.backgroundColor = '#FF3E30'; // Red - Warning
-        ltvStatusIndicator.style.backgroundColor = '#FF3E30';
-        ltvStatusIndicator.textContent = 'Status: Bahaya';
+        filteredAssets.forEach((asset, index) => {
+            const percentage = ((asset.marketValue / totalFilteredValue) * 100).toFixed(1);
+            const legendItem = document.createElement('div');
+            legendItem.className = 'legend-item';
+            
+            legendItem.innerHTML = `
+                <div class="legend-color" style="background-color: ${colors[index % colors.length]}"></div>
+                <div class="legend-text">${asset.name} (${percentage}%)</div>
+            `;
+            
+            legendContainer.appendChild(legendItem);
+        });
     }
 }
 
@@ -1627,39 +1494,103 @@ function displayLastUpdate() {
     }
 }
 
-// Initialize the dashboard
-function initializeDashboard() {
-    // Calculate asset values
-    const calculatedAssets = populateAssetTable();
-
-    // Update portfolio summary
-    const summaryData = updatePortfolioSummary(calculatedAssets);
-
-    // Create donut chart
-    createDonutChart(calculatedAssets);
-
-    // Initialize Bitcoin collateral strategy
-    initializeBitcoinCollateralStrategy();
-
-    // Display the fixed last update time
-    displayLastUpdate();
+// Function to fetch Bitcoin price from CoinGecko API with error handling
+async function fetchBitcoinPrice() {
+    try {
+        // Fetch BTC price in USD from CoinGecko
+        const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd,idr');
+        
+        // Check if the fetch was successful
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        
+        const data = await response.json();
+        
+        if (data && data.bitcoin) {
+            // Update the BTC price constants
+            BTC_CONSTANTS.PRICE_IDR = data.bitcoin.idr;
+            
+            // Update the exchange rate if needed
+            if (data.bitcoin.usd) {
+                const usdToIdrRate = data.bitcoin.idr / data.bitcoin.usd;
+                EXCHANGE_RATES.USD_TO_IDR = usdToIdrRate;
+                EXCHANGE_RATES.USDT_TO_IDR = usdToIdrRate; // Assuming 1 USDT = 1 USD
+            }
+            
+            console.log(`Bitcoin price updated: ${BTC_CONSTANTS.PRICE_IDR} IDR`);
+            
+            // Update the dashboard with new prices
+            initializeDashboard();
+            
+            // Update last refresh time
+            displayLastUpdate();
+            
+            return true;
+        } else {
+            throw new Error("Invalid response from CoinGecko API");
+        }
+    } catch (error) {
+        console.error("Error fetching Bitcoin price:", error);
+        
+        // Continue with the default price
+        console.log("Using default Bitcoin price value");
+        
+        // Still initialize the dashboard with default values
+        initializeDashboard();
+        
+        return false;
+    }
 }
 
-// Set up the auto-refresh interval (1 minute = 60000 milliseconds)
+// Initialize the dashboard
+function initializeDashboard() {
+    try {
+        // Calculate asset values
+        const calculatedAssets = populateAssetTable();
+
+        // Update portfolio summary
+        const summaryData = updatePortfolioSummary(calculatedAssets);
+
+        // Create donut chart
+        createDonutChart(calculatedAssets);
+
+        // Display the fixed last update time
+        displayLastUpdate();
+        
+        console.log("Dashboard initialized successfully");
+    } catch (error) {
+        console.error("Error initializing dashboard:", error);
+    }
+}
+
+// Set up the auto-refresh interval (5 minutes = 300000 milliseconds to reduce API calls)
 function setupAutoRefresh() {
     // Initial fetch
-    fetchBitcoinPrice();
+    console.log("Fetching initial Bitcoin price");
+    fetchBitcoinPrice().catch(error => {
+        console.error("Initial Bitcoin price fetch failed:", error);
+        // Still initialize the dashboard with default values
+        initializeDashboard();
+    });
     
-    // Set interval for regular updates (every 1 minute)
-    setInterval(fetchBitcoinPrice, 60000);
+    // Set interval for regular updates (every 5 minutes to avoid rate limiting)
+    setInterval(() => {
+        console.log("Auto-refreshing Bitcoin price");
+        fetchBitcoinPrice().catch(error => {
+            console.error("Auto-refresh Bitcoin price fetch failed:", error);
+        });
+    }, 300000);
 }
 
 // Initialize dashboard when page loads
 document.addEventListener('DOMContentLoaded', () => {
+    console.log("DOM content loaded, initializing dashboard");
+    
     // Initial dashboard setup with fallback values
     initializeDashboard();
     
-    // Set up automatic price updates every minute
+    // Set up automatic price updates
     setupAutoRefresh();
 });
     </script>

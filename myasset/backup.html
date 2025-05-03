@@ -1008,12 +1008,100 @@ body {
                 </table>
             </div>
         </div>
+        <!-- Bitcoin Collateral Strategy Card (Full Width) -->
+        <div class="card full-width-card">
+            <div class="card-header">
+                <i class="fa-solid fa-landmark"></i>
+                <span class="title">Collateral Strategy</span>
+            </div>
+            <div class="collateral-strategy-container">
+                <!-- Two-column layout for desktop -->
+                <div class="collateral-info-container">
+                    <!-- Loan Summary Section -->
+                    <div class="loan-summary">
+                        <div class="loan-metrics">
+                            <div class="loan-metric-item">
+                                <div class="loan-metric-icon">
+                                    <img src="/myasset/icon/bitcoin.png" alt="Bitcoin">
+                                </div>
+                                <div class="loan-metric-details">
+                                    <div class="loan-metric-label">Bitcoin Collateral</div>
+                                    <div class="loan-metric-value" id="btcCollateral">0 sats</div>
+                                    <div class="loan-metric-secondary" id="btcValueIDR">Rp. 0</div>
+                                </div>
+                            </div>
+                            <div class="loan-metric-item">
+                                <div class="loan-metric-icon">
+                                    <img src="/myasset/icon/usdt.png" alt="USDT">
+                                </div>
+                                <div class="loan-metric-details">
+                                    <div class="loan-metric-label">USDT Borrowed</div>
+                                    <div class="loan-metric-value" id="usdtBorrowed">0 USDT</div>
+                                    <div class="loan-metric-secondary" id="usdtValueIDR">Rp. 0</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Interest and LTV Details -->
+                    <div class="loan-details">
+                        <div class="loan-detail-row">
+                            <div class="loan-detail-label">USDT Interest Rate</div>
+                            <div class="loan-detail-value negative" id="interestRate">0</div>
+                        </div>
+                        <div class="loan-detail-row">
+                            <div class="loan-detail-label">Bitcoin Yield Rate</div>
+                            <div class="loan-detail-value positive" id="btcYieldRate">0</div>
+                        </div>
+                        <div class="loan-detail-row">
+                            <div class="loan-detail-label">Bitcoin Liquidation Price</div>
+                            <div class="loan-detail-value negative" id="liquidationPrice">$0</div>
+                        </div>
+                        <div class="loan-detail-row">
+                            <div class="loan-detail-label">USDT Liquidation Price</div>
+                            <div class="loan-detail-value negative" id="usdtliquidationPrice">Rp0</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- LTV Bar Chart Section -->
+                <div class="ltv-chart-container">
+                    <div class="ltv-chart-header">
+                        <div class="ltv-current">
+                            <span class="ltv-label">Current LTV</span>
+                            <span class="ltv-value" id="currentLTV">0%</span>
+                        </div>
+                        <div class="ltv-max">
+                            <span class="ltv-label">Liquidation LTV</span>
+                            <span class="ltv-value" id="liquidationLTV">0%</span>
+                        </div>
+                    </div>
+                    <div class="ltv-bar-container">
+                        <div class="ltv-bar-wrapper">
+                            <div class="ltv-bar-background"></div>
+                            <div class="ltv-bar-progress" id="ltvProgressBar"></div>
+                            <div class="ltv-danger-zone"></div>
+                        </div>
+                        <div class="ltv-markers">
+                            <div class="ltv-marker" style="left: 0%">0%</div>
+                            <div class="ltv-marker" style="left: 25%">25%</div>
+                            <div class="ltv-marker" style="left: 50%">50%</div>
+                            <div class="ltv-marker" style="left: 75%">75%</div>
+                            <div class="ltv-marker" style="left: 100%">100%</div>
+                        </div>
+                    </div>
+                    <div class="ltv-status">
+                        <div class="status-indicator-large" id="ltvStatusIndicator">Status: Healthy</div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <script>
         // Constants for global use
 const EXCHANGE_RATES = {
-    USD_TO_IDR: 16456,
-    USDT_TO_IDR: 16456
+    USD_TO_IDR: 16616,
+    USDT_TO_IDR: 16616
 };
 
 const bitcoin_avgprice = EXCHANGE_RATES.USD_TO_IDR * 100000; // $100.000
@@ -1028,8 +1116,8 @@ const BTC_CONSTANTS = {
 // Bitcoin Collateral Strategy Configuration
 const BITCOIN_STRATEGY = {
     FREE_SATS: 0,
-    COLLATERAL_SATS: 168564 - 10049, //10049 sats in belong to APT        
-    USDT_BORROWED: 71,              
+    COLLATERAL_SATS: 137261 - 10049, //10049 sats in belong to APT        
+    USDT_BORROWED: 50,              
     LIQUIDATION_LTV: 91,            
     INTEREST_RATE: 5.76,             
     BTC_YIELD_RATE: 0.27
@@ -1143,8 +1231,8 @@ const assets = [
     {
         name: "Cash On Hand",
         icon: "/myasset/icon/idrt.png",
-        balance: "Habis",
-        invested: 0,
+        balance: "Rp. 501.000",
+        invested: 501000,
         avgPrice:  1,
         currentPrice: 1,
         currency: "IDR",
@@ -1263,6 +1351,11 @@ const assets = [
         sector: "Technology <br> Sosial Media",
         company: "Pinterest, Inc. Class A"
     },
+    
+    
+    
+    
+    
     {
         name: "IDX: BBRI",
         icon: "/myasset/icon/bbri.png",

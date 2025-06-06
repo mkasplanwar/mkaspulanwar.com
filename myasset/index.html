@@ -888,11 +888,6 @@ body {
                 <div class="summary-card">
                     <div class="summary-title">Ringkasan Portfolio</div>
                     <div class="summary-stats">
-                        <!-- <div class="stat-item">
-                            <span class="stat-label">Total Invested</span>
-                            <span class="stat-value" id="totalInvested">Rp. 0</span>
-                        </div> -->
-                        
                         <div class="stat-item">
                             <span class="stat-label">Percentage</span>
                             <span class="stat-value" id="totalPercentage">0%</span>
@@ -901,10 +896,6 @@ body {
                             <span class="stat-label">Unrealized P&L</span>
                             <span class="stat-value" id="totalPnL">Rp. 0</span>
                         </div>
-                        <!-- <div class="stat-item">
-                            <span class="stat-label">Liquid Ratio</span>
-                            <span class="stat-value" id="derRatio">0 <span class="status-indicator"></span></span>
-                        </div> -->
                     </div>
                     
                     <!-- Divider for debt section -->
@@ -928,8 +919,8 @@ body {
             <!-- Assets Table Card -->
             <div class="card assets-card">
                 <div class="card-header">
-                    <i class="fas fa-wallet"></i>
-                    <span class="title">Daftar Aset</span>
+                    <i class="fa-solid fa-cube"></i>
+                    <span class="title">Kepemilikan Aset</span>
                 </div>
                 <div class="table-container">
                     <table class="distribution-table">
@@ -967,8 +958,6 @@ body {
                 
             </div>
         </div>
-        
-        
     </div>
     <script>
         // Constants for global use
@@ -989,7 +978,7 @@ const BTC_CONSTANTS = {
 // Bitcoin Collateral Strategy Configuration
 const BITCOIN_STRATEGY = {
     FREE_SATS: 0,
-    COLLATERAL_SATS: 160000, //10049 sats in belong to APT        
+    COLLATERAL_SATS: 110000, //10049 sats in belong to APT        
     USDT_BORROWED: 64.14,              
     LIQUIDATION_LTV: 91,            
     INTEREST_RATE: 5.76,             
@@ -1085,7 +1074,7 @@ const assets = [
     {
         name: "Microstrategy",
         icon: "/myasset/icon/mstr.png",
-        balance: "0.01 shares",
+        balance: "0 shares",
         invested: 0, 
         avgPrice: 203.77, 
         currentPrice: 400, 
@@ -1094,8 +1083,8 @@ const assets = [
         
     },
     {
-        name: "Berkshire<br>Hathaway",
-        icon: "https://downtownlascruces.org/wp-content/uploads/2019/12/BHHS-Round-Logo.png",
+        name: "Coca Cola",
+        icon: "https://companieslogo.com/img/orig/KO-b23a2a5e.png?t=1720244492",
         balance: "0 shares",
         invested: 0, 
         avgPrice: 203.77, 
@@ -1359,7 +1348,7 @@ function createDonutChart(calculatedAssets) {
                 datasets: [{
                     data: data,
                     backgroundColor: colors,
-                    borderColor: '#ffffff',
+                    borderColor: '#000000',
                     borderWidth: 1
                 }]
             },
